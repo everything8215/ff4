@@ -1,0 +1,2479 @@
+
++---------------------------------------------------------------------------+
+|                                                                           |
+|                             FINAL FANTASY IV                              |
+|                                                                           |
++---------------------------------------------------------------------------+
+| file: ff4j-sfc-ram-map.txt                                                |
+|                                                                           |
+| description: ram map                                                      |
+|                                                                           |
+| created: 1/6/2022                                                         |
+|                                                                           |
+| author: everything8215@gmail.com                                          |
++---------------------------------------------------------------------------+
+
+=============================================================================
+                         | system ram ($0000-$1FFF) |
+                         +--------------------------+
+
++-------------+-------------------------------------------------------------+
+|   address   |                         description                         |
++-------------+-------------------------------------------------------------+
+| $0000-$007F | battle graphics direct page                                 |
+|             |   $00-    scratchpad                                        |
+|             |                                                             |
+|             |      +$1C multiplier 1 (unused)                             |
+|             |      +$1E multiplier 2 (unused)                             |
+|             |      +$20 8-bit multiplication result (unused)              |
+|             |    +++$22 16-bit multiplication result (unused)             |
+|             |      +$26 multiplier 1                                      |
+|             |      +$28 multiplier 2                                      |
+|             |      +$2A 8-bit multiplication result                       |
+|             |    +++$2C 16-bit multiplication result                      |
+|             |      +$30 text pointer                                      |
+|             |      +$32 pointer to text tilemap (dakuten row)             |
+|             |      +$34 pointer to text tilemap (kana row)                |
+|             |       $36 text tile flags                                   |
+|             |       $37 axlr---- controller 1                             |
+|             |       $38 byseudlr controller 1                             |
+|             |       $39 axlr---- controller 2                             |
+|             |       $3A byseudlr controller 2                             |
+|             |   $3B-$3E - (controllers 3 and 4 ???)                       |
+|             |      +$3F pointer to graphics script (at $33C2)             |
+|             |      +$41 pointer to damage buffer (at $34D4)               |
+|             |      +$43 pointer to reflected targets (at $3522)           |
+|             |      +$45 pointer to battle messages (at $34CA)             |
+|             |       $47 current character slot                            |
+|             |       $48 attacker id                                       |
+|             |       $49 target id                                         |
+|             |       $4A abcdefgh menu windows open                        |
+|             |             a: mp cost window                               |
+|             |             b: summon spell list                            |
+|             |             c: black spell list                             |
+|             |             d: white spell list                             |
+|             |             e: equipment window                             |
+|             |             f: inventory list                               |
+|             |             g: battle command window                        |
+|             |             h: character/monster name window (always open)  |
+|             |       $4B defend window open                                |
+|             |       $4C row window open                                   |
+|             |       $4D msb: status window open (character target select) |
+|             |       $4E frame counter for monster animations ???          |
+|             |       $4F (weapon anim. prop byte 3)                        |
+|             |       $50 right hand item for weapon animation              |
+|             |       $51 left hand item for weapon animation               |
+|             |       $52 weapon animation frame counter ???                |
+|             |       $53 weapon anim. type ??? (weapon anim. prop byte 2)  |
+|             |       $54 weapon animation frame counter                    |
+|             |   $55-$5E -                                                 |
+|             |      +$5F menu cursor xy position ???                       |
+|             |      +$61                                                   |
+|             |       $63                                                   |
+|             |       $64 current character doesn't run with L+R ???        |
+|             |   $65-$7F used by cinematic ???                             |
++-------------+-------------------------------------------------------------+
+|             | cutscene direct page                                        |
+|             |                                                             |
+|             |     ++$36 pointer to text                                   |
+|             |                                                             |
+|             |       $51 number of sprites to draw                         |
+|             |                                                             |
+|             |       $64 cutscene id                                       |
+|             |             0: solar system 1 (prophecy)                    |
+|             |             1: solar system 2 (moon flies away)             |
+|             |             2: end credits                                  |
+|             |       $65                                                   |
+|             |                                                             |
+|             |      +$68 cutscene frame counter                            |
+|             |      +$6A cutscene duration                                 |
+|             |                                                             |
++-------------+-------------------------------------------------------------+
+| $0080-$007F | battle direct page                                          |
+|             |   $80-$8F scratchpad                                        |
+|             |       $90                                                   |
+|             |       $91                                                   |
+|             |      +$92                                                   |
+|             |       $94                                                   |
+|             |       $95                                                   |
+|             |       $96                                                   |
+|             |       $97 random number seed (init sum of $0600-$067F)      |
+|             |      +$98                                                   |
+|             |      +$9A                                                   |
+|             |      +$9C                                                   |
+|             |      +$9D                                                   |
+|             |       $9F                                                   |
+|             |       $A0 -                                                 |
+|             |       $A1 -                                                 |
+|             |      +$A2 magic damage to attack                            |
+|             |      +$A4 magic damage to target                            |
+|             |      +$A6 pointer to current character/monster properties   |
+|             |       $A8 grvu?f?? battle over flags                        |
+|             |             g: game over after battle                       |
+|             |             r: ran away                                     |
+|             |             v: victory                                      |
+|             |             u: update party after victory (xp, etc.)        |
+|             |             f: fade out                                     |
+|             |   $A9-    scratchpad                                        |
+|             |                                                             |
+|             |      +$C3                                                   |
+|             |      +$C5                                                   |
+|             |      +$C7 current character/monster id                      |
+|             |      +$C9                                                   |
+|             |      +$CB                                                   |
+|             |       $CD attacker id (msb set if a monster)                |
+|             |       $CE target id (msb set if a monster)                  |
+|             |       $CF current target id                                 |
+|             |       $D0 selected character (battle menu)                  |
+|             |       $D1 pending action id                                 |
+|             |       $D2 current action character/monster id               |
+|             |       $D3 expired timer id (0..6)                           |
+|             |      +$D4 timer duration                                    |
+|             |       $D6 timer duration function                           |
+|             |             $00: action (atb)                               |
+|             |             $01: immediate (unused ???)                     |
+|             |             $02: immediate                                  |
+|             |             $03: magic                                      |
+|             |             $04: sleep                                      |
+|             |             $05: paralyze                                   |
+|             |             $06: poison                                     |
+|             |             $07: petrify                                    |
+|             |             $08: reflect                                    |
+|             |             $09: sap                                        |
+|             |             $0A: stop                                       |
+|             |             $0B: item                                       |
+|             |             $0C: battle command delay                       |
+|             |       $D7 battle menu is open                               |
+|             |       $D8 cise????                                          |
+|             |             c: use command                                  |
+|             |             i: use inventory item                           |
+|             |             s: use spell                                    |
+|             |             e: use equipped item (weapon spellcast) ???     |
+|             |       $D9 selected command/inventory/spell slot             |
+|             |       $DA monster targets (bitmask)                         |
+|             |       $DB character targets (bitmask)                       |
+|             |       $DC selected command/spell/item                       |
+|             |       $DD number of monster condition targets found         |
+|             |       $DE monster condition passed                          |
+|             |      +$DF multiplicand                                      |
+|             |      +$E1 multiplier                                        |
+|             |      +$E3 product                                           |
+|             |      +$E5 array item id                                     |
+|             |   $E7-$FF -                                                 |
++-------------+-------------------------------------------------------------+
+| $0100-$01FF | menu direct page                                            |
+|             |   $00-$03 mapped active controller buttons                  |
+|             |   $04-$07 unmapped active controller buttons                |
+|             |   $08-$0B currently pressed controller buttons              |
+|             |             $00 axlr---- controller 1                       |
+|             |             $01 byseudlr controller 1                       |
+|             |             $02 axlr---- controller 2                       |
+|             |             $03 byseudlr controller 2                       |
+|             |   $0C-$0F controller button repeat counters                 |
+|             |             24 frames for 1st repeat, then 3 frames         |
+|             |                                                             |
+|             |   $1D-$28 scratchpad                                        |
+|             |      +$29 tilemap offset                                    |
+|             |      +$2B window destination address                        |
+|             |      +$2D window size (width, height)                       |
+|             |       $2F                                                   |
+|             |       $30 low byte of window tile data (tile index)         |
+|             |       $31 current window x position                         |
+|             |       $32 current window y position                         |
+|             |       $33 draw top window border only                       |
+|             |       $34 high byte of window tile data (vhoppptt)          |
+|             |             $00: white                                      |
+|             |             $04: gray                                       |
+|             |             $08: yellow                                     |
+|             |             $0C: red                                        |
+|             |      +$35 tile data destination (vram)                      |
+|             |      +$37                                                   |
+|             |      +$39                                                   |
+|             |      +$3B                                                   |
+|             |      +$3D                                                   |
+|             |       $3F --oo---- cursor sprite priority                   |
+|             |       $40 enable multi-controller update (see 14/FD90)      |
+|             |      +$41 zero                                              |
+|             |      +$43 8-bit scratchpad (high byte always 0)             |
+|             |   $45-$46 scratchpad                                        |
+|             |                                                             |
+|             |   $5A-$62 scratchpad                                        |
+|             |   $63-$72 scratchpad                                        |
+|             |      +$73                                                   |
+|             |                                                             |
+|             |       $88 screen brightness -> $2100                        |
+|             |   $89-$A0 bg scroll positions (high 16-bits active)         |
+|             |             ++$89 bg2 horizontal scroll -> $210F            |
+|             |             ++$8C bg2 vertical scroll -> $2110              |
+|             |             ++$8F bg1 horizontal scroll -> $210D            |
+|             |             ++$92 bg1 vertical scroll -> $210E              |
+|             |             ++$95 bg4 horizontal scroll -> $2113            |
+|             |             ++$98 bg4 vertical scroll -> $2114              |
+|             |             ++$9B bg3 horizontal scroll -> $2111            |
+|             |             ++$9E bg3 vertical scroll -> $2112              |
+|             |   $A1-$B8 bg scroll positions (high byte unused)            |
+|             |             ++$A1 bg2 horizontal scroll rate                |
+|             |             ++$A4 bg2 vertical scroll rate                  |
+|             |             ++$A7 bg1 horizontal scroll rate                |
+|             |             ++$AA bg1 vertical scroll rate                  |
+|             |             ++$AD bg4 horizontal scroll rate                |
+|             |             ++$B0 bg4 vertical scroll rate                  |
+|             |             ++$B3 bg3 horizontal scroll rate                |
+|             |             ++$B6 bg3 vertical scroll rate                  |
+|             |      +$B9                                                   |
+|             |      +$BB                                                   |
+|             |      +$BD                                                   |
+|             |      +$BF                                                   |
+|             |       $C1 vhoopppt sprite flags                             |
+|             |       $C2 bg scroll counter                                 |
+|             |       $C3 menu window bg index                              |
+|             |             0: bg2                                          |
+|             |             1: bg1                                          |
+|             |             2: bg4                                          |
+|             |             3: bg3                                          |
+|             |                                                             |
+|             |     ++$CC clear sprite data jump code (during vblank)       |
+|             |     ++$CF sprite drawing jump code (before vblank)          |
+|             |       $D2                                                   |
+|             |       $D3                                                   |
+|             |                                                             |
+|             |       $E0 fat chocobo irq counter                           |
+|             |                                                             |
+|             |       $E3 current item quantity ???                         |
+|             |       $E4 current character slot (see 01/8DA0)              |
+|             |      +$E5 pointer to current character properties           |
+|             |       $E7 selected character slot ???                       |
+|             |       $E8 selected character slot                           |
+|             |             $7F: left or right pressed (change row)         |
+|             |             $FF: cancelled                                  |
+|             |       $E9                                                   |
+|             |       $EA                                                   |
+|             |       $EB                                                   |
+|             |       $EC                                                   |
+|             |       $ED character id for rydia (summon item used)         |
+|             |   $EE-$FF -                                                 |
++-------------+-------------------------------------------------------------+
+| $0200-$0203 | nmi jump code                                               |
+| $0204-$0207 | irq jump code                                               |
+| $0208-$02FF | cpu stack                                                   |
+| $0300-$051F | sprite data                                                 |
+|             |   $0300-$03FF                                               |
+|             |   $0400-$046F npc top sprites (28 * 4 bytes)                |
+|             |      +++$0470 top left party sprite                         |
+|             |      +++$0474 top right party sprite                        |
+|             |   $0480-$04EF npc bottom sprites (28 * 4 bytes)             |
+|             |      +++$04F0 bottom left party sprite                      |
+|             |      +++$04F4 bottom right party sprite                     |
+|             |   $0500-$051F sxsxsxsx sprite high data (128 * 2 bits)      |
+|             |                 s: large sprite flag (32x32)                |
+|             |                 x: x position MSB                           |
+| $0520-$05FF | -                                                           |
++-------------+-------------------------------------------------------------+
+| $0600-$06FF | field direct page                                           |
+|             |       $00 axlr---- controller 1+2 combined                  |
+|             |       $01 byseudlr controller 1+2 combined                  |
+|             |       $02 axlr---- controller 1+2 combined                  |
+|             |       $03 byseudlr controller 1+2 combined                  |
+|             |   $04-$4F scratchpad                                        |
+|             |       $50 X button reset (set when input is processed)      |
+|             |       $51 Y button reset                                    |
+|             |       $52 top left button reset                             |
+|             |       $53 top right button reset                            |
+|             |       $54 A button reset                                    |
+|             |       $55 B button reset                                    |
+|             |       $56 select button reset                               |
+|             |       $57 start button reset                                |
+|             |       $58 -                                                 |
+|             |       $58 -                                                 |
+|             |      +$5A bg1 horizontal scroll -> $210D                    |
+|             |      +$5C bg1 vertical scroll -> $210E                      |
+|             |      +$5E bg2 horizontal scroll -> $210F                    |
+|             |      +$60 bg2 vertical scroll -> $2110                      |
+|             |      +$62 -                                                 |
+|             |      +$64 -                                                 |
+|             |      +$66 bg2 horizontal scroll (offset from bg1)           |
+|             |      +$68 bg2 vertical scroll (offset from bg1)             |
+|             |      +$6A m7x -> $211F                                      |
+|             |      +$6C m7y -> $2120                                      |
+|             |      +$6E m7a -> $211B and $211E                            |
+|             |      +$70 m7b -> $211C                                      |
+|             |      +$72 m7c -> $211D                                      |
+|             |      +$74 m7d (unused)                                      |
+|             |       $76 fill byte for vram dma                            |
+|             |       $77 screen pixelation register -> $2106               |
+|             |       $78 random number counter                             |
+|             |       $79 screen frame counter (fade in/out, battle blur)   |
+|             |       $7A bg/npc animation frame counter                    |
+|             |       $7B party frame counter (for party movement)          |
+|             |       $7C water animation frame counter                     |
+|             |       $7D vblank status                                     |
+|             |             0: vblank complete                              |
+|             |             1: waiting for vblank                           |
+|             |       $7E short vblank (skips animations)                   |
+|             |       $7F irq counter (cleared every vblank)                |
+|             |       $80 ----bbbb                                          |
+|             |             b: screen brightness -> $2100                   |
+|             |       $81 fixed color value (0..31)                         |
+|             |       $82 screen fade speed (lower value -> faster fade)    |
+|             |       $83 bgr?????                                          |
+|             |             b: fixed color affect blue                      |
+|             |             g: fixed color affect green                     |
+|             |             r: fixed color affect red                       |
+|             |       $84 -                                                 |
+|             |       $85 enable battle (random or treasure)                |
+|             |       $86 random battle step counter                        |
+|             |       $87 random battle index counter                       |
+|             |       $88 random battle step counter (clears every battle)  |
+|             |      +$89 event pause counter                               |
+|             |       $8B cursor x position                                 |
+|             |       $8C cursor y position                                 |
+|             |             0: yes                                          |
+|             |             1: no                                           |
+|             |      +$8D current item select cursor address (vram)         |
+|             |       $8F special effect sprite tile offset                 |
+|             |       $90 ??? (special effect $02 and $08)                  |
+|             |       $91 ??? special effect tile flags                     |
+|             |       $92 ??? special effect sprite x-offset                |
+|             |       $93 world map y position                              |
+|             |       $94 enable bg tilemap vram transfer                   |
+|             |      +$95 bg tilemap dma size (left/top screen)             |
+|             |      +$97 bg tilemap dma size (right/bottom screen)         |
+|             |      +$99 bg tilemap vram address (row/column 1)            |
+|             |      +$9B bg tilemap vram address (row/column 2)            |
+|             |      +$9D bg tilemap vram address (row/column 1)            |
+|             |      +$9F bg tilemap vram address (row/column 2)            |
+|             |   $A1-$AA nearby tile properties (5 * 2 bytes)              |
+|             |             $00 ???dsbdu                                    |
+|             |                   d: door tile                              |
+|             |                   s: save point                             |
+|             |                   b: bridge tile               \ impassable |
+|             |                   u: passable on lower z-level |  if all 3  |
+|             |                   l: passable on upper z-level /  are set   |
+|             |             $01 ebcagbbb (world map)                        |
+|             |                   e: exit tile if 0 (load previous map)     |
+|             |                   b: enable random battles                  |
+|             |                   c: through-tile / use cave w/ water bg    |
+|             |                   a: airship can land                       |
+|             |                   g: forest tile (hide bottom sprites)      |
+|             |                   b: battle bg (world map, see 00/8A91)     |
+|             |             $01 tbwegz?d (sub-map)                          |
+|             |                   t: trigger                                |
+|             |                   b: enable random battles                  |
+|             |                   w: use water battle bg / through-tile     |
+|             |                   e: exit tile (load previous map)          |
+|             |                   g: grass/water tile (hide bottom sprites) |
+|             |                   z: hide sprite on lower z-level           |
+|             |                   d: damage tile                            |
+|             |       $AB player moving direction                           |
+|             |             0: none                                         |
+|             |             1: up                                           |
+|             |             2: right                                        |
+|             |             3: down                                         |
+|             |             4: left                                         |
+|             |       $AC party movement speed                              |
+|             |       $AD mode 7 zoom level ($10 is 1:1)                    |
+|             |             $10: normal zoom                                |
+|             |             $20: airship zoom                               |
+|             |       $AE current npc                                       |
+|             |             $0C: party                                      |
+|             |             $0D: ???                                        |
+|             |             $0E: ???                                        |
+|             |      +$AF pointer to current npc data (+$08FF)              |
+|             |       $B1 an event is running                               |
+|             |       $B2 dialogue index                                    |
+|             |      +$B3 pointer to event script (+$09D5)                  |
+|             |       $B5 black chocobo y-offset                            |
+|             |       $B6 hovercraft y-offset                               |
+|             |       $B7 enterprise y-offset                               |
+|             |       $B8 falcon y-offset                                   |
+|             |       $B9 big whale y-offset                                |
+|             |       $BA item selection window scroll position             |
+|             |       $BB text window scroll position (bg3)                 |
+|             |      +$BC pointer to npc event data                         |
+|             |      +$BE pointer to trigger event data                     |
+|             |       $C0 used siren/alert item (rarest random battle)      |
+|             |       $C1 number of characters with floor damage            |
+|             |       $C2 number of poisoned characters                     |
+|             |       $C3 enable travel to/from moon                        |
+|             |       $C4 invert map colors (floor damage)                  |
+|             |       $C5 disable map name (after menu if inventory full)   |
+|             |       $C6 item gained from monster chest                    |
+|             |       $C7 disable random explosion sprites ???              |
+|             |       $C8 disable ??? big whale sprites                     |
+|             |       $C9 bg2 is stationary                                 |
+|             |       $CA                                                   |
+|             |       $CB auto-scrolling dialogue (prologue)                |
+|             |       $CC enable player graphics update                     |
+|             |       $CD enable sub-map change                             |
+|             |       $CE enable overworld/underground switch               |
+|             |       $CF                                                   |
+|             |       $D0 enterprise is holding hovercraft                  |
+|             |       $D1 load previous map                                 |
+|             |       $D2 ??????ud current z-level                          |
+|             |             u: upstairs tile                                |
+|             |             d: downstairs tile                              |
+|             |       $D3 hide player sprite                                |
+|             |       $D4 enable vram map update (chests/doors)             |
+|             |       $D5 enable player control                             |
+|             |       $D6                                                   |
+|             |       $D7 current sprite is off-screen                      |
+|             |       $D8 player spins when moving                          |
+|             |       $D9 enable screen wipe                                |
+|             |       $DA item select window height (1..8)                  |
+|             |       $DB dialogue selection                                |
+|             |             0: yes                                          |
+|             |             1: no                                           |
+|             |       $DC selection window height (1..6)                    |
+|             |       $DD dialogue bank number                              |
+|             |             0: map dialogue                                 |
+|             |             1: event dialogue bank 1                        |
+|             |             2: event dialogue bank 2                        |
+|             |       $DE dialogue window state                             |
+|             |             0: don't close                                  |
+|             |             1: close after keypress                         |
+|             |             2: close immediately	                        |
+|             |       $DF dialogue window height (1..8)                     |
+|             |       $E0                                                   |
+|             |       $E1                                                   |
+|             |       $E2 enable secret door tilemap transfer to vram       |
+|             |       $E3 enable screen shake                               |
+|             |       $E4 solo character battle id (see 00/E668)            |
+|             |       $E5                                                   |
+|             |       $E6 enable item select dialogue text update in vram   |
+|             |       $E7 enable item select cursor update                  |
+|             |       $E8                                                   |
+|             |       $E9 need map name window tilemap update in vram       |
+|             |       $EA hide map name window                              |
+|             |       $EB need dialogue window tilemap update in vram       |
+|             |       $EC hide dialogue window                              |
+|             |       $ED need dialogue text tilemap update in vram         |
+|             |       $EE npc blocking player movement (msb set if valid)   |
+|             |       $EF                                                   |
+|             |       $F0                                                   |
+|             |       $F1                                                   |
+|             |       $F2                                                   |
+|             |      +$F3                                                   |
+|             |      +$F5                                                   |
+|             |       $F7                                                   |
+|             |       $F8 hook sprite position                              |
+|             |       $F9 bg1 tilemap id                                    |
+|             |       $FA map size mask id                                  |
+|             |             0: $FF (overworld, underground, sub-maps)       |
+|             |             1: $7F (unused)                                 |
+|             |             2: $3F (moon)                                   |
+|             |      +$FB mode 7 rotation angle                             |
+|             |       $FD airship animation speed (drill/propellers)        |
+|             |      +$FE bg1 tile data vram address (chests/doors)         |
+|      +$0700 | top left tile data (treasure chest or door)                 |
+|      +$0702 | top right tile data                                         |
+|      +$0704 | bottom left tile data                                       |
+|      +$0706 | bottom right tile data                                      |
+|       $0708 | -                                                           |
+|       $0709 | player movement direction                                   |
+|             |   0: none                                                   |
+|             |   1: up                                                     |
+|             |   2: right                                                  |
+|             |   3: down                                                   |
+|             |   4: left                                                   |
+|       $070A | party destination y position                                |
+|       $070B | tile index at party                                         |
+|       $070C | tile index above party                                      |
+|       $070D | tile index to the right of party                            |
+|       $070E | tile index below party                                      |
+|       $070F | tile index to the left of party                             |
+|       $0710 | ----ppp-                                                    |
+|             |   p: party sprite color palette index                       |
+|       $0711 | treasure count                                              |
+| $0712-$0771 | inventory for item select window (48 * 2 bytes)             |
+|      +$0772 | dialogue pointer                                            |
+| $0774-$0833 | dialogue text buffer                                        |
+| $0834-$08F3 | dialogue tilemap buffer                                     |
+|      +$08F4 | dialogue pause duration                                     |
+|      +$08F6 | dialogue pause counter                                      |
+|     ++$08F8 | gp amount (treasure chest/inn)                              |
+|       $08FB | item index (treasure chest, item select window)             |
+|       $08FC | treasure index                                              |
+|       $08FD | npc movement counter (unused ???)                           |
+|       $08FE | npc count                                                   |
+| $08FF-$09D0 | npc data (14 * 15 bytes)                                    |
+|             |   $08FF movement counter ???                                |
+|             |   $0900 npc is blocking player (move at speed 2)            |
+|             |   $0901 sswtppmm                                            |
+|             |           s: movement speed                                 |
+|             |           w: walk while stationary                          |
+|             |           t: turn when activated                            |
+|             |           p: palette index                                  |
+|             |           m: movement type (determined by graphics index)   |
+|             |   $0902 moving direction (pause movement if msb set ???)    |
+|             |           0: none                                           |
+|             |           1: up                                             |
+|             |           2: right                                          |
+|             |           3: down                                           |
+|             |           4: left                                           |
+|             |   $0903 x offset (pixels)                                   |
+|             |   $0904 x position (tiles)                                  |
+|             |   $0905 y offset (pixels)                                   |
+|             |   $0906 y position (tiles)                                  |
+|             |   $0907 npc index                                           |
+|             |   $0908 vh------ v/h flip ???                               |
+|             |   $0909 ??????dd                                            |
+|             |         d: facing direction                                 |
+|             |           0: up                                             |
+|             |           1: right                                          |
+|             |           2: down                                           |
+|             |           3: left                                           |
+|             |   $090A $08 = grass/water tile (hides bottom sprites)       |
+|             |   $090B npc is visible                                      |
+|             |   $090C ??????sj                                            |
+|             |           s: enable spin                                    |
+|             |           j: enable jump                                    |
+|             |   $090D ?vh?pppp                                            |
+|             |           v: vertical flip                                  |
+|             |           h: horizontal flip                                |
+|             |           p: palette ???                                    |
+|      +$09CF | pointer to current npc data (+$138300)                      |
+|      +$09D1 | pointer to first npc data (+$138300)                        |
+|      +$09D3 | pointer to event script                                     |
+| $09D5-$0A14 | event script buffer                                         |
+|       $0A15 | event loop count                                            |
+|       $0A16 | current event command                                       |
+| $0A17-$0A26 | secret door tilemap vram addresses (8 * 2 bytes)            |
+| $0A27-$0A46 | secret door tilemap buffer (8 * 4 bytes)                    |
+|      +$0A47 |                                                             |
+| $0A49-$0A68 | npc dialogue list                                           |
+|      +$0A69 | pointer to end of npc event data (+$139C00)                 |
+|      +$0A6B | pointer to end of trigger event data (+$12F460)             |
+| $0A6D-$0ACC | scratchpad                                                  |
+|       $0ACD | ??? sprite palette index                                    |
+|       $0ACE | explosion palette id                                        |
+|             |   $00: fire (red/yellow)                                    |
+|             |   $00: sand (brown/tan)                                     |
+|       $0ACF |                                                             |
+|       $0AD0 |                                                             |
+|       $0AD1 |                                                             |
+|      +$0AD2 | explosion animation frame counter                           |
+|      +$0AD4 |                                                             |
+| $0AD6-$0ADA | character id for each character slot (5 * 1 byte)           |
+| $0ADB-$0B5A | tilemap vram buffer (64 tiles)                              |
+| $0B5B-$0BDA |                                                             |
+| $0BDB-$0CDA | inverted map color palettes (8 * 32 bytes)                  |
+| $0CDB-$0EDA | color palettes (16 * 32 bytes)                              |
+| $0EDB-$0FDA | tile properties (128 * 2 bytes)                             |
+| $0FDB-$0FE7 | map properties                                              |
+|             |   $0FDB mnewbbbb                                            |
+|             |           m: enable magnetization                           |
+|             |           n: alternate palette for battle bg                |
+|             |           e: enable exit                                    |
+|             |           w: enable warp                                    |
+|             |           b: default battle bg                              |
+|             |   $0FDC bg1 map formation                                   |
+|             |   $0FDD tileset                                             |
+|             |           00: airship                                       |
+|             |           01: lunar core                                    |
+|             |           02: sealed cave/cave magnes                       |
+|             |           03: castle exterior                               |
+|             |           04: town exterior                                 |
+|             |           05: town interior                                 |
+|             |           06: castle interior                               |
+|             |           07: crystal room                                  |
+|             |           08: big whale                                     |
+|             |           09: underground cave                              |
+|             |           0A: tower of zot/bab-il                           |
+|             |           0B: giant of bab-il                               |
+|             |           0C: moon cave                                     |
+|             |           0D: mountains                                     |
+|             |           0E: overworld cave                                |
+|             |           0F: ship                                          |
+|             |   $0FDE npc data index                                      |
+|             |   $0FDF afffffff                                            |
+|             |           a: out of bounds tiles are passable               |
+|             |           f: fill tile                                      |
+|             |   $0FE0 map palette                                         |
+|             |   $0FE1 aaaabbbb                                            |
+|             |           a: npc palette index 1                            |
+|             |           b: npc palette index 2                            |
+|             |   $0FE2 default song                                        |
+|             |   $0FE3 bg2 tilemap id                                      |
+|             |   $0FE4 ssdd-hva                                            |
+|             |           s: if v and h clear, bg2 scrolling speed          |
+|             |                3: no scroll                                 |
+|             |                1: scroll every 8 frames                     |
+|             |                2: scroll every 2 frames                     |
+|             |                3: no scroll                                 |
+|             |           s: if v or h set, bg2 parallax type               |
+|             |                0: no scroll                                 |
+|             |                1: scroll half bg1                           |
+|             |                2: scroll same as bg1                        |
+|             |                3: scroll twice bg1                          |
+|             |           d: bg2 scrolling direction                        |
+|             |                0: up                                        |
+|             |                1: right                                     |
+|             |                2: down                                      |
+|             |                3: left                                      |
+|             |           h: enable horizontal parallax scrolling           |
+|             |           v: enable vertical parallax scrolling             |
+|             |           a: enable color addition (subscreen, half add)    |
+|             |   $0FE5 n------l                                            |
+|             |           n: npc properties msb                             |
+|             |           l: bg tilemap msb                                 |
+|             |   $0FE6 map name (not shown if msb set)                     |
+|             |   $0FE7 treasure offset                                     |
+| $0FE8-$0FFE | -                                                           |
+|       $0FFF | frame counter (random number seed)                          |
++-------------+-------------------------------------------------------------+
+| $1000-$113F | character data (5 * 64 bytes)                               |
+|             |   $1000 rlcccccc                                            |
+|             |           r: right-handed                                   |
+|             |           l: left-handed                                    |
+|             |           c: character id                                   |
+|             |                00: none                                     |
+|             |                01: cecil (dark knight)                      |
+|             |                02: kain (1st time)                          |
+|             |                03: rydia (girl)                             |
+|             |                04: tellah (1st time)                        |
+|             |                05: edward                                   |
+|             |                06: rosa (1st time)                          |
+|             |                07: yang (1st time)                          |
+|             |                08: palom                                    |
+|             |                09: porom                                    |
+|             |                0A: tellah (2nd time)                        |
+|             |                0B: cecil (paladin)                          |
+|             |                0C: tellah (3rd time)                        |
+|             |                0D: yang (2nd time)                          |
+|             |                0E: cid                                      |
+|             |                0F: kain (2nd time)                          |
+|             |                10: rosa (2nd time)                          |
+|             |                11: rydia (adult)                            |
+|             |                12: edge                                     |
+|             |                13: fusoya                                   |
+|             |                14: kain (3rd time)                          |
+|             |                15: golbez                                   |
+|             |                16: anna                                     |
+|             |   $1001 r?spgggg                                            |
+|             |           r: battle row (0 = front, 1 = back)               |
+|             |           s: same damage from back row                      |
+|             |           p: defend ???                                     |
+|             |           g: job id (graphics)                              |
+|             |                00: cecil (dark knight)                      |
+|             |                01: kain                                     |
+|             |                02: rydia (girl)                             |
+|             |                03: tellah                                   |
+|             |                04: edward                                   |
+|             |                05: rosa                                     |
+|             |                06: yang                                     |
+|             |                07: palom                                    |
+|             |                08: porom                                    |
+|             |                09: cecil (paladin)                          |
+|             |                0A: cid                                      |
+|             |                0B: rydia (adult)                            |
+|             |                0C: edge                                     |
+|             |                0D: fusoya                                   |
+|             |                0E: pig                                      |
+|             |                0F: golbez                                   |
+|             |   $1002 level                                               |
+|             |   $1003 76543210 status 1                                   |
+|             |           7: dead                                           |
+|             |           6: stone (fully petrified)                        |
+|             |           5: toad                                           |
+|             |           4: mini                                           |
+|             |           3: pig                                            |
+|             |           2: mute                                           |
+|             |           1: blind                                          |
+|             |           0: poison                                         |
+|             |   $1004 76543210 status 2                                   |
+|             |           7: curse                                          |
+|             |           6: float                                          |
+|             |           5: paralyze                                       |
+|             |           4: sleep                                          |
+|             |           3: charm                                          |
+|             |           2: berserk                                        |
+|             |           1: petrify (2/3 petrified)                        |
+|             |           0: (1/3 petrified)                                |
+|             |   $1005 76543210 status 3                                   |
+|             |           7: (magnetized)                                   |
+|             |           6: stop                                           |
+|             |           5: (egg)                                          |
+|             |           4: (defend)                                       |
+|             |           3: (focus/charge)                                 |
+|             |           2: (twin)                                         |
+|             |           1: (jump)                                         |
+|             |           0: doom                                           |
+|             |   $1006 7654ii10 status 4                                   |
+|             |           7: (hide)                                         |
+|             |           6: (hp leak)                                      |
+|             |           5: reflect                                        |
+|             |           4: barrier                                        |
+|             |           i: image (takes 2 hits to lose image)             |
+|             |           1: (cover)                                        |
+|             |           0: (low hp)                                       |
+|             |  +$1007 current hp                                          |
+|             |  +$1009 max hp                                              |
+|             |  +$100B current mp                                          |
+|             |  +$100D max mp                                              |
+|             |   $100F base strength                                       |
+|             |   $1010 base agility                                        |
+|             |   $1011 base stamina (vitality)                             |
+|             |   $1012 base intellect (wisdom)                             |
+|             |   $1013 base spirit (will)                                  |
+|             |   $1014 modified strength                                   |
+|             |   $1015 modified agility                                    |
+|             |   $1016 modified stamina (vitality)                         |
+|             |   $1017 modified intellect (wisdom)                         |
+|             |   $1018 modified spirit (will)                              |
+|             |   $1019 attack element                                      |
+|             |   $101A attack strong vs. creature types                    |
+|             |   $101B attack multiplier                                   |
+|             |   $101C hit rate                                            |
+|             |   $101D attack power                                        |
+|             |   $101E status 1 inflicted by attack                        |
+|             |   $101F status 2 inflicted by attack                        |
+|             |   $1020 76543210 weak elements                              |
+|             |           7: very weak                                      |
+|             |           6: drain                                          |
+|             |           5: spear/arrow (flying enemies)                   |
+|             |           4: holy                                           |
+|             |           3: darkness                                       |
+|             |           2: lightning                                      |
+|             |           1: ice                                            |
+|             |           0: fire                                           |
+|             |   $1021 very weak elements                                  |
+|             |   $1022 mag def multiplier                                  |
+|             |   $1023 mag def rate                                        |
+|             |   $1024 mag def                                             |
+|             |   $1025 strong elements                                     |
+|             |   $1026 immune elements                                     |
+|             |   $1027 defense strong vs. creature types                   |
+|             |   $1028 defense multiplier                                  |
+|             |   $1029 defense rate                                        |
+|             |   $102A defense base                                        |
+|             |   $102B status immunity 1                                   |
+|             |   $102C status immunity 2                                   |
+|             |   $102D critical hit rate                                   |
+|             |   $102E critical bonus                                      |
+|             |   $102F level + 10 (monster stat)                           |
+|             |   $1030 helmet                                              |
+|             |   $1031 armor                                               |
+|             |   $1032 accessory                                           |
+|             |   $1033 right hand                                          |
+|             |   $1034 right hand quantity                                 |
+|             |   $1035 left hand                                           |
+|             |   $1036 left hand quantity                                  |
+|             | ++$1037 experience                                          |
+|             |   $103A                                                     |
+|             |   $103B speed multiplier (haste: -3, slow: +8)              |
+|             |           1: auto-battle                                    |
+|             |           12: fastest (133%)                                |
+|             |           16: normal                                        |
+|             |           32: slowest (50%)                                 |
+|             |   $103C                                                     |
+|             | ++$103D experience at last level                            |
+| $1140-$127F | saved character data (5 * 64 bytes)                         |
+|             |   $1140 kain                                                |
+|             |   $1180 tellah                                              |
+|             |   $11C0 rosa                                                |
+|             |   $1200 yang                                                |
+|             |   $1240 rydia                                               |
+| $1280-$129F | event switches                                              |
+| $12A0-$12DF | treasure switches                                           |
+| $12E0-$131F | npc switches                                                |
+| $1340-$143F | fat chocobo items                                           |
+| $1440-$149F | inventory (48 * 2 bytes)                                    |
+|             |   $1440 item id                                             |
+|             |   $1441 item quantity                                       |
+| $1500-$1553 | character names (14 * 6 bytes)                              |
+| $1554-$155F | -                                                           |
+| $1560-$1697 | spell lists (13 * 24 bytes)                                 |
+|             |   $1560 cecil (white)                                       |
+|             |   $1578 ???                                                 |
+|             |   $1590 rydia (white)                                       |
+|             |   $15A8 rydia (black)                                       |
+|             |   $15C0 rydia (call)                                        |
+|             |   $15D8 tellah (white)                                      |
+|             |   $15F0 tellah (black)                                      |
+|             |   $1608 rosa (white)                                        |
+|             |   $1620 palom (black)                                       |
+|             |   $1638 porom (white)                                       |
+|             |   $1650 fusoya (white)                                      |
+|             |   $1668 fusoya (black)                                      |
+|             |   $1680 edge (ninja)                                        |
+| $1698-$169F | -                                                           |
+|     ++$16A0 | gil                                                         |
+|       $16A3 | game time frame counter (0..59)                             |
+|     ++$16A4 | game time                                                   |
+|       $16A7 |                                                             |
+|       $16A8 | row setting                                                 |
+|             |   0: 3 front/2 back                                         |
+|             |   1: 2 front/3 back                                         |
+|       $16A9 | button mapping                                              |
+|             |   0: default                                                |
+|             |   1: custom                                                 |
+|      +$16AA | window color                                                |
+|       $16AC | battle speed (0..5)                                         |
+|       $16AD | battle message speed (0..5)                                 |
+| $16AE-$16B2 | button mapping data -> $1A37-$1A3B                          |
+| $16B3-$16B5 | -                                                           |
+|       $16B6 | sound mode                                                  |
+|             |   0: stereo                                                 |
+|             |   1: mono                                                   |
+|       $16B7 | cursor                                                      |
+|             |   0: reset                                                  |
+|             |   1: memory                                                 |
+|       $16B8 | controller setting                                          |
+|             |   0: single                                                 |
+|             |   1: multi                                                  |
+| $16B9-$16BD | controller for each character                               |
+|             |   0: controller 1                                           |
+|             |   2: controller 2                                           |
+|       $16BE | battle mode                                                 |
+|             |   0: wait                                                   |
+|             |   1: active                                                 |
+|             |   2: delay                                                  |
+| $16BF-$16CF | -                                                           |
++-------------+-------------------------------------------------------------+
+|       $1700 | map type                                                    |
+|             |   0: overworld                                              |
+|             |   1: underground                                            |
+|             |   2: moon                                                   |
+|             |   3: sub-map                                                |
+|       $1701 | world (or msb of map id for sub-maps)                       |
+|             |   0: overworld                                              |
+|             |   1: underground                                            |
+|             |   2: moon                                                   |
+|       $1702 | map id                                                      |
+|             |   00: Town Baron                                            |
+|             |   FB: World Map                                             |
+|             |   FC: Underground                                           |
+|             |   FD: Moon                                                  |
+|             |   FE:                                                       |
+|             |   FF:                                                       |
+|       $1703 | showing character                                           |
+|       $1704 | vehicle                                                     |
+|             |   0: none                                                   |
+|             |   1: chocobo                                                |
+|             |   2: black chocobo                                          |
+|             |   3: hovercraft                                             |
+|             |   4: enterprise                                             |
+|             |   5: falcon                                                 |
+|             |   6: big whale                                              |
+|             |   7: ship                                                   |
+|       $1705 | player facing direction                                     |
+|             |   0: up                                                     |
+|             |   1: right                                                  |
+|             |   2: down                                                   |
+|             |   3: left                                                   |
+|             |   8: spin when moving                                       |
+|       $1706 | party x position                                            |
+|       $1707 | party y position                                            |
+|       $1708 | ??? x position                                              |
+|       $1709 | ??? y position                                              |
+|       $170A | -                                                           |
+|       $170B | -                                                           |
+|       $170C |                                                             |
+|       $170D |                                                             |
+|       $170E |                                                             |
+|       $170F | chocobo visible                                             |
+|      +$1710 | chocobo position                                            |
+|       $1712 | black chocobo visible                                       |
+|      +$1713 | black chocobo position                                      |
+|       $1715 | something with hook ???                                     |
+|      +$1716 |                                                             |
+|       $1718 | hovercraft visible                                          |
+|      +$1719 | hovercraft position                                         |
+|       $171B | hovercraft world                                            |
+|       $171C | enterprise visible                                          |
+|      +$171D | enterprise position                                         |
+|       $171F | enterprise world                                            |
+|       $1720 | falcon visible                                              |
+|      +$1721 | falcon position                                             |
+|       $1723 | falcon world                                                |
+|       $1724 | big whale visible                                           |
+|      +$1725 | big whale position                                          |
+|       $1727 | big whale world                                             |
+|       $1728 | ship visible                                                |
+|      +$172A | ship position                                               |
+|       $172B |                                                             |
+|      +$172C | pointer to previous map (+$172E)                            |
+| $172E-$17ED | previous maps (64 * 3 bytes)                                |
+|             |   $172E map index                                           |
+|             |   $172F ddxxxxxx                                            |
+|             |           d: facing direction                               |
+|             |                0: up                                        |
+|             |                1: right                                     |
+|             |                2: down                                      |
+|             |                3: left                                      |
+|             |           x: x position                                     |
+|             |   $1730 y position                                          |
+|       $17EE | random battle index counter                                 |
+|       $17EF | random battle probability counter                           |
+| $17F0-$17FA | -                                                           |
+|       $17FB | save slot can be loaded                                     |
+|      +$17FC | sram checksum (sum of $1000-$17FA)                          |
+|      +$17FE | sram fixed value (#$1BE4 if slot is valid)                  |
++-------------+-------------------------------------------------------------+
+|      +$1800 | mbbbbbbb bbbbbbbb                                           |
+|             |   m: use moon monster action scripts                        |
+|             |   b: battle index (high bit set if not on overworld)        |
+|       $1802 | mwnbbbbb                                                    |
+|             |   m: enable magnetization (cave magnes)                     |
+|             |   w: use battle bg 7 (cave w/ water)                        |
+|             |   n: use alternate battle bg palette                        |
+|             |   b: battle bg id                                           |
+|             |        00: field                                            |
+|             |        01: forest                                           |
+|             |        02: mountains                                        |
+|             |        03: castle                                           |
+|             |        04: cave                                             |
+|             |        05: moon (outside)                                   |
+|             |        06: ship                                             |
+|             |        07: cave (water)                                     |
+|             |        08: cave (dirt)                                      |
+|             |        09: desert                                           |
+|             |        0A: beach                                            |
+|             |        0B: summon/sylvan cave                               |
+|             |        0C: tower of zot/bab-il                              |
+|             |        0D: moon (cave)                                      |
+|             |        0E: glass cave                                       |
+|             |        0F: underground (outside)                            |
+|             |        10: final boss                                       |
+|       $1803 | grvu?f?? battle over flags                                  |
+|             |   g: game over after battle                                 |
+|             |   r: ran away                                               |
+|             |   v: victory                                                |
+|             |   u: update party after battle                              |
+|             |   f: fade out                                               |
+| $1804-$180B | items gained from battle (8 * 1 byte)                       |
+| $180C-$1810 | hex to decimal conversion digits                            |
+|       $1811 |                                                             |
+|       $1812 |                                                             |
+|      +$1813 | frame counter                                               |
+|       $1815 | -                                                           |
+|       $1816 | character id ???                                            |
+|       $1817 | battle command slot ???                                     |
+|       $1818 |                                                             |
+|       $1819 | inventory cursor scroll position                            |
+|       $181A | 1st item cursor position                                    |
+|       $181B | 2nd item cursor position                                    |
+|       $181C | inventory equipment swap type                               |
+|             |   0: swap equipment slot and empty inventory slot           |
+|             |   1: equipment slot -> inventory slot with same item        |
+|             |   2: swap equipment with inventory item                     |
+|             |   3: equip more of same type of arrows                      |
+|             |   4: overfull inventory slot -> empty equipment slot        |
+|       $181D | pointer to an empty slot in inventory ($FF if full)         |
+|       $181E | immediate menu vram transfer 1                              |
+|       $181F | immediate menu vram transfer 2                              |
+|             |   0: none                                                   |
+|             |   1: none                                                   |
+|             |   2: main menu                                              |
+|             |   3: battle command list                                    |
+|             |   4: white magic spell list                                 |
+|             |   5: black magic/ninjutsu spell list                        |
+|             |   6: summon spell list                                      |
+|             |   7: inventory                                              |
+|             |   8: mp cost                                                |
+|             |   9: equipped items                                         |
+|             |   A: none                                                   |
+|             |   B: none                                                   |
+|             |   C: status                                                 |
+|       $1820 | pending menu hdma update                                    |
+|             |   0: none                                                   |
+|             |   1: open/close menu                                        |
+|             |   2: scroll down                                            |
+|             |   3: scroll up                                              |
+|       $1821 | pending menu text update                                    |
+|             |   0: none                                                   |
+|             |   1: character names                                        |
+|             |   2: inventory item text                                    |
+|             |   3: spell name                                             |
+|             |   4: hp text                                                |
+|             |   5: monster names                                          |
+|             |   6: current/max mp                                         |
+|             |   7: battle command name                                    |
+|             |   8: swap inventory slots                                   |
+|             |   9: copy equipped items to character properties            |
+|       $1822 | selected character (battle menu)                            |
+|       $1823 | cursor type                                                 |
+|             |   00: none                                                  |
+|             |   01: main menu (command select)                            |
+|             |   02: defend                                                |
+|             |   03: row change                                            |
+|             |   04: target select (fight)                                 |
+|             |   05: inventory                                             |
+|             |   06: spell select                                          |
+|             |   07: target select (other commands)                        |
+|             |   08: close menu                                            |
+|             |   09: open mp cost window                                   |
+|             |   0A: close spell list                                      |
+|             |   0B: equipment window                                      |
+|             |   0C: monster target select                                 |
+|             |   0D: close inventory                                       |
+|             |   0E: close status window (magic)                           |
+|             |   0F: character target select                               |
+|             |   10: close status window (item)                            |
+|       $1824 | enable menu tilemap transfer to vram                        |
+|       $1825 | number of vram transfers needed                             |
+| $1826-$1837 | menu tilemap vram transfer data (3 * 6 bytes)               |
+|             |  +$1826 source address                                      |
+|             |  +$1828 destination address (vram)                          |
+|             |  +$182A transfer size                                       |
+|       $1838 | enable mp cost tilemap transfer to vram                     |
+| $1839-$183E | mp cost tilemap (3 tiles)                                   |
+|      +$183F | menu hdma data source                                       |
+|      +$1841 | menu hdma data destination                                  |
+|       $1843 | number of rows to swap for menu open/close                  |
+|       $1844 | 0: open menu, 1: close menu                                 |
+|       $1845 | periodic menu vram update counter (cyclic, one per frame)   |
+|             |   0: main menu                                              |
+|             |   1: battle command list                                    |
+|             |   2: mp cost                                                |
+|             |   3: equipped items                                         |
+|             |   4: inventory/spell list                                   |
+|             |   5: status                                                 |
+|             |   6: main menu                                              |
+|             |   7: character names                                        |
+|       $1846 |                                                             |
+| $1847-$18FF | -                                                           |
+| $1900-$19FF | random number table                                         |
++-------------+-------------------------------------------------------------+
+|       $1A00 | shop id                                                     |
+|       $1A01 | shop type                                                   |
+|             |   0: weapon                                                 |
+|             |   1: armor                                                  |
+|             |   2: item                                                   |
+|       $1A02 | enable tent/save                                            |
+|       $1A03 | menu event                                                  |
+|             |   0: no event                                               |
+|             |   1: tent (event $77)                                       |
+|             |   2: cabin (event $78)                                      |
+|             |   3: warp (event $87)                                       |
+|             |   4: exit (event $88)                                       |
+|             |   5: sight (event $FB)                                      |
+|             |   6: siren/alarm                                            |
+|             |   7: porno mag (event $DB)                                  |
+|       $1A04 | psew----                                                    |
+|             |   p: enable porno mag                                       |
+|             |   s: enable sight                                           |
+|             |   e: enable exit                                            |
+|             |   w: enable warp                                            |
+| $1A05-$1A1C | default button mapping                                      |
+| $1A1D-$1A34 | custom button mapping                                       |
+|       $1A35 | -                                                           |
+|       $1A36 | -                                                           |
+|       $1A37 | confirm button mapping                                      |
+|       $1A38 | cancel button mapping                                       |
+|       $1A39 | menu button mapping                                         |
+|       $1A3A | action for L button                                         |
+|       $1A3B | action for start button                                     |
+|             |   0: none                                                   |
+|             |   1: confirm                                                |
+|             |   2: cancel                                                 |
+|             |   3: menu                                                   |
+|       $1A3C | selected save slot (1..4)                                   |
+| $1A3D-$1A5E | -                                                           |
+|       $1A5F |                                                             |
+| $1A60-$1A63 | -                                                           |
+|       $1A64 |                                                             |
++-------------+-------------------------------------------------------------+
+|      +$1A65 | saved stack pointer (for exiting menu)                      |
+| $1A67-$1A70 | character id and slot (5 * 2 bytes)                         |
+|             |   $1A67 character id                                        |
+|             |   $1A68 character slot                                      |
+|      +$1A71 |                                                             |
+|       $1A73 |                                                             |
+|       $1A74 |                                                             |
+|       $1A75 |                                                             |
+|       $1A76 | cursor position                                             |
+|       $1A77 |                                                             |
+| $1A78-$1A7F |                                                             |
+|       $1A80 |                                                             |
+|             |                                                             |
+|      +$1A84 | scratchpad for calculating potion/ether effect (01/A630)    |
+|       $1A86 |                                                             |
+|       $1A87 | spell index                                                 |
+|       $1A88 |                                                             |
+| $1A89-$1AFF | -                                                           |
++-------------+-------------------------------------------------------------+
+| $1B00-$1BEB | menu cursor position data                                   |
+|             |                                                             |
+|             |   $1B0A-$1B10 character name buffer 2 (namingway)           |
+|             |   $1B11-$1B17 character name buffer 1 (namingway)           |
+|             |         $1B18                                               |
+|             |         $1B19 show inventory cursor 2                       |
+|             |         $1B1A inventory scroll position                     |
+|             |                                                             |
+|             |         $1B1D min valid item id                             |
+|             |         $1B1E max valid item id                             |
+|             |         $1B1F 0: item menu, 1: equip menu                   |
+|             |                                                             |
+|             |         $1B22 inventory cursor 1 x position (0 or 1)        |
+|             |         $1B23 inventory cursor 1 y position (relative)      |
+|             |         $1B24 inventory cursor 2 x position (0 or 1)        |
+|             |         $1B25 inventory cursor 2 y position (absolute)      |
+|             |         $1B26                                               |
+|             |         $1B27 change row setting if left or right pressed   |
+|             |   $1B28-$1B36 equip menu inventory positions (5 * 3 bytes)  |
+|             |         $1B37 equip menu item slot                          |
+|             |         $1B38                                               |
+|             |         $1B39 equip menu item id                            |
+|             |         $1B3A equip menu character properties pointer       |
+|             |         $1B3B selected item index                           |
+|             |        +$1B3C pointer to selected item in inventory         |
+|             |                                                             |
+|             |         $1B3E selected character slot (item)                |
+|             |                                                             |
+|             |         $1B48 yes/no cursor position (namingway)            |
+|             |         $1B49 namingway-style name change (not stand-alone) |
+|             |         $1B4A character cursor position (namingway)         |
+|             |   $1B4B-$1B54 character sprite graphics data (5 * 2 bytes)  |
+|             |   $1B55-$1B74 shop item list (8 * 4 bytes)                  |
+|             |         $1B75                                               |
+|             |                                                             |
+|             |         $1B7B shop quantity cursor position                 |
+|             |                                                             |
+|             |         $1B7E white magic spell list                        |
+|             |         $1B7F black/ninja magic spell list                  |
+|             |         $1B80 call magic spell list                         |
+|             |         $1B81 magic type cursor position                    |
+|             |         $1B82                                               |
+|             |        +$1B83 spell list cursor 1 xy position               |
+|             |        +$1B85 spell list cursor 2 xy position               |
+|             |         $1B87 0: magic type select, 1: spell select         |
+|             |         $1B88 spell has been single-selected                |
+|             |         $1B89 selected spell                                |
+|             |         $1B8A spell caster                                  |
+|             |   $1B8B-$1B8F character targets                             |
+|             |         $1B90 multi-target flag (from 14/FFF2)              |
+|             |         $1B91 spell power                                   |
+|             |        +$1B92                                               |
+|             |         $1B93 mp cost                                       |
+|             |                                                             |
+|             |   $1BA8-$1BAA window color components (red, green, blue)    |
+|             |                                                             |
+|             |         $1BB8 allow to select empty character slot          |
+|             |                                                             |
+|             |         $1BBB all characters are targetted                  |
+|             |                                                             |
+|             |         $1BC1                                               |
+|             |         $1BC2 hide character title ???                      |
+|             |                                                             |
+|             |         $1BC7 multi-controller menu cursor position         |
+|             |         $1BC8                                               |
+|             |                                                             |
+|             |   $1BCD-$1BEB magic menu data -> $1B81-$1B86 (5 * 6 bytes)  |
+| $1BEC-$1DFF | -                                                           |
++-------------+-------------------------------------------------------------+
+
+=============================================================================
+                       | sound ram (7E/1E00-7E/1FFF) |
+                       +-----------------------------+
+
++-------------+-------------------------------------------------------------+
+|   address   |                         description                         |
++-------------+-------------------------------------------------------------+
+|       $1E00 | sound interrupt                                             |
+|             |       $00: no interrupt                                     |
+|             |       $01: play song                                        |
+|             |       $02: play game sound effect                           |
+|             |       $03: play song ???                                    |
+|             |       $04: fade in song                                     |
+|             |   $10-$1F: play system sound effect                         |
+|             |       $80: set sound effect pan                             |
+|             |       $85: fade out (slow)                                  |
+|             |       $86: fade out (fast)                                  |
+|             |       $87: fade out to half volume                          |
+|             |       $88: full volume                                      |
+|             |       $89: fade in                                          |
+|             |       $8A: quarter volume                                   |
+|             |       $8B: fade out                                         |
+|             |       $90: set/clear mono mode                              |
+|             |       $FF: reset                                            |
+|       $1E01 | sound interrupt parameter 1                                 |
+|       $1E02 | sound interrupt parameter 2                                 |
+|       $1E03 | sound interrupt parameter 3                                 |
+|             |                                                             |
+|       $1E05 | current song id                                             |
+|             |                                                             |
+|       $1E08 | spc sync value                                              |
+|             |                                                             |
+|     ++$1E10 | misc. source pointer (rom)                                  |
+|     ++$1E13 | sample data pointer                                         |
+|             |                                                             |
+|     ++$1E18 | misc. source pointer                                        |
+|             |                                                             |
+|     ++$1E20 | source pointer (raw)                                        |
+|             |                                                             |
+| $1E40-$1E5F |                                                             |
+| $1E60-$1E7F | sample offsets                                              |
+| $1E80-$1E9F |                                                             |
+| $1EA0-$1EBF |                                                             |
+| $1EC0-$1EDF | samples used                                                |
+| $1EE0-$1EFF |                                                             |
+| $1F00-$1FFF | -                                                           |
++-------------+-------------------------------------------------------------+
+
+=============================================================================
+                          | sram (70/0000-70/1FFF) |
+                          +------------------------+
+
++-----------------+---------------------------------------------------------+
+|     address     |                       description                       |
++-----------------+---------------------------------------------------------+
+| $700000-$7007FF | save slot 1                                             |
+| $700800-$700FFF | save slot 2                                             |
+| $701000-$7017FF | save slot 3                                             |
+| $701800-$701FFF | save slot 4                                             |
++-----------------+---------------------------------------------------------+
+
+=============================================================================
+                       | battle ram (7E/2000-7E/6CBF) |
+                       +------------------------------+
+
++-------------+-------------------------------------------------------------+
+|   address   |                         description                         |
++-------------+-------------------------------------------------------------+
+| $2000-$227F | character properties (5 * 128 bytes)                        |
+| $2280-$267F | monster properties (8 * 128 bytes)                          |
+| $2680-$26FF | attacker properties                                         |
+| $2700-$277F | target properties                                           |
+|             |   $2000-$203F same as $1000-$103F                           |
+|             |         $2040 76543210 creature types                       |
+|             |                 7: undead                                   |
+|             |                 6: mage                                     |
+|             |                 5: slime                                    |
+|             |                 4: giant                                    |
+|             |                 3: spirit                                   |
+|             |                 2: reptile                                  |
+|             |                 1: machine                                  |
+|             |                 0: dragon                                   |
+|             |         $2041 critical hit rate                             |
+|             |         $2042 critical bonus                                |
+|             |   $2043-$204F -                                             |
+|             |         $2050                                               |
+|             |         $2051 battle command used                           |
+|             |                 $00: fight                                  |
+|             |                 $01: item                                   |
+|             |                 $02: white magic                            |
+|             |                 $03: black magic                            |
+|             |                 $04: summon                                 |
+|             |                 $05: dark wave                              |
+|             |                 $06: jump 1                                 |
+|             |                 $07: recall                                 |
+|             |                 $08: sing                                   |
+|             |                 $09: hide                                   |
+|             |                 $0A: salve                                  |
+|             |                 $0B: pray                                   |
+|             |                 $0C: aim                                    |
+|             |                 $0D: focus 1                                |
+|             |                 $0E: kick                                   |
+|             |                 $0F: brace                                  |
+|             |                 $10: twin 1                                 |
+|             |                 $11: bluff                                  |
+|             |                 $12: cry                                    |
+|             |                 $13: cover                                  |
+|             |                 $14: search (peep)                          |
+|             |                 $15: airship ???                            |
+|             |                 $16: throw (dart)                           |
+|             |                 $17: steal (sneak)                          |
+|             |                 $18: ninjutsu                               |
+|             |                 $19: regen                                  |
+|             |                 $1A: change row                             |
+|             |                 $1B: defend                                 |
+|             |                 $1C: appear (show)                          |
+|             |                 $1D: don't cover (off)                      |
+|             |                 $1E: jump 2                                 |
+|             |                 $1F: focus 2                                |
+|             |                 $20: twin 2                                 |
+|             |                 $21: do nothing                             |
+|             |                 $22: end regen                              |
+|             |                 $23: unused ???                             |
+|             |                 $24: run away                               |
+|             |         $2052 spell/item used                               |
+|             |         $2053 87654321 targetted monsters                   |
+|             |         $2054 54321--- targetted characters                 |
+|             |        +$2055 pointer to selected command/magic/item data   |
+|             |   $2057-$205F -                                             |
+|             |        +$2060 base timer duration (cecil's is always 5)     |
+|             |   $2062-$206F -                                             |
+|             |         $2070 blllllll                                      |
+|             |                 b: is a boss                                |
+|             |                 l: level                                    |
+|             |         $2071 -                                             |
+|             |         $2072 -                                             |
+|             |         $2073 rriiiiii                                      |
+|             |                 r: item drop rate                           |
+|             |                 i: monster item set                         |
+|             |   $2074-$207F -                                             |
+| $2780-$2892 | equipment properties (5 * 5*11 bytes)                       |
+|             |   $2780 mtrl?h?c (weapon)                                   |
+|             |           m: metallic                                       |
+|             |           t: can throw                                      |
+|             |           r: no back row penalty                            |
+|             |           l: lit arrow ???                                  |
+|             |           h: hammer                                         |
+|             |           c: no critical                                    |
+|             |   $2780 mddddddd (armor/shield)                             |
+|             |           m: metallic                                       |
+|             |           d: mag def %                                      |
+|             |   $2781 attack/defense                                      |
+|             |   $2782 ?ddddddd attack/defense %                           |
+|             |   $2783 mag def/weapon spellcast                            |
+|             |   $2784 seeeeeee                                            |
+|             |           s: shield                                         |
+|             |           e: element/status effect                          |
+|             |   $2785 creature type bonus                                 |
+|             |   $2786 bateeeee                                            |
+|             |           b: bow                                            |
+|             |           a: arrows                                         |
+|             |           t: two-handed                                     |
+|             |           e: equipability                                   |
+|             |   $2787 satipbbb stat bonus                                 |
+|             |           s: strength                                       |
+|             |           a: agility                                        |
+|             |           t: stamina                                        |
+|             |           i: intellect                                      |
+|             |           p: spirit                                         |
+|             |           b: bonus (see 13/FEAC)                            |
+|             |   $2788 element                                             |
+|             |   $2789 status 1                                            |
+|             |   $278A status 2                                            |
+|       $2893 | equipment check result (1 if can't equip)                   |
+|       $2894 | equipment check right hand item                             |
+|       $2895 | equipment check left hand item                              |
+|      +$2896 | pointer to action script (+$405F)                           |
+|      +$2898 | net damage                                                  |
+|      +$289A | counter for looping over timers (only used in 03/9677)      |
+| $289C-$299B | data buffer (scratchpad)                                    |
+| $299C-$29A3 | battle properties                                           |
+|             |   $299C 012dbmmm                                            |
+|             |           0: monster type 1 is an egg                       |
+|             |           1: monster type 2 is an egg                       |
+|             |           2: monster type 3 is an egg                       |
+|             |           d: boss death                                     |
+|             |           b: force back attack                              |
+|             |           m: monster graphics mold                          |
+|             |   $299D monster type 1 index                                |
+|             |   $299E monster type 2 index                                |
+|             |   $299F monster type 3 index                                |
+|             |   $29A0 aabbccdd                                            |
+|             |           a: monster type 1 count                           |
+|             |           b: monster type 2 count                           |
+|             |           c: monster type 3 count                           |
+|             |           d: monsters hidden                                |
+|             |                0: none                                      |
+|             |                1: type 1                                    |
+|             |                2: type 1 and type 2                         |
+|             |                3: type 2                                    |
+|             |   $29A1 monster position data index                         |
+|             |   $29A2 tfshmmgr                                            |
+|             |           t: transparent monsters                           |
+|             |           f: flying monsters                                |
+|             |           s: enable auto-battle                             |
+|             |           h: human style ???                                |
+|             |           m: battle music                                   |
+|             |                0: battle 1                                  |
+|             |                1: battle 2                                  |
+|             |                2: the dreadful fight                        |
+|             |                3: continue current music                    |
+|             |           g: no game over after loss                        |
+|             |           r: can't run                                      |
+|             |   $29A3 monster cursor data id                              |
++-------------+-------------------------------------------------------------+
+|       $29A4 | 012dbmmm                                                    |
+|             |   0: monster type 1 is an egg                               |
+|             |   1: monster type 2 is an egg                               |
+|             |   2: monster type 3 is an egg                               |
+|             |   d: boss death                                             |
+|             |   b: force back attack                                      |
+|             |   m: monster graphics mold                                  |
+| $29A5-$29AC | xxxxyyyy monster position data                              |
+|             |   x: monster x position (8x8 tiles)                         |
+|             |   y: monster y position                                     |
+|       $29AD | monster type 1                                              |
+|       $29AE | monster type 2                                              |
+|       $29AF | monster type 3                                              |
+|       $29B0 | list terminator (always #$FF)                               |
+|       $29B1 | monster type 1                                              |
+|       $29B2 | monster type 2                                              |
+|       $29B3 | monster type 3                                              |
+|       $29B4 | list terminator (always #$FF)                               |
+| $29B5-$29BC | monster type (clears when monster dies)                     |
+|             |   0: type 1                                                 |
+|             |   1: type 2                                                 |
+|             |   2: type 3                                                 |
+| $29BD-$29C4 | monster type (never cleared)                                |
+| $29C5-$29C9 | character id ($FF if slot is empty)                         |
+|       $29CA | monster type 1 count                                        |
+|       $29CB | monster type 2 count                                        |
+|       $29CC | monster type 3 count                                        |
+|       $29CD | total monster count                                         |
+|       $29CE | -                                                           |
+| $29CF-$29DE | monster cursor data (8 * 2 bytes)                           |
+| $29DF-$29E9 | character cursor data (5 * 2 bytes)                         |
+|             |   $29CF uuuudddd                                            |
+|             |   $29D0 bbbbffff                                            |
+|             |           u: next target if up is pressed (15: none)        |
+|             |           d: next target if down is pressed                 |
+|             |           b: next target if back is pressed                 |
+|             |           f: next target if forward is pressed              |
+| $29EA-$2A03 | enabled timers (13 * 2 bytes)                               |
+|             |   $29EA -                                                   |
+|             |   $29EB smapewd-                                            |
+|             |           s: stop timer enabled                             |
+|             |           m: action timer enabled                           |
+|             |           a: sap timer enabled                              |
+|             |           p: poison timer enabled                           |
+|             |           e: petrify timer enabled                          |
+|             |           w: reflect timer enabled                          |
+|             |           d: doom timer enabled                             |
+| $2A04-$2B14 | timers (13 * 7*3 bytes)                                     |
+|             |  +$2A04 timer duration                                      |
+|             |   $2A06 st--a--p                                            |
+|             |           s: timer stopped                                  |
+|             |           t: do timer effect when timer expires             |
+|             |           a: do command when timer expires                  |
+|             |           p: timer expired (action pending)                 |
+|             | ++$2A04 stop timer                                          |
+|             | ++$2A07 action timer (also used for paralyze/sleep)         |
+|             |           t and a both cleared when atb gauge is filling    |
+|             |           t set while paralyzed or asleep                   |
+|             |           a set for command delay                           |
+|             | ++$2A0A sap timer                                           |
+|             | ++$2A0D poison timer                                        |
+|             | ++$2A10 petrify timer                                       |
+|             | ++$2A13 reflect timer                                       |
+|             | ++$2A16 doom timer                                          |
+| $2B78-$2C77 | monster retaliation stack (8 * 32 bytes)                    |
+|             |   stores the last 4 attacks against each monster            |
+|             |   only the first 16 bytes of each stack are used            |
+|             |   $2B78 character/monster index                             |
+|             |   $2B79 battle command (from $35FF)                         |
+|             |   $2B7A -                                                   |
+|             |   $2B7B element                                             |
+|      +$2C78 | - (set to 4 at 03/AD99)                                     |
+| $2C7A-$3219 | spell lists (5 * 3*24*4 bytes)                              |
+|             |   $2C7A deas----                                            |
+|             |           d: spell is disabled                              |
+|             |           e: target monsters by default                     |
+|             |           a: can target all                                 |
+|             |           s: target selectable                              |
+|             |   $2C7B spell id                                            |
+|             |   $2C7C                                                     |
+|             |   $2C7D mp cost                                             |
+| $321A-$32D9 | inventory (48 * 4 bytes)                                    |
+|             |   $321A umtb3w10                                            |
+|             |           u: item disabled (gray palette)                   |
+|             |           m: metallic                                       |
+|             |           t: can throw                                      |
+|             |           b: same damage from back row                      |
+|             |           3: lit arrow                                      |
+|             |           w: weapon that can be thrown                      |
+|             |           1: mythril hammer, gaia's hammer, wooden mallet   |
+|             |           0: hand axe, ogre killer                          |
+|             |   $321B item id                                             |
+|             |   $321C item quantity                                       |
+|             |   $321D spell id                                            |
+| $32DA-$3301 | equipped item data (10 * 4 bytes)                           |
+|             |   $32DA eas?----                                            |
+|             |           e: target monsters by default (item spellcast)    |
+|             |           a: can target all (item spellcast)                |
+|             |           s: target selectable (item spellcast)             |
+|             |           ?: msb of item data, byte 0                       |
+|             |   $32DB item id                                             |
+|             |   $32DC item quantity                                       |
+|             |   $32DD spell id                                            |
+| $3302-$338D | character battle commands (5 * 7*4 bytes)                   |
+|             |   $3302 deasf--- (from 13/FDC3)                             |
+|             |           d: command is disabled                            |
+|             |           e: target monster by default                      |
+|             |           a: can target all                                 |
+|             |           s: target selectable                              |
+|             |           f: must target self ???                           |
+|             |   $3303 command id                                          |
+|             |   $3304 -                                                   |
+|             |   $3305 -                                                   |
+| $338E-$33C1 | pending status data (13 * 4 bytes)                          |
+|             |   $338E pending status 1                                    |
+|             |   $338F pending status 2                                    |
+|             |   $3390 pending status 3                                    |
+|             |   $3391 pending status 4                                    |
+| $33C2-$34C1 | graphics script buffer (2 bytes per command)                |
+|       $34C2 | mf------                                                    |
+|             |   m: monster attacker                                       |
+|             |   f: disable pre-attack animation (monster flash)           |
+|       $34C3 | attacker id                                                 |
+|       $34C4 | mt------                                                    |
+|             |   m: monster targets                                        |
+|             |   t: multi-target                                           |
+|       $34C5 | targets (mask) for graphics ???                             |
+|       $34C6 | targets being covered (mask)                                |
+|       $34C7 | hniomc?? attack graphics flags                              |
+|             |   h: attack hit ???                                         |
+|             |   n: show magic name                                        |
+|             |   i: show item name                                         |
+|             |   o: show command name                                      |
+|             |   m: attack missed                                          |
+|             |   c: critical hit (for graphics)                            |
+|       $34C8 | net no. of hits or magic/item/command name                  |
+|       $34C9 |                                                             |
+| $34CA-$34D3 | battle message buffer (terminated by $FF)                   |
+| $34D4-$34ED | rmdddddd dddddddd character/monster damage (13 * 2 bytes)   |
+|             |   r: restore hp                                             |
+|             |   m: miss                                                   |
+|             |   d: character/monster damage                               |
+| $34EE-$3521 | (13 * 4 bytes)                                              |
+|       $3522 | targets reflected off of                                    |
+|       $3523 | targets reflected onto                                      |
+| $3524-$3527 | -                                                           |
+|       $3528 |                                                             |
+|       $3529 |                                                             |
+|       $352A | an item is being used                                       |
+|       $352B |                                                             |
+|       $352C |                                                             |
+|       $352D | L and R buttons are both pressed                            |
+|       $352E | action type                                                 |
+|             |   0: choose character action                                |
+|             |   1: choose monster action                                  |
+|             |   2: do attack                                              |
+|             |   3: do timer effect                                        |
+|       $352F | current character/monster id                                |
+|      +$3530 | pointer to timers (+$2A04)                                  |
+|      +$3532 | pointer to equipped item data (+$2780)                      |
+|      +$3534 | pointer to battle commands (+$3302)                         |
+|      +$3536 | pointer to spell list (+$2C7A)                              |
+|       $3538 | battle speed counter (frames per tick)                      |
+| $3539-$353C | characters that can use twin                                |
+|       $353D | character can use item (see 03/A158)                        |
+|       $353E |                                                             |
+|       $353F |                                                             |
+| $3540-$354C | character/monster is not present                            |
+|       $354D | number of targets remaining                                 |
+|       $354E | character targets                                           |
+|       $354F | monster targets                                             |
+|       $3550 | targets mask                                                |
+|       $3551 | item/magic no. of hits                                      |
+|       $3552 | -                                                           |
+|       $3553 | self-target flag                                            |
+|       $3554 | reflect target flag                                         |
+|      +$3555 | pointer to expired timer                                    |
+|       $3557 |                                                             |
+|       $3558 | 0: character, 1: monster (for calculating timer duration)   |
+|       $355A | -                                                           |
+|      +$355B | allow zero damage (don't show miss)                         |
+|       $355D | attack consumes mp                                          |
+|      +$355E | paladin cecil character slot                                |
+| $3560-$356C |                                                             |
+| $356D-$3579 |                                                             |
+|       $357A | character using cover                                       |
+|       $357B | other twin character ($FF: none)                            |
+|       $357C | regen counter (hp gain every 5 ticks, $FF: disabled)        |
+|      +$357D | regen hp amount (hi byte unused)                            |
+|       $357F | saved enabled timers while jumping (bugged, see 03/E999)    |
+|       $3580 | thrown item id                                              |
+|       $3581 | $08: back attack (cleared after 1st round)                  |
+|       $3582 | msb set if any monster is a boss                            |
+|       $3583 | maximum character level                                     |
+|       $3584 | summon flag                                                 |
+| $3585-$3587 |                                                             |
+|       $3588 | monster index (dead monsters ???)                           |
+|       $358B | monster index                                               |
+| $358E-$3590 | rriiiiii items for each monster type                        |
+|             |   r: item drop rate                                         |
+|             |   i: monster item set                                       |
+|     ++$3591 | experience gained from battle                               |
+|     ++$3594 | gp gained from battle                                       |
+|       $3597 | -                                                           |
+|      +$3598 | pointer to timer                                            |
+|     ++$359A | battle message variable 0                                   |
+|     ++$359D | battle message variable 1                                   |
+|       $35A0 | monster slot                                                |
+|       $35A1 | monster script index                                        |
+|       $35A2 |                                                             |
+|       $35A3 |                                                             |
+| $35A4-$35BD | extra doom timer (doubles duration of doom, 13 * 2 bytes)   |
+|       $35BE | current monster script id                                   |
+|      +$35BF | pointer to monster action script (+$405F)                   |
+|      +$35C1 | pointer to retaliation action script (+$59FF)               |
+|      +$35C3 | pointer to monster script (+$397F)                          |
+|      +$35C5 | pointer to retaliation script (+$531F)                      |
+|       $35C7 | condition index (0..3)                                      |
+|      +$35C8 | pointer to start of monster condition script (+$3A1F)       |
+|      +$35CA | current monster condition script pointer                    |
+|      +$35CC | pointer to monster condition data (+$3B5F)                  |
+|      +$35CE | current monster condition data pointer                      |
+| $35D0-$35E9 | pointers to condition target data (13 * 2 bytes, +$2000)    |
+|       $35EA | target is not valid                                         |
+|       $35EB | monster battle row ($00 = front, $80 = back)                |
+| $35F3-$35F6 | battle variables                                            |
+| $35F7-$35FE | monster retaliation stack size (at $2B78)                   |
+|       $35FF | previous battle command used                                |
+|       $3600 | attack element                                              |
+|       $3601 | pointer to graphics script (+$33C2)                         |
+|       $3602 |                                                             |
+|       $3603 | -                                                           |
+| $3604-$360B | saved monster script pointers                               |
+| $360C-$361B | current monster action script pointer (+$405F)              |
+|       $361C | acting monster                                              |
+| $361D-$3618 | monster action script commands for this turn                |
+| $3659-$3838 | graphics script buffers for monster actions (8 * 60 bytes)  |
+| $3839-$3874 | graphics script for current monster actions                 |
+|      +$3875 | monster action script pointer for attack chain ???          |
+|       $3877 | enable attack chain ???                                     |
+|       $3878 | attack chain duration/timer ???                             |
+| $3879-$3880 |                                                             |
+|       $3881 | monsters are invincible ???                                 |
+|       $3882 |                                                             |
+| $3883-$388A | "targeting" target for each monster (mask)                  |
+|       $388B | enable auto-battle                                          |
+| $388C-$3899 | auto-battle script                                          |
+| $389A-$38A7 | golbez' auto-battle script (auto-battle 6 and 7 only)       |
+|       $38A8 | auto-battle script pointer                                  |
+|       $38A9 | golbez' auto-battle script pointer                          |
+| $38AA-$38B1 | monsters with retaliation scripts                           |
+|       $38B2 |                                                             |
+|       $38B3 |                                                             |
+| $38B4-$38BA |                                                             |
+|      +$38BB | pointer to monster graphics script buffer                   |
+|       $38BD | enable song change                                          |
+|       $38BE | song to play                                                |
+| $38BF-$38CD | saved character status 1, 2, 4 (for victory animation)      |
+|       $38CE | -                                                           |
+|       $38CF | -                                                           |
+|       $38D0 | monster is an egg                                           |
+|       $38D3 | used escape                                                 |
+|       $38D4 | average character level                                     |
+|       $38D5 | average monster level                                       |
+|       $38D6 | number of turns before player can run away                  |
+|             |   3 turns if monster level 97                               |
+|             |   7 turns if monster level 98                               |
+|             |   10 turns if monster level 99 (must be sequential turns)   |
+|             |   for all others, set to zero when menu first opens         |
+|       $38D7 | m------c                                                    |
+|             |   m: monsters strike first                                  |
+|             |   c: characters strike first                                |
+|       $38D8 | m------c ???                                                |
+|             |   m: monsters strike first                                  |
+|             |   c: characters strike first                                |
+|       $38D9 | paused (pressed start)                                      |
+|       $38DA | paused (wait mode)                                          |
+|       $38DB | number of character targets                                 |
+| $38DC-$38E0 | r------a (5 * 1 byte)                                       |
+|             |   r: arrows were in right hand                              |
+|             |   a: ran out of arrows                                      |
+|       $38E1 | arrow quantity update needed                                |
+|       $38E2 | is magic damage (show character hit pose)                   |
+|       $38E3 | arrow hand (0: left, 1: right)                              |
+|       $38E4 | mist dragon attack (delay monster death)                    |
+|       $38E5 | ftshmmgr                                                    |
+|             |   f: flying monsters                                        |
+|             |   t: transparent monsters                                   |
+|             |   s: enable battle event                                    |
+|             |   h: human style ???                                        |
+|             |   m: battle music                                           |
+|             |        0: battle 1                                          |
+|             |        1: battle 2                                          |
+|             |        2: the dreadful fight                                |
+|             |        3: none (continue current music)                     |
+|             |   g: no game over after loss                                |
+|             |   r: can't run                                              |
+|       $38E6 | monster death type                                          |
+|       $38E7 | must target dead characters/monsters                        |
+|       $38E8 | waiting to execute auto-battle command                      |
+|       $38E9 | auto-battle character                                       |
+|       $38EA | auto-battle command                                         |
+|       $38EB | using weapon magic                                          |
+|       $38EC | weapon magic number of hits                                 |
+|       $38ED | using a summon                                              |
+|       $38EE | battle speed counter (unused)                               |
+|       $38EF | use moon monster scripts                                    |
+|       $38F0 | monster type 1 count                                        |
+|       $38F1 | monster type 2 count                                        |
+|       $38F2 | monster type 2 count                                        |
+|       $38F3 |                                                             |
+|       $38F4 | pointer to an empty slot in inventory ($FF if full)         |
+|       $38F5 |                                                             |
+|       $38F6 | character/monster with highest action order priority        |
+|       $38F7 |                                                             |
+|       $38F8 | number of attacks that hit                                  |
+|       $38F9 | number of attacks defended                                  |
+|       $38FA | hit rate                                                    |
+|       $38FB | base no. of hits                                            |
+|       $38FC | net attacks (no. of hits - no. defended)                    |
+|       $38FD | number of attacks that hit/defended                         |
+|       $38FE | elemental damage multiplier (2 = 1x)                        |
+|       $38FF | monster type damage multiplier                              |
+|       $3900 | critical hit (for damage)                                   |
+|       $3901 | critical bonus                                              |
+|      +$3902 | base attack                                                 |
+|      +$3904 | base defense                                                |
+|       $3906 | number of targets hit (for dividing damage)                 |
+|       $3907 | number of targets that died by this attack                  |
+|       $3908 | status 1 inflicted by attack                                |
+|       $3909 | status 2 inflicted by attack                                |
+|       $390A | disable retaliation                                         |
+| $390B-$3928 | -                                                           |
+| $3929-$392E | battle menu queue                                           |
+|       $392F | battle menu queue size                                      |
+| $3930-$3937 | -                                                           |
+| $3938-$393C | character action buffer (from $D8-$DC)                      |
+|      +$393D | multiplication parameter A                                  |
+|      +$393F | multiplication parameter B                                  |
+|    +++$3941 | product = A * B                                             |
+|      +$3945 | division parameter A                                        |
+|      +$3947 | division parameter B                                        |
+|      +$3949 | remainder = A % B                                           |
+|      +$394B | quotient = A / B                                            |
+|      +$394D | 16-bit multiplication scratchpad                            |
+| $394F-$3955 | -                                                           |
+|      +$3956 | 16-bit addition parameter A                                 |
+|      +$3958 | 16-bit addition parameter B                                 |
+|    +++$395A | 16-bit addition result = A + B                              |
+|      +$395E | 16-bit subtraction parameter A                              |
+|      +$3960 | 16-bit subtraction parameter B                              |
+|      +$3962 | 16-bit subtraction result = A - B                           |
+|       $3964 | -                                                           |
+| $3965-$3975 | character stat calculation data                             |
+|             |         $3965 character level                               |
+|             |   $3966-$396A mod. stats                                    |
+|             |         $396B shield multiplier                             |
+|             |         $396C shield defense %                              |
+|             |         $396D right hand shield element                     |
+|             |         $396E left hand shield element                      |
+|             |         $396F shield defense                                |
+|             |         $3970 shield status 1                               |
+|             |         $3971 shield status 2                               |
+|             |         $3972 shield mag. def %                             |
+|             |         $3973 shield mag. def                               |
+|             |         $3974 shield creature type                          |
+|             |         $3975 character slot                                |
+|             |         $3976 -                                             |
+|             |         $3977 lrb----y                                      |
+|             |                 l: weapon in left hand                      |
+|             |                 r: weapon in right hand                     |
+|             |                 b: has bow and arrows equipped              |
+|             |                 y: yang (special attack power formula)      |
+|             |         $3978 lr------                                      |
+|             |                 l: bow in left hand                         |
+|             |                 r: bow in right hand                        |
+|      +$3979 | speed multiplier for calculating timer duration             |
+|       $397B | variable for timer init                                     |
+|             |   (spell power/item index/spell index/battle command)       |
+|       $397C | -                                                           |
+|       $397D | -                                                           |
+|       $397E | -                                                           |
+| $397F-$3A1E | monster scripts (8 items, 10x2 bytes each)                  |
+| $3A1F-$3B5E | monster condition scripts (8 items, 10x4 bytes each)        |
+| $3B5F-$405E | monster condition data (8 items, 10x4x4 bytes each)         |
+| $405F-$531E | monster action scripts (8 items, 10x60 bytes each)          |
+| $531F-$53BE | retaliation scripts (8 items, 10x2 bytes each)              |
+| $53BF-$54FE | retaliation condition scripts (8 items, 10x4 bytes each)    |
+| $54FF-$59FE | retaliation condition data (8 items, 10x4x4 bytes each)     |
+| $59FF-$6CBF | retaliation action scripts (8 items, 10x60 bytes each)      |
++-------------+-------------------------------------------------------------+
+
+=============================================================================
+                  | battle graphics ram (7E/6CC0-7E/FFFF) |
+                  +---------------------------------------+
+
++-------------+-------------------------------------------------------------+
+|   address   |                         description                         |
++-------------+-------------------------------------------------------------+
+|       $6CC0 | flip battlefield horizontally (back attack)                 |
+|       $6CC1 | screen brightness -> $2100                                  |
+|       $6CC2 | screen mosaic -> $2106                                      |
+|       $6CC3 | monster width (slot 1)                                      |
+|       $6CC4 | monster height (slot 1)                                     |
+|       $6CC5 | monster width (slot 2)                                      |
+|       $6CC6 | monster height (slot 2)                                     |
+|       $6CC7 | monster width (slot 3)                                      |
+|       $6CC8 | monster height (slot 3)                                     |
+|       $6CC9 | monster width (slot 4)                                      |
+|       $6CCA | monster height (slot 4)                                     |
+| $6CCB-$6CD2 | monster graphics vram address (4 * 2 bytes)                 |
+| $6CD3-$6CDA | number of tiles for boss graphics (4 * 2 bytes)             |
+| $6CDB-$6CDE | monster tile flags (4 * 1 byte)                             |
+| $6CDF-$6CE2 | low byte of monster tile offset (4 * 1 byte)                |
+| $6CE3-$6CF2 | monster slot cursor xy positions (8 * 2 bytes)              |
+| $6CF3-$6CFC | character slot cursor xy positions (5 * 2 bytes)            |
++-------------+-------------------------------------------------------------+
+| $6CFD-$74FD | tilemap buffer                                              |
+| $74FD-$757C | text buffer                                                 |
+| $75FD-$7603 | bg1 scroll hdma table                                       |
+| $7604-$760A | bg2 scroll hdma table                                       |
+| $760B-$7611 | bg3 scroll hdma table                                       |
+| $7612-$7991 | bg1 scroll hdma data (224 * 4 bytes)                        |
+| $7992-$7D11 | bg2 scroll hdma data (224 * 4 bytes)                        |
+| $7D12-$8091 | bg3 scroll hdma data (224 * 4 bytes)                        |
+| $8092-$8CB1 | menu window hdma data                                       |
+|             |   $8092-$81D1 character/monster name window                 |
+|             |   $81D2-$8311 inventory/spell list window                   |
+|             |   $8312-$8451 command list window                           |
+|             |   $8452-$84F1 equipment window                              |
+|             |   $84F2-$85F1 mp cost window                                |
+|             |   $85F2-$8671 row window (position 1)                       |
+|             |   $8672-$86F1 row window (position 2)                       |
+|             |   $86F2-$8771 row window (position 3)                       |
+|             |   $8772-$87F1 row window (position 4)                       |
+|             |   $87F2-$8871 row window (position 5)                       |
+|             |   $8872-$88F1 defend window (position 1)                    |
+|             |   $88F2-$8971 defend window (position 2)                    |
+|             |   $8972-$89F1 defend window (position 3)                    |
+|             |   $89F2-$8A71 defend window (position 4)                    |
+|             |   $8A72-$8AF1 defend window (position 5)                    |
+|             |   $8AF2-$8C31 character status window                       |
+|             |   $8C32-$8CB1 pause window                                  |
+| $8CB2-$BE65 | menu text buffers                                           |
+|             |   $8CB2-$8EA5 battle command text buffer (5 * 100 bytes)    |
+|             |   $8EA6-$97A5 inventory text buffer (48 * 48 bytes)         |
+|             |   $97A6-$B965 spell list text buffers (5 * 3*576 bytes)     |
+|             |   $B966-$B9DD character name text buffer (5 * 24 bytes)     |
+|             |   $B9DE-$BA91 character hp text buffer (5 * 36 bytes)       |
+|             |   $BA92-$BB1D character mp text buffer (5 * 28 bytes)       |
+|             |   $BB1E-$BBBD monster name text buffer (8 * 20 bytes)       |
+|             |   $BBBE-$BC85 right/left hand text buffer (5 * 28 bytes)    |
+|             |   $BC86-$BE65 equipped items text buffer (5 * 96 bytes)     |
+| $BE66-$D9E5 | menu tilemap buffers                                        |
+|             |   $BE66-$C1A5 main window tilemap buffer                    |
+|             |   $C1A6-$C4E5 battle command window tilemap buffer          |
+|             |   $C4E6-$D1A5 inventory tilemap buffer                      |
+|             |   $D1A6-$D365 equipped items tilemap buffer                 |
+|             |   $D366-$D6A5 mp cost, row, defend tilemap buffer           |
+|             |   $D6A6-$D9E5 status tilemap buffer                         |
+| $D9E6-$DAE5 | flying monster shadow graphics                              |
+| $DAE6-$DBE5 | message window tilemap buffer                               |
+| $DBE6-$EBE5 | generic buffer                                              |
+| $EBE6-$EC09 | animation sprite data (9 * 4 bytes)                         |
+|             |         $EBE6 x position ???                                |
+|             |         $EBE7                                               |
+|             |         $EBE8                                               |
+|             |         $EBE9                                               |
+| $EC0A-$ED4D | summon animation data                                       |
+|             |   $EC26-$EC65                                               |
+|             |   $EC66-$ECA5                                               |
+|             |   $ECA6-$ECE5                                               |
+|             | summon animation data (shiva)                               |
+|             |   $EC0A-$EC2D                                               |
+|             |   $EC2E-$EC75                                               |
+|             |   $EC76-$ECBD                                               |
+|             |   $ECBE-$ED05                                               |
+|             |   $ED06-$ED4D                                               |
+|       $ED4E | tfscmmgr battle properties byte 6                           |
+|             |   t: transparent monsters                                   |
+|             |   f: flying monsters                                        |
+|             |   s: enable battle event                                    |
+|             |   c: enemy character                                        |
+|             |   m: battle music                                           |
+|             |        0: battle 1                                          |
+|             |        1: battle 2                                          |
+|             |        2: the dreadful fight                                |
+|             |        3: continue current music)                           |
+|             |   g: no game over after loss                                |
+|             |   r: can't run                                              |
+|       $ED4F | frame counter for flying monster shadows                    |
++-------------+-------------------------------------------------------------+
+| $ED50-$EF4F | color palettes                                              |
+|             |   $ED50 menu window palette                                 |
+|             |   $ED70 battle bg palette 1                                 |
+|             |   $ED90 battle bg palette 2                                 |
+|             |   $EDB0 monster palette 1                                   |
+|             |   $EDD0 monster palette 2                                   |
+|             |   $EDF0 monster palette 3                                   |
+|             |   $EE10 ??? animation palette id 3                          |
+|             |   $EE30 animated/flashing monster palette                   |
+|             |   $EE50 cursor/numeral (and petrify)                        |
+|             |   $EE70 character slot 1                                    |
+|             |   $EE90 character slot 2                                    |
+|             |   $EEB0 character slot 3                                    |
+|             |   $EED0 character slot 4                                    |
+|             |   $EEF0 character slot 5                                    |
+|             |   $EF10 ??? animation palette id 2                          |
+|             |   $EF30 animation palette                                   |
+|      +$EF50 | pointer to text buffer (at $74FD)                           |
+|      +$EF52 | pointer to tile data buffer                                 |
+|       $EF54 | row width for tile data buffer                              |
+|       $EF55 | high byte of tile data                                      |
+| $EF56-$EF5B | menu window data                                            |
+|             |   $EF56 x position                                          |
+|             |   $EF57 y position                                          |
+|             |   $EF58 width                                               |
+|             |   $EF59 height                                              |
+|             |  +$EF5A destination address                                 |
+| $EF5C-$EF61 | main menu text update data                                  |
+|             |   $EF5C width for main menu text update                     |
+|             |   $EF5D height for main menu text update                    |
+|             |  +$EF5E text buffer address for main menu text update       |
+|             |  +$EF60 tilemap buffer address for main menu text update    |
+|      +$EF62 | main menu text buffer offset (for drawing command list)     |
+|       $EF64 | menu list scroll row counter (2 rows per scroll)            |
+|      +$EF65 |                                                             |
+|      +$EF67 |                                                             |
+|       $EF69 | hide menu cursor 1                                          |
+|       $EF6A | hide menu cursor 2                                          |
+|      +$EF6B | menu cursor 1 x position                                    |
+|      +$EF6D | menu cursor 1 y position                                    |
+|      +$EF6F | menu cursor 2 x position                                    |
+|      +$EF71 | menu cursor 2 y position                                    |
+|       $EF73 |                                                             |
+|       $EF74 | hide equip cursor (no effect)                               |
+|       $EF75 | hide inventory cursor (no effect)                           |
+| $EF76-$EF79 | hide target cursors (4 * 1 byte)                            |
+| $EF7A-$EF81 | target cursor xy positions (4 * 2 bytes)                    |
+|       $EF82 | -                                                           |
+|       $EF83 | hide menu list up arrow                                     |
+|       $EF84 | hide menu list down arrow                                   |
+|       $EF85 | menu list cursor y position                                 |
+|       $EF86 | menu list scroll position                                   |
++-------------+-------------------------------------------------------------+
+|       $EF87 | color flash type                                            |
+|             |   0: disabled                                               |
+|             |   1: every other frame                                      |
+|             |   2: gradual                                                |
+|             |   3: once                                                   |
+|             |   4: increase only                                          |
+|             |   5: decrease only                                          |
+|       $EF88 | color flash color components                                |
+|       $EF89 | frame counter                                               |
+|       $EF8A | color flash direction                                       |
+|             |   0: intensity is increasing                                |
+|             |   1: intensity is decreasing                                |
+|       $EF8B |                                                             |
+|       $EF8C | targeting flags                                             |
+|       $EF8D | character/monster cursor position                           |
+|             |   $0D: all characters                                       |
+|             |   $FF: all monsters                                         |
+|       $EF8E | can target all                                              |
+|       $EF8F | monster targets (if multiple selected)                      |
+|       $EF90 | character targets (if multiple selected)                    |
+|       $EF91 | previous cursor type -> $1823 if cancelled                  |
+|       $EF92 | -                                                           |
+|       $EF93 | spell list data offset for spell type                       |
+|       $EF94 |                                                             |
+|       $EF95 | 1st selected item (equipped item if msb set)                |
+|       $EF96 | 2nd selected item                                           |
+|       $EF97 | unused (set to zero for throw animation)                    |
+|       $EF98 | unused (set to zero for throw animation)                    |
+|       $EF99 | unused (set to zero for throw animation)                    |
+|       $EF9A | using throw command (for item select)                       |
+|       $EF9B | waiting for message window to open or close                 |
+|       $EF9C | message window is 0: opening, 1: closing                    |
+|       $EF9D |                                                             |
+|      +$EF9E |                                                             |
+|      +$EFA0 |                                                             |
+|       $EFA2 | -                                                           |
+| $EFA3-$EFA7 | boss graphics data                                          |
+|             |   $EFA3 xxxxyyyy                                            |
+|             |           x: x position                                     |
+|             |           y: y position                                     |
+|             |   $EFA4 ctssssss                                            |
+|             |           c: clear tile data buffer when loading            |
+|             |           t: tile index msb                                 |
+|             |           s: size                                           |
+|             |   $EFA5 palette                                             |
+|             |   $EFA6 ??sstttt                                            |
+|             |           s: monster slot                                   |
+|             |           t: transition effect                              |
+|             |                0: none                                      |
+|             |                1: pixelate                                  |
+|             |                2: flash                                     |
+|             |                3: materialize                               |
+|             |                4: flash/shake                               |
+|             |                5: jump                                      |
+|             |   $EFA7 graphics map                                        |
+|       $EFA8 |                                                             |
+|      +$EFA9 |                                                             |
+|      +$EFAB |                                                             |
+|      +$EFAD |                                                             |
+|       $EFAF |                                                             |
+|       $EFB0 |                                                             |
+|       $EFB1 |                                                             |
+|      +$EFB2 |                                                             |
+|      +$EFB4 |                                                             |
+|      +$EFB6 |                                                             |
+|       $EFB8 |                                                             |
+|       $EFB9 | -                                                           |
+|       $EFBA | character sprite frame index                                |
+|       $EFBB | character sprite x position                                 |
+|       $EFBC | character sprite y position                                 |
+|       $EFBD | palette for top 2 sprites                                   |
+|       $EFBE | palette for middle 2 sprites                                |
+|       $EFBF | palette for bottom 2 sprites                                |
+|       $EFC0 | first sprite to use                                         |
+|       $EFC1 | use h-flip sprite positions                                 |
+|       $EFC2 | character sprite tile id                                    |
+|       $EFC3 | character sprite flags                                      |
+| $EFC4-$F013 | character sprite data (5 * 16 bytes)                        |
+|             |   $EFC4 character id (from $1000)                           |
+|             |   $EFC5 character sprite x position                         |
+|             |   $EFC6 character sprite y position                         |
+|             |   $EFC7 character sprite x offset                           |
+|             |   $EFC8 character sprite y offset                           |
+|             |   $EFC9 first sprite to use                                 |
+|             |  +$EFCA tile offset                                         |
+|             |   $EFCC gradual petrify amount                              |
+|             |   $EFCD step back after attack ???                          |
+|             |   $EFCE ?nbt???h                                            |
+|             |           n: move at normal speed                           |
+|             |           b: moving backward                                |
+|             |           t: enable toad hop                                |
+|             |           h: h-flip sprites                                 |
+|             |   $EFCF character movement distance                         |
+|             |   $EFD0 character animated pose id                          |
+|             |           $00: hidden                                       |
+|             |           $01: normal                                       |
+|             |           $02: ready                                        |
+|             |           $03: running                                      |
+|             |           $04: kneeling                                     |
+|             |           $05: right-handed attack                          |
+|             |           $06: left-handed attack                           |
+|             |           $07: hit                                          |
+|             |           $08: victory                                      |
+|             |           $09: dead                                         |
+|             |           $0A: chant (animated)                             |
+|             |           $0B: chant (static)                               |
+|             |           $0C: casting                                      |
+|             |           $0D: right arm up ???                             |
+|             |           $0E: special                                      |
+|             |           $0F: special                                      |
+|             |   $EFD1 frame counter                                       |
+|             |   $EFD2 animation speed (mask)                              |
+|             |   $EFD3 pose animation counter (low 2 bits active)          |
+|       $F014 | row setting                                                 |
+|             |   0: 3 front/2 back                                         |
+|             |   1: 2 front/3 back                                         |
+| $F015-$F028 | character status buffer for graphics (5 * 4 bytes)          |
+| $F029-$F042 | object top/center xy positions (13 * 2 bytes)               |
+| $F043-$F05C | object center xy positions (13 * 2 bytes)                   |
+| $F05D-$F076 | xy positions for damage numerals (13 * 2 bytes)             |
+|       $F077 | character spritesheet offset (see 13/FB81)                  |
+|             |   $00: normal                                               |
+|             |   $10: mini                                                 |
+|             |   $20: toad                                                 |
+|             |   $30: golbez/anna                                          |
+|             |   $40: pig                                                  |
+|       $F078 | character status sprite id (from $F08F)                     |
+|       $F079 | doom numeral tile id (10's digit)                           |
+|       $F07A | doom numeral tile id (1's digit)                            |
+| $F07B-$F08E | (5 * 4 bytes)                                               |
+|             |   $F07B enable status sprites                               |
+|             |   $F07C status sprite frame counter                         |
+|             |   $F07D status sprite frame (increment every 8 frames)      |
+|             |   $F07E -                                                   |
+| $F08F-$F093 | status sprite id for each character                         |
+|             |   0: none                                                   |
+|             |   1: mute                                                   |
+|             |   2: blind                                                  |
+|             |   3: low hp                                                 |
+|             |   4: paralyze/magnetized                                    |
+|             |   5: sleep                                                  |
+|             |   6: float                                                  |
+|             |   7: charm                                                  |
+|             |   8: curse                                                  |
+|             |   9: doom                                                   |
+| $F094-$F098 | character spritesheet offset -> $F077                       |
+| $F099-$F09D | character animation pose (current)                          |
+| $F09E-$F0A2 | character animation pose (saved)                            |
+| $F0A3-$F0A7 | character palette index                                     |
+| $F0A8-$F0AC | -                                                           |
+|       $F0AD |                                                             |
+|       $F0AE | do ready pose when menu closes                              |
+| $F0AF-$F0B3 | attack in progress (don't move back yet)                    |
+|       $F0B4 | main menu update state                                      |
+|             |   0: no update                                              |
+|             |   1: open                                                   |
+|             |   2: close                                                  |
+|      +$F0B5 |                                                             |
+|      +$F0B7 |                                                             |
+|       $F0B9 |                                                             |
+|       $F0BA |                                                             |
+|       $F0BB |                                                             |
+| $F0BC-$F0C0 | first character sprite id when using a weapon               |
+|       $F0C1 | enable weapon hit sprite update                             |
+|       $F0C2 | first sprite id for weapon hit animation                    |
+|       $F0C3 | sprite hit animation frame id                               |
+|       $F0C4 | sprite hit animation x position                             |
+|       $F0C5 | sprite hit animation y position                             |
+|       $F0C6 | sprite hit animation tile offset                            |
+|       $F0C7 | hit animation sprite size                                   |
+|             |   $00: small                                                |
+|             |   $FE: ???                                                  |
+|             |   $FF: large                                                |
+|       $F0C8 |                                                             |
+|       $F0C9 | show weapon sprite                                          |
+|       $F0CA | first sprite id for weapon                                  |
+|       $F0CB | weapon sprite tile id                                       |
+|       $F0CC | weapon sprite x offset                                      |
+|       $F0CD | weapon sprite y offset                                      |
+|       $F0CE | weapon sprite tile flags                                    |
+|       $F0CF | first weapon sprite id offset (add to $F0BC)                |
+|       $F0D0 |                                                             |
+|       $F0D1 | weapon sprite x offset                                      |
+|       $F0D2 | weapon sprite y offset                                      |
+| $F0D3-$F0DF | damage numeral x position                                   |
+| $F0E0-$F0EC | damage numeral y position                                   |
+| $F0ED-$F0F9 | damage numeral sprite flags                                 |
+| $F0FA-$F106 | enable damage numerals (13 * 1 byte)                        |
+|             |   $00: none                                                 |
+|             |   $01: damage numerals                                      |
+|             |   $FF: miss                                                 |
+|       $F107 | enable damage numerals animation                            |
+|       $F108 | damage numerals animation counter                           |
+|       $F109 |                                                             |
+|       $F10A |                                                             |
+|       $F10B | -                                                           |
+|       $F10C | -                                                           |
+| $F10D-$F110 | monster palette                                             |
+|       $F111 | trajectory initial x position                               |
+|       $F112 | trajectory initial y position                               |
+|       $F113 | trajectory final x position                                 |
+|       $F114 | trajectory final y position                                 |
+|       $F115 | trajectory speed (in x direction)                           |
+|       $F116 | trajectory x direction ($00, $01, or $FF)                   |
+|       $F117 | trajectory y direction                                      |
+|       $F118 |                                                             |
+|       $F119 | trajectory x offset                                         |
+|       $F11A |                                                             |
+|       $F11B | trajectory y offset (unsigned)                              |
+|       $F11C | trajectory x offset (unsigned)                              |
+|       $F11D | trajectory y halfway point                                  |
+|       $F11E | trajectory x halfway point                                  |
+|       $F11F | trajectory frame counter                                    |
+|       $F220 |                                                             |
+|       $F221 |                                                             |
+|       $F222 |                                                             |
+| $F123-$F12A | monster type ???                                            |
+| $F12B-$F132 |                                                             |
+| $F133-$F232 | scratchpad                                                  |
+|       $F233 |                                                             |
+|       $F234 | unused (set to zero for throw animation)                    |
+| $F235-$F23C |                                                             |
+|       $F23D |                                                             |
+|       $F23E |                                                             |
+|       $F240 | -                                                           |
+|       $F241 | -                                                           |
+|       $F242 | -                                                           |
+|       $F242 | do fight animation backwards (charmed) ???                  |
+| $F243-$F246 | -                                                           |
+|       $F247 |                                                             |
+|       $F248 | animation frame index                                       |
+|       $F249 | frame data (frame index * $80)                              |
+|       $F24A | animation x position                                        |
+|       $F24B | animation y position                                        |
+|       $F24C | reflected targets (mask) ???                                |
+|       $F24D | animation frame width                                       |
+|       $F24E | animation frame height                                      |
+|       $F24F |                                                             |
+|       $F250 |                                                             |
+| $F251-$F260 |                                                             |
+|       $F261 | flip animation horizontally                                 |
+|       $F262 | hit targets counter for drawing animation sprites           |
+|       $F263 | reflected targets counter for drawing animation sprites     |
+|       $F264 | -                                                           |
+|       $F265 | -                                                           |
+|       $F266 |                                                             |
+|       $F267 |                                                             |
+| $F268-$F278 |                                                             |
+|       $F279 | targets are monsters                                        |
+|       $F27A | animation targets (mask) ???                                |
+|       $F27B | animation script repeat counter                             |
+|      +$F27C |                                                             |
+|       $F27E | animation frame counter ???                                 |
+|       $F27F | animation script offset                                     |
+|       $F280 |                                                             |
+|       $F281 | target palette effect                                       |
+|             |   0: none                                                   |
+|             |   1: fast flash (swap palette every 2 frames)               |
+|             |   2: slow flash (swap palette every 4 frames)               |
+|             |   3: cycle palette                                          |
+|       $F282 | enable palette cycle for monster targets                    |
+|       $F283 | enable palette cycle for character targets                  |
+|       $F284 | 12345--- targetted characters                               |
+|       $F285 | keep target palette effect after animation (cockatrice)     |
+|       $F286 | -                                                           |
+|       $F287 | -                                                           |
+|       $F288 | -                                                           |
+|      +$F289 | esssssss ssssssss sprite priority order shifting -> +$2102  |
+|             |   e: enable priority order shifting                         |
+|             |   s: highest priority sprite id                             |
+|       $F28B | unused (related to big bang ???)                            |
+|       $F28C | -                                                           |
+|       $F28D | -                                                           |
+|       $F28E | monster entry counter                                       |
+| $F28F-$F29E |                                                             |
+|       $F29F | animation speed                                             |
+|       $F2A0 |                                                             |
+| $F2A1-$F2B0 | monster sizes, adjusted for status effects (8 * 2 bytes)    |
+|             |   $F2A1: width                                              |
+|             |   $F2A2: height                                             |
+|       $F2B1 |                                                             |
+|      +$F2B2 | pointer to next available animation sprite (+$EBE6)         |
+| $F2B4-$F2BB | boss graphics frame id ($FF: none)                          |
+| $F2BC-$F2C0 | character can't be selected with cursor ???                 |
+| $F2C1-$F2C5 | character name and hp hidden (5 * 1 byte)                   |
+| $F2C6-$F2CF | -                                                           |
+|       $F2D0 | extra effect for attack animation                           |
+|             |   $00: none                                                 |
+|             |   $01: quake                                                |
+|             |   $02: magic animation $08                                  |
+|             |   $03: magic animation $09                                  |
+|             |   $04: comet                                                |
+|             |   $05:                                                      |
+|             |   $06: bomb                                                 |
+|             |   $07: big bang                                             |
+|             |                                                             |
+| $F316-$F31A | covering char sprite x positions                            |
+| $F31B-$F31F | covering char sprite y positions                            |
+|       $F320 | hide character sprites for summon ($FF = ???)               |
+|       $F321 | summon x position                                           |
+|       $F322 | summon y position                                           |
+|       $F323 | summon width (in 16x16 tiles)                               |
+|       $F324 | summon height                                               |
+|       $F325 |                                                             |
+|             |                                                             |
+|       $F329 |                                                             |
+|             |                                                             |
+|       $F330 |                                                             |
+|             |                                                             |
+| $F333-$F33A | horizontal monster target order                             |
+| $F33B-$F342 | reversed horizontal monster target order                    |
+| $F343-$F34A | vertical monster target order                               |
+| $F34B-$F352 | reversed vertical monster target order                      |
+|       $F353 | irq flag (set to 1 at irq, cleared during nmi)              |
+| $F354-$F358 | saved character sprite id for summon (from $EFC4)           |
+|             |                                                             |
+| $F35C-$F35F | enable summon graphics transfer (4 * 1 bytes)               |
+| $F360-$F36F | summon graphics transfer addresses (4 * 4 bytes)            |
+|             |  +$F360 graphics buffer address (source)                    |
+|             |  +$F362 vram address (destination)                          |
+|       $F370 | summon tilemap data offset                                  |
+|     ++$F371 | pointer to summon tilemap data                              |
+|       $F374 | summon graphics buffer tile index                           |
+|       $F375 | -                                                           |
+| $F376-$F395 | blank tile buffer for summon graphics transfer              |
+|             |                                                             |
+|       $F397 | spell animation script index                                |
+|             |                                                             |
+|       $F404 |                                                             |
+|             |                                                             |
+|      +$F406 | monster h-scroll (for shaking/jumping)                      |
+|      +$F408 | monster v-scroll (for shaking/jumping)                      |
+|             |                                                             |
+|       $F40F |                                                             |
+|       $F410 | enemy character weapon animation frame (0 or 1)             |
+|       $F411 | demon wall offset                                           |
+|       $F412 | game sound effect interrupt                                 |
+|       $F413 | game sound effect id                                        |
+|       $F414 | game sound effect pan                                       |
+|       $F415 | -                                                           |
+|       $F416 | system sound effect interrupt                               |
+|       $F417 | -                                                           |
+|       $F418 | -                                                           |
+|       $F419 | -                                                           |
+|       $F41A | show 2nd ghost character                                    |
+| $F41B-$F422 | ghost character data (from 0D/FD1C)                         |
+|             |   +$F41B 1st character graphics pointer                     |
+|             |   +$F41D 2nd character graphics pointer                     |
+|             |    $F41F 1st character palette                              |
+|             |    $F420 2nd character palette                              |
+|             |    $F421 1st xy position                                    |
+|             |    $F422 2nd xy position                                    |
+|       $F423 | -                                                           |
+|       $F424 | use dead pose for all characters (unused)                   |
+|       $F425 |                                                             |
+|       $F426 |                                                             |
+|       $F427 |                                                             |
+|       $F428 |                                                             |
+|      +$F429 |                                                             |
+|       $F42B |                                                             |
+|      +$F42C |                                                             |
+|       $F42E |                                                             |
+|      +$F42F |                                                             |
+|       $F431 |                                                             |
+|       $F432 | -                                                           |
+|       $F433 | blue color intensity                                        |
+|       $F434 | green color intensity                                       |
+|       $F435 | red color intensity                                         |
+|       $F436 | target color intensity (never gets set)                     |
+| $F437-$F439 | -                                                           |
+|       $F43A | waiting for keypress (battle message)                       |
+|       $F43B |                                                             |
+| $F43C-$F442 | color math hdma table                                       |
+| $F443-$F445 | -                                                           |
+|       $F446 |                                                             |
+|       $F447 | -                                                           |
+|       $F448 |                                                             |
+|       $F449 |                                                             |
+|       $F44A | enable player input (after battle init)                     |
+|       $F44B | something to do with pause                                  |
+|       $F44C |                                                             |
+|       $F44D | periodic menu text update counter                           |
+|             |   0: character names                                        |
+|             |   1: main menu                                              |
+|             |   2: battle command window                                  |
+|             |   3: status window                                          |
+|       $F44E |                                                             |
+|      +$F44F |                                                             |
+|       $F451 | enable palette swap                                         |
+|       $F452 | palette swap speed (bit mask)                               |
+|       $F453 | palette swap frame counter                                  |
+|       $F454 | palette swap palette counter                                |
+| $F455-$F456 | animation palettes for palette swap                         |
+|       $F457 | default animation palette id                                |
+|       $F458 |                                                             |
+| $F459-$F461 |                                                             |
+|       $F462 |                                                             |
+|       $F463 |                                                             |
+|      +$F464 | -                                                           |
+|      +$F466 |                                                             |
+|       $F468 |                                                             |
+|      +$F469 |                                                             |
+|      +$F46B |                                                             |
+| $F46D-$F471 | victory animation overrides character pose                  |
+|       $F472 | disable L+R buttons (for victory fanfare)                   |
+|       $F473 |                                                             |
+|       $F474 | enable mist dragon vs. golbez                               |
+|       $F475 | adult rydia character slot                                  |
+| $F476-$F47D |                                                             |
+|       $F47E |                                                             |
+|       $F47F | sound effect id                                             |
+|       $F480 |                                                             |
+|       $F481 |                                                             |
+|       $F482 |                                                             |
+|       $F483 |                                                             |
+|       $F484 |                                                             |
+|       $F485 | monster attacker if msb set (for sound effect)              |
+|       $F486 | -                                                           |
+|       $F487 |                                                             |
+| $F488-$F499 | final battle bg hdma scroll offsets (18 * 1 byte)           |
+|       $F49A |                                                             |
+|       $F49B | color add/sub layers -> $2131                               |
+|       $F49C | use slowest message speed (5) instead of $16AD              |
+|       $F49D |                                                             |
+|       $F49E |                                                             |
+|       $F49F |                                                             |
+|       $F4A0 |                                                             |
+|       $F4A1 |                                                             |
+|      +$F4A2 |                                                             |
+| $F4A3-$F4A7 | -                                                           |
+|       $F4A8 |                                                             |
+|       $F4A9 | disable final battle bg hdma scrolling (unused)             |
+|       $F4AA | -                                                           |
+|       $F4AB | -                                                           |
+|       $F4AC |                                                             |
+| $F4AD-$F4B4 | battle variable converted to decimal digits (8 digits)      |
+| $F4B5-$FFFF | -                                                           |
++-------------+-------------------------------------------------------------+
+
+$7FF000-$7FF07F pointers to spell graphics tiles
+
+=============================================================================
+                       | menu ram (7E/A000-7E/FFFF) |
+                       +----------------------------+
+
++-------------+-------------------------------------------------------------+
+|   address   |                         description                         |
++-------------+-------------------------------------------------------------+
+| $A000-$A1FF | color palettes                                              |
+| $A200-$A3FF | saved color palettes 1                                      |
+| $A400-$A5FF | saved color palettes 2                                      |
+| $A600-$B5FF | bg2 screen buffer (64 rows, 32 tiles per row)               |
+| $B600-$C5FF | bg1 screen buffer                                           |
+| $C600-$D5FF | bg4 screen buffer                                           |
+| $D600-$E5FF | bg3 screen buffer                                           |
+| $E600-$F5FF | saved bg3 graphics (2bpp)                                   |
+| $F600-$FDFF | misc. buffer                                                |
+| $FE00-$FE13 | (5 * 4 bytes)                                               |
+| $FE14-$FE27 | (5 * 4 bytes)                                               |
+| $FE28-$FF17 | character palette buffer                                    |
+| $FF28-$FF37 | treasure item list (8 * 2 bytes)                            |
+|             |                                                             |
++-------------+-------------------------------------------------------------+
+
+=============================================================================
+                       | field ram (7F/0000-7F/9FFF) |
+                       +-----------------------------+
+
++-----------------+---------------------------------------------------------+
+|     address     |                       description                       |
++-----------------+---------------------------------------------------------+
+| 7F/0000-7F/43FF | mode 7 hdma data (34 * 512 bytes)                       |
+|                 |   $0000-$21FF: airship zoom                             |
+|                 |   $2200-$43FF: big whale zoom                           |
+| 7F/4400-7F/47FF | bg tilemap buffer (compressed)                          |
+| 7F/4800-7F/4BFF | bg tileset (256 * 4 bytes)                              |
+| 7F/4C00-7F/4FFF | npc map (32x32 * 1 byte)                                |
+| 7F/5000-7F/57FF | map animation graphics                                  |
+| 7F/5800-7F/59FF | water graphics buffer                                   |
+| 7F/5A00-7F/5C70 | hdma table (208 * 3 bytes + terminator byte)            |
+| 7F/5C71-7F/9C70 | bg tilemap                                              |
+|                 |   60-63: large closed door                              |
+|                 |   64-67: large open door                                |
+|                 |   6F: open door                                         |
+|                 |   70: closed door 1                                     |
+|                 |   71: closed door 2                                     |
+|                 |   77: open treasure chest                               |
+|                 |   78: closed treasure chest                             |
+| 7F/9C71-7F/9FFF | -                                                       |
++-----------------+---------------------------------------------------------+
+
+=============================================================================
+                               | field vram |
+                               +------------+
+
++-------------+-------------------------------------------------------------+
+|   address   |                         description                         |
++-------------+-------------------------------------------------------------+
+| $0000-$17FF | bg1/bg2 graphics                                            |
+| $1800-$1FFF | bg1 tilemap                                                 |
+| $2000-$27FF | bg3 graphics                                                |
+| $2800-$2FFF | bg3 tilemap                                                 |
+| $3000-$3FFF | bg2 tilemap                                                 |
+| $4000-$7FFF | sprite graphics                                             |
++-------------+-------------------------------------------------------------+
+
+=============================================================================
+                               | battle vram |
+                               +-------------+
+
++-------------+-------------------------------------------------------------+
+|   address   |                         description                         |
++-------------+-------------------------------------------------------------+
+| $0000-$1FFF | sprite graphics                                             |
+| $2000-$4FFF | bg1/bg2 graphics                                            |
+|             |   $4DB0-$4FFF menu graphics                                 |
+| $5000-$57FF | bg3 graphics                                                |
+| $5800-$5FFF | bg2 tilemap                                                 |
+|             |   $5800-$5A3F battle bg tilemap                             |
+|             |   $5C00-$5E3F battle bg tilemap (h-flip)                    |
+|             |   $5E60-$5FFF mp cost, row, defend window tilemap           |
+| $6000-$6FFF | bg1 tilemap                                                 |
+| $7000-$7FFF | bg3 tilemap                                                 |
+|             |   $7000-$719F main window tilemap                           |
+|             |   $71A0-$733F command select tilemap                        |
+|             |   $7400-$75FF inventory 1 tilemap                           |
+|             |   $7600-$77FF inventory 2 tilemap                           |
+|             |   $7800-$78DF equipped items tilemap                        |
+|             |   $78E0-$797F message window tilemap                        |
+|             |   $7980-$7B1F status tilemap                                |
+|             |   $7C00-$7E7F inventory 3 tilemap                           |
+|             |   $7E80-$7EFF pause window tilemap                          |
++-------------+-------------------------------------------------------------+
+
+=============================================================================
+                                | menu vram |
+                                +-----------+
+
++-------------+-------------------------------------------------------------+
+|   address   |                         description                         |
++-------------+-------------------------------------------------------------+
+| $2000-$2FFF | bg graphics                                                 |
+| $4000-$5FFF | sprite graphics                                             |
+|             |   $4600 namingway/fat chocobo                               |
+|             |   $4800 character slot 1                                    |
+|             |   $4B00 character slot 2                                    |
+|             |   $4E00 character slot 3                                    |
+|             |   $5100 character slot 4                                    |
+|             |   $5400 character slot 5                                    |
+| $6000-$67FF | bg1 tilemap                                                 |
+| $6800-$6FFF | bg2 tilemap                                                 |
+| $7000-$77FF | bg3 tilemap                                                 |
+| $7800-$7FFF | bg4 tilemap                                                 |
++-------------+-------------------------------------------------------------+

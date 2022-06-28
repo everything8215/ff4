@@ -1,0 +1,258 @@
+
++---------------------------------------------------------------------------+
+|                                                                           |
+|                             FINAL FANTASY IV                              |
+|                                                                           |
++---------------------------------------------------------------------------+
+| file: ff4j-sfc-rom-map.txt                                                |
+|                                                                           |
+| description: rom map                                                      |
+|                                                                           |
+| created: 1/12/2021                                                        |
+|                                                                           |
+| author: everything8215@gmail.com                                          |
++---------------------------------------------------------------------------+
+
++---------------+---------------+-------------------------------------------+
+|  sfc address  |  rom address  |                description                |
++---------------+---------------+-------------------------------------------+
+| 008000-00FFFF | 000000-007FFF | field program                             |
+| 018000-01E2FF | 008000-00E2FF | menu program                              |
+| 01E300-01FFFF | 00E300-00FFFF | battle graphics program (cont'd)          |
+| 028000-02FFFF | 010000-017FFF | battle graphics program                   |
+| 038000-03F27F | 018000-01FFFF | battle program                            |
+| 03F280-03FFFF | 018000-01FFFF | battle graphics program (cont'd)          |
+| 048000-048682 | 020000-020682 | sound program                             |
+| 048683-04982F | 020683-02182F | spc program                               |
+| 049830-049853 | 021830-021853 | sound effect sample frequency multipliers |
+| 049854-049877 | 021854-021877 | pointers to sound effect brr samples      |
+| 049878-049E0B | 021878-021E0B | sound effect brr samples                  |
+| 049E0C-04A20F | 021E0C-02220F | note envelope data                        |
+| 04A210-04A253 | 022210-022253 | pointers to note envelope data            |
+| 04A254-04B9C7 | 022254-0239C7 | sound effect scripts                      |
+| 04B9C8-04BBCB | 0239C8-023BCB | pointers to sound effect scripts          |
+| 04BBCC-04BBCF | 023BCC-023BCF | end of spc data marker                    |
+| 04BBD0-04BFFF | 023BD0-023FFF | unused space (1072 bytes)                 |
+| 04C000-04C00E | 024000-02400E | pointers to spc data (+$04C000)           |
+| 04C00F-04C8CE | 02400F-0248CE | samples used by each song (70 * 32 bytes) |
+| 04C8CF-04C92A | 0248CF-02492A | sample loop start (23 * 4 bytes)          |
+| 04C92B-04C941 | 02492B-024941 | sample frequency multiplier (23 * 1 byte) |
+| 04C942-04C989 | 024942-024989 | pointers to brr samples (+$04C000)        |
+| 04C98A-06F21C | 02498A-03721C | brr samples (23 items)                    |
+| 06F21D-06F2EE | 03721D-0372EE | pointers to song scripts (+$04C000)       |
+| 06F2EF-08BFFF | 0372EF-043FFF | song scripts (63 items)                   |
+| 08C000-08E7FF | 044000-0467FF | title screen graphics                     |
+| 08E800-08EAFF | 046800-046AFF | title screen bg tilemap                   |
+| 08EB00-08EB9F | 046B00-046B9F | title screen crystal tilemap              |
+| 08EBA0-08EBBF | 046BA0-046BBF | title screen copyright tilemap (unused)   |
+| 08EBC0-08EBFF | 046BC0-046BFF | unused color palettes                     |
+| 08EC00-08EC7F | 046C00-046C7F | title screen color palettes               |
+| 08EC80-08F87F | 046C80-04787F | prologue graphics (128 tiles)             |
+| 08F880-08FB7F | 047880-047B7F | prologue bg1 tile data                    |
+| 08FB80-08FEFF | 047B80-047EFF | prologue bg2 tile data                    |
+| 08FF00-08FFFF | 047F00-047FFF | prologue color palettes                   |
+| 098000-09FFFF | 048000-047FFF | monster graphics bank 1                   |
+| 0A8000-0AEFFF | 058000-056FFF | monster graphics bank 2                   |
+| 0AF000-0AFFFF | 057000-057FFF | menu/text graphics                        |
+| 0B8000-0BFFFF | 058000-05FFFF | monster graphics bank 3 (bosses)          |
+| 0C8000-0C96F7 | 060000-0616F7 | monster graphics bank 4 (more bosses)     |
+| 0C96F8-0CB2F7 | 0616F8-0632F7 | final zeromus graphics                    |
+| 0CB2F8-0CB6BF | 0632F8-0636BF | unused space (968 bytes)                  |
+| 0CB6C0-0CF277 | 0636C0-067277 | attack graphics (3bpp)                    |
+| 0CF278-0CF3BF | 067278-0673BF | stale attack graphics (4bpp)              |
+| 0CF3C0-0CF9BF | 0673C0-0679BF | attack graphics tilemap (768 * 2 bytes)   |
+| 0CF9C0-0CFF2F | 0679C0-067F2F | misc. battle sprite graphics              |
+| 0CFF30-0CFFEF | 067F30-067FEF | flying monster shadow graphics            |
+| 0CFFF0-0CFFFF | 067FF0-067FFF | unused space (16 bytes)                   |
+| 0D8000-0D807F | 068000-06807F | party sprite palettes                     |
+| 0D8080-0D80BF | 068080-0680BF | unused space (64 bytes)                   |
+| 0D80C0-0D823F | 0680C0-06823F | npc palettes (24 * 16 bytes)              |
+| 0D8240-0D86CF | 068240-0686CF | unused space (1168 bytes)                 |
+| 0D86D0-0D87D0 | 0686D0-0687D0 | portrait palettes (16 * 16 bytes)         |
+| 0D87D0-0D87EF | 0687D0-0687EF | menu window palette                       |
+| 0D87F0-0D8817 | 0687F0-068817 | pointers to summon graphics               |
+| 0D8818-0DE817 | 068818-06E817 | summon graphics                           |
+| 0DE818-0DF25F | 06E818-06F25F | unused space (2632 bytes)                 |
+| 0DF260-0DF281 | 06F260-06F281 | pointers to summon graphics maps          |
+| 0DF282-0DF65F | 06F282-06F65F | summon graphics maps                      |
+| 0DF660-0DF699 | 06F660-06F699 | pointers to data at $0DF69A               |
+| 0DF69A-0DF7FF | 06F69A-06F7FF |                                           |
+| 0DF800-0DFFFF | 06F800-06FFFF | battle graphics data (see disassembly)    |
+| 0E8000-0E8FFF | 070000-070FFF | battle properties (512 * 8 bytes)         |
+| 0E9000-0E97FF | 071000-0717FF | monster position data (256 * 8 bytes)     |
+| 0E9800-0E9EFF | 071800-071EFF | monster names (224 * 8 bytes)             |
+| 0E9F00-0E9FFF | 071F00-071FFF | monster items (64 * 4 bytes)              |
+| 0EA000-0EA1BF | 072000-0721BF | monster gil (224 * 2 bytes)               |
+| 0EA1C0-0EA37F | 0721C0-07237F | monster experience (224 * 2 bytes)        |
+| 0EA380-0EA61F | 072380-07261F | monster attack/def. data (224 * 3 bytes)  |
+| 0EA620-0EA69F | 072620-07269F | monster agility data (64 * 2 bytes)       |
+| 0EA6A0-0EA85F | 0726A0-07285F | pointers to monster properties (+$0E0000) |
+| 0EA860-0EB438 | 072860-073439 | monster properties (224 items)            |
+| 0EA439-0EB6BF | 072438-0736BF | unused space (647 bytes)                  |
+| 0EB6C0-0EBABF | 0736C0-073ABF | monster action scripts, moon (90 items)   |
+| 0EBAC0-0EC2FF | 073AC0-0742FF | monster cursor data (91 * 16 bytes)       |
+| 0EC300-0EC33F | 074300-07433F | random battle rates, overworld (64 bytes) |
+| 0EC340-0EC340 | 074340-074340 | random battle rate, underground (1 byte)  |
+| 0EC341-0EC341 | 074341-074341 | random battle rate, moon (1 byte)         |
+| 0EC342-0EC541 | 074342-074541 | random battle rates, sub-maps             |
+| 0EC542-0EC581 | 074542-074581 | random battle set, overworld (64 bytes)   |
+| 0EC582-0EC591 | 074582-074591 | random battle set, underground (16 bytes) |
+| 0EC592-0EC595 | 074592-074595 | random battle set, moon (4 bytes)         |
+| 0EC596-0EC795 | 074596-074795 | random battle set, sub-maps (512 * 1 byte)|
+| 0EC796-0EC815 | 074796-074815 | world map random battles (16 * 8 bytes)   |
+| 0EC816-0ECA95 | 074816-074A95 | sub-map random battles (80 * 8 bytes)     |
+| 0ECA96-0ECAFF | 074A96-074AFF | unused space (106 bytes)                  |
+| 0ECB00-0ECEFF | 074B00-074EFF | battle animation palettes                 |
+| 0ECF00-0ECF71 | 074F00-074F71 | pointers to boss graphics maps (+$0E0000) |
+| 0ECF72-0EDF52 | 074F72-075F52 | boss graphics maps (57 items)             |
+| 0EDF53-0EDFFF | 075F53-075FFF | unused space (173 bytes)                  |
+| 0EE000-0EE02F | 076000-07602F | monster conditional hp (17 * 2 bytes)     |
+| 0EE030-0EE5FF | 076030-0765FF | monster scripts (256 items)               |
+| 0EE600-0EE6FF | 076600-0766FF | monster conditional scripts (97 items)    |
+| 0EE700-0EE8FF | 076700-0768FF | monster conditional data (80 * 4 bytes)   |
+| 0EE900-0EF1FF | 076900-0771FF | monster action scripts (256 items)        |
+| 0EF200-0EF373 | 077200-077373 | pointers to battle dialog (+$0E0000)      |
+| 0EF374-0EFFFF | 077374-077FFF | battle dialog (186 items)                 |
+| 0F8000-0F88FF | 078000-0788FF | item names (256 * 9 bytes)                |
+| 0F8900-0F8AAF | 078900-078AAF | spell names (72 * 6 bytes)                |
+| 0F8AB0-0F906F | 078AB0-07906F | attack names (184 * 8 bytes)              |
+| 0F9070-0F90CF | 079070-0790CF | weapon magic no. of hits (96 * 1 byte)    |
+| 0F90D0-0F90FF | 0790D0-0790FF | unused space (48 bytes)                   |
+| 0F9100-0F967F | 079100-07967F | equipment properties (176 * 8 bytes)      |
+| 0F9680-0F979F | 079680-07979F | item properties (48 * 6 bytes)            |
+| 0F97A0-0F9D9F | 0797A0-079D9F | attack properties (256 * 6 bytes)         |
+| 0F9DA0-0F9E0F | 079DA0-079E0F | unused space (112 bytes)                  |
+| 0F9E10-0FA04F | 079E10-07A04F | weapon animation data (100 * 4 bytes)     |
+| 0FA050-0FA34F | 07A050-07A34F | magic animation data (168 * 4 bytes)      |
+| 0FA350-0FA44F | 07A350-07A44F | attack sound effects (256 * 1 byte)       |
+| 0FA450-0FA54F | 07A450-07A54F | item prices (256 * 1 byte)                |
+| 0FA550-0FA58F | 07A550-07A58F | item equipability (32 * 2 bytes)          |
+| 0FA590-0FA70F | 07A590-07A70F | element/status effects (59 * 3 bytes)     |
+| 0FA710-0FA763 | 07A710-07A763 | character names (14 * 6 bytes)            |
+| 0FA764-0FA7B7 | 07A764-07A7B7 | character titles (14 * 6 bytes)           |
+| 0FA7B8-0FA857 | 07A7B8-07A857 | battle command names (32 * 5 bytes)       |
+| 0FA858-0FA897 | 07A858-07A897 | pointers to status names (+$0F0000)       |
+| 0FA898-0FA8FF | 07A898-07A8FF | status names                              |
+| 0FA900-0FAABF | 07A900-07AABF | character properties (14 * 32 bytes)      |
+| 0FAAC0-0FAAFF | 07AAC0-07AAFF | unused space (64 bytes)                   |
+| 0FAB00-0FAB91 | 07AB00-07AB91 | initial character equipment (21 * 7 bytes)|
+| 0FAB92-0FADFF | 07AB92-07ADFF | unused space (622 bytes)                  |
+| 0FAE00-0FAE2A | 07AE00-07AE2A | description id for consumable items       |
+| 0FAE2B-0FB1FF | 07AE2B-07B1FF | item descriptions (59 items)              |
+| 0FB200-0FB275 | 07B200-07B275 | pointers to battle messages (+$0F0000)    |
+| 0FB276-0FB4FF | 07B276-07B4FF | battle messages                           |
+| 0FB500-0FB528 | 07B500-07B528 | pointers to level progression data        |
+| 0FB528-0FC3C8 | 07B528-07C3C8 | level progression data (5 bytes each-ish) |
+| 0FC3C8-0FC600 | 07C3C8-07C600 | unused space (568 bytes)                  |
+| 0FC600-0FC6FF | 07C600-07C6FF | menu program (cont'd)                     |
+| 0FC700-0FC8BF | 07C700-07C8BF | magic learned at level up (13 items)      |
+| 0FC8C0-0FC9FF | 07C8C0-07C9FF | initial spell lists (13 items)            |
+| 0FCA00-0FCDFF | 07CA00-07CDFF | monster graphics properties (256 * 4 bytes)
+| 0FCE00-0FCF3F | 07CE00-07CF3F | boss graphics data (64 * 5 bytes)         |
+| 0FCF40-0FD1FF | 07CF40-07D1FF | unused space (704 bytes)                  |
+| 0FD200-0FD4DF | 07D200-07D4DF | battle bg palettes (23 * 32 bytes)        |
+| 0FD4E0-0FD5DF | 07D4E0-07D5DF | weapon magic animation (96 * 1 byte)      |
+| 0FD5E0-0FD67D | 07D5E0-07D67D | pointers to animation scripts             |
+| 0FD67E-0FDDDF | 07D67E-07DDDF | animation scripts (79 items)              |
+| 0FDDE0-0FE0B1 | 07DDE0-07E0B1 | pointers to animation frame data          |
+| 0FE0B2-0FFFFF | 07E0B2-07FFFF | attack animation frame data (361 items)   |
+| 108000-1083FF | 080000-0803FF | pointers to event dialog (bank 1)         |
+| 108400-10FFFF | 080400-087FFF | event dialog (bank 1)                     |
+| 118000-1182FF | 088000-0882FF | pointers to map dialog (bank 0)           |
+| 118300-11FFFF | 088300-08FFFF | map dialog (bank 0)                       |
+| 128000-1201FF | 090000-0901FF | pointers to event scripts (+$128200)      |
+| 128200-12EFFF | 090200-096FFF | event scripts                             |
+| 12F000-12F1FF | 097000-0971FF | npc graphics data                         |
+| 12F200-12F23F | 097200-09723F | initial npc event bit values              |
+| 12F240-12F25F | 097240-09725F | initial global event bit values           |
+| 12F260-12F45F | 097260-09745F | pointers to trigger scripts (+$12F460)    |
+| 12F460-12F65F | 097460-09765F | trigger scripts                           |
+| 12F660-12FFFF | 097660-097FFF | solar system sprite data (97 * 4 bytes)   |
+| 138000-1382FF | 098000-0982FF | pointers to npc properties (+$138200)     |
+| 138300-1396FF | 098300-0996FF | npc properties (1274 * 4 bytes)           |
+| 139700-1397FF | 099700-0997FF | dte table (us version)                    |
+| 139800-139BFF | 099800-099BFF | pointers to npc scripts (+$139C00)        |
+| 139C00-13A2FF | 099C00-09A2FF | npc scripts                               |
+| 13A300-13A4FF | 09A300-09A4FF | shop data (48 * 8 bytes)                  |
+| 13A500-13A6FF | 09A500-09A6FF | pointers to event dialog (bank 2)         |
+| 13A700-13D1FF | 09A700-09D1FF | event dialog (bank 2)                     |
+| 13D200-13D2FF | 09D200-09D2FF | cinematic color palettes                  |
+| 13D300-13D50F | 09D300-09D50F | credits stars graphics (3bpp)             |
+| 13D510-13D60F | 09D510-09D60F | credits color palettes                    |
+| 13D610-13F015 | 09D610-09F015 | cinematic program                         |
+| 13F016-13F335 | 09F016-09F335 | "the end" graphics                        |
+| 13F336-13F802 | 09F336-09F802 | end credits text                          |
+| 13F803-13F8FF | 09F803-09F8FF | unused space (253 bytes)                  |
+| 13F900-13FCFF | 09F900-09FCFF | battle graphics data (see disassembly)    |
+| 13FD00-13FFFF | 09FD00-09FFFF | battle program (cont'd)                   |
+| 148000-1485FF | 0A0000-0A05FF | world map tilesets (3 * 512 bytes)        |
+| 148600-1488FF | 0A0600-0A08FF | world map tile palettes (3 * 256 bytes)   |
+| 148900-148A7F | 0A0900-0A0A7F | world map palettes (3 * 128 bytes)        |
+| 148A80-148D7F | 0A0A80-0A0C7F | world map tile properties (3 * 256 bytes) |
+| 148D80-148DFF | 0A0C80-0A0DFF | unused space (128 bytes)                  |
+| 148E00-149DFF | 0A0E00-0A1DFF | map tile properties (16 * 256 bytes)      |
+| 149E00-14DDFF | 0A1E00-0A5DFF | map tilesets (16 * 1024 bytes)            |
+| 14DE00-14EDFF | 0A5E00-0A6DFF | map palettes (32 * 128 bytes)             |
+| 14EE00-14EEFF | 0A6E00-0A6EFF | random number table                       |
+| 14EF00-14EFFF | 0A6F00-0A61BF | sine table                                |
+| 14F000-14F1BF | 0A7000-0A71BF |                                           |
+| 14F1C0-14F37F | 0A71C0-0A737F |                                           |
+| 14F380-14FCFF | 0A7380-0A7CFF | field data (see disassembly)              |
+| 14FD00-14FFFF | 0A7D00-077FFF | menu program (cont'd)                     |
+| 158000-158005 | 0A8000-0A8005 | pointers to world map triggers (+$158006) |
+| 158006-1581FF | 0A8006-0A81FF | world map triggers (82 * 5 bytes)         |
+| 158200-1584FF | 0A8200-0A84FF | pointers to sub-map triggers (+$158500)   |
+| 158500-15987F | 0A8500-0A987F | sub-map triggers (978 * 5 bytes)          |
+| 159880-159C7F | 0A9880-0A9C7F | map titles (121 items)                    |
+| 159C80-159C83 | 0A9C80-0A9C83 | unused map properties size (13)           |
+| 159C84-15AFFF | 0A9C84-0AAFFF | map properties (383 * 13 bytes)           |
+| 15B000-15CBFF | 0AB000-0ACBFF | field program (cont'd)                    |
+| 15CC00-15D83F | 0ACC00-0AD83F | solar system graphics                     |
+| 15D840-15DBFF | 0AD840-0ADBFF | solar system big moon graphics (30 tiles) |
+| 15DC00-15FFFF | 0ADC00-0AFFFF | ship/airship tileset                      |
+| 168000-1681FF | 0B0000-0B01FF | pointers to overworld tilemap (+$168480)  |
+| 168200-1683FF | 0B0200-0B03FF | pointers to underground tilemap (+$16C480)|
+| 168400-16847F | 0B0400-0B047F | pointers to moon tilemap (+$16E180)       |
+| 168480-16C47F | 0B0480-0B447F | overworld tilemap (compressed)            |
+| 16C480-16E17F | 0B4480-0B617F | underground tilemap (compressed)          |
+| 16E180-16EB7F | 0B6180-0B6B7F | moon tilemap (compressed)                 |
+| 16EB80-16ED7F | 0B6B80-0B6D7F | window hdma data for telescope            |
+| 16ED80-16F87F | 0B6D80-0B787F | upper battle bg tilemap (11 * 256 bytes)  |
+| 16F880-16FA3F | 0B7880-0B7A3F | lower battle bg tilemap (7 * 64 bytes)    |
+| 16FA40-16FFFF | 0B7A40-0B7FFF | battle graphics data (see disassembly)    |
+| 178000-1782FF | 0B8000-0B82FF | pointers to sub-map tilemaps (+$178000)   |
+| 178300-19FE5F | 0B8300-0CFE5F | sub-map tilemaps (compressed)             |
+| 19FE60-19FE65 | 0CFE60-0CFE65 | pointers to world map triggers (US)       |
+| 19FE66-19FFFF | 0CFE66-0CFFFF | world map triggers (US) (82 * 5 bytes)    |
+| 1A8000-1AFC3F | 0D0000-0D7C3F | battle character graphics                 |
+| 1AFC40-1AFCEF | 0D7C40-0D7CEF | unused space (176 bytes)                  |
+| 1AFCF0-1AFCFF | 0D7CF0-0D7CFF | prologue sprite palette (moon)            |
+| 1AFD00-1AFD7F | 0D7D00-0D7D7F | prologue sprite graphics (moon)           |
+| 1AFD80-1AFFFF | 0D7D80-0D7FFF | unused space (640 bytes)                  |
+| 1B8000-1BFFFF | 0D8000-0DFFFF | map character graphics                    |
+| 1C8000-1C97FF | 0E0000-0E17FF | vehicle graphics                          |
+| 1C9800-1CA7FF | 0E1800-0E27FF | misc. overworld sprite graphics           |
+| 1CA800-1CD8FF | 0E2800-0E58FF | battle bg graphics                        |
+| 1CD900-1CEDFF | 0E5900-0E6DFF | weapon graphics                           |
+| 1CEE00-1CFCFF | 0E6E00-0E7CFF | monster palettes                          |
+| 1CFD00-1CFEFF | 0E7D00-0E7EFF | battle character palettes                 |
+| 1CFF00-1CFFFF | 0E7F00-0E7FFF | sine table                                |
+| 1D8000-1DD3BF | 0E8000-0ED3BF | world map graphics (3 * 8192 bytes)       |
+| 1DD3C0-1DED3F | 0ED3C0-0EED3F | portrait graphics (17 * 384 bytes)        |
+| 1DED40-1DFFFF | 0EED40-0EFFFF | castle tileset (exterior)                 |
+| 1E8000-1E001F | 0F0000-0F001F | pointers to map tilesets (bank at 15/B104)|
+| 1E8020-1E9567 | 0F0020-0F1567 | sealed cave/cave magnes tileset           |
+| 1E9568-1EACBF | 0F1568-0F2CBF | town exterior tileset                     |
+| 1EACC0-1EB8BF | 0F2CC0-0F38BF | town interior tileset                     |
+| 1EB8C0-1ECFE7 | 0F38C0-0F4FE7 | castle interior tileset                   |
+| 1ECFE8-1EDFA7 | 0F4FE8-0F5FA7 | crystal room tileset                      |
+| 1EDFA8-1EFC1F | 0F5FA8-0F7C1F | lunar core/moon cave tileset              |
+| 1EFC20-1EFEDF | 0F7C20-0F7EDF | menu program (cont'd)                     |
+| 1EFEE0-1EFFDF | 0F7EE0-0F7FDF | moon sprite graphics (telescope)          |
+| 1EFFE0-1EFFFF | 0F7FE0-0F7FFF | moon sprite palette (telescope)           |
+| 1F8000-1F94FF | 0F8000-0F94FF | underground cave tileset                  |
+| 1F9500-1FB9BF | 0F9500-0FB9BF | tower of zot/bab-il tileset               |
+| 1FB9C0-1FD207 | 0FB9C0-0FD207 | map animation graphics                    |
+| 1FD208-1FE887 | 0FD208-0FE887 | mountains tileset                         |
+| 1FE888-1FFFFF | 0FE888-0FFFFF | overworld cave tileset                    |
++---------------+---------------+-------------------------------------------+

@@ -1,0 +1,259 @@
+
++---------------------------------------------------------------------------+
+|                                                                           |
+|                             FINAL FANTASY IV                              |
+|                                                                           |
++---------------------------------------------------------------------------+
+| file: ff4-spc-ram-map.txt                                                 |
+|                                                                           |
+| description: sound program ram map                                        |
+|                                                                           |
+| created: 2/7/2022                                                         |
+|                                                                           |
+| author: everything8215@gmail.com                                          |
++---------------------------------------------------------------------------+
+
+=============================================================================
+                          | spc ram ($0000-$FFFF) |
+                          +-----------------------+
+
++-------------+-------------------------------------------------------------+
+|   address   |                         description                         |
++-------------+-------------------------------------------------------------+
+| $0000-$00FF | page 0                                                      |
+|             |       $00 zero                                              |
+|             |   $02-$11 song channel script pointers                      |
+|             |   $12-$21 sound effect channel script pointers              |
+|             |      +$22 source pointer                                    |
+|             |      +$24 destination pointer                               |
+|             |       $26 current sound script byte                         |
+|             |       $27 current channel id * 2                            |
+|             |   $28-$2F scratchpad                                        |
+|             |      +$30 16-bit divide denominator                         |
+|             |      +$32 16-bit divide numerator and result                |
+|             |      +$34 16-bit divide remainder                           |
+|             |      +$37 song tempo                                        |
+|             |       $38 song tick counter                                 |
+|             |       $39 sound effect tick counter                         |
+|             |      +$3A song tempo envelope counter                       |
+|             |      +$3C song tempo envelope rate                          |
+|             |       $3E -                                                 |
+|             |       $3F -                                                 |
+|             |       $40 echo volume (current)                             |
+|             |       $41 echo volume (saved)                               |
+|             |      +$42 song volume (hi byte active)                      |
+|             |       $44 -                                                 |
+|             |       $45 -                                                 |
+|             |      +$46 song volume rate                                  |
+|             |   $48-$67 channel tick counters                             |
+|             |   $68-$77 channel sustain counters (song channels only)     |
+|             |       $78 sound effect channels                             |
+|             |       $79 echo feedback -> dsp $0D                          |
+|             |       $7A echo delay -> dsp $7D                             |
+|             |       $7B echo buffer sync counter                          |
+|             |       $7C noise clock (song)                                |
+|             |       $7D noice clock (sound effects)                       |
+|             |       $7E echo enable -> dsp $4D                            |
+|             |       $7F -                                                 |
+|             |       $80 -                                                 |
+|             |       $81 enable echo (song channels)                       |
+|             |       $82 enable echo (sfx channels)                        |
+|             |       $83 enable noise (song channels)                      |
+|             |       $84 enable noise (sfx channels)                       |
+|             |       $85 enable pitch modulation (song channels)           |
+|             |       $86 enable pitch modulation (sfx channels)            |
+|             |       $87 -------s                                          |
+|             |             s: a sound effect has set the noise clock       |
+|             |       $88 key on -> dsp $4C                                 |
+|             |       $89 key off -> dsp $5C                                |
+|             |       $8A rmennnnn dsp flags -> dsp $6C                     |
+|             |             r: reset                                        |
+|             |             m: mute all                                     |
+|             |             e: echo disable                                 |
+|             |             n: noise clock                                  |
+|             |       $8B channels that need dsp volume update              |
+|             |       $8C channels that need dsp frequency update           |
+|             |       $8D current channel mask                              |
+|             |       $8E current pitch value                               |
+|             |       $8F current interrupt id                              |
+|             |       $90 -------m                                          |
+|             |             m: mono                                         |
+|             |       $91 system sound effect channels                      |
+|             |   $92-$EF -                                                 |
+|             |       $F0 test                                              |
+|             |       $F1 ctrl_reg                                          |
+|             |       $F2 dsp_addr                                          |
+|             |       $F3 dsp_data                                          |
+|             |       $F4 port0                                             |
+|             |       $F5 port1                                             |
+|             |       $F6 port2                                             |
+|             |       $F7 port3                                             |
+|             |       $F8 -                                                 |
+|             |       $F9 -                                                 |
+|             |       $FA timer0                                            |
+|             |       $FB timer1                                            |
+|             |       $FC timer2                                            |
+|             |       $FD counter0                                          |
+|             |       $FE counter1                                          |
+|             |       $FF counter2                                          |
++-------------+-------------------------------------------------------------+
+| $0100-$01FF | page 1                                                      |
+|             |   $00-$CF cpu stack                                         |
+|             |   $D0-$FF -                                                 |
++-------------+-------------------------------------------------------------+
+|      +$0200 | volume (hi byte active)                                     |
+|      +$0220 | pan (hi byte active)                                        |
+|      +$0240 | volume envelope counter                                     |
+|      +$0260 | volume envelope rate                                        |
+|      +$0280 | pan envelope counter (song channels only)                   |
+|      +$0290 | pan envelope rate (song channels only)                      |
+|      +$02A0 | frequency                                                   |
+|       $02C0 | octave                                                      |
+|       $02C1 | sample                                                      |
+|       $02E0 | -                                                           |
+|       $02E1 | gain value                                                  |
+|       $0300 | sample frequency multiplier                                 |
+|       $0301 | sustain                                                     |
+|      +$0320 | note envelope pointer                                       |
+|      +$0340 | note envelope counter                                       |
+|       $0360 | note envelope value (volume multiplier)                     |
+|       $0361 | pansweep delay (ticks)                                      |
+|       $0380 | pansweep delay counter                                      |
+|       $0381 | pansweep period (0: disabled)                               |
+|       $03A0 | pansweep period counter                                     |
+|       $03A1 | tremolo delay (ticks)                                       |
+|       $03C0 | tremolo delay counter                                       |
+|       $03C1 | tremolo period (0: disabled)                                |
+|       $03E0 | tremolo period counter                                      |
+|       $03E1 | vibrato delay (ticks)                                       |
+|       $0400 | vibrato delay counter                                       |
+|       $0401 | vibrato period (0: disabled)                                |
+|       $0420 | vibrato period counter                                      |
+|       $0421 | pitch envelope delay (ticks)                                |
+|       $0440 | pitch envelope delay counter                                |
+|       $0441 | pitch envelope duration (ticks)                             |
+|       $0460 | pitch envelope duration counter                             |
+|       $0461 | pitch envelope amplitude                                    |
+|       $0480 | vibrato envelope counter (1 to 8)                           |
+|       $0481 | -                                                           |
+|      +$04A0 | pansweep rate                                               |
+|      +$04C0 | pansweep rate (signed)                                      |
+|      +$04E0 | pansweep value (added to pan)                               |
+|      +$0500 | tremolo rate                                                |
+|      +$0520 | tremolo rate (signed)                                       |
+|      +$0540 | tremolo value (volume multiplier)                           |
+|      +$0560 | vibrato rate (amplitude / period)                           |
+|      +$0580 | -                                                           |
+|      +$05A0 | vibrato amplitude (current)                                 |
+|      +$05C0 | vibrato frequency (max)                                     |
+|      +$05E0 | vibrato value (added to frequency)                          |
+|      +$0600 | pitch envelope rate (inverse duration)                      |
+|      +$0620 | pitch envelope frequency multiplier (relative)              |
+|      +$0640 | pitch envelope frequency multiplier (max)                   |
+|      +$0660 | pitch envelope value (added to frequency)                   |
+|       $0680 | -                                                           |
+|       $0681 | loop depth                                                  |
+| $06A0-$06DF | loop counters (4 per channel)                               |
+| $06E0-$075F | loop script pointers (4 per channel)                        |
+|      +$0760 | unused jump pointer                                         |
+| $0780-$07FF | repeat number                                               |
++-------------+-------------------------------------------------------------+
+| $0800-$19A8 | program code                                                |
+| $19A9-$1CFF | -                                                           |
+| $1D00-$1DFF | pointers to note envelope data                              |
+| $1E00-$1FFF | pointers to sound effect brr samples ($00-$3F)              |
+| $1F00-$1FFF | pointers to song brr samples ($40-$7F)                      |
+| $2000-$2FFF | song scripts                                                |
+| $3000-$B2FF | song brr samples                                            |
+| $B300-$CA6F | game sound effects                                          |
+| $CA70-$CFFF | sound effect brr samples                                    |
+| $D000-$F7FF | echo buffer                                                 |
+| $F800-$F8FF | -                                                           |
+| $F900-$FCFF | note envelope data (32 items, null-terminated)              |
+| $FD00-$FEFF | pointers to game sound effects                              |
+| $FF00-$FFBF | sample frequency multipliers                                |
+| $FFC0-$FFFF | ipl rom                                                     |
++-------------+-------------------------------------------------------------+
+
+=============================================================================
+                          | sound script commands |
+                          +-----------------------+
+
++---------+----------+-------+----------------------------------------------+
+| opcodes |  params  | code  |                 description                  |
++---------+----------+-------+----------------------------------------------+
+| $00-$B3 |          |       | note (C, C#, D, ..., B)                      |
+| $B4-$C2 |          |       | tie (12)                                     |
+| $C3-$D1 |          |       | rest (13)                                    |
+|     $D2 | eeee tt  | $0CF4 | set tempo                                    |
+|     $D3 | xx yy zz | $0D47 | no effect                                    |
+|     $D4 | vv       | $0D4E | set echo volume                              |
+|     $D5 | ee ff    | $0E0B | set echo feedback/filter                     |
+|     $D6 | dd uu aa | $0E5F | enable pitch envelope                        |
+|     $D7 | dd uu aa | $0E8E | enable tremolo                               |
+|     $D8 | dd uu aa | $0EC0 | enable vibrato                               |
+|     $D9 | dd uu aa | $0EE9 | enable pansweep                              |
+|     $DA | oo       | $0CDE | set octave                                   |
+|     $DB | ss       | $0F13 | set sample                                   |
+|     $DC | nn       | $0F1E | set note envelope                            |
+|     $DD | gg       | $0F2D | set gain                                     |
+|     $DE | ss       | $0F37 | set sustain                                  |
+|     $DF | cc       | $0F4D | set noise clock                              |
+|     $E0 | ll       | $0F78 | loop start                                   |
+|     $E1 |          | $0CDE | increment octave                             |
+|     $E2 |          | $0CDE | decrement octave                             |
+|     $E3 |          | $105C | no effect                                    |
+|     $E4 |          | $1004 | no effect                                    |
+|     $E5 |          | $1005 | no effect                                    |
+|     $E6 |          | $0E8A | disable pitch envelope                       |
+|     $E7 |          | $0EBC | disable tremolo                              |
+|     $E8 |          | $0EE5 | disable vibrato                              |
+|     $E9 |          | $0F0F | disable pansweep                             |
+|     $EA |          | $0E2B | enable echo                                  |
+|     $EB |          | $0E47 | disable echo                                 |
+|     $EC |          | $1006 | enable noise                                 |
+|     $ED |          | $101F | disable noise                                |
+|     $EE |          | $1033 | enable pitch modulation                      |
+|     $EF |          | $104C | disable pitch modulation                     |
+|     $F0 |          | $0F9B | loop end                                     |
+|     $F1 |          | $105D | end of script                                |
+|     $F2 | eeee vv  | $0D57 | set volume                                   |
+|     $F3 | eeee pp  | $0DB1 | set pan                                      |
+|     $F4 | jjjj     | $0FFB | jump                                         |
+|     $F5 | rr jjjj  | $0FBF | volta repeat                                 |
+|     $F6 |          | $0FF0 | unused jump                                  |
+|     $F7 |          | $105D | unused (end of script)                       |
+|     $F8 |          | $105D | unused (end of script)                       |
+|     $F9 |          | $105D | unused (end of script)                       |
+|     $FA |          | $105D | unused (end of script)                       |
+|     $FB |          | $105D | unused (end of script)                       |
+|     $FC |          | $105D | unused (end of script)                       |
+|     $FD |          | $105D | unused (end of script)                       |
+|     $FE |          | $105D | unused (end of script)                       |
+|     $FF |          | $105D | unused (end of script)                       |
++---------+----------+-------+----------------------------------------------+
+
+=============================================================================
+                            | sound interrupts |
+                            +------------------+
+
++---------+----------+-------+----------------------------------------------+
+| opcodes |  params  | code  |                 description                  |
++---------+----------+-------+----------------------------------------------+
+|     $00 |          |       | no interrupt                                 |
+|     $01 |          | $1432 | play song                                    |
+|     $02 | ss       | $15AD | play game sound effect                       |
+|     $03 |          | $1432 | play song                                    |
+|     $04 |          | $1432 | play song (fade in)                          |
+| $10-$1F | ss       | $1653 | play system sound effect                     |
+|     $80 | pp       | $16D7 | set sound effect pan                         |
+|     $85 |          | $16E9 | fade out (slow)                              |
+|     $86 |          | $16F9 | fade out (fast)                              |
+|     $87 |          | $1709 | fade to half volume                          |
+|     $88 |          | $1729 | full volume                                  |
+|     $89 |          | $175B | fade in                                      |
+|     $8A |          | $1742 | quarter volume                               |
+|     $8B |          | $1719 | fade out                                     |
+|     $90 | mm       | $176B | set/clear mono                               |
+|     $FF |          | $1782 | reset                                        |
++---------+----------+-------+----------------------------------------------+
