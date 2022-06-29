@@ -18,6 +18,7 @@ class ROMMemoryMap {
         }
     }
 
+    // convert CPU address to ROM file address
     mapAddress(address) {
         switch (this.mode) {
             case ROMMemoryMap.MapMode.mmc1:
@@ -64,6 +65,7 @@ class ROMMemoryMap {
         }
     }
 
+    // convert ROM file address to CPU address
     unmapAddress(address) {
         switch (this.mode) {
             case ROMMemoryMap.MapMode.mmc1:
@@ -107,15 +109,16 @@ class ROMMemoryMap {
         }
     }
 
+    // convert CPU address (exclusive) to ROM file address (inclusive)
     mapRange(range) {
         var begin = this.mapAddress(range.begin);
-        var end = this.mapAddress(range.end);
+        var end = this.mapAddress(range.end) + 1;
         return new ROMRange(begin, end);
     }
 
     unmapRange(range) {
         var begin = this.unmapAddress(range.begin);
-        var end = this.unmapAddress(range.end);
+        var end = this.unmapAddress(range.end - 1);
         return new ROMRange(begin, end);
     }
 }

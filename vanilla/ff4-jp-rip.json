@@ -195,7 +195,7 @@
         "attackAnimationFrame": {
             "type": "array",
             "name": "Attack Animation Frame",
-            "range": "0x0FE0B2-0x0FFEBF",
+            "range": "0x0FE0B2-0x0FFEBE",
             "arrayLength": 361,
             "asmSymbol": "AnimFrame",
             "file": "btlgfx/data/anim_frame.asm",
@@ -203,7 +203,7 @@
                 "type": "assembly"
             },
             "pointerTable": {
-                "range": "0x0FDDE0-0x0FE0B2",
+                "range": "0x0FDDE0-0x0FE0B1",
                 "offset": "0x0F0000",
                 "isMapped": true
             }
@@ -211,7 +211,7 @@
         "attackAnimationScript": {
             "type": "array",
             "name": "Attack Animation Script",
-            "range": "0x0FD67E-0x0FDD08",
+            "range": "0x0FD67E-0x0FDD07",
             "arrayLength": 79,
             "asmSymbol": "AnimScript",
             "file": "btlgfx/data/anim_script.asm",
@@ -219,7 +219,7 @@
                 "type": "assembly"
             },
             "pointerTable": {
-                "range": "0x0FD5E0-0x0FD67E",
+                "range": "0x0FD5E0-0x0FD67D",
                 "offset": "0x0F0000",
                 "isMapped": true
             }
@@ -227,14 +227,14 @@
         "attackAnimationSine": {
             "type": "data",
             "name": "Attack Animation Sine Table",
-            "range": "0x1CFF00-0x1D8000",
+            "range": "0x1CFF00-0x1CFFFF",
             "asmSymbol": "AnimSineTbl",
             "file": "btlgfx/data/anim_sine.asm"
         },
         "attackElementStatus": {
             "type": "array",
             "name": "Attack Element/Status",
-            "range": "0x0FA590-0xFA710",
+            "range": "0x0FA590-0x0FA70F",
             "arrayLength": 128,
             "itemLength": 3,
             "asmSymbol": "ElementStatus",
@@ -309,7 +309,7 @@
         "attackGraphics": {
             "type": "graphics",
             "name": "Attack Graphics",
-            "range": "0x0CB6C0-0x0CF3C0",
+            "range": "0x0CB6C0-0x0CF3BF",
             "format": "snes3bpp",
             "palette": "attackPalette",
             "asmSymbol": "AnimGfx",
@@ -318,7 +318,7 @@
         "attackGraphicsProperties": {
             "type": "array",
             "name": "Attack Graphics Properties",
-            "range": "0x0FA050-0x0FA350",
+            "range": "0x0FA050-0x0FA34F",
             "arrayLength": 192,
             "itemLength": 4,
             "asmSymbol": "AnimProp",
@@ -353,7 +353,7 @@
         "attackNames": {
             "type": "array",
             "name": "Attack Names",
-            "range": "0x0F8AB0-0x0F9070",
+            "range": "0x0F8AB0-0x0F906F",
             "arrayLength": 184,
             "itemLength": 8,
             "asmSymbol": "AttackName",
@@ -377,7 +377,7 @@
         "attackPalette": {
             "type": "array",
             "name": "Attack Palette",
-            "range": "0x0ECB00-0x0ECF00",
+            "range": "0x0ECB00-0x0ECEFF",
             "arrayLength": 64,
             "itemLength": 16,
             "asmSymbol": "AnimPal",
@@ -395,7 +395,7 @@
         "attackProperties": {
             "type": "array",
             "name": "Attack Properties",
-            "range": "0x0F97A0-0x0F9DA0",
+            "range": "0x0F97A0-0x0F9D9F",
             "arrayLength": 256,
             "itemLength": 6,
             "asmSymbol": "AttackProp",
@@ -523,7 +523,7 @@
         "attackSoundEffect": {
             "type": "array",
             "name": "Attack Sound Effect",
-            "range": "0x0FA350-0x0FA450",
+            "range": "0x0FA350-0x0FA44F",
             "arrayLength": 256,
             "itemLength": 1,
             "asmSymbol": "AttackSfx",
@@ -543,7 +543,7 @@
         "attackTilemap": {
             "type": "tilemap",
             "name": "Attack Tilemap",
-            "range": "0x0CF3C0-0x0CF9C0",
+            "range": "0x0CF3C0-0x0CF9BF",
             "asmSymbol": "AnimTiles",
             "file": "btlgfx/data/anim_tiles.asm",
             "format": ["defaultTile", "ff6-animation-tilemap"],
@@ -556,7 +556,7 @@
         "battleBackgroundGraphics": {
             "type": "array",
             "name": "Battle Background Graphics",
-            "range": "0x1CA800-0x1CD900",
+            "range": "0x1CA800-0x1CD8FF",
             "stringTable": "battleBackgroundProperties",
             "arrayLength": 17,
             "asmSymbol": "BattleBGGfx",
@@ -568,7 +568,7 @@
                 "backColor": true
             },
             "pointerTable": {
-                "range": "0x16FDB4-0x16FDD6",
+                "range": "0x16FDB4-0x16FDD5",
                 "offset": "0x1C0000",
                 "isMapped": true
             }
@@ -576,7 +576,7 @@
         "battleBackgroundLayoutLower": {
             "type": "array",
             "name": "Battle Background Layout (Lower)",
-            "range": "0x16F880-0x16FA40",
+            "range": "0x16F880-0x16FA3F",
             "arrayLength": 7,
             "itemLength": 64,
             "asmSymbol": "BattleBGBtmTiles",
@@ -608,7 +608,7 @@
         "battleBackgroundLayoutUpper": {
             "type": "array",
             "name": "Battle Background Layout (Top/Middle)",
-            "range": "0x16ED80-0x16F880",
+            "range": "0x16ED80-0x16F87F",
             "arrayLength": 11,
             "itemLength": 256,
             "asmSymbol": "BattleBGTopTiles",
@@ -644,7 +644,7 @@
         "battleBackgroundPalette": {
             "type": "array",
             "name": "Battle Background Palette",
-            "range": "0x0FD200-0x0FD4E0",
+            "range": "0x0FD200-0x0FD4DF",
             "arrayLength": 23,
             "itemLength": 32,
             "asmSymbol": "BattleBGPal",
@@ -685,7 +685,7 @@
         "battleBackgroundProperties": {
             "type": "array",
             "name": "Battle Background Properties",
-            "range": "0x0DFCCB-0x0DFD0F",
+            "range": "0x0DFCCB-0x0DFD0E",
             "arrayLength": 17,
             "itemLength": 4,
             "asmSymbol": "BattleBGProp",
@@ -754,7 +754,7 @@
         "battleCommandNames": {
             "type": "array",
             "name": "Battle Command Names",
-            "range": "0x0FA7B8-0x0FA858",
+            "range": "0x0FA7B8-0x0FA857",
             "arrayLength": 32,
             "itemLength": 5,
             "asmSymbol": "BattleCmdName",
@@ -778,7 +778,7 @@
         "battleDialog": {
             "type": "array",
             "name": "Battle Dialog",
-            "range": "0x0EF374-0x0EFFED",
+            "range": "0x0EF374-0x0EFFEC",
             "arrayLength": 186,
             "asmSymbol": "BattleDlg",
             "file": "btlgfx/text/battle_dlg_jp.asm",
@@ -789,7 +789,7 @@
                 "multiLine": true
             },
             "pointerTable": {
-                "range": "0x0EF200-0x0EF374",
+                "range": "0x0EF200-0x0EF373",
                 "offset": "0x0E0000",
                 "isMapped": true
             },
@@ -802,7 +802,7 @@
         "battleGroup": {
             "type": "array",
             "name": "Battle Group",
-            "range": "0x0EC816-0x0ECA96",
+            "range": "0x0EC816-0x0ECA95",
             "arrayLength": 80,
             "itemLength": 8,
             "asmSymbol": "SubBattles",
@@ -954,7 +954,7 @@
         "battleGroupWorld": {
             "type": "array",
             "name": "Battle Group (World)",
-            "range": "0x0EC796-0x0EC816",
+            "range": "0x0EC796-0x0EC815",
             "arrayLength": 16,
             "itemLength": 8,
             "asmSymbol": "WorldBattles",
@@ -1043,7 +1043,7 @@
         "battleMessage": {
             "type": "array",
             "name": "Battle Message",
-            "range": "0x0FB276-0x0FB500",
+            "range": "0x0FB276-0x0FB4FF",
             "arrayLength": 59,
             "asmSymbol": "BattleMsg",
             "file": "btlgfx/text/battle_msg_jp.asm",
@@ -1054,7 +1054,7 @@
                 "multiLine": true
             },
             "pointerTable": {
-                "range": "0x0FB200-0x0FB276",
+                "range": "0x0FB200-0x0FB275",
                 "offset": "0x0F0000",
                 "isMapped": true
             },
@@ -1067,7 +1067,7 @@
         "battleProperties": {
             "type": "array",
             "name": "Battle Properties",
-            "range": "0x0E8000-0x0E9000",
+            "range": "0x0E8000-0x0E8FFF",
             "arrayLength": 512,
             "itemLength": 8,
             "asmSymbol": "BattleProp",
@@ -1232,12 +1232,12 @@
         "battleVRAMMap": {
             "type": "data",
             "name": "Battle VRAM Map",
-            "range": "0x16FBAC-0x16FC3C",
+            "range": "0x16FBAC-0x16FC3B",
             "assembly": {
                 "bossTileCount": {
                     "type": "array",
                     "name": "Boss Graphics Tile Count",
-                    "range": "0x00-0x30",
+                    "range": "0x00-0x2F",
                     "array": {
                         "length": 6
                     },
@@ -1275,7 +1275,7 @@
                 "vramOffset": {
                     "type": "array",
                     "name": "VRAM Offset",
-                    "range": "0x30-0x60",
+                    "range": "0x30-0x5F",
                     "array": {
                         "length": 6
                     },
@@ -1313,7 +1313,7 @@
                 "tileData1": {
                     "type": "array",
                     "name": "Tile Data Byte 1",
-                    "range": "0x60-0x78",
+                    "range": "0x60-0x77",
                     "array": {
                         "length": 6
                     },
@@ -1347,7 +1347,7 @@
                 "tileData2": {
                     "type": "array",
                     "name": "Tile Data Byte 2",
-                    "range": "0x78-0x90",
+                    "range": "0x78-0x8F",
                     "array": {
                         "length": 6
                     },
@@ -1395,12 +1395,12 @@
         "brrSamples": {
             "type": "array",
             "name": "BRR Samples",
-            "range": "0x04C98A-0x06F21D",
+            "range": "0x04C98A-0x06F21C",
             "arrayLength": 21,
             "asmSymbol": "BRRSample",
             "file": "sound/data/brr_sample.asm",
             "pointerTable": {
-                "range": "0x04C945-0x04C987",
+                "range": "0x04C945-0x04C986",
                 "offset": "0x04C000",
                 "pointerSize": 3
             }
@@ -1408,7 +1408,7 @@
         "brrSampleFrequencyMultiplier": {
             "type": "array",
             "name": "BRR Sample Frequency Multiplier",
-            "range": "0x04C92B-0x04C942",
+            "range": "0x04C92B-0x04C941",
             "arrayLength": 23,
             "itemLength": 1,
             "asmSymbol": "SampleFreqMult",
@@ -1417,7 +1417,7 @@
         "brrSampleLoopStart": {
             "type": "array",
             "name": "BRR Sample Loop Start",
-            "range": "0x04C8CF-0x04C92B",
+            "range": "0x04C8CF-0x04C92A",
             "arrayLength": 23,
             "itemLength": 4,
             "asmSymbol": "SampleLoopStart",
@@ -1426,7 +1426,7 @@
         "characterBattleCommands": {
             "type": "array",
             "name": "Character Battle Commands",
-            "range": "0x13FD55-0x13FDC3",
+            "range": "0x13FD55-0x13FDC2",
             "arrayLength": 22,
             "itemLength": 5,
             "asmSymbol": "ClassCmd",
@@ -1458,7 +1458,7 @@
         "characterGraphics": {
             "type": "array",
             "name": "Character Graphics",
-            "range": "0x1A8000-0x1AFC40",
+            "range": "0x1A8000-0x1AFC3F",
             "arrayLength": 17,
             "asmSymbol": "BattleCharGfx",
             "file": "btlgfx/gfx/battle_char_gfx.asm",
@@ -1495,23 +1495,23 @@
                 ]
             },
             "itemRanges": [
-                "0x1A8000-0x1A8800",
-                "0x1A8800-0x1A9000",
-                "0x1A9000-0x1A9800",
-                "0x1A9800-0x1AA000",
-                "0x1AA000-0x1AA800",
-                "0x1AA800-0x1AB000",
-                "0x1AB000-0x1AB800",
-                "0x1AB800-0x1AC000",
-                "0x1AC000-0x1AC800",
-                "0x1AC800-0x1AD000",
-                "0x1AD000-0x1AD800",
-                "0x1AD800-0x1AE000",
-                "0x1AE000-0x1AE800",
-                "0x1AE800-0x1AF000",
-                "0x1AF000-0x1AF600",
-                "0x1AF600-0x1AF960",
-                "0x1AF960-0x1AFC40"
+                "0x1A8000-0x1A87FF",
+                "0x1A8800-0x1A8FFF",
+                "0x1A9000-0x1A97FF",
+                "0x1A9800-0x1A9FFF",
+                "0x1AA000-0x1AA7FF",
+                "0x1AA800-0x1AAFFF",
+                "0x1AB000-0x1AB7FF",
+                "0x1AB800-0x1ABFFF",
+                "0x1AC000-0x1AC7FF",
+                "0x1AC800-0x1ACFFF",
+                "0x1AD000-0x1AD7FF",
+                "0x1AD800-0x1ADFFF",
+                "0x1AE000-0x1AE7FF",
+                "0x1AE800-0x1AEFFF",
+                "0x1AF000-0x1AF5FF",
+                "0x1AF600-0x1AF95F",
+                "0x1AF960-0x1AFC3F"
             ],
             "stringTable": {
                 "name": "Character Graphics",
@@ -1541,7 +1541,7 @@
         "characterJob": {
             "type": "array",
             "name": "Character Jobs",
-            "range": "0x13FDDD-0x13FE0D",
+            "range": "0x13FDDD-0x13FE0C",
             "arrayLength": 16,
             "itemLength": 3,
             "assembly": {
@@ -1625,7 +1625,7 @@
         "characterLevelPointer": {
             "type": "array",
             "name": "Pointer to Character Level Progression",
-            "range": "0x0FB500-0x0FB528",
+            "range": "0x0FB500-0x0FB527",
             "arrayLength": 20,
             "assembly": {
                 "type": "property",
@@ -1637,24 +1637,24 @@
         "characterLevelProgression": {
             "type": "array",
             "name": "Character Level Progression",
-            "range": "0x0FB528-0x0FC3C8",
+            "range": "0x0FB528-0x0FC3C7",
             "arrayLength": 13,
             "asmSymbol": "LevelUpProp",
             "file": "battle/data/level_up_prop.asm",
             "itemRanges": [
-                "0x0FB528-0x0FB65C",
-                "0x0FB65C-0x0FB790",
-                "0x0FB790-0x0FB8F1",
-                "0x0FB8F1-0x0FB9F3",
-                "0x0FB9F3-0x0FBB40",
-                "0x0FBB40-0x0FBC74",
-                "0x0FBC74-0x0FBDA8",
-                "0x0FBDA8-0x0FBEDC",
-                "0x0FBEDC-0x0FC010",
-                "0x0FC010-0x0FC171",
-                "0x0FC171-0x0FC273",
-                "0x0FC273-0x0FC35C",
-                "0x0FC35C-0x0FC3C8"
+                "0x0FB528-0x0FB65B",
+                "0x0FB65C-0x0FB78F",
+                "0x0FB790-0x0FB8F0",
+                "0x0FB8F1-0x0FB9F2",
+                "0x0FB9F3-0x0FBB3F",
+                "0x0FBB40-0x0FBC73",
+                "0x0FBC74-0x0FBDA7",
+                "0x0FBDA8-0x0FBEDB",
+                "0x0FBEDC-0x0FC00F",
+                "0x0FC010-0x0FC170",
+                "0x0FC171-0x0FC272",
+                "0x0FC273-0x0FC35B",
+                "0x0FC35C-0x0FC3C7"
             ],
             "assembly": {
                 "type": "array",
@@ -1729,7 +1729,7 @@
         "characterNames": {
             "type": "array",
             "name": "Character Names",
-            "range": "0x0FA710-0x0FA764",
+            "range": "0x0FA710-0x0FA763",
             "arrayLength": 14,
             "itemLength": 6,
             "asmSymbol": "CharName",
@@ -1748,7 +1748,7 @@
         "characterNameID": {
             "type": "array",
             "name": "Character Name ID",
-            "range": "0x018457-0x01846D",
+            "range": "0x018457-0x01846C",
             "arrayLength": 21,
             "assembly": {
                 "type": "data",
@@ -1766,7 +1766,7 @@
         "characterPalette": {
             "type": "array",
             "name": "Battle Character Palette",
-            "range": "0x1CFD00-0x1CFF00",
+            "range": "0x1CFD00-0x1CFEFF",
             "arrayLength": 16,
             "itemLength": 32,
             "asmSymbol": "BattleCharPal",
@@ -1802,7 +1802,7 @@
         "characterPartyAdd": {
             "type": "array",
             "name": "Character Party Add",
-            "range": "0x00E922-0x00E937",
+            "range": "0x00E922-0x00E936",
             "array": {
                 "length": 21
             },
@@ -1844,7 +1844,7 @@
         "characterPartyRemove": {
             "type": "array",
             "name": "Character Party Remove",
-            "range": "0x00E9A5-0x00E9B9",
+            "range": "0x00E9A5-0x00E9B8",
             "array": {
                 "length": 20
             },
@@ -1874,7 +1874,7 @@
         "characterProperties": {
             "type": "array",
             "name": "Character Properties",
-            "range": "0x0FAB00-0x0FAE00",
+            "range": "0x0FAB00-0x0FAB91",
             "arrayLength": 21,
             "itemLength": 7,
             "asmSymbol": "CharInitEquip",
@@ -1960,7 +1960,7 @@
         "characterSpellListMenu": {
             "type": "array",
             "name": "Character Spell List (Menu)",
-            "range": "0x14FFA2-0x14FFCC",
+            "range": "0x14FFA2-0x14FFCB",
             "array": {
                 "length": 14
             },
@@ -2026,7 +2026,7 @@
         "characterStats": {
             "type": "array",
             "name": "Character Initial Stats",
-            "range": "0x0FA900-0x0FAAC0",
+            "range": "0x0FA900-0x0FAABF",
             "arrayLength": 14,
             "itemLength": 32,
             "asmSymbol": "CharProp",
@@ -2221,7 +2221,7 @@
         "characterTitle": {
             "type": "array",
             "name": "Character Title",
-            "range": "0x0FA764-0x0FA7B8",
+            "range": "0x0FA764-0x0FA7B7",
             "arrayLength": 14,
             "itemLength": 6,
             "asmSymbol": "ClassName",
@@ -2239,7 +2239,7 @@
         "creditsStarsGraphics": {
             "type": "data",
             "name": "Credits Stars Graphics",
-            "range": "0x13D300-0x13D510",
+            "range": "0x13D300-0x13D50F",
             "asmSymbol": "CreditsStarsGfx",
             "file": "cutscene/gfx/credits_stars_gfx.asm",
             "format": "snes3bpp"
@@ -2247,7 +2247,7 @@
         "creditsPalette": {
             "type": "data",
             "name": "Credits Palette",
-            "range": "0x13D510-0x13D610",
+            "range": "0x13D510-0x13D60F",
             "asmSymbol": "CreditsPal",
             "file": "cutscene/gfx/credits_pal.asm",
             "format": "bgr555"
@@ -2255,14 +2255,14 @@
         "creditsText": {
             "type": "assembly",
             "name": "Credits Text",
-            "range": "0x13F336-0x13F803",
+            "range": "0x13F336-0x13F802",
             "asmSymbol": "CreditsText",
             "file": "cutscene/text/credits_text_jp.asm"
         },
         "eventDialog1": {
             "type": "array",
             "name": "Event Dialog 1",
-            "range": "0x108400-0x10FF5A",
+            "range": "0x108400-0x10FF59",
             "arrayLength": 512,
             "file": "field/text/event_dlg1_jp.asm",
             "asmSymbol": "EventDlg1",
@@ -2272,7 +2272,7 @@
                 "multiLine": true
             },
             "pointerTable": {
-                "range": "0x108000-0x108400",
+                "range": "0x108000-0x1083FF",
                 "offset": "0x108400"
             },
             "stringTable": {
@@ -2283,7 +2283,7 @@
         "eventDialog2": {
             "type": "array",
             "name": "Event Dialog 2",
-            "range": "0x13A700-0x13CC1E",
+            "range": "0x13A700-0x13CC1D",
             "arrayLength": 256,
             "file": "field/text/event_dlg2_jp.asm",
             "asmSymbol": "EventDlg2",
@@ -2293,7 +2293,7 @@
                 "multiLine": true
             },
             "pointerTable": {
-                "range": "0x13A500-0x13A700",
+                "range": "0x13A500-0x13A6FF",
                 "offset": "0x13A700"
             },
             "stringTable": {
@@ -2304,7 +2304,7 @@
         "eventScript": {
             "type": "array",
             "name": "Event Script",
-            "range": "0x128200-0x12E67C",
+            "range": "0x128200-0x12E67B",
             "arrayLength": 256,
             "asmSymbol": "EventScript",
             "file": "field/data/event_script_jp.asm",
@@ -2313,7 +2313,7 @@
                 "encoding": "event"
             },
             "pointerTable": {
-                "range": "0x128000-0x128200",
+                "range": "0x128000-0x1281FF",
                 "offset": "0x128200"
             },
             "stringTable": {
@@ -2485,21 +2485,21 @@
         "initEventSwitch": {
             "type": "assembly",
             "name": "Initial Event Switch Values",
-            "range": "0x12F240-0x12F260",
+            "range": "0x12F240-0x12F25F",
             "asmSymbol": "InitEventSwitch",
             "file": "field/data/init_event_switch.asm"
         },
         "initNPCSwitch": {
             "type": "assembly",
             "name": "Initial NPC Switch Values",
-            "range": "0x12F200-0x12F240",
+            "range": "0x12F200-0x12F23F",
             "asmSymbol": "InitNPCSwitch",
             "file": "field/data/init_npc_switch.asm"
         },
         "itemConsumable": {
             "type": "array",
             "name": "Consumable Item Properties",
-            "range": "0x0F9680-0x0F97A0",
+            "range": "0x0F9680-0x0F979F",
             "arrayLength": 48,
             "itemLength": 6,
             "asmSymbol": "ItemProp",
@@ -2587,7 +2587,7 @@
         "itemDescription": {
             "type": "array",
             "name": "Item Description",
-            "range": "0x0FAE2B-0x0FAFFD",
+            "range": "0x0FAE2B-0x0FAFFC",
             "terminator": 0,
             "arrayLength": 48,
             "asmSymbol": "ItemDesc",
@@ -2604,7 +2604,7 @@
         "itemDescriptionIndex": {
             "type": "array",
             "name": "Item Description Index",
-            "range": "0x0FAE00-0x0FAE2B",
+            "range": "0x0FAE00-0x0FAE2A",
             "arrayLength": 43,
             "itemLength": 1,
             "asmSymbol": "ItemDescID",
@@ -2626,7 +2626,7 @@
         "itemEquipability": {
             "type": "array",
             "name": "Item Equipability",
-            "range": "0x0FA550-0x0FA590",
+            "range": "0x0FA550-0x0FA58F",
             "arrayLength": 32,
             "itemLength": 2,
             "asmSymbol": "ItemClasses",
@@ -2680,7 +2680,7 @@
         "itemNames": {
             "type": "array",
             "name": "Item Names",
-            "range": "0x0F8000-0x0F8900",
+            "range": "0x0F8000-0x0F88FF",
             "arrayLength": 256,
             "itemLength": 9,
             "asmSymbol": "ItemName",
@@ -2704,7 +2704,7 @@
         "itemPrice": {
             "type": "array",
             "name": "Item Price",
-            "range": "0x0FA450-0x0FA550",
+            "range": "0x0FA450-0x0FA54F",
             "arrayLength": 256,
             "itemLength": 1,
             "asmSymbol": "ItemPrice",
@@ -2937,7 +2937,7 @@
         "itemSpellAnimation": {
             "type": "array",
             "name": "Item Spell Animation",
-            "range": "0x0FD4E0-0x0FD5E0",
+            "range": "0x0FD4E0-0x0FD5DF",
             "arrayLength": 256,
             "itemLength": 1,
             "asmSymbol": "ItemMagicAnim",
@@ -2957,7 +2957,7 @@
         "mapAnimationGraphics": {
             "type": "graphics",
             "name": "Map Animation Graphics",
-            "range": "0x1FB9C0-0x1FD208",
+            "range": "0x1FB9C0-0x1FD207",
             "format": "snes3bpp",
             "palette": "mapPalettes",
             "asmSymbol": "MapAnimGfx",
@@ -2966,7 +2966,7 @@
         "mapBattle": {
             "type": "array",
             "name": "Map Battle",
-            "range": "0x0EC596-0x0EC796",
+            "range": "0x0EC596-0x0EC795",
             "arrayLength": 512,
             "itemLength": 1,
             "asmSymbol": "SubBattleGrp",
@@ -2987,7 +2987,7 @@
         "mapBattleProbability": {
             "type": "array",
             "name": "Map Battle Probability",
-            "range": "0x0EC342-0x0EC542",
+            "range": "0x0EC342-0x0EC541",
             "arrayLength": 512,
             "itemLength": 1,
             "asmSymbol": "SubBattleRate",
@@ -3010,7 +3010,7 @@
         "mapDialog": {
             "type": "array",
             "name": "Map Dialog",
-            "range": "0x118300-0x11FEE8",
+            "range": "0x118300-0x11FEE7",
             "arrayLength": 384,
             "asmSymbol": "MapDlg",
             "file": "field/text/map_dlg_jp.asm",
@@ -3024,65 +3024,15 @@
                 }
             },
             "pointerTable": {
-                "range": "0x118000-0x118300",
+                "range": "0x118000-0x1182FF",
                 "offset": "0x118300"
             },
             "stringTable": "mapProperties"
         },
-        "mapGraphics": {
-            "type": "array",
-            "name": "Map Graphics",
-            "range": "0x15DC00-0x208000",
-            "arrayLength": 16,
-            "assembly": {
-                "type": "graphics",
-                "format": "snes3bpp",
-                "palette": "mapPalettes",
-                "width": 16
-            },
-            "itemRanges": [
-                "0x15DC00-0x168000",
-                "0x1EDFA8-0x1EFC20",
-                "0x1E8020-0x1E9568",
-                "0x1DED40-0x1E8000",
-                "0x1E9568-0x1EACC0",
-                "0x1EACC0-0x1EB8C0",
-                "0x1EB8C0-0x1ECFE8",
-                "0x1ECFE8-0x1EDFA8",
-                "0x1F9500-0x1FB9C0",
-                "0x1F8000-0x1F9500",
-                "0x1F9500-0x1FB9C0",
-                "0x1F9500-0x1FB9C0",
-                "0x1EDFA8-0x1EFC20",
-                "0x1FD208-0x1FE888",
-                "0x1FE888-0x208000",
-                "0x15DC00-0x168000"
-            ],
-            "stringTable": {
-                "string": {
-                    "0": "Airship",
-                    "1": "Lunar Core",
-                    "2": "Sealed Cave/Cave Magnes",
-                    "3": "Castle Exterior",
-                    "4": "Town Exterior",
-                    "5": "Town Interior",
-                    "6": "Castle Interior",
-                    "7": "Crystal Room",
-                    "8": "Big Whale",
-                    "9": "Underground Cave",
-                    "10": "Tower of Zot/Bab-il",
-                    "11": "Giant of Bab-il",
-                    "12": "Moon Cave",
-                    "13": "Mountains",
-                    "14": "Overworld Cave",
-                    "15": "Ship"
-                }
-            }
-        },
         "mapGraphics0": {
             "type": "graphics",
             "name": "Map Graphics (Ship/Airship)",
-            "range": "0x15DC00-0x168000",
+            "range": "0x15DC00-0x15FFFF",
             "asmSymbol": "MapGfxShip",
             "file": "field/gfx/ship_gfx_jp.asm",
             "format": "snes4bpp",
@@ -3091,7 +3041,7 @@
         "mapGraphics1": {
             "type": "graphics",
             "name": "Map Graphics (Lunar Core/Moon Cave)",
-            "range": "0x1EDFA8-0x1EFC28",
+            "range": "0x1EDFA8-0x1EFC27",
             "asmSymbol": "MapGfxLunar",
             "file": "field/gfx/lunar_gfx_jp.asm",
             "format": "snes3bpp",
@@ -3100,7 +3050,7 @@
         "mapGraphics2": {
             "type": "graphics",
             "name": "Map Graphics (Sealed Cave/Cave Magnes)",
-            "range": "0x1E8020-0x1E9568",
+            "range": "0x1E8020-0x1E9567",
             "asmSymbol": "MapGfxCave1",
             "file": "field/gfx/cave1_gfx_jp.asm",
             "format": "snes3bpp",
@@ -3109,7 +3059,7 @@
         "mapGraphics3": {
             "type": "graphics",
             "name": "Map Graphics (Castle Exterior)",
-            "range": "0x1DED40-0x1E8000",
+            "range": "0x1DED40-0x1DFFFF",
             "asmSymbol": "MapGfxCastleEx",
             "file": "field/gfx/castle_ex_gfx_jp.asm",
             "format": "snes3bpp",
@@ -3118,7 +3068,7 @@
         "mapGraphics4": {
             "type": "graphics",
             "name": "Map Graphics (Town Exterior)",
-            "range": "0x1E9568-0x1EACC0",
+            "range": "0x1E9568-0x1EACBF",
             "asmSymbol": "MapGfxTownEx",
             "file": "field/gfx/town_ex_gfx_jp.asm",
             "format": "snes3bpp",
@@ -3127,7 +3077,7 @@
         "mapGraphics5": {
             "type": "graphics",
             "name": "Map Graphics (Town Interior)",
-            "range": "0x1EACC0-0x1EB8C0",
+            "range": "0x1EACC0-0x1EB8BF",
             "asmSymbol": "MapGfxTownIn",
             "file": "field/gfx/town_in_gfx_jp.asm",
             "format": "snes3bpp",
@@ -3136,7 +3086,7 @@
         "mapGraphics6": {
             "type": "graphics",
             "name": "Map Graphics (Castle Interior)",
-            "range": "0x1EB8C0-0x1ECFE8",
+            "range": "0x1EB8C0-0x1ECFE7",
             "asmSymbol": "MapGfxCastleIn",
             "file": "field/gfx/castle_in_gfx_jp.asm",
             "format": "snes3bpp",
@@ -3145,7 +3095,7 @@
         "mapGraphics7": {
             "type": "graphics",
             "name": "Map Graphics (Crystal Room)",
-            "range": "0x1ECFE8-0x1EDFA8",
+            "range": "0x1ECFE8-0x1EDFA7",
             "asmSymbol": "MapGfxCrystal",
             "file": "field/gfx/crystal_gfx_jp.asm",
             "format": "snes3bpp",
@@ -3154,7 +3104,7 @@
         "mapGraphics8": {
             "type": "graphics",
             "name": "Map Graphics (Tower of Zot/Bab-il)",
-            "range": "0x1F9500-0x1FB9C0",
+            "range": "0x1F9500-0x1FB9BF",
             "asmSymbol": "MapGfxTower",
             "file": "field/gfx/tower_gfx_jp.asm",
             "format": "snes3bpp",
@@ -3163,7 +3113,7 @@
         "mapGraphics9": {
             "type": "graphics",
             "name": "Map Graphics (Underground Cave)",
-            "range": "0x1F8000-0x1F9500",
+            "range": "0x1F8000-0x1F94FF",
             "asmSymbol": "MapGfxUnderground",
             "file": "field/gfx/underground_gfx_jp.asm",
             "format": "snes3bpp",
@@ -3172,28 +3122,28 @@
         "mapGraphics10": {
             "type": "graphics",
             "name": "Map Graphics (Tower of Zot/Bab-il)",
-            "range": "0x1F9500-0x1FB9C0",
+            "range": "0x1F9500-0x1FB9BF",
             "format": "snes3bpp",
             "palette": "mapPalettes"
         },
         "mapGraphics11": {
             "type": "graphics",
             "name": "Map Graphics (Tower of Zot/Bab-il)",
-            "range": "0x1F9500-0x1FB9C0",
+            "range": "0x1F9500-0x1FB9BF",
             "format": "snes3bpp",
             "palette": "mapPalettes"
         },
         "mapGraphics12": {
             "type": "graphics",
             "name": "Map Graphics (Lunar Core/Moon Cave)",
-            "range": "0x1EDFA8-0x1EFC20",
+            "range": "0x1EDFA8-0x1EFC1F",
             "format": "snes3bpp",
             "palette": "mapPalettes"
         },
         "mapGraphics13": {
             "type": "graphics",
             "name": "Map Graphics (Mountains)",
-            "range": "0x1FD208-0x1FE888",
+            "range": "0x1FD208-0x1FE887",
             "asmSymbol": "MapGfxMountain",
             "file": "field/gfx/mountain_gfx_jp.asm",
             "format": "snes3bpp",
@@ -3204,21 +3154,21 @@
             "name": "Map Graphics (Overworld Cave)",
             "asmSymbol": "MapGfxCave2",
             "file": "field/gfx/cave2_gfx_jp.asm",
-            "range": "0x1FE888-0x208000",
+            "range": "0x1FE888-0x1FFFFF",
             "format": "snes3bpp",
             "palette": "mapPalettes"
         },
         "mapGraphics15": {
             "type": "graphics",
             "name": "Map Graphics (Ship/Airship)",
-            "range": "0x15DC00-0x168000",
+            "range": "0x15DC00-0x15FFFF",
             "format": "snes4bpp",
             "palette": "mapPalettes"
         },
         "mapLayouts1": {
             "type": "array",
             "name": "Map Layouts 1",
-            "range": "0x178300-0x18EF71",
+            "range": "0x178300-0x18EF70",
             "pointerAlign": "0x8000",
             "isSequential": true,
             "endPointer": true,
@@ -3230,14 +3180,14 @@
                 "format": "ff4-map"
             },
             "pointerTable": {
-                "range": "0x178000-0x178200",
+                "range": "0x178000-0x1781FF",
                 "offset": "0x178000"
             }
         },
         "mapLayouts2": {
             "type": "array",
             "name": "Map Layouts 2",
-            "range": "0x18EF71-0x19FD28",
+            "range": "0x18EF71-0x19FD27",
             "pointerAlign": "0x8000",
             "isSequential": true,
             "endPointer": true,
@@ -3249,20 +3199,20 @@
                 "format": "ff4-map"
             },
             "pointerTable": {
-                "range": "0x178200-0x178300",
+                "range": "0x178200-0x1782FF",
                 "offset": "0x188000"
             }
         },
         "mapLayouts": {
             "type": "data",
             "name": "Map Layout",
-            "range": "0x178000-0x1A8000",
+            "range": "0x178000-0x19FFFF",
             "isSequential": true,
             "assembly": {
                 "overworldLayouts": {
                     "type": "array",
                     "name": "Overworld Layout",
-                    "range": "0x0300-0xEF71",
+                    "range": "0x0300-0xEF70",
                     "pointerAlign": "0x8000",
                     "isSequential": true,
                     "endPointer": true,
@@ -3272,7 +3222,7 @@
                         "format": "ff4-map"
                     },
                     "pointerTable": {
-                        "range": "0x0000-0x0200",
+                        "range": "0x0000-0x01FF",
                         "offset": "0x0000"
                     },
                     "stringTable": {
@@ -3286,7 +3236,7 @@
                 "undergroundMoonLayouts": {
                     "type": "array",
                     "name": "Underground/Moon Layout",
-                    "range": "0xEF71-0x017D28",
+                    "range": "0xEF71-0x017D27",
                     "pointerAlign": "0x8000",
                     "isSequential": true,
                     "endPointer": true,
@@ -3296,7 +3246,7 @@
                         "format": "ff4-map"
                     },
                     "pointerTable": {
-                        "range": "0x0200-0x0300",
+                        "range": "0x0200-0x02FF",
                         "offset": "0x8000"
                     },
                     "stringTable": {
@@ -3334,7 +3284,7 @@
         "mapPalettes": {
             "type": "array",
             "name": "Map Palettes",
-            "range": "0x14DE00-0x14EE00",
+            "range": "0x14DE00-0x14EDFF",
             "arrayLength": 32,
             "itemLength": 128,
             "asmSymbol": "MapPal",
@@ -3383,7 +3333,7 @@
         "mapProperties": {
             "type": "array",
             "name": "Map Properties",
-            "range": "0x159C84-0x15AFF7",
+            "range": "0x159C84-0x15AFF6",
             "arrayLength": 383,
             "itemLength": 13,
             "asmSymbol": "MapProp",
@@ -3933,7 +3883,7 @@
         "mapSpriteGraphics": {
             "type": "array",
             "name": "Map Sprite Graphics",
-            "range": "0x1B8000-0x1C8000",
+            "range": "0x1B8000-0x1BFFFF",
             "arrayLength": 107,
             "asmSymbol": "MapSpriteGfx",
             "file": "field/gfx/map_sprite_gfx_jp.asm",
@@ -3951,116 +3901,113 @@
                 }
             },
             "itemRanges": [
-                "0x1B8000-0x1B8300",
-                "0x1B8300-0x1B8600",
-                "0x1B8600-0x1B8900",
-                "0x1B8900-0x1B8C00",
-                "0x1B8C00-0x1B8F00",
-                "0x1B8F00-0x1B9200",
-                "0x1B9200-0x1B9500",
-                "0x1B9500-0x1B9800",
-                "0x1B9800-0x1B9B00",
-                "0x1B9B00-0x1B9E00",
-                "0x1B9E00-0x1BA100",
-                "0x1BA100-0x1BA400",
-                "0x1BA400-0x1BA700",
-                "0x1BA700-0x1BAA00",
-                "0x1BAA00-0x1BAD00",
-                "0x1BAD00-0x1BB000",
-                "0x1BB000-0x1BB300",
-
-                "0x1BB300-0x1BB480",
-                "0x1BB480-0x1BB600",
-                "0x1BB600-0x1BB780",
-                "0x1BB780-0x1BB900",
-                "0x1BB900-0x1BBA80",
-                "0x1BBA80-0x1BBC00",
-                "0x1BBC00-0x1BBD80",
-                "0x1BBD80-0x1BBF00",
-                "0x1BBF00-0x1BC080",
-                "0x1BC080-0x1BC200",
-                "0x1BC200-0x1BC380",
-                "0x1BC380-0x1BC500",
-                "0x1BC500-0x1BC680",
-                "0x1BC680-0x1BC800",
-                "0x1BC800-0x1BC980",
-                "0x1BC980-0x1BCB00",
-                "0x1BCB00-0x1BCC80",
-                "0x1BCC80-0x1BCE00",
-                "0x1BCE00-0x1BCF80",
-                "0x1BCF80-0x1BD100",
-                "0x1BD100-0x1BD280",
-                "0x1BD280-0x1BD400",
-                "0x1BD400-0x1BD580",
-                "0x1BD580-0x1BD700",
-                "0x1BD700-0x1BD880",
-                "0x1BD880-0x1BDA00",
-                "0x1BDA00-0x1BDB80",
-                "0x1BDB80-0x1BDD00",
-                "0x1BDD00-0x1BDE80",
-                "0x1BDE80-0x1BE000",
-                "0x1BE000-0x1BE180",
-
-                "0x1BE180-0x1BE240",
-                "0x1BE240-0x1BE300",
-                "0x1BE300-0x1BE3C0",
-                "0x1BE3C0-0x1BE480",
-                "0x1BE480-0x1BE540",
-                "0x1BE540-0x1BE600",
-                "0x1BE600-0x1BE6C0",
-                "0x1BE6C0-0x1BE780",
-                "0x1BE780-0x1BE840",
-                "0x1BE840-0x1BE900",
-                "0x1BE900-0x1BE9C0",
-                "0x1BE9C0-0x1BEA80",
-                "0x1BEA80-0x1BEB40",
-                "0x1BEB40-0x1BEC00",
-                "0x1BEC00-0x1BECC0",
-                "0x1BECC0-0x1BED80",
-                "0x1BED80-0x1BEE40",
-                "0x1BEE40-0x1BEF00",
-                "0x1BEF00-0x1BEFC0",
-                "0x1BEFC0-0x1BF080",
-                "0x1BF080-0x1BF140",
-                "0x1BF140-0x1BF200",
-
-                "0x1BF200-0x1BF260",
-                "0x1BF260-0x1BF2C0",
-                "0x1BF2C0-0x1BF320",
-                "0x1BF320-0x1BF380",
-                "0x1BF380-0x1BF3E0",
-                "0x1BF3E0-0x1BF440",
-                "0x1BF440-0x1BF4A0",
-                "0x1BF4A0-0x1BF500",
-                "0x1BF500-0x1BF560",
-                "0x1BF560-0x1BF5C0",
-                "0x1BF5C0-0x1BF620",
-                "0x1BF620-0x1BF680",
-                "0x1BF680-0x1BF6E0",
-                "0x1BF6E0-0x1BF740",
-                "0x1BF740-0x1BF7A0",
-                "0x1BF7A0-0x1BF800",
-                "0x1BF800-0x1BF860",
-                "0x1BF860-0x1BF8C0",
-                "0x1BF8C0-0x1BF920",
-                "0x1BF920-0x1BF980",
-                "0x1BF980-0x1BF9E0",
-                "0x1BF9E0-0x1BFA40",
-                "0x1BFA40-0x1BFAA0",
-                "0x1BFAA0-0x1BFB00",
-                "0x1BFB00-0x1BFB60",
-                "0x1BFB60-0x1BFBC0",
-                "0x1BFBC0-0x1BFC20",
-                "0x1BFC20-0x1BFC80",
-                "0x1BFC80-0x1BFCE0",
-                "0x1BFCE0-0x1BFD40",
-                "0x1BFD40-0x1BFDA0",
-                "0x1BFDA0-0x1BFE00",
-                "0x1BFE00-0x1BFE60",
-                "0x1BFE60-0x1BFEC0",
-                "0x1BFEC0-0x1BFF20",
-                "0x1BFF20-0x1BFF80",
-                "0x1BFF80-0x1BFFE0"
+                "0x1B8000-0x1B82FF",
+                "0x1B8300-0x1B85FF",
+                "0x1B8600-0x1B88FF",
+                "0x1B8900-0x1B8BFF",
+                "0x1B8C00-0x1B8EFF",
+                "0x1B8F00-0x1B91FF",
+                "0x1B9200-0x1B94FF",
+                "0x1B9500-0x1B97FF",
+                "0x1B9800-0x1B9AFF",
+                "0x1B9B00-0x1B9DFF",
+                "0x1B9E00-0x1BA0FF",
+                "0x1BA100-0x1BA3FF",
+                "0x1BA400-0x1BA6FF",
+                "0x1BA700-0x1BA9FF",
+                "0x1BAA00-0x1BACFF",
+                "0x1BAD00-0x1BAFFF",
+                "0x1BB000-0x1BB2FF",
+                "0x1BB300-0x1BB47F",
+                "0x1BB480-0x1BB5FF",
+                "0x1BB600-0x1BB77F",
+                "0x1BB780-0x1BB8FF",
+                "0x1BB900-0x1BBA7F",
+                "0x1BBA80-0x1BBBFF",
+                "0x1BBC00-0x1BBD7F",
+                "0x1BBD80-0x1BBEFF",
+                "0x1BBF00-0x1BC07F",
+                "0x1BC080-0x1BC1FF",
+                "0x1BC200-0x1BC37F",
+                "0x1BC380-0x1BC4FF",
+                "0x1BC500-0x1BC67F",
+                "0x1BC680-0x1BC7FF",
+                "0x1BC800-0x1BC97F",
+                "0x1BC980-0x1BCAFF",
+                "0x1BCB00-0x1BCC7F",
+                "0x1BCC80-0x1BCDFF",
+                "0x1BCE00-0x1BCF7F",
+                "0x1BCF80-0x1BD0FF",
+                "0x1BD100-0x1BD27F",
+                "0x1BD280-0x1BD3FF",
+                "0x1BD400-0x1BD57F",
+                "0x1BD580-0x1BD6FF",
+                "0x1BD700-0x1BD87F",
+                "0x1BD880-0x1BD9FF",
+                "0x1BDA00-0x1BDB7F",
+                "0x1BDB80-0x1BDCFF",
+                "0x1BDD00-0x1BDE7F",
+                "0x1BDE80-0x1BDFFF",
+                "0x1BE000-0x1BE17F",
+                "0x1BE180-0x1BE23F",
+                "0x1BE240-0x1BE2FF",
+                "0x1BE300-0x1BE3BF",
+                "0x1BE3C0-0x1BE47F",
+                "0x1BE480-0x1BE53F",
+                "0x1BE540-0x1BE5FF",
+                "0x1BE600-0x1BE6BF",
+                "0x1BE6C0-0x1BE77F",
+                "0x1BE780-0x1BE83F",
+                "0x1BE840-0x1BE8FF",
+                "0x1BE900-0x1BE9BF",
+                "0x1BE9C0-0x1BEA7F",
+                "0x1BEA80-0x1BEB3F",
+                "0x1BEB40-0x1BEBFF",
+                "0x1BEC00-0x1BECBF",
+                "0x1BECC0-0x1BED7F",
+                "0x1BED80-0x1BEE3F",
+                "0x1BEE40-0x1BEEFF",
+                "0x1BEF00-0x1BEFBF",
+                "0x1BEFC0-0x1BF07F",
+                "0x1BF080-0x1BF13F",
+                "0x1BF140-0x1BF1FF",
+                "0x1BF200-0x1BF25F",
+                "0x1BF260-0x1BF2BF",
+                "0x1BF2C0-0x1BF31F",
+                "0x1BF320-0x1BF37F",
+                "0x1BF380-0x1BF3DF",
+                "0x1BF3E0-0x1BF43F",
+                "0x1BF440-0x1BF49F",
+                "0x1BF4A0-0x1BF4FF",
+                "0x1BF500-0x1BF55F",
+                "0x1BF560-0x1BF5BF",
+                "0x1BF5C0-0x1BF61F",
+                "0x1BF620-0x1BF67F",
+                "0x1BF680-0x1BF6DF",
+                "0x1BF6E0-0x1BF73F",
+                "0x1BF740-0x1BF79F",
+                "0x1BF7A0-0x1BF7FF",
+                "0x1BF800-0x1BF85F",
+                "0x1BF860-0x1BF8BF",
+                "0x1BF8C0-0x1BF91F",
+                "0x1BF920-0x1BF97F",
+                "0x1BF980-0x1BF9DF",
+                "0x1BF9E0-0x1BFA3F",
+                "0x1BFA40-0x1BFA9F",
+                "0x1BFAA0-0x1BFAFF",
+                "0x1BFB00-0x1BFB5F",
+                "0x1BFB60-0x1BFBBF",
+                "0x1BFBC0-0x1BFC1F",
+                "0x1BFC20-0x1BFC7F",
+                "0x1BFC80-0x1BFCDF",
+                "0x1BFCE0-0x1BFD3F",
+                "0x1BFD40-0x1BFD9F",
+                "0x1BFDA0-0x1BFDFF",
+                "0x1BFE00-0x1BFE5F",
+                "0x1BFE60-0x1BFEBF",
+                "0x1BFEC0-0x1BFF1F",
+                "0x1BFF20-0x1BFF7F",
+                "0x1BFF80-0x1BFFDF"
             ],
             "stringTable": {
                 "name": "Map Sprite Graphics",
@@ -4180,7 +4127,7 @@
         "mapSpritePalettes": {
             "type": "array",
             "name": "Map Character Palette",
-            "range": "0x0D8000-0x0D8040",
+            "range": "0x0D8000-0x0D803F",
             "arrayLength": 4,
             "assembly": {
                 "length": 16,
@@ -4190,7 +4137,7 @@
         "mapTileProperties": {
             "type": "array",
             "name": "Map Tile Properties",
-            "range": "0x148E00-0x149E00",
+            "range": "0x148E00-0x149DFF",
             "arrayLength": 16,
             "itemLength": 256,
             "asmSymbol": "MapTileProp",
@@ -4244,7 +4191,7 @@
         "mapTilesets": {
             "type": "array",
             "name": "Map Tilesets",
-            "range": "0x149E00-0x14DE00",
+            "range": "0x149E00-0x14DDFF",
             "arrayLength": 16,
             "itemLength": 1024,
             "asmSymbol": "MapTileset",
@@ -4289,7 +4236,7 @@
         "mapTitle": {
             "type": "array",
             "name": "Map Title",
-            "range": "0x159880-0x159C78",
+            "range": "0x159880-0x159C77",
             "terminator": 0,
             "arrayLength": 121,
             "asmSymbol": "MapTitle",
@@ -4307,7 +4254,7 @@
         "mapTriggers": {
             "type": "array",
             "name": "Map Triggers",
-            "range": "0x158500-0x15981A",
+            "range": "0x158500-0x159819",
             "isSequential": true,
             "arrayLength": 384,
             "asmSymbol": "MapTriggers",
@@ -4433,14 +4380,14 @@
                 }
             },
             "pointerTable": {
-                "range": "0x158200-0x158500",
+                "range": "0x158200-0x1584FF",
                 "offset": "0x158500"
             }
         },
         "miscBattleGfx": {
             "type": "graphics",
             "name": "Misc. Battle Graphics",
-            "range": "0x0CF9C0-0x0CFF30",
+            "range": "0x0CF9C0-0x0CFF2F",
             "asmSymbol": "MiscBattleGfx",
             "file": "btlgfx/gfx/misc_sprite_gfx_jp.asm",
             "format": "snes3bpp"
@@ -4448,14 +4395,14 @@
         "mode7Sine": {
             "type": "data",
             "name": "Mode 7 Sine Table",
-            "range": "0x14EF00-0x14F000",
+            "range": "0x14EF00-0x14EFFF",
             "asmSymbol": "Mode7SineTbl",
             "file": "field/data/mode7_sine.asm"
         },
         "monsterAction": {
             "type": "array",
             "name": "Monster Action",
-            "range": "0x0EE900-0x0EF0B3",
+            "range": "0x0EE900-0x0EF0B2",
             "terminator": "0xFF",
             "arrayLength": 254,
             "asmSymbol": "AIAction1",
@@ -4592,7 +4539,7 @@
         "monsterActionMoon": {
             "type": "array",
             "name": "Monster Action (Moon)",
-            "range": "0x0EB6C0-0x0EB98A",
+            "range": "0x0EB6C0-0x0EB989",
             "terminator": "0xFF",
             "arrayLength": 89,
             "asmSymbol": "AIAction2",
@@ -4687,7 +4634,7 @@
         "monsterAgility": {
             "type": "array",
             "name": "Monster Agility Properties",
-            "range": "0x0EA620-0x0EA6A0",
+            "range": "0x0EA620-0x0EA69F",
             "arrayLength": 64,
             "itemLength": 2,
             "asmSymbol": "MonsterAgility",
@@ -4782,7 +4729,7 @@
         "monsterAttackDefense": {
             "type": "array",
             "name": "Monster Attack/Defense Properties",
-            "range": "0x0EA380-0x0EA620",
+            "range": "0x0EA380-0x0EA61F",
             "arrayLength": 224,
             "itemLength": 3,
             "asmSymbol": "MonsterStats",
@@ -5042,12 +4989,12 @@
         "monsterBossMap": {
             "type": "array",
             "name": "Boss Graphics Map",
-            "range": "0x0ECF72-0x0EDF53",
+            "range": "0x0ECF72-0x0EDF52",
             "arrayLength": 57,
             "asmSymbol": "BossGfxMap",
             "file": "btlgfx/data/boss_gfx_map.asm",
             "pointerTable": {
-                "range": "0x0ECF00-0x0ECF72",
+                "range": "0x0ECF00-0x0ECF71",
                 "offset": "0x0E0000",
                 "isMapped": true
             }
@@ -5055,7 +5002,7 @@
         "monsterBossProperties": {
             "type": "array",
             "name": "Boss Graphics Properties",
-            "range": "0x0FCE00-0x0FCF40",
+            "range": "0x0FCE00-0x0FCF3F",
             "arrayLength": 64,
             "itemLength": 5,
             "asmSymbol": "BossGfxProp",
@@ -5216,7 +5163,7 @@
         "monsterConditionScript": {
             "type": "array",
             "name": "Monster Condition Script",
-            "range": "0x0EE600-0x0EE6FF",
+            "range": "0x0EE600-0x0EE6FE",
             "terminator": "0xFF",
             "arrayLength": 98,
             "asmSymbol": "AICondScript",
@@ -5234,7 +5181,7 @@
         "monsterCondition": {
             "type": "array",
             "name": "Monster Condition",
-            "range": "0x0EE700-0x0EE840",
+            "range": "0x0EE700-0x0EE83F",
             "arrayLength": 80,
             "itemLength": 4,
             "asmSymbol": "AICond",
@@ -5554,7 +5501,7 @@
         "monsterConditionHP": {
             "type": "array",
             "name": "Monster Condition HP",
-            "range": "0x0EE000-0x0EE022",
+            "range": "0x0EE000-0x0EE021",
             "arrayLength": 17,
             "itemLength": 2,
             "asmSymbol": "AICondHP",
@@ -5574,7 +5521,7 @@
         "monsterCursor": {
             "type": "array",
             "name": "Monster Cursor Data",
-            "range": "0x0EBAC0-0x0EC070",
+            "range": "0x0EBAC0-0x0EC06F",
             "arrayLength": 91,
             "itemLength": 16,
             "asmSymbol": "MonsterCursor",
@@ -5587,7 +5534,7 @@
         "monsterExperience": {
             "type": "array",
             "name": "Monster Experience",
-            "range": "0x0EA1C0-0x0EA380",
+            "range": "0x0EA1C0-0x0EA37F",
             "arrayLength": 224,
             "itemLength": 2,
             "asmSymbol": "MonsterXP",
@@ -5602,7 +5549,7 @@
         "monsterGP": {
             "type": "array",
             "name": "Monster GP",
-            "range": "0x0EA000-0x0EA1C0",
+            "range": "0x0EA000-0x0EA1BF",
             "arrayLength": 224,
             "itemLength": 2,
             "asmSymbol": "MonsterGil",
@@ -5617,35 +5564,35 @@
         "monsterGraphics1": {
             "type": "graphics",
             "name": "Monster Graphics 1",
-            "range": "0x098000-0x09FFE0",
+            "range": "0x098000-0x09FFDF",
             "asmSymbol": "MonsterGfx1",
             "file": "btlgfx/gfx/monster_gfx1.asm"
         },
         "monsterGraphics2": {
             "type": "graphics",
             "name": "Monster Graphics 2",
-            "range": "0x0A8000-0x0AEF00",
+            "range": "0x0A8000-0x0AEEFF",
             "asmSymbol": "MonsterGfx2",
             "file": "btlgfx/gfx/monster_gfx2.asm"
         },
         "monsterGraphics3": {
             "type": "graphics",
             "name": "Monster Graphics 3",
-            "range": "0x0B8000-0x0BFD58",
+            "range": "0x0B8000-0x0BFD57",
             "asmSymbol": "MonsterGfx3",
             "file": "btlgfx/gfx/monster_gfx3.asm"
         },
         "monsterGraphics4": {
             "type": "graphics",
             "name": "Monster Graphics 4",
-            "range": "0x0C8000-0x0CB2F8",
+            "range": "0x0C8000-0x0CB2F7",
             "asmSymbol": "MonsterGfx4",
             "file": "btlgfx/gfx/monster_gfx4.asm"
         },
         "monsterGraphicsProperties": {
             "type": "array",
             "name": "Monster Graphics Properties",
-            "range": "0x0FCA00-0x0FCE00",
+            "range": "0x0FCA00-0x0FCDFF",
             "arrayLength": 256,
             "itemLength": 4,
             "asmSymbol": "MonsterGfxProp",
@@ -5727,7 +5674,7 @@
         "monsterItems": {
             "type": "array",
             "name": "Monster Items",
-            "range": "0x0E9F00-0x0EA000",
+            "range": "0x0E9F00-0x0E9FFF",
             "arrayLength": 64,
             "itemLength": 4,
             "asmSymbol": "MonsterItems",
@@ -5836,7 +5783,7 @@
         "monsterName": {
             "type": "array",
             "name": "Monster Name",
-            "range": "0x0E9800-0x0E9F00",
+            "range": "0x0E9800-0x0E9EFF",
             "arrayLength": 224,
             "itemLength": 8,
             "asmSymbol": "MonsterName",
@@ -5856,7 +5803,7 @@
         "monsterPalette": {
             "type": "array",
             "name": "Monster Palette",
-            "range": "0x1CEE00-0x1CFD00",
+            "range": "0x1CEE00-0x1CFCFF",
             "arrayLength": 240,
             "itemLength": 16,
             "asmSymbol": "MonsterPal",
@@ -5874,7 +5821,7 @@
         "monsterPosition": {
             "type": "array",
             "name": "Monster Position",
-            "range": "0x0E9000-0x0E9800",
+            "range": "0x0E9000-0x0E97FF",
             "arrayLength": 256,
             "itemLength": 8,
             "asmSymbol": "MonsterPos",
@@ -5907,7 +5854,7 @@
         "monsterProperties": {
             "type": "array",
             "name": "Monster Properties",
-            "range": "0x0EA860-0x0EB439",
+            "range": "0x0EA860-0x0EB438",
             "arrayLength": 224,
             "asmSymbol": "MonsterProp",
             "file": "battle/data/monster_prop_jp.asm",
@@ -6103,7 +6050,7 @@
                 }
             },
             "pointerTable": {
-                "range": "0x0EA6A0-0x0EA860",
+                "range": "0x0EA6A0-0x0EA85F",
                 "offset": "0x0E0000",
                 "isMapped": true
             },
@@ -6112,7 +6059,7 @@
         "monsterScript": {
             "type": "array",
             "name": "Monster Script",
-            "range": "0x0EE030-0x0EE521",
+            "range": "0x0EE030-0x0EE520",
             "terminator": "0xFF",
             "arrayLength": 254,
             "asmSymbol": "AIScript",
@@ -6368,7 +6315,7 @@
         "monsterShadowGfx": {
             "type": "graphics",
             "name": "Flying Monster Shadow Graphics",
-            "range": "0x0CFF30-0x0CFFF0",
+            "range": "0x0CFF30-0x0CFFEF",
             "asmSymbol": "ShadowGfx",
             "file": "btlgfx/gfx/shadow_gfx.asm",
             "format": "snes3bpp"
@@ -6376,7 +6323,7 @@
         "monsterSize": {
             "type": "array",
             "name": "Monster Size",
-            "range": "0x0DFF5E-0x0DFFB4",
+            "range": "0x0DFF5E-0x0DFFB3",
             "arrayLength": 43,
             "itemLength": 2,
             "asmSymbol": "MonsterGfxSize",
@@ -6453,7 +6400,7 @@
         "npcGraphicsProperties": {
             "type": "array",
             "name": "NPC Graphics Properties",
-            "range": "0x12F000-0x12F200",
+            "range": "0x12F000-0x12F1FF",
             "arrayLength": 512,
             "itemLength": 1,
             "asmSymbol": "NPCGfxID",
@@ -6474,7 +6421,7 @@
         "npcPalettes": {
             "type": "array",
             "name": "NPC Palette",
-            "range": "0x0D8000-0x0D8240",
+            "range": "0x0D8000-0x0D823F",
             "arrayLength": 36,
             "itemLength": 16,
             "asmSymbol": "MapSpritePal",
@@ -6487,7 +6434,7 @@
         "npcPointers": {
             "type": "array",
             "name": "NPC Script Pointers",
-            "range": "0x139800-0x139C00",
+            "range": "0x139800-0x139BFF",
             "arrayLength": 512,
             "assembly": {
                 "type": "data",
@@ -6509,7 +6456,7 @@
         "npcProperties": {
             "type": "array",
             "name": "NPC Properties",
-            "range": "0x138300-0x13971E",
+            "range": "0x138300-0x13971D",
             "arrayLength": 384,
             "asmSymbol": "NPCProp",
             "file": "field/data/npc_prop_jp.asm",
@@ -6606,14 +6553,14 @@
                 }
             },
             "pointerTable": {
-                "range": "0x138000-0x138300",
+                "range": "0x138000-0x1382FF",
                 "offset": "0x138300"
             }
         },
         "npcScript": {
             "type": "array",
             "name": "NPC Script",
-            "range": "0x139C00-0x13A28B",
+            "range": "0x139C00-0x13A28A",
             "arrayLength": 512,
             "asmSymbol": "NPCScript",
             "file": "field/data/npc_script_jp.asm",
@@ -6622,7 +6569,7 @@
                 "encoding": ["trigger", "npcDialog"]
             },
             "pointerTable": {
-                "range": "0x139800-0x139C00",
+                "range": "0x139800-0x139BFF",
                 "offset": "0x139C00"
             },
             "stringTable": "npcSwitch"
@@ -6630,7 +6577,7 @@
         "portraitGraphics": {
             "type": "array",
             "name": "Character Portrait Graphics",
-            "range": "0x1DD3C0-0x1DED40",
+            "range": "0x1DD3C0-0x1DED3F",
             "arrayLength": 17,
             "itemLength": "0x0180",
             "asmSymbol": "PortraitGfx",
@@ -6667,7 +6614,7 @@
         "portraitPalette": {
             "type": "array",
             "name": "Character Portrait Palette",
-            "range": "0x0D86D0-0x0D87D0",
+            "range": "0x0D86D0-0x0D87CF",
             "arrayLength": 16,
             "itemLength": 16,
             "asmSymbol": "PortraitPal",
@@ -6682,7 +6629,7 @@
         "prologueGraphics": {
             "type": "graphics",
             "name": "Prologue Graphics",
-            "range": "0x08EC80-0x08F880",
+            "range": "0x08EC80-0x08F87F",
             "asmSymbol": "PrologueBGGfx",
             "file": "field/gfx/prologue_bg_gfx.asm",
             "format": "snes3bpp",
@@ -6691,7 +6638,7 @@
         "prologueMoonGraphics": {
             "type": "graphics",
             "name": "Prologue Moon Graphics",
-            "range": "0x1AFD00-0x1AFD80",
+            "range": "0x1AFD00-0x1AFD7F",
             "asmSymbol": "PrologueMoonGfx",
             "file": "field/gfx/prologue_moon_gfx.asm",
             "format": "snes3bpp",
@@ -6700,7 +6647,7 @@
         "prologueMoonPalette": {
             "type": "assembly",
             "name": "Prologue Moon Palette",
-            "range": "0x1AFCF0-0x1AFD00",
+            "range": "0x1AFCF0-0x1AFCFF",
             "asmSymbol": "PrologueMoonPal",
             "file": "field/gfx/prologue_moon_pal.asm",
             "length": 16,
@@ -6709,7 +6656,7 @@
         "prologueTilemap1": {
             "type": "tilemap",
             "name": "Prologue Tilemap (BG1)",
-            "range": "0x08F880-0x08FB80",
+            "range": "0x08F880-0x08FB7F",
             "asmSymbol": "PrologueBG1Tiles",
             "file": "field/gfx/prologue_bg1_tiles.asm",
             "format": "snes4bppTile",
@@ -6721,7 +6668,7 @@
         "prologueTilemap2": {
             "type": "tilemap",
             "name": "Prologue Tilemap (BG2)",
-            "range": "0x08FB80-0x08FF00",
+            "range": "0x08FB80-0x08FEFF",
             "asmSymbol": "PrologueBG2Tiles",
             "file": "field/gfx/prologue_bg2_tiles.asm",
             "format": "snes4bppTile",
@@ -6733,7 +6680,7 @@
         "prologuePalette": {
             "type": "assembly",
             "name": "Prologue Palette",
-            "range": "0x08FF00-0x098000",
+            "range": "0x08FF00-0x08FFFF",
             "format": "bgr555",
             "asmSymbol": "ProloguePal",
             "file": "field/gfx/prologue_pal.asm"
@@ -6741,21 +6688,21 @@
         "prophecyText": {
             "type": "assembly",
             "name": "Prophecy Text",
-            "range": "0x13E9C5-0x13EACD",
+            "range": "0x13E9C5-0x13EACC",
             "asmSymbol": "ProphecyText",
             "file": "cutscene/text/prophecy_text_jp.asm"
         },
         "rngTable": {
             "type": "assembly",
             "name": "RNG Table",
-            "range": "0x14EE00-0x14EF00",
+            "range": "0x14EE00-0x14EEFF",
             "asmSymbol": "RNGTbl",
             "file": "field/data/rng_tbl.asm"
         },
         "shopProperties": {
             "type": "array",
             "name": "Shop Properties",
-            "range": "0x13A300-0x13A480",
+            "range": "0x13A300-0x13A47F",
             "arrayLength": 48,
             "itemLength": 8,
             "asmSymbol": "ShopProp",
@@ -6828,7 +6775,7 @@
         "snesHeader": {
             "type": "data",
             "name": "SNES Header",
-            "range": "0x00FFC0-0x00FFE0",
+            "range": "0x00FFC0-0x00FFDF",
             "assembly": {
                 "gameTitle": {
                     "type": "text",
@@ -6978,7 +6925,7 @@
         "solarSystemBigMoon": {
             "type": "data",
             "name": "Solar System Big Moon Graphics",
-            "range": "0x15D840-0x15DC00",
+            "range": "0x15D840-0x15DBFF",
             "asmSymbol": "BigMoonGfx",
             "file": "cutscene/gfx/big_moon_gfx.asm",
             "format": "snes4bpp"
@@ -6986,7 +6933,7 @@
         "solarSystemGraphics": {
             "type": "data",
             "name": "Solar System Graphics",
-            "range": "0x15CC00-0x15D840",
+            "range": "0x15CC00-0x15D83F",
             "asmSymbol": "SolarSystemGfx",
             "file": "cutscene/gfx/solar_system_gfx.asm",
             "format": "snes4bpp"
@@ -6994,7 +6941,7 @@
         "solarSystemPalette": {
             "type": "data",
             "name": "Solar System Palette",
-            "range": "0x13D200-0x13D300",
+            "range": "0x13D200-0x13D2FF",
             "asmSymbol": "SolarSystemPal",
             "file": "cutscene/gfx/solar_system_pal.asm",
             "format": "bgr555"
@@ -7002,21 +6949,21 @@
         "solarSystemSpriteData": {
             "type": "data",
             "name": "Solar System Sprite Data",
-            "range": "0x12F660-0x12F7E4",
+            "range": "0x12F660-0x12F7E3",
             "asmSymbol": "SolarSystemSpriteTbl",
             "file": "cutscene/data/solar_system_sprite.asm"
         },
         "solarSystemSine": {
             "type": "data",
             "name": "Solar System Sine Table",
-            "range": "0x13E5C5-0x13E9C5",
+            "range": "0x13E5C5-0x13E9C4",
             "asmSymbol": "SolarSystemSineTbl",
             "file": "cutscene/data/solar_system_sine.asm"
         },
         "songSamples": {
             "type": "array",
             "name": "Song Samples",
-            "range": "0x04C00F-0x04C8CF",
+            "range": "0x04C00F-0x04C8CE",
             "arrayLength": 70,
             "itemLength": 32,
             "asmSymbol": "SongSamples",
@@ -7025,12 +6972,12 @@
         "songScripts": {
             "type": "array",
             "name": "Song Scripts",
-            "range": "0x06F2EF-0x08B8B9",
+            "range": "0x06F2EF-0x08B8B8",
             "arrayLength": 70,
             "asmSymbol": "SongScript",
             "file": "sound/data/song_script.asm",
             "pointerTable": {
-                "range": "0x06F21D-0x06F2EF",
+                "range": "0x06F21D-0x06F2EE",
                 "offset": "0x04C000",
                 "pointerSize": 3
             }
@@ -7038,14 +6985,14 @@
         "spcData": {
             "type": "array",
             "name": "SPC Data",
-            "range": "0x048683-0x04BBD0",
+            "range": "0x048683-0x04BBCF",
             "asmSymbol": "SPCData",
             "file": "sound/data/spc_data.asm"
         },
         "spellNames": {
             "type": "array",
             "name": "Spell Names",
-            "range": "0x0F8900-0x0F8AB0",
+            "range": "0x0F8900-0x0F8AAF",
             "arrayLength": 72,
             "itemLength": 6,
             "asmSymbol": "MagicName",
@@ -7107,7 +7054,7 @@
         "spellListInitial": {
             "type": "array",
             "name": "Initial Spells",
-            "range": "0x0FC8C0-0x0FC91A",
+            "range": "0x0FC8C0-0x0FC919",
             "terminator": "0xFF",
             "arrayLength": 13,
             "asmSymbol": "SpellListInit",
@@ -7132,7 +7079,7 @@
         "spellListLearned": {
             "type": "array",
             "name": "Learned Spells",
-            "range": "0x0FC700-0x0FC7BB",
+            "range": "0x0FC700-0x0FC7BA",
             "terminator": "0xFF",
             "arrayLength": 13,
             "asmSymbol": "SpellListLearned",
@@ -7162,7 +7109,7 @@
         "splashGraphics": {
             "type": "graphics",
             "name": "Splash Screen Graphics",
-            "range": "0x08C000-0x08E800",
+            "range": "0x08C000-0x08E7FF",
             "asmSymbol": "TitleGfx",
             "file": "field/gfx/title_gfx_jp.asm",
             "format": "snes4bpp",
@@ -7171,7 +7118,7 @@
         "splashTilemap": {
             "type": "tilemap",
             "name": "Splash Screen Tilemap",
-            "range": "0x08E800-0x08EB00",
+            "range": "0x08E800-0x08EAFF",
             "asmSymbol": "TitleBGTiles",
             "file": "field/gfx/title_bg_tiles_jp.asm",
             "format": "snes4bppTile",
@@ -7184,7 +7131,7 @@
         "splashCrystalTilemap": {
             "type": "tilemap",
             "name": "Splash Screen Crystal Tilemap",
-            "range": "0x08EB00-0x08EBC0",
+            "range": "0x08EB00-0x08EBBF",
             "asmSymbol": "TitleCrystalTiles",
             "file": "field/gfx/title_crystal_tiles.asm",
             "format": "snes4bppTile",
@@ -7197,7 +7144,7 @@
         "splashPalette": {
             "type": "assembly",
             "name": "Splash Screen Palette",
-            "range": "0x08EBC0-0x08EC80",
+            "range": "0x08EBC0-0x08EC7F",
             "asmSymbol": "TitlePal",
             "file": "field/gfx/title_pal_jp.asm",
             "format": "bgr555"
@@ -7205,7 +7152,7 @@
         "statusName": {
             "type": "array",
             "name": "Status Name",
-            "range": "0x0FA898-0x0FA8F6",
+            "range": "0x0FA898-0x0FA8F5",
             "arrayLength": 32,
             "asmSymbol": "StatusName",
             "file": "btlgfx/text/status_name_jp.asm",
@@ -7214,7 +7161,7 @@
                 "encoding": "text"
             },
             "pointerTable": {
-                "range": "0x0FA858-0x0FA898",
+                "range": "0x0FA858-0x0FA897",
                 "offset": "0x0F0000",
                 "isMapped": true
             },
@@ -7226,12 +7173,12 @@
         "summonFrame": {
             "type": "array",
             "name": "Summon Frame Data",
-            "range": "0x0DF69A-0x0DF7D7",
+            "range": "0x0DF69A-0x0DF7D6",
             "arrayLength": 29,
             "asmSymbol": "SummonFrame",
             "file": "btlgfx/data/summon_frame.asm",
             "pointerTable": {
-                "range": "0x0DF660-0x0DF69A",
+                "range": "0x0DF660-0x0DF699",
                 "offset": "0x0D0000",
                 "isMapped": true
             }
@@ -7239,12 +7186,12 @@
         "summonGraphics": {
             "type": "array",
             "name": "Summon Graphics",
-            "range": "0x0D8818-0x0DE818",
+            "range": "0x0D8818-0x0DE817",
             "arrayLength": 17,
             "asmSymbol": "SummonGfx",
             "file": "btlgfx/gfx/summon_gfx.asm",
             "pointerTable": {
-                "range": "0x0D87F0-0x0D8812",
+                "range": "0x0D87F0-0x0D8811",
                 "offset": "0x0D0000",
                 "isMapped": true
             }
@@ -7252,12 +7199,12 @@
         "summonGraphicsMap": {
             "type": "array",
             "name": "Summon Graphics Map",
-            "range": "0x0DF282-0x0DF660",
+            "range": "0x0DF282-0x0DF646",
             "arrayLength": 17,
             "asmSymbol": "SummonGfxMap",
             "file": "btlgfx/data/summon_gfx_map.asm",
             "pointerTable": {
-                "range": "0x0DF260-0x0DF282",
+                "range": "0x0DF260-0x0DF281",
                 "offset": "0x0D0000",
                 "isMapped": true
             }
@@ -7265,14 +7212,14 @@
         "telescopeHDMA": {
             "type": "assembly",
             "name": "Telescope Window Data",
-            "range": "0x16EB80-0x16ED62",
+            "range": "0x16EB80-0x16ED61",
             "asmSymbol": "TelescopeWindowData",
             "file": "field/data/telescope_window.asm"
         },
         "telescopeGraphics": {
             "type": "assembly",
             "name": "Telescope Graphics",
-            "range": "0x1EFEE0-0x1EFFE0",
+            "range": "0x1EFEE0-0x1EFFDF",
             "asmSymbol": "EarthMoonGfx",
             "file": "field/gfx/earth_moon_gfx.asm",
             "format": "snes4bpp"
@@ -7280,7 +7227,7 @@
         "telescopePalette": {
             "type": "assembly",
             "name": "Telescope Palette",
-            "range": "0x1EFFE0-0x1F8000",
+            "range": "0x1EFFE0-0x1EFFFF",
             "asmSymbol": "EarthMoonPal",
             "file": "field/gfx/earth_moon_pal.asm",
             "format": "bgr555"
@@ -7288,7 +7235,7 @@
         "theEndGraphics": {
             "type": "data",
             "name": "The End Graphics",
-            "range": "0x13F016-0x13F336",
+            "range": "0x13F016-0x13F335",
             "asmSymbol": "TheEndGfx",
             "file": "cutscene/gfx/the_end_gfx_jp.asm",
             "format": "snes4bpp"
@@ -7296,7 +7243,7 @@
         "triggerScript": {
             "type": "array",
             "name": "Trigger Script",
-            "range": "0x12F460-0x12F619",
+            "range": "0x12F460-0x12F618",
             "arrayLength": 256,
             "asmSymbol": "TriggerScript",
             "file": "field/data/trigger_script.asm",
@@ -7305,7 +7252,7 @@
                 "encoding": "trigger"
             },
             "pointerTable": {
-                "range": "0x12F260-0x12F460",
+                "range": "0x12F260-0x12F45F",
                 "offset": "0x12F460"
             },
             "stringTable": {
@@ -7408,14 +7355,14 @@
         "vehicleGraphics": {
             "type": "graphics",
             "name": "Vehicle Graphics",
-            "range": "0x1C8000-0x1C9800",
+            "range": "0x1C8000-0x1C97FF",
             "asmSymbol": "VehicleGfx",
             "file": "field/gfx/vehicle_gfx.asm"
         },
         "weaponAnimationProperties": {
             "type": "array",
             "name": "Weapon Animation Properties",
-            "range": "0x0F9E10-0x0FA050",
+            "range": "0x0F9E10-0x0FA04F",
             "arrayLength": 144,
             "itemLength": 4,
             "asmSymbol": "WeaponAnimProp",
@@ -7424,7 +7371,7 @@
         "weaponArmorProperties": {
             "type": "array",
             "name": "Weapon/Armor Properties",
-            "range": "0x0F9100-0x0F9680",
+            "range": "0x0F9100-0x0F967F",
             "arrayLength": 176,
             "itemLength": 8,
             "asmSymbol": "EquipProp",
@@ -7596,14 +7543,14 @@
         "weaponGraphics": {
             "type": "graphics",
             "name": "Weapon Graphics",
-            "range": "0x1CD900-0x1CEE00",
+            "range": "0x1CD900-0x1CEDFF",
             "asmSymbol": "WeaponGfx",
             "file": "btlgfx/gfx/weapon_gfx.asm"
         },
         "weaponSpellPower": {
             "type": "array",
             "name": "Weapon Spell Power",
-            "range": "0x0F9070-0x0F90D0",
+            "range": "0x0F9070-0x0F90CF",
             "arrayLength": 96,
             "itemLength": 1,
             "asmSymbol": "WeaponMagicHits",
@@ -7623,7 +7570,7 @@
         "windowGraphics": {
             "type": "graphics",
             "name": "Menu Window Graphics",
-            "range": "0x0AF000-0x0B8000",
+            "range": "0x0AF000-0x0AFFFF",
             "asmSymbol": "WindowGfx",
             "file": "menu/gfx/window_gfx_jp.asm",
             "length": "0x0380",
@@ -7634,7 +7581,7 @@
         "windowPalette": {
             "type": "assembly",
             "name": "Menu Window Palette",
-            "range": "0x0D87D0-0x0D87F0",
+            "range": "0x0D87D0-0x0D87EF",
             "asmSymbol": "WindowPal",
             "file": "menu/gfx/window_pal.asm",
             "length": 32,
@@ -7643,7 +7590,7 @@
         "worldBattle": {
             "type": "array",
             "name": "World Battle",
-            "range": "0x0EC542-0x0EC596",
+            "range": "0x0EC542-0x0EC595",
             "arrayLength": 84,
             "assembly": {
                 "type": "data",
@@ -7679,7 +7626,7 @@
         "worldBattleProbability": {
             "type": "array",
             "name": "Map Battle Probability",
-            "range": "0x0EC300-0x0EC342",
+            "range": "0x0EC300-0x0EC341",
             "arrayLength": 66,
             "assembly": {
                 "type": "data",
@@ -7699,7 +7646,7 @@
         "worldGraphics": {
             "type": "array",
             "name": "World Graphics",
-            "range": "0x1D8000-0x1DD3C0",
+            "range": "0x1D8000-0x1DD3BF",
             "arrayLength": 3,
             "itemLength": "0x2000",
             "asmSymbol": "WorldBGGfx",
@@ -7715,7 +7662,7 @@
         "worldLayout0": {
             "type": "array",
             "name": "World Layout",
-            "range": "0x168480-0x16C355",
+            "range": "0x168480-0x16C354",
             "arrayLength": "0x0100",
             "asmSymbol": "OverworldTilemap",
             "file": "field/data/overworld_tilemap.asm",
@@ -7723,14 +7670,14 @@
                 "format": "ff4-world"
             },
             "pointerTable": {
-                "range": "0x168000-0x168200",
+                "range": "0x168000-0x1681FF",
                 "offset": "0x168480"
             }
         },
         "worldLayout1": {
             "type": "array",
             "name": "Underground Layout",
-            "range": "0x16C480-0x16E042",
+            "range": "0x16C480-0x16E041",
             "arrayLength": "0x0100",
             "asmSymbol": "UndergroundTilemap",
             "file": "field/data/underground_tilemap.asm",
@@ -7738,14 +7685,14 @@
                 "format": "ff4-map"
             },
             "pointerTable": {
-                "range": "0x168200-0x168400",
+                "range": "0x168200-0x1683FF",
                 "offset": "0x16C480"
             }
         },
         "worldLayout2": {
             "type": "array",
             "name": "Moon Layout",
-            "range": "0x16E180-0x16EB54",
+            "range": "0x16E180-0x16EB53",
             "arrayLength": "0x40",
             "asmSymbol": "MoonTilemap",
             "file": "field/data/moon_tilemap.asm",
@@ -7753,14 +7700,14 @@
                 "format": "ff4-map"
             },
             "pointerTable": {
-                "range": "0x168400-0x168480",
+                "range": "0x168400-0x16847F",
                 "offset": "0x16E180"
             }
         },
         "worldPalettes": {
             "type": "array",
             "name": "World Palette",
-            "range": "0x148900-0x148A80",
+            "range": "0x148900-0x148A7F",
             "arrayLength": 3,
             "itemLength": "0x80",
             "asmSymbol": "WorldPal",
@@ -7773,7 +7720,7 @@
         "worldPaletteAssignments": {
             "type": "array",
             "name": "World Palette Assignments",
-            "range": "0x148600-0x148900",
+            "range": "0x148600-0x1488FF",
             "arrayLength": 3,
             "itemLength": "0x0100",
             "asmSymbol": "WorldTilePal",
@@ -7782,14 +7729,14 @@
         "worldSpriteGraphics": {
             "type": "graphics",
             "name": "World Sprite Graphics",
-            "range": "0x1C9800-0x1CA800",
+            "range": "0x1C9800-0x1CA7FF",
             "asmSymbol": "WorldSpriteGfx",
             "file": "field/gfx/world_sprite_gfx.asm"
         },
         "worldTileProperties": {
             "type": "array",
             "name": "World Map Tile Properties",
-            "range": "0x148A80-0x148D80",
+            "range": "0x148A80-0x148D7F",
             "arrayLength": 3,
             "itemLength": "0x0100",
             "asmSymbol": "WorldTileProp",
@@ -7858,7 +7805,7 @@
         "worldTilesets": {
             "type": "array",
             "name": "World Tilesets",
-            "range": "0x148000-0x148600",
+            "range": "0x148000-0x1485FF",
             "arrayLength": 3,
             "itemLength": "0x0200",
             "asmSymbol": "WorldTileset",
@@ -7881,7 +7828,7 @@
         "worldTriggers": {
             "type": "array",
             "name": "World Triggers",
-            "range": "0x158006-0x1581A0",
+            "range": "0x158006-0x15819F",
             "arrayLength": 3,
             "asmSymbol": "WorldTriggers",
             "file": "field/data/world_triggers.asm",
@@ -7950,7 +7897,7 @@
                 }
             },
             "pointerTable": {
-                "range": "0x158000-0x158006",
+                "range": "0x158000-0x158005",
                 "offset": "0x158006"
             }
         }
