@@ -35,7 +35,7 @@ MODULES_CLEAN = $(foreach M, $(MODULES), $(M)_clean)
 	$(MAKE) -C $* clean
 
 clean: $(MODULES_CLEAN)
-	$(RM) -r $(ROM_DIR)
+	$(RM) -r $(ROM_DIR) node_modules
 
 # ROM filenames
 FF4_JP_PATH = $(ROM_DIR)/ff4-jp.sfc

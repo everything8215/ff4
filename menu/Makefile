@@ -25,8 +25,7 @@ MENU_TEXT_INC = text/menu_text_$(LANG_SUFFIX).inc
 all: $(MENU_TEXT_INC) $(TARGET)
 
 clean:
-	$(RM) -r $(OBJ_DIR)
-	$(RM) text/menu_text_*.inc
+	$(RM) -r $(OBJ_DIR) data gfx text
 
 $(TARGET): $(SRC_FILES) $(INC_FILES) $(DATA_FILES) $(GFX_FILES) $(TEXT_FILES)
 	@mkdir -p $(OBJ_DIR)

@@ -17,7 +17,7 @@ TEXT_FILES = $(wildcard text/*)
 all: $(TARGET)
 
 clean:
-	$(RM) -r $(OBJ_DIR)
+	$(RM) -r $(OBJ_DIR) data gfx text
 
 $(TARGET): $(SRC_FILES) $(INC_FILES) $(DATA_FILES) $(GFX_FILES) $(TEXT_FILES)
 	@mkdir -p $(OBJ_DIR)
