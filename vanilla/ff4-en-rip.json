@@ -203,9 +203,6 @@
             "arrayLength": 361,
             "asmSymbol": "AnimFrame",
             "file": "btlgfx/data/anim_frame.asm",
-            "assembly": {
-                "type": "assembly"
-            },
             "pointerTable": {
                 "range": "0x0FDDE0-0x0FE0B1",
                 "offset": "0x0F0000",
@@ -219,9 +216,6 @@
             "arrayLength": 79,
             "asmSymbol": "AnimScript",
             "file": "btlgfx/data/anim_script.asm",
-            "assembly": {
-                "type": "assembly"
-            },
             "pointerTable": {
                 "range": "0x0FD5E0-0x0FD67D",
                 "offset": "0x0F0000",
@@ -244,8 +238,7 @@
             "asmSymbol": "ElementStatus",
             "file": "menu/data/element_status.asm",
             "assembly": {
-                "type": "data",
-                "length": 3,
+                "type": "assembly",
                 "assembly": {
                     "element": {
                         "type": "property",
@@ -328,8 +321,7 @@
             "asmSymbol": "AnimProp",
             "file": "btlgfx/data/anim_prop_en.asm",
             "assembly": {
-                "type": "data",
-                "length": 4,
+                "type": "assembly",
                 "assembly": {
                     "palette": {
                         "type": "property",
@@ -364,7 +356,6 @@
             "file": "btlgfx/text/attack_name_en.asm",
             "assembly": {
                 "type": "text",
-                "length": 8,
                 "encoding": "fixedLength"
             },
             "stringTable": {
@@ -387,8 +378,6 @@
             "asmSymbol": "AnimPal",
             "file": "btlgfx/gfx/anim_pal.asm",
             "assembly": {
-                "type": "assembly",
-                "length": 16,
                 "format": "bgr555"
             },
             "stringTable": {
@@ -405,8 +394,7 @@
             "asmSymbol": "AttackProp",
             "file": "battle/data/attack_prop_en.asm",
             "assembly": {
-                "type": "data",
-                "length": 6,
+                "type": "assembly",
                 "assembly": {
                     "spellName": {
                         "type": "assembly",
@@ -533,15 +521,8 @@
             "asmSymbol": "AttackSfx",
             "file": "btlgfx/data/attack_sfx.asm",
             "assembly": {
-                "type": "data",
-                "length": 1,
-                "assembly": {
-                    "soundEffect": {
-                        "type": "property",
-                        "name": "Sound Effect",
-                        "begin": 0
-                    }
-                }
+                "type": "property",
+                "name": "Sound Effect"
             }
         },
         "attackTilemap": {
@@ -587,7 +568,6 @@
             "file": "btlgfx/gfx/battle_bg_btm_tiles.asm",
             "assembly": {
                 "type": "tilemap",
-                "length": 64,
                 "format": ["snes3bppTile", "ff4-battlebg"],
                 "graphics": "battleBackgroundGraphics[%i]",
                 "palette": "battleBackgroundPalette[%i]",
@@ -619,7 +599,6 @@
             "file": "btlgfx/gfx/battle_bg_top_tiles.asm",
             "assembly": {
                 "type": "tilemap",
-                "length": 256,
                 "format": ["snes3bppTile", "ff4-battlebg"],
                 "graphics": "battleBackgroundGraphics[%i]",
                 "palette": "battleBackgroundPalette[%i]",
@@ -654,7 +633,6 @@
             "asmSymbol": "BattleBGPal",
             "file": "btlgfx/gfx/battle_bg_pal.asm",
             "assembly": {
-                "length": 32,
                 "format": "bgr555"
             },
             "stringTable": {
@@ -695,8 +673,7 @@
             "asmSymbol": "BattleBGProp",
             "file": "btlgfx/data/battle_bg_prop.asm",
             "assembly": {
-                "type": "data",
-                "length": 4,
+                "type": "assembly",
                 "editor": "FF4BattleBackgroundEditor",
                 "assembly": {
                     "top": {
@@ -765,7 +742,6 @@
             "file": "menu/text/battle_cmd_name_en.asm",
             "assembly": {
                 "type": "text",
-                "length": 5,
                 "encoding": "fixedLength"
             },
             "stringTable": {
@@ -812,8 +788,7 @@
             "asmSymbol": "SubBattles",
             "file": "field/data/sub_battles.asm",
             "assembly": {
-                "type": "data",
-                "length": 8,
+                "type": "assembly",
                 "assembly": {
                     "battle1": {
                         "type": "property",
@@ -964,8 +939,7 @@
             "asmSymbol": "WorldBattles",
             "file": "field/data/world_battles.asm",
             "assembly": {
-                "type": "data",
-                "length": 8,
+                "type": "assembly",
                 "assembly": {
                     "battle1": {
                         "type": "property",
@@ -1077,8 +1051,7 @@
             "asmSymbol": "BattleProp",
             "file": "battle/data/battle_prop_en.asm",
             "assembly": {
-                "type": "data",
-                "length": 8,
+                "type": "assembly",
                 "editor": "FF4Battle",
                 "assembly": {
                     "monster1": {
@@ -1234,7 +1207,7 @@
             }
         },
         "battleVRAMMap": {
-            "type": "data",
+            "type": "assembly",
             "name": "Battle VRAM Map",
             "range": "0x16FBAC-0x16FC3B",
             "assembly": {
@@ -1246,7 +1219,7 @@
                         "length": 6
                     },
                     "assembly": {
-                        "type": "data",
+                        "type": "assembly",
                         "length": 8,
                         "assembly": {
                             "monster1": {
@@ -1284,7 +1257,7 @@
                         "length": 6
                     },
                     "assembly": {
-                        "type": "data",
+                        "type": "assembly",
                         "length": 8,
                         "assembly": {
                             "monster1": {
@@ -1322,7 +1295,7 @@
                         "length": 6
                     },
                     "assembly": {
-                        "type": "data",
+                        "type": "assembly",
                         "length": 4,
                         "assembly": {
                             "monster1": {
@@ -1356,7 +1329,7 @@
                         "length": 6
                     },
                     "assembly": {
-                        "type": "data",
+                        "type": "assembly",
                         "length": 4,
                         "assembly": {
                             "monster1": {
@@ -1400,7 +1373,7 @@
             "type": "array",
             "name": "BRR Samples",
             "range": "0x04C98A-0x06F21C",
-            "arrayLength": 21,
+            "arrayLength": 22,
             "asmSymbol": "BRRSample",
             "file": "sound/data/brr_sample.asm",
             "pointerTable": {
@@ -1437,24 +1410,14 @@
             "file": "battle/data/class_cmd_en.asm",
             "assembly": {
                 "type": "array",
-                "length": 5,
-                "array": {
-                    "length": 5,
-                    "min": 5,
-                    "max": 5
-                },
+                "arrayLength": 5,
+                "itemLength": 1,
                 "assembly": {
-                    "type": "data",
-                    "length": 1,
-                    "assembly": {
-                        "command": {
-                            "type": "property",
-                            "name": "Command",
-                            "stringTable": "battleCommandNames",
-                            "special": {
-                                "0xFF": "None"
-                            }
-                        }
+                    "type": "property",
+                    "name": "Command",
+                    "stringTable": "battleCommandNames",
+                    "special": {
+                        "0xFF": "None"
                     }
                 }
             }
@@ -1550,7 +1513,7 @@
                 "length": 16
             },
             "assembly": {
-                "type": "data",
+                "type": "assembly",
                 "length": 3,
                 "assembly": {
                     "title": {
@@ -1664,10 +1627,10 @@
                 "0x0FC35C-0x0FC3C7"
             ],
             "assembly": {
-                "type": "array",
+                "type": "data",
+                "itemLength": 5,
                 "assembly": {
-                    "type": "data",
-                    "length": 5,
+                    "type": "assembly",
                     "assembly": {
                         "exp": {
                             "type": "property",
@@ -1752,26 +1715,6 @@
                 "default": "<characterNames[%i]>"
             }
         },
-        "characterNameID": {
-            "type": "array",
-            "name": "Character Name ID",
-            "range": "0x018457-0x01846C",
-            "array": {
-                "length": 21
-            },
-            "assembly": {
-                "type": "data",
-                "length": 1,
-                "assembly": {
-                    "nameID": {
-                        "type": "property",
-                        "name": "Name",
-                        "stringTable": "characterNames",
-                        "link": "characterNames[%i]"
-                    }
-                }
-            }
-        },
         "characterPalette": {
             "type": "array",
             "name": "Battle Character Palette",
@@ -1808,78 +1751,6 @@
                 }
             }
         },
-        "characterPartyAdd": {
-            "type": "array",
-            "name": "Character Party Add",
-            "range": "0x00E69A-0x00E6AE",
-            "array": {
-                "length": 21
-            },
-            "assembly": {
-                "type": "data",
-                "length": 1,
-                "assembly": {
-                    "character": {
-                        "type": "property",
-                        "name": "Stats",
-                        "mask": "0x7F",
-                        "invalid": "this.parent.restore.value",
-                        "stringTable": "characterStats"
-                    },
-                    "slot": {
-                        "type": "property",
-                        "name": "Restore Slot",
-                        "mask": "0x7F",
-                        "invalid": "!this.parent.restore.value",
-                        "stringTable": {
-                            "string": {
-                                "0": "Kain",
-                                "1": "Tellah",
-                                "2": "Rosa",
-                                "3": "Yang",
-                                "4": "Rydia"
-                            }
-                        }
-                    },
-                    "restore": {
-                        "type": "property",
-                        "name": "Restore Saved Slot",
-                        "mask": "0x80",
-                        "bool": true
-                    }
-                }
-            }
-        },
-        "characterPartyRemove": {
-            "type": "array",
-            "name": "Character Party Remove",
-            "range": "0x00E71D-0x00E730",
-            "array": {
-                "length": 20
-            },
-            "assembly": {
-                "type": "data",
-                "length": 1,
-                "assembly": {
-                    "slot": {
-                        "type": "property",
-                        "name": "Save to Slot",
-                        "stringTable": {
-                            "string": {
-                                "0": "Kain",
-                                "1": "Tellah",
-                                "2": "Rosa",
-                                "3": "Yang",
-                                "4": "Rydia"
-                            }
-                        },
-                        "special": {
-                            "0x80": "Do Not Save"
-                        }
-                    }
-                }
-            }
-        },
         "characterProperties": {
             "type": "array",
             "name": "Character Properties",
@@ -1890,8 +1761,7 @@
             "file": "field/data/char_init_equip.asm",
             "stringTable": "characterID",
             "assembly": {
-                "type": "data",
-                "length": 7,
+                "type": "assembly",
                 "assembly": {
                     "nameID": {
                         "type": "assembly",
@@ -1974,7 +1844,7 @@
                 "length": 14
             },
             "assembly": {
-                "type": "data",
+                "type": "assembly",
                 "length": 3,
                 "assembly": {
                     "white": {
@@ -2035,14 +1905,13 @@
         "characterStats": {
             "type": "array",
             "name": "Character Initial Stats",
-            "range": "0x0FA900-0x0FAAFF",
+            "range": "0x0FA900-0x0FAABF",
             "arrayLength": 14,
             "itemLength": 32,
             "asmSymbol": "CharProp",
             "file": "field/data/char_prop.asm",
             "assembly": {
-                "type": "data",
-                "length": 32,
+                "type": "assembly",
                 "editor": "FF4LevelProgression",
                 "assembly": {
                     "properties": {
@@ -2262,14 +2131,14 @@
             "format": "bgr555"
         },
         "creditsText": {
-            "type": "assembly",
+            "type": "data",
             "name": "Credits Text",
             "range": "0x13F36D-0x13F7D6",
             "asmSymbol": "CreditsText",
             "file": "cutscene/text/credits_text_en.asm"
         },
         "dteTable": {
-            "type": "assembly",
+            "type": "data",
             "name": "DTE Table",
             "range": "0x139700-0x1397FF",
             "asmSymbol": "DTETbl",
@@ -2499,14 +2368,14 @@
             }
         },
         "initEventSwitch": {
-            "type": "assembly",
+            "type": "data",
             "name": "Initial Event Switch Values",
             "range": "0x12F240-0x12F25F",
             "asmSymbol": "InitEventSwitch",
             "file": "field/data/init_event_switch.asm"
         },
         "initNPCSwitch": {
-            "type": "assembly",
+            "type": "data",
             "name": "Initial NPC Switch Values",
             "range": "0x12F200-0x12F23F",
             "asmSymbol": "InitNPCSwitch",
@@ -2521,8 +2390,7 @@
             "asmSymbol": "ItemProp",
             "file": "battle/data/item_prop.asm",
             "assembly": {
-                "type": "data",
-                "length": 6,
+                "type": "assembly",
                 "assembly": {
                     "castingTime": {
                         "type": "property",
@@ -2626,17 +2494,11 @@
             "asmSymbol": "ItemDescID",
             "file": "menu/data/item_desc_id_en.asm",
             "assembly": {
-                "type": "data",
-                "length": 1,
-                "assembly": {
-                    "description": {
-                        "type": "property",
-                        "name": "Description",
-                        "begin": 0,
-                        "link": "itemDescription[%i]",
-                        "stringTable": "itemDescription"
-                    }
-                }
+                "type": "property",
+                "name": "Description",
+                "begin": 0,
+                "link": "itemDescription[%i]",
+                "stringTable": "itemDescription"
             }
         },
         "itemEquipability": {
@@ -2648,18 +2510,12 @@
             "asmSymbol": "ItemClasses",
             "file": "menu/data/item_classes.asm",
             "assembly": {
-                "type": "data",
-                "length": 2,
-                "assembly": {
-                    "equipability": {
-                        "type": "property",
-                        "name": "Equipability",
-                        "begin": 0,
-                        "mask": "0x3FFF",
-                        "flag": true,
-                        "stringTable": "characterGraphics"
-                    }
-                }
+                "type": "property",
+                "name": "Equipability",
+                "begin": 0,
+                "mask": "0x3FFF",
+                "flag": true,
+                "stringTable": "characterGraphics"
             },
             "stringTable": {
                 "length": 32,
@@ -2702,14 +2558,24 @@
             "asmSymbol": "ItemName",
             "file": "btlgfx/text/item_name_en.asm",
             "assembly": {
-                "type": "text",
-                "length": 9,
-                "encoding": "fixedLength"
+                "type": "assembly",
+                "assembly": {
+                    "itemSymbol": {
+                        "type": "property",
+                        "name": "Symbol"
+                    },
+                    "itemName": {
+                        "type": "text",
+                        "name": "Name",
+                        "begin": 1,
+                        "encoding": "fixedLength"
+                    }
+                }
             },
             "stringTable": {
                 "name": "Item Names",
                 "length": 256,
-                "default": "<itemNames[%i].formattedText>",
+                "default": "<itemNames[%i].itemName>",
                 "string": {
                     "0x00": "Unarmed",
                     "0x60": "No Armor",
@@ -2726,8 +2592,7 @@
             "asmSymbol": "ItemPrice",
             "file": "menu/data/item_price_en.asm",
             "assembly": {
-                "type": "data",
-                "length": 1,
+                "type": "assembly",
                 "assembly": {
                     "price10": {
                         "type": "property",
@@ -2767,7 +2632,7 @@
                 "length": 256
             },
             "assembly": {
-                "type": "data",
+                "type": "assembly",
                 "assembly": {
                     "itemName": {
                         "type": "assembly",
@@ -2961,15 +2826,9 @@
             "asmSymbol": "ItemMagicAnim",
             "file": "btlgfx/data/item_magic_anim.asm",
             "assembly": {
-                "type": "data",
-                "length": 1,
-                "assembly": {
-                    "spellAnimation": {
-                        "type": "property",
-                        "name": "Spell Animation",
-                        "begin": 0
-                    }
-                }
+                "type": "property",
+                "name": "Spell Animation",
+                "begin": 0
             }
         },
         "mapAnimationGraphics": {
@@ -2990,16 +2849,10 @@
             "asmSymbol": "SubBattleGrp",
             "file": "field/data/sub_battle_grp.asm",
             "assembly": {
-                "type": "data",
-                "length": 1,
-                "assembly": {
-                    "battleGroup": {
-                        "type": "property",
-                        "name": "Battle Group",
-                        "link": "battleGroup[%i]",
-                        "stringTable": "battleGroup"
-                    }
-                }
+                "type": "property",
+                "name": "Battle Group",
+                "link": "battleGroup[%i]",
+                "stringTable": "battleGroup"
             }
         },
         "mapBattleProbability": {
@@ -3011,17 +2864,11 @@
             "asmSymbol": "SubBattleRate",
             "file": "field/data/sub_battle_rate.asm",
             "assembly": {
-                "type": "data",
-                "length": 1,
-                "assembly": {
-                    "probability": {
-                        "type": "property",
-                        "name": "Battle Probability",
-                        "min": 1,
-                        "special": {
-                            "0": "No Battles"
-                        }
-                    }
+                "type": "property",
+                "name": "Battle Probability",
+                "min": 1,
+                "special": {
+                    "0": "No Battles"
                 }
             }
         },
@@ -3190,7 +3037,6 @@
             "pointerAlign": "0x8000",
             "isSequential": true,
             "endPointer": true,
-            "canRelocate": true,
             "arrayLength": 256,
             "asmSymbol": "SubTilemap1",
             "file": "field/data/sub_tilemap1_en.asm",
@@ -3209,7 +3055,6 @@
             "pointerAlign": "0x8000",
             "isSequential": true,
             "endPointer": true,
-            "canRelocate": true,
             "arrayLength": 128,
             "asmSymbol": "SubTilemap2",
             "file": "field/data/sub_tilemap2_en.asm",
@@ -3222,7 +3067,7 @@
             }
         },
         "mapLayouts": {
-            "type": "data",
+            "type": "assembly",
             "name": "Map Layout",
             "range": "0x178000-0x19FE5F",
             "isSequential": true,
@@ -3234,7 +3079,6 @@
                     "pointerAlign": "0x8000",
                     "isSequential": true,
                     "endPointer": true,
-                    "canRelocate": true,
                     "array": {
                         "length": 224
                     },
@@ -3260,7 +3104,6 @@
                     "pointerAlign": "0x8000",
                     "isSequential": true,
                     "endPointer": true,
-                    "canRelocate": true,
                     "array": {
                         "length": 126
                     },
@@ -3269,8 +3112,7 @@
                     },
                     "pointerTable": {
                         "range": "0x0200-0x02FF",
-                        "offset": "0x8000",
-                        "canRelocate": true
+                        "offset": "0x8000"
                     },
                     "stringTable": {
                         "default": "Underground/Moon Layout %i",
@@ -3280,29 +3122,7 @@
                         }
                     }
                 }
-            },
-            "reference": [
-                {
-                    "begin": "0x00FC37",
-                    "mask": "0xFF",
-                    "bankByte": true
-                }, {
-                    "begin": "0x00FC4F",
-                    "mask": "0xFFFFFF"
-                }, {
-                    "begin": "0x00FC55",
-                    "mask": "0xFFFFFF",
-                    "offset": -1
-                }, {
-                    "begin": "0x00FC63",
-                    "mask": "0xFFFFFF",
-                    "offset": -2
-                }, {
-                    "begin": "0x00FC69",
-                    "mask": "0xFFFFFF",
-                    "offset": -3
-                }
-            ]
+            }
         },
         "mapPalettes": {
             "type": "array",
@@ -3362,7 +3182,7 @@
             "asmSymbol": "MapProp",
             "file": "field/data/map_prop_en.asm",
             "assembly": {
-                "type": "data",
+                "type": "assembly",
                 "editor": "FF4Map",
                 "assembly": {
                     "title": {
@@ -4168,13 +3988,10 @@
             "file": "field/data/tile_prop_en.asm",
             "assembly": {
                 "type": "array",
-                "array": {
-                    "length": 128
-                },
-                "length": 256,
+                "arrayLength": 128,
+                "itemLength": 2,
                 "assembly": {
-                    "type": "data",
-                    "length": 2,
+                    "type": "assembly",
                     "assembly": {
                         "byte1": {
                             "type": "property",
@@ -4282,14 +4099,14 @@
             "name": "Map Triggers",
             "range": "0x158300-0x15961E",
             "isSequential": true,
-            "canRelocate": true,
             "arrayLength": 384,
             "asmSymbol": "MapTriggers",
             "file": "field/data/map_triggers_en.asm",
             "assembly": {
                 "type": "array",
+                "itemLength": 5,
                 "assembly": {
-                    "type": "data",
+                    "type": "assembly",
                     "assembly": {
                         "x": {
                             "type": "property",
@@ -4402,100 +4219,13 @@
                             },
                             "invalid": "(this.parent.map.value !== 0xFE) || (this.parent.treasureType.value !== 0)"
                         }
-                    },
-                    "length": 5
+                    }
                 }
             },
             "pointerTable": {
                 "range": "0x158000-0x1582FF",
-                "offset": "0x158300",
-                "canRelocate": true,
-                "reference": [
-                    {
-                        "begin": "0x009954",
-                        "mask": "0xFFFFFF"
-                    }, {
-                        "begin": "0x00995A",
-                        "mask": "0xFFFFFF",
-                        "offset": -1
-                    }, {
-                        "begin": "0x009A35",
-                        "mask": "0xFFFFFF"
-                    }, {
-                        "begin": "0x009A3B",
-                        "mask": "0xFFFFFF",
-                        "offset": -1
-                    }
-                ]
-            },
-            "reference": [
-                {
-                    "begin": "0x0096C4",
-                    "mask": "0xFFFFFF"
-                }, {
-                    "begin": "0x0096CC",
-                    "mask": "0xFFFFFF",
-                    "offset": -1
-                }, {
-                    "begin": "0x009737",
-                    "mask": "0xFFFFFF",
-                    "offset": -3
-                }, {
-                    "begin": "0x00973D",
-                    "mask": "0xFFFFFF",
-                    "offset": -4
-                }, {
-                    "begin": "0x009982",
-                    "mask": "0xFFFFFF"
-                }, {
-                    "begin": "0x009988",
-                    "mask": "0xFFFFFF",
-                    "offset": -1
-                }, {
-                    "begin": "0x009A43",
-                    "mask": "0xFFFFFF"
-                }, {
-                    "begin": "0x009A4C",
-                    "mask": "0xFFFFFF",
-                    "offset": -1
-                }, {
-                    "begin": "0x009A5D",
-                    "mask": "0xFFFFFF",
-                    "offset": -2
-                }, {
-                    "begin": "0x009A65",
-                    "mask": "0xFFFFFF",
-                    "offset": -3
-                }, {
-                    "begin": "0x009A70",
-                    "mask": "0xFFFFFF",
-                    "offset": -2
-                }, {
-                    "begin": "0x009A7B",
-                    "mask": "0xFFFFFF",
-                    "offset": -3
-                }, {
-                    "begin": "0x009A84",
-                    "mask": "0xFFFFFF",
-                    "offset": -3
-                }, {
-                    "begin": "0x009A93",
-                    "mask": "0xFFFFFF",
-                    "offset": -4
-                }, {
-                    "begin": "0x009AAD",
-                    "mask": "0xFFFFFF",
-                    "offset": -2
-                }, {
-                    "begin": "0x009AB7",
-                    "mask": "0xFFFFFF",
-                    "offset": -3
-                }, {
-                    "begin": "0x009ABE",
-                    "mask": "0xFFFFFF",
-                    "offset": -4
-                }
-            ]
+                "offset": "0x158300"
+            }
         },
         "miscBattleGfx": {
             "type": "graphics",
@@ -4755,8 +4485,7 @@
             "asmSymbol": "MonsterAgility",
             "file": "battle/data/monster_agility_en.asm",
             "assembly": {
-                "type": "data",
-                "length": 2,
+                "type": "assembly",
                 "assembly": {
                     "min": {
                         "type": "property",
@@ -4850,8 +4579,7 @@
             "asmSymbol": "MonsterStats",
             "file": "battle/data/monster_stats.asm",
             "assembly": {
-                "type": "data",
-                "length": 3,
+                "type": "assembly",
                 "assembly": {
                     "base": {
                         "type": "property",
@@ -5123,8 +4851,7 @@
             "asmSymbol": "BossGfxProp",
             "file": "btlgfx/data/boss_gfx_prop.asm",
             "assembly": {
-                "type": "data",
-                "length": 5,
+                "type": "assembly",
                 "assembly": {
                     "x": {
                         "type": "property",
@@ -5302,8 +5029,7 @@
             "asmSymbol": "AICond",
             "file": "battle/data/ai_cond.asm",
             "assembly": {
-                "type": "data",
-                "length": 4,
+                "type": "assembly",
                 "assembly": {
                     "condition": {
                         "type": "property",
@@ -5622,8 +5348,7 @@
             "asmSymbol": "AICondHP",
             "file": "battle/data/ai_cond_hp_en.asm",
             "assembly": {
-                "type": "data",
-                "length": 2,
+                "type": "assembly",
                 "assembly": {
                     "hp": {
                         "type": "property",
@@ -5642,8 +5367,7 @@
             "asmSymbol": "MonsterCursor",
             "file": "battle/data/monster_cursor.asm",
             "assembly": {
-                "type": "data",
-                "length": 16
+                "type": "data"
             }
         },
         "monsterExperience": {
@@ -5723,8 +5447,7 @@
             "asmSymbol": "MonsterGfxProp",
             "file": "btlgfx/data/monster_gfx_prop.asm",
             "assembly": {
-                "type": "data",
-                "length": 4,
+                "type": "assembly",
                 "assembly": {
                     "size": {
                         "type": "property",
@@ -5805,8 +5528,7 @@
             "asmSymbol": "MonsterItems",
             "file": "battle/data/monster_items_en.asm",
             "assembly": {
-                "type": "data",
-                "length": 4,
+                "type": "assembly",
                 "assembly": {
                     "drop1": {
                         "type": "property",
@@ -5962,13 +5684,10 @@
             "file": "battle/data/monster_pos.asm",
             "assembly": {
                 "type": "array",
-                "length": 8,
-                "array": {
-                    "length": 8
-                },
+                "arrayLength": 8,
+                "itemLength": 1,
                 "assembly": {
-                    "type": "data",
-                    "length": 1,
+                    "type": "assembly",
                     "assembly": {
                         "x": {
                             "type": "property",
@@ -5995,7 +5714,7 @@
             "asmSymbol": "MonsterProp",
             "file": "battle/data/monster_prop_en.asm",
             "assembly": {
-                "type": "data",
+                "type": "assembly",
                 "format": "ff4-monster",
                 "assembly": {
                     "monsterName": {
@@ -6190,15 +5909,6 @@
                 "offset": "0x0E0000",
                 "isMapped": true
             },
-            "reference": [
-                {
-                    "begin": "0x038FE5",
-                    "mask": "0xFFFF"
-                }, {
-                    "begin": "0x038FEE",
-                    "mask": "0xFFFFFF"
-                }
-            ],
             "stringTable": "monsterName"
         },
         "monsterScript": {
@@ -6481,8 +6191,7 @@
             "asmSymbol": "MonsterGfxSize",
             "file": "btlgfx/data/monster_size.asm",
             "assembly": {
-                "type": "data",
-                "length": 2,
+                "type": "assembly",
                 "assembly": {
                     "width": {
                         "type": "property",
@@ -6558,16 +6267,10 @@
             "asmSymbol": "NPCGfxID",
             "file": "field/data/npc_gfx_id_en.asm",
             "assembly": {
-                "type": "data",
+                "type": "property",
+                "name": "Graphics",
                 "length": 1,
-                "assembly": {
-                    "graphics": {
-                        "type": "property",
-                        "name": "Graphics",
-                        "length": 1,
-                        "stringTable": "mapSpriteGraphics"
-                    }
-                }
+                "stringTable": "mapSpriteGraphics"
             }
         },
         "npcPalettes": {
@@ -6583,43 +6286,19 @@
                 "format": "bgr555"
             }
         },
-        "npcPointers": {
-            "type": "array",
-            "name": "NPC Script Pointers",
-            "range": "0x139800-0x139BFF",
-            "array": {
-                "length": 512
-            },
-            "assembly": {
-                "type": "data",
-                "length": 2,
-                "assembly": {
-                    "scriptPointer": {
-                        "type": "property",
-                        "name": "Script Pointer",
-                        "mask": "0xFFFF",
-                        "script": "npcScript"
-                    },
-                    "graphics": {
-                        "type": "assembly",
-                        "external": "npcGraphicsProperties[%i]"
-                    }
-                }
-            }
-        },
         "npcProperties": {
             "type": "array",
             "name": "NPC Properties",
             "range": "0x138300-0x1396E7",
-            "canRelocate": true,
             "arrayLength": 384,
             "asmSymbol": "NPCProp",
             "file": "field/data/npc_prop_en.asm",
             "assembly": {
                 "type": "array",
+                "itemLength": 4,
                 "format": "terminated(0,4)",
                 "assembly": {
-                    "type": "data",
+                    "type": "assembly",
                     "assembly": {
                         "switch": {
                             "type": "property",
@@ -6709,54 +6388,8 @@
             },
             "pointerTable": {
                 "range": "0x138000-0x1382FF",
-                "offset": "0x138300",
-                "canRelocate": true,
-                "reference": [
-                    {
-                        "begin": "0x00BEAA",
-                        "mask": "0xFFFFFF"
-                    }, {
-                        "begin": "0x00BEB0",
-                        "mask": "0xFFFFFF",
-                        "offset": -1
-                    }
-                ]
-            },
-            "reference": [
-                {
-                    "begin": "0x00BE70",
-                    "mask": "0xFFFFFF"
-                }, {
-                    "begin": "0x00BEC4",
-                    "mask": "0xFFFFFF"
-                }, {
-                    "begin": "0x00BEE4",
-                    "mask": "0xFFFFFF"
-                }, {
-                    "begin": "0x00BF11",
-                    "mask": "0xFFFFFF",
-                    "offset": -3
-                }, {
-                    "begin": "0x00BF39",
-                    "mask": "0xFFFFFF",
-                    "offset": -3
-                }, {
-                    "begin": "0x00BF4A",
-                    "mask": "0xFFFFFF"
-                }, {
-                    "begin": "0x00BF51",
-                    "mask": "0xFFFFFF",
-                    "offset": -1
-                }, {
-                    "begin": "0x00BF5C",
-                    "mask": "0xFFFFFF",
-                    "offset": -1
-                }, {
-                    "begin": "0x00BF67",
-                    "mask": "0xFFFFFF",
-                    "offset": -2
-                }
-            ]
+                "offset": "0x138300"
+            }
         },
         "npcScript": {
             "type": "array",
@@ -6821,7 +6454,7 @@
             "asmSymbol": "PortraitPal",
             "file": "menu/gfx/portrait_pal.asm",
             "assembly": {
-                "type": "assembly",
+                "type": "data",
                 "length": 16,
                 "format": "bgr555"
             },
@@ -6846,7 +6479,7 @@
             "palette": "prologuePalette"
         },
         "prologueMoonPalette": {
-            "type": "assembly",
+            "type": "data",
             "name": "Prologue Moon Palette",
             "range": "0x1AFCF0-0x1AFCFF",
             "asmSymbol": "PrologueMoonPal",
@@ -6879,7 +6512,7 @@
             "height": 14
         },
         "prologuePalette": {
-            "type": "assembly",
+            "type": "data",
             "name": "Prologue Palette",
             "range": "0x08FF00-0x08FFFF",
             "format": "bgr555",
@@ -6887,14 +6520,14 @@
             "file": "field/gfx/prologue_pal.asm"
         },
         "prophecyText": {
-            "type": "assembly",
+            "type": "data",
             "name": "Prophecy Text",
             "range": "0x13E9C5-0x13EB03",
             "asmSymbol": "ProphecyText",
             "file": "cutscene/text/prophecy_text_en.asm"
         },
         "rngTable": {
-            "type": "assembly",
+            "type": "data",
             "name": "RNG Table",
             "range": "0x14EE00-0x14EEFF",
             "asmSymbol": "RNGTbl",
@@ -6909,29 +6542,18 @@
             "asmSymbol": "ShopProp",
             "file": "menu/data/shop_prop_en.asm",
             "assembly": {
-                "type": "data",
+                "type": "array",
+                "name": "Items",
                 "length": 8,
+                "arrayLength": 8,
+                "itemLength": 1,
+                "arrayMin": 8,
+                "arrayMax": 8,
                 "assembly": {
-                    "itemArray": {
-                        "type": "array",
-                        "name": "Items",
-                        "length": 8,
-                        "arrayLength": 8,
-                        "arrayMin": 8,
-                        "arrayMax": 8,
-                        "assembly": {
-                            "type": "data",
-                            "length": 1,
-                            "assembly": {
-                                "shopItem": {
-                                    "type": "property",
-                                    "name": "Item",
-                                    "stringTable": "itemNames",
-                                    "link": "itemProperties[%i]"
-                                }
-                            }
-                        }
-                    }
+                    "type": "property",
+                    "name": "Item",
+                    "stringTable": "itemNames",
+                    "link": "itemProperties[%i]"
                 }
             },
             "stringTable": {
@@ -6970,156 +6592,6 @@
                     "29": "Armor Shop (Town of Monsters)",
                     "30": "Item Shop (Underground)",
                     "31": "Pass Seller (Toroia)"
-                }
-            }
-        },
-        "snesHeader": {
-            "type": "data",
-            "name": "SNES Header",
-            "range": "0x00FFC0-0x00FFDF",
-            "assembly": {
-                "gameTitle": {
-                    "type": "text",
-                    "name": "Game Title",
-                    "begin": 0,
-                    "length": 21
-                },
-                "mapMode": {
-                    "type": "property",
-                    "name": "Map Mode",
-                    "begin": 21,
-                    "mask": "0x0F",
-                    "stringTable": {
-                        "string": {
-                            "0": "Mode 20",
-                            "1": "Mode 21",
-                            "3": "Mode 23 (SA-1)",
-                            "5": "Mode 25"
-                        }
-                    }
-                },
-                "cpuSpeed": {
-                    "type": "property",
-                    "name": "CPU Speed",
-                    "begin": 21,
-                    "mask": "0xF0",
-                    "stringTable": {
-                        "string": {
-                            "2": "2.68 MHz (normal speed)",
-                            "3": "3.58 MHz (high speed)"
-                        }
-                    }
-                },
-                "cartridgeType": {
-                    "type": "property",
-                    "name": "Cartridge Type",
-                    "begin": 22,
-                    "mask": "0x0F",
-                    "stringTable": {
-                        "string": {
-                            "0": "ROM Only",
-                            "1": "ROM + RAM",
-                            "2": "ROM + RAM + Battery",
-                            "3": "ROM + Co-processor",
-                            "4": "ROM + Co-processor + RAM",
-                            "5": "ROM + Co-processor + RAM + Battery",
-                            "6": "ROM + Co-processor + Battery"
-                        }
-                    }
-                },
-                "coprocessorType": {
-                    "type": "property",
-                    "name": "Co-processor Type",
-                    "begin": 22,
-                    "mask": "0xF0",
-                    "hidden": "this.parent.cartridgeType.value < 3",
-                    "stringTable": {
-                        "string": {
-                            "0": "DSP",
-                            "1": "Super FX",
-                            "2": "OBC1",
-                            "3": "SA-1",
-                            "14": "Other",
-                            "15": "Custom Chip"
-                        }
-                    }
-                },
-                "romSize": {
-                    "type": "property",
-                    "name": "ROM Size",
-                    "begin": 23,
-                    "stringTable": {
-                        "string": {
-                            "9": "3-4 MBit",
-                            "10": "5-8 MBit",
-                            "11": "9-16 MBit",
-                            "12": "17-32 MBit",
-                            "13": "33-64 MBit"
-                        }
-                    }
-                },
-                "ramSize": {
-                    "type": "property",
-                    "name": "RAM Size",
-                    "begin": 24,
-                    "stringTable": {
-                        "string": {
-                            "0": "None",
-                            "1": "16 KBit",
-                            "3": "64 KBit",
-                            "5": "256 KBit",
-                            "6": "512 KBit",
-                            "7": "1 MBit"
-                        }
-                    }
-                },
-                "destinationCode": {
-                    "type": "property",
-                    "name": "Destination Code",
-                    "begin": 25,
-                    "stringTable": {
-                        "string": {
-                            "0": "Japan",
-                            "1": "North America",
-                            "2": "Europe",
-                            "3": "Scandinavia",
-                            "6": "French",
-                            "7": "Dutch",
-                            "8": "Spanish",
-                            "9": "German",
-                            "10": "Italian",
-                            "11": "Chinese",
-                            "13": "Korean",
-                            "14": "Common",
-                            "15": "Canada",
-                            "16": "Brazil",
-                            "17": "Australia"
-                        }
-                    }
-                },
-                "makerCode": {
-                    "type": "property",
-                    "name": "Maker Code",
-                    "begin": 26
-                },
-                "romVersion": {
-                    "type": "property",
-                    "name": "ROM Version",
-                    "begin": 27
-                },
-                "checksumInverse": {
-                    "type": "property",
-                    "name": "Checksum Inverse",
-                    "begin": 28,
-                    "mask": "0xFFFF",
-                    "hidden": true
-                },
-                "checksum": {
-                    "type": "property",
-                    "name": "Checksum",
-                    "begin": 30,
-                    "mask": "0xFFFF",
-                    "hidden": true
                 }
             }
         },
@@ -7184,7 +6656,7 @@
             }
         },
         "spcData": {
-            "type": "array",
+            "type": "data",
             "name": "SPC Data",
             "range": "0x048683-0x04BBCF",
             "asmSymbol": "SPCData",
@@ -7199,9 +6671,19 @@
             "asmSymbol": "MagicName",
             "file": "btlgfx/text/magic_name_en.asm",
             "assembly": {
-                "type": "text",
-                "length": 6,
-                "encoding": "fixedLength"
+                "type": "assembly",
+                "assembly": {
+                    "spellSymbol": {
+                        "type": "property",
+                        "name": "Symbol"
+                    },
+                    "spellName": {
+                        "type": "text",
+                        "name": "Name",
+                        "begin": 1,
+                        "encoding": "fixedLength"
+                    }
+                }
             },
             "stringTable": {
                 "name": "Spell Names",
@@ -7219,7 +6701,7 @@
                 "length": 13
             },
             "assembly": {
-                "type": "data",
+                "type": "assembly",
                 "assembly": {
                     "spellListInitial": {
                         "type": "assembly",
@@ -7264,35 +6746,30 @@
             "file": "battle/data/spell_list_init_en.asm",
             "assembly": {
                 "type": "array",
+                "itemLength": 1,
                 "format": "terminated(0xFF)",
                 "assembly": {
-                    "type": "data",
-                    "length": 1,
-                    "assembly": {
-                        "spell": {
-                            "type": "property",
-                            "name": "Spell",
-                            "begin": 0,
-                            "stringTable": "attackNames"
-                        }
-                    }
+                    "type": "property",
+                    "name": "Spell",
+                    "begin": 0,
+                    "stringTable": "attackNames"
                 }
             }
         },
         "spellListLearned": {
             "type": "array",
             "name": "Learned Spells",
-            "range": "0x0FC700-0x0FC7B9",
+            "range": "0x0FC700-0x0FC7AE",
             "terminator": "0xFF",
             "arrayLength": 13,
             "asmSymbol": "SpellListLearned",
             "file": "battle/data/spell_list_learned_en.asm",
             "assembly": {
                 "type": "array",
+                "itemLength": 2,
                 "format": "terminated(0xFF)",
                 "assembly": {
-                    "type": "data",
-                    "length": 2,
+                    "type": "assembly",
                     "assembly": {
                         "spell": {
                             "type": "property",
@@ -7332,7 +6809,7 @@
             "backColor": true
         },
         "splashPalette": {
-            "type": "assembly",
+            "type": "data",
             "name": "Splash Screen Palette",
             "range": "0x08E800-0x08E8FF",
             "asmSymbol": "TitlePal",
@@ -7348,7 +6825,7 @@
             "file": "btlgfx/text/status_name_en.asm",
             "assembly": {
                 "type": "text",
-                "encoding": "text"
+                "encoding": "nullTerminated"
             },
             "pointerTable": {
                 "range": "0x0FB400-0x0FB43F",
@@ -7400,14 +6877,14 @@
             }
         },
         "telescopeHDMA": {
-            "type": "assembly",
+            "type": "data",
             "name": "Telescope Window Data",
             "range": "0x16EB80-0x16ED61",
             "asmSymbol": "TelescopeWindowData",
             "file": "field/data/telescope_window.asm"
         },
         "telescopeGraphics": {
-            "type": "assembly",
+            "type": "data",
             "name": "Telescope Graphics",
             "range": "0x1EFEE0-0x1EFFDF",
             "asmSymbol": "EarthMoonGfx",
@@ -7415,7 +6892,7 @@
             "format": "snes4bpp"
         },
         "telescopePalette": {
-            "type": "assembly",
+            "type": "data",
             "name": "Telescope Palette",
             "range": "0x1EFFE0-0x1EFFFF",
             "asmSymbol": "EarthMoonPal",
@@ -7567,8 +7044,7 @@
             "asmSymbol": "EquipProp",
             "file": "battle/data/equip_prop_en.asm",
             "assembly": {
-                "type": "data",
-                "length": 8,
+                "type": "assembly",
                 "assembly": {
                     "metallic": {
                         "type": "property",
@@ -7746,15 +7222,9 @@
             "asmSymbol": "WeaponMagicHits",
             "file": "battle/data/weapon_magic_hits.asm",
             "assembly": {
-                "type": "data",
-                "length": 1,
-                "assembly": {
-                    "spellPower": {
-                        "type": "property",
-                        "name": "Spell Power",
-                        "begin": 0
-                    }
-                }
+                "type": "property",
+                "name": "Magic Hits",
+                "begin": 0
             }
         },
         "windowGraphics": {
@@ -7769,7 +7239,7 @@
             "backColor": true
         },
         "windowPalette": {
-            "type": "assembly",
+            "type": "data",
             "name": "Menu Window Palette",
             "range": "0x0D87D0-0x0D87EF",
             "asmSymbol": "WindowPal",
@@ -7785,8 +7255,7 @@
                 "length": 84
             },
             "assembly": {
-                "type": "data",
-                "length": 1,
+                "type": "assembly",
                 "assembly": {
                     "battleGroup": {
                         "type": "property",
@@ -7823,17 +7292,11 @@
                 "length": 66
             },
             "assembly": {
-                "type": "data",
-                "length": 1,
-                "assembly": {
-                    "probability": {
-                        "type": "property",
-                        "name": "Battle Probability",
-                        "min": 1,
-                        "special": {
-                            "0": "No Battles"
-                        }
-                    }
+                "type": "property",
+                "name": "Battle Probability",
+                "min": 1,
+                "special": {
+                    "0": "No Battles"
                 }
             }
         },
@@ -7857,7 +7320,6 @@
             "type": "array",
             "name": "World Layout",
             "range": "0x168480-0x16C354",
-            "canRelocate": true,
             "arrayLength": "0x0100",
             "asmSymbol": "OverworldTilemap",
             "file": "field/data/overworld_tilemap.asm",
@@ -7866,35 +7328,13 @@
             },
             "pointerTable": {
                 "range": "0x168000-0x1681FF",
-                "offset": "0x168480",
-                "canRelocate": true,
-                "reference": [
-                    {
-                        "begin": "0x00FAED",
-                        "mask": "0xFFFFFF"
-                    }, {
-                        "begin": "0x00FAF3",
-                        "mask": "0xFFFFFF",
-                        "offset": -1
-                    }
-                ]
-            },
-            "reference": [
-                {
-                    "begin": "0x00FAFB",
-                    "mask": "0xFFFFFF"
-                }, {
-                    "begin": "0x00FB04",
-                    "mask": "0xFFFFFF",
-                    "offset": -1
-                }
-            ]
+                "offset": "0x168480"
+            }
         },
         "worldLayout1": {
             "type": "array",
             "name": "Underground Layout",
             "range": "0x16C480-0x16E041",
-            "canRelocate": true,
             "arrayLength": "0x0100",
             "asmSymbol": "UndergroundTilemap",
             "file": "field/data/underground_tilemap.asm",
@@ -7903,35 +7343,13 @@
             },
             "pointerTable": {
                 "range": "0x168200-0x1683FF",
-                "offset": "0x16C480",
-                "canRelocate": true,
-                "reference": [
-                    {
-                        "begin": "0x00FB7B",
-                        "mask": "0xFFFFFF"
-                    }, {
-                        "begin": "0x00FB81",
-                        "mask": "0xFFFFFF",
-                        "offset": -1
-                    }
-                ]
-            },
-            "reference": [
-                {
-                    "begin": "0x00FB89",
-                    "mask": "0xFFFFFF"
-                }, {
-                    "begin": "0x00FB92",
-                    "mask": "0xFFFFFF",
-                    "offset": -1
-                }
-            ]
+                "offset": "0x16C480"
+            }
         },
         "worldLayout2": {
             "type": "array",
             "name": "Moon Layout",
             "range": "0x16E180-0x16EB53",
-            "canRelocate": true,
             "arrayLength": "0x40",
             "asmSymbol": "MoonTilemap",
             "file": "field/data/moon_tilemap.asm",
@@ -7940,29 +7358,8 @@
             },
             "pointerTable": {
                 "range": "0x168400-0x16847F",
-                "offset": "0x16E180",
-                "canRelocate": true,
-                "reference": [
-                    {
-                        "begin": "0x00FBC8",
-                        "mask": "0xFFFFFF"
-                    }, {
-                        "begin": "0x00FBCE",
-                        "mask": "0xFFFFFF",
-                        "offset": -1
-                    }
-                ]
-            },
-            "reference": [
-                {
-                    "begin": "0x00FBD6",
-                    "mask": "0xFFFFFF"
-                }, {
-                    "begin": "0x00FBDF",
-                    "mask": "0xFFFFFF",
-                    "offset": -1
-                }
-            ]
+                "offset": "0x16E180"
+            }
         },
         "worldPalettes": {
             "type": "array",
@@ -8003,13 +7400,10 @@
             "file": "field/data/world_tile_prop.asm",
             "assembly": {
                 "type": "array",
-                "array": {
-                    "length": 128
-                },
-                "length": 256,
+                "arrayLength": 128,
+                "itemLength": 2,
                 "assembly": {
-                    "type": "data",
-                    "length": 2,
+                    "type": "assembly",
                     "assembly": {
                         "byte1": {
                             "type": "property",
@@ -8091,14 +7485,14 @@
             "type": "array",
             "name": "World Triggers",
             "range": "0x19FE66-0x19FFFF",
-            "canRelocate": true,
             "arrayLength": 3,
             "asmSymbol": "WorldTriggers",
             "file": "field/data/world_triggers.asm",
             "assembly": {
                 "type": "array",
+                "itemLength": 5,
                 "assembly": {
-                    "type": "data",
+                    "type": "assembly",
                     "assembly": {
                         "x": {
                             "type": "property",
@@ -8155,59 +7549,13 @@
                             "invalid": "(this.parent.map.value !== 0xFF) && (this.parent.map.value !== 0x1FF)",
                             "link": "triggerScript[%i]"
                         }
-                    },
-                    "length": 5
+                    }
                 }
             },
             "pointerTable": {
                 "range": "0x19FE60-0x19FE65",
-                "offset": "0x19FE66",
-                "canRelocate": true,
-                "reference": [
-                    {
-                        "begin": "0x009B7F",
-                        "mask": "0xFFFFFF"
-                    }, {
-                        "begin": "0x009B85",
-                        "mask": "0xFFFFFF",
-                        "offset": -1
-                    }
-                ]
-            },
-            "reference": [
-                {
-                    "begin": "0x009B8D",
-                    "mask": "0xFFFFFF"
-                }, {
-                    "begin": "0x009B96",
-                    "mask": "0xFFFFFF",
-                    "offset": -1
-                }, {
-                    "begin": "0x009BA7",
-                    "mask": "0xFFFFFF",
-                    "offset": -2
-                }, {
-                    "begin": "0x009BAF",
-                    "mask": "0xFFFFFF",
-                    "offset": -3
-                }, {
-                    "begin": "0x009BEA",
-                    "mask": "0xFFFFFF",
-                    "offset": -2
-                }, {
-                    "begin": "0x009BF1",
-                    "mask": "0xFFFFFF",
-                    "offset": -3
-                }, {
-                    "begin": "0x009BFA",
-                    "mask": "0xFFFFFF",
-                    "offset": -4
-                }, {
-                    "begin": "0x009C01",
-                    "mask": "0xFFFFFF",
-                    "offset": -3
-                }
-            ]
+                "offset": "0x19FE66"
+            }
         }
     },
     "scriptEncoding": {
@@ -10248,16 +9596,5 @@
                 "31": "Cinematic ?"
             }
         }
-    },
-    "freeSpace": [
-        "0x0EB439-0x0EB6C0",
-        "0x0FC3C8-0x0FC600",
-        "0x0FC62F-0x0FC700",
-        "0x12E68B-0x12F000",
-        "0x13A293-0x13A300",
-        "0x16C355-0x16C480",
-        "0x16E042-0x16E180",
-        "0x16EB54-0x16EB80",
-        "0x1CD8F0-0x1CD900"
-    ]
+    }
 }

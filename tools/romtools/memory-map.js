@@ -1,5 +1,5 @@
 
-const ROMRange = require('./rom-range');
+const ROMRange = require('./range');
 
 class ROMMemoryMap {
     constructor(mode) {

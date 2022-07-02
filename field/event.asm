@@ -21,9 +21,8 @@
 .segment "event_data1"
 
 EventScriptPtrs:
-        make_ptr_tbl_rel EventScript, $0100
-
-.include .sprintf("data/event_script_%s.asm", LANG_SUFFIX)
+        make_ptr_tbl_rel EventScript, 256
+        .include .sprintf("data/event_script_%s.asm", LANG_SUFFIX)
 
 .segment "event_data2"
         .include .sprintf("data/npc_gfx_id_%s.asm", LANG_SUFFIX)
