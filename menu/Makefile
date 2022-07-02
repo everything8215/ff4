@@ -14,6 +14,8 @@ TOOLS_DIR = ../tools
 
 ENCODE_MENU_TEXT = $(TOOLS_DIR)/encode_menu_text.js
 
+.PHONY: all clean
+
 # disable default suffix rules
 .SUFFIXES:
 

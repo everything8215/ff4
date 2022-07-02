@@ -16,7 +16,7 @@ ROMS = $(foreach V, $(VERSIONS), $(ROM_DIR)/$(V).sfc)
 # list of modules
 MODULES = field menu btlgfx battle sound cutscene
 
-.PHONY: all rip $(VERSIONS) $(MODULES)
+.PHONY: all rip clean $(VERSIONS) $(MODULES)
 
 # disable default suffix rules
 .SUFFIXES:
@@ -35,7 +35,7 @@ MODULES_CLEAN = $(foreach M, $(MODULES), $(M)_clean)
 	$(MAKE) -C $* clean
 
 clean: $(MODULES_CLEAN)
-	$(RM) -r $(ROM_DIR) node_modules
+	$(RM) -r $(ROM_DIR)
 
 # ROM filenames
 FF4_JP_PATH = $(ROM_DIR)/ff4-jp.sfc

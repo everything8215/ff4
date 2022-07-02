@@ -11,6 +11,8 @@ DATA_FILES = $(wildcard data/*)
 GFX_FILES = $(wildcard gfx/*)
 TEXT_FILES = $(wildcard text/*)
 
+.PHONY: all clean
+
 # disable default suffix rules
 .SUFFIXES:
 
