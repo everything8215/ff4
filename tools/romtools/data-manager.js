@@ -4,24 +4,33 @@ const ROMTextCodec = require('./text-codec');
 const ROMMemoryMap = require('./memory-map');
 
 class ROMDataManager {
-  constructor(data) {
+  constructor(definition) {
 
-    this.data = data;
+    this.definition = definition;
 
     // create the memory mapper
-    const mapMode = data.mode || ROMMemoryMap.MapMode.none;
+    const mapMode = definition.mode || ROMMemoryMap.MapMode.none;
     this.memoryMap = new ROMMemoryMap(mapMode);
 
     // create text codecs
     this.textCodec = {};
-    for (let key in data.textEncoding) {
-      const encodingDef = data.textEncoding[key];
-      this.textCodec[key] = new ROMTextCodec(encodingDef, data.charTable);
+    for (let key in definition.textEncoding) {
+      const encodingDef = definition.textEncoding[key];
+      this.textCodec[key] = new ROMTextCodec(encodingDef, definition.charTable);
     }
 
     // create string tables
 
   }
+
+  getDefinition(key) {
+    return this.definition.assembly[key];
+  }
+
+  getObject(key) {
+    return this.definition.obj[key];
+  }
+
 }
 
 module.exports = ROMDataManager;

@@ -25,7 +25,7 @@ memory {
     bank_17: start = $178000, size = $17e00, type = ro, fill = yes, fillval = $ff;
     bank_19: start = $19fe00, size = $0200, type = ro, fill = yes, fillval = $ff;
     bank_1a: start = $1a8000, size = $8000, type = ro, fill = yes, fillval = $ff;
-    bank_1b: start = $1b8000, size = $8000, type = ro, fill = yes, fillval = $ff;
+    bank_1b: start = $1b8000, size = $8000, type = ro, fill = yes, fillval = $00;
     bank_1c: start = $1c8000, size = $8000, type = ro, fill = yes, fillval = $ff;
     bank_1d: start = $1d8000, size = $8000, type = ro, fill = yes, fillval = $ff;
     bank_1e: start = $1e8000, size = $8000, type = ro, fill = yes, fillval = $ff;
@@ -125,6 +125,7 @@ segments {
     map_sprite_gfx: load = bank_1b, type = ro;
     world_sprite_gfx: load = bank_1c, type = ro;
     battle_bg_gfx: load = bank_1c, type = ro, start = $1ca800;
+    weapon_gfx: load = bank_1c, type = ro, start = $1cd900;
     monster_pal: load = bank_1c, type = ro;
     battle_char_pal: load = bank_1c, type = ro;
     world_gfx: load = bank_1d, type = ro;

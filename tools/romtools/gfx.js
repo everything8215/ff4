@@ -514,14 +514,15 @@ var GFX = {
             name: "BGR555",
             encode: function(data) {
                 // 32-bit source, 16-bit destination
-                const dest16 = new Uint16Array(data.src.length);
+                const src32 = new Uint32Array(data.src.buffer, data.src.byteOffset, data.src.length >> 2);
+                const dest16 = new Uint16Array(src32.length);
 
                 var s = 0;
                 var d = 0;
                 var r, g, b, rgb;
 
-                while (s < data.src.length) {
-                    rgb = data.src[s++];
+                while (s < src32.length) {
+                    rgb = src32[s++];
                     b = (rgb & 0x00FF0000) >> 16; b = Math.round(b * 31 / 255);
                     g = (rgb & 0x0000FF00) >> 8; g = Math.round(g * 31 / 255);
                     r = (rgb & 0x000000FF); r = Math.round(r * 31 / 255);
@@ -545,7 +546,7 @@ var GFX = {
                     dest8[d++] = GFX.colors31[bgr555 & 0x1F];
                     dest8[d++] = 0xFF;
                 }
-                data.dest = new Uint32Array(dest8.buffer);
+                data.dest = dest8;
             }
         },
         nesPalette: {
@@ -736,12 +737,10 @@ var GFX = {
             hFlip: true,
             vFlip: true,
             encode: function(data) {
-                // 32-bit source, 8-bit destination
-                data.dest = new Uint8Array(data.src.buffer);
+                data.dest = new Uint8Array(data.src);
             },
             decode: function(data) {
-                // 8-bit source, 32-bit destination
-                data.dest = new Uint32Array(data.src.buffer);
+                data.dest = new Uint8Array(data.src);
             }
         },
         generic8bppTile: {
@@ -756,19 +755,18 @@ var GFX = {
             vFlip: false,
             encode: function(data) {
                 // 32-bit source, 8-bit destination
-                // const src32 = new Uint32Array(data.src.buffer);
-                data.dest = new Uint8Array(data.src.length);
+                const src32 = new Uint32Array(data.src.buffer);
+                data.dest = new Uint8Array(src32.length);
 
                 var s = 0;
                 var d = 0;
                 var t, tile;
 
-                while (s < data.src.length) {
-                    t = data.src[s++];
+                while (s < src32.length) {
+                    t = src32[s++];
                     tile = t & 0x000000FF;
                     data.dest[d++] = tile;
                 }
-                // return [new Uint8Array(dest.buffer), data.byteLength];
             },
             decode: function(data) {
                 // 8-bit source, 32-bit destination
@@ -784,7 +782,7 @@ var GFX = {
                     tile = t & 0x00FF;
                     data.dest[d++] = tile;
                 }
-                // return [dest, data.byteLength];
+                data.dest = new Uint8Array(data.dest.buffer);
             }
         },
         generic4bppTile: {
@@ -799,19 +797,19 @@ var GFX = {
             vFlip: false,
             encode: function(data) {
                 // 32-bit source, 8-bit destination
-                // const src32 = new Uint32Array(data.src.buffer);
-                data.dest = new Uint8Array(data.src.length);
+                const src32 = new Uint32Array(data.src.buffer);
+                data.dest = new Uint8Array(src32.length);
 
                 var s = 0;
                 var d = 0;
                 var t, tile;
 
-                while (s < data.src.length) {
-                    t = data.src[s++];
+                while (s < src32.length) {
+                    t = src32[s++];
                     tile = t & 0x000000FF;
                     data.dest[d++] = tile;
                 }
-                // return [new Uint8Array(dest.buffer), data.byteLength];
+                data.dest = new Uint8Array(data.dest.buffer);
             },
             decode: function(data) {
                 // 8-bit source, 32-bit destination
@@ -827,7 +825,7 @@ var GFX = {
                     tile = t & 0x00FF;
                     data.dest[d++] = tile;
                 }
-                // return [dest, data.byteLength];
+                data.dest = new Uint8Array(data.dest.buffer);
             }
         },
         generic2bppTile: {
@@ -842,19 +840,19 @@ var GFX = {
             vFlip: false,
             encode: function(data) {
                 // 32-bit source, 8-bit destination
-                // var src = new Uint32Array(data.buffer, data.byteOffset, data.byteLength >> 2);
-                data.dest = new Uint8Array(data.src.length);
+                const src32 = new Uint32Array(data.src.buffer);
+                data.dest = new Uint8Array(src32.length);
 
                 var s = 0;
                 var d = 0;
                 var t, tile;
 
-                while (s < data.src.length) {
-                    t = data.src[s++];
+                while (s < src32.length) {
+                    t = src32[s++];
                     tile = t & 0x000000FF;
                     data.dest[d++] = tile;
                 }
-                // return [new Uint8Array(dest.buffer), data.byteLength];
+                data.dest = new Uint8Array(data.dest.buffer);
             },
             decode: function(data) {
                 // 8-bit source, 32-bit destination
@@ -870,7 +868,7 @@ var GFX = {
                     tile = t & 0x00FF;
                     data.dest[d++] = tile;
                 }
-                // return [dest, data.byteLength];
+                data.dest = new Uint8Array(data.dest.buffer);
             }
         },
         gba8bppTile: {
@@ -885,15 +883,15 @@ var GFX = {
             vFlip: true,
             encode: function(data) {
                 // 32-bit source, 16-bit destination
-                // var src = new Uint32Array(data.buffer, data.byteOffset, data.byteLength >> 2);
-                const dest16 = new Uint16Array(data.src.length);
+                const src32 = new Uint32Array(data.src.buffer);
+                const dest16 = new Uint16Array(src32.length);
 
                 var s = 0;
                 var d = 0;
                 var t, tile;
 
-                while (s < data.src.length) {
-                    t = data.src[s++];
+                while (s < src32.length) {
+                    t = src32[s++];
                     tile = t & 0x000003FF;
                     tile |= (t & 0x00E00000) >> 9;
                     tile |= (t & 0x01000000) >> 9;
@@ -901,7 +899,6 @@ var GFX = {
                     dest16[d++] = tile;
                 }
                 data.dest = new Uint8Array(dest16.buffer);
-                // return [new Uint8Array(dest.buffer), data.byteLength];
             },
             decode: function(data) {
                 // 16-bit source, 32-bit destination
@@ -921,7 +918,7 @@ var GFX = {
                     tile |= (t & 0x0C00) << 18;
                     data.dest[d++] = tile;
                 }
-                // return [dest, data.byteLength];
+                data.dest = new Uint8Array(data.dest.buffer);
             }
         },
         gba4bppTile: {
@@ -936,15 +933,15 @@ var GFX = {
             vFlip: true,
             encode: function(data) {
                 // 32-bit source, 16-bit destination
-                // var src = new Uint32Array(data.buffer, data.byteOffset, data.byteLength >> 2);
-                const dest16 = new Uint16Array(data.src.length);
+                const src32 = new Uint32Array(data.src.buffer);
+                const dest16 = new Uint16Array(src32.length);
 
                 var s = 0;
                 var d = 0;
                 var t, tile;
 
-                while (s < data.src.length) {
-                    t = data.src[s++];
+                while (s < src32.length) {
+                    t = src32[s++];
                     tile = t & 0x000003FF;
                     tile |= (t & 0x00700000) >> 8;
                     tile |= (t & 0x01000000) >> 9;
@@ -952,7 +949,6 @@ var GFX = {
                     dest16[d++] = tile;
                 }
                 data.dest = new Uint8Array(dest16.buffer);
-                // return [new Uint8Array(dest.buffer), data.byteLength];
             },
             decode: function(data) {
                 // 16-bit source, 32-bit destination
@@ -971,7 +967,7 @@ var GFX = {
                     tile |= (t & 0x0C00) << 18;
                     data.dest[d++] = tile;
                 }
-                // return [dest, data.byteLength];
+                data.dest = new Uint8Array(data.dest.buffer);
             }
         },
         gba2bppTile: {
@@ -986,22 +982,22 @@ var GFX = {
             vFlip: true,
             encode: function(data) {
                 // 32-bit source, 16-bit destination
-                // var src = new Uint32Array(data.buffer, data.byteOffset, data.byteLength >> 2);
-                const dest16 = new Uint16Array(src.length);
+                const src32 = new Uint32Array(data.src.buffer);
+                const dest16 = new Uint16Array(src32.length);
 
                 var s = 0;
                 var d = 0;
                 var t, tile;
 
-                while (s < data.src.length) {
-                    t = data.src[s++];
+                while (s < src32.length) {
+                    t = src32[s++];
                     tile = t & 0x000003FF;
                     tile |= (t & 0x001C0000) >> 6;
                     tile |= (t & 0x01000000) >> 9;
                     tile |= (t & 0x30000000) >> 18;
                     data.dest[d++] = tile;
                 }
-                // return [new Uint8Array(dest.buffer), data.byteLength];
+                data.dest = new Uint8Array(data.dest.buffer);
             },
             decode: function(data) {
                 // 16-bit source, 32-bit destination
@@ -1021,7 +1017,7 @@ var GFX = {
                     tile |= (t & 0x0C00) << 18;
                     data.dest[d++] = tile;
                 }
-                // return [dest, data.byteLength];
+                data.dest = new Uint8Array(data.dest.buffer);
             }
         },
         nesNameTable: {
@@ -1136,14 +1132,15 @@ var GFX = {
             vFlip: true,
             encode: function(data) {
                 // 32-bit source, 16-bit destination
-                const dest16 = new Uint16Array(data.src.length);
+                const src32 = new Uint32Array(data.src.buffer);
+                const dest16 = new Uint16Array(src32.length);
 
                 var s = 0;
                 var d = 0;
                 var t, tile;
 
-                while (s < data.src.length) {
-                    t = data.src[s++];
+                while (s < src32.length) {
+                    t = src32[s++];
                     tile = t & 0x000003FF;
                     tile |= (t & 0x00700000) >> 10;
                     tile |= (t & 0x01000000) >> 11;
@@ -1169,6 +1166,7 @@ var GFX = {
                     tile |= (t & 0xC000) << 14;
                     data.dest[d++] = tile;
                 }
+                data.dest = new Uint8Array(data.dest.buffer);
             }
         },
         snes3bppTile: {
@@ -1183,14 +1181,15 @@ var GFX = {
             vFlip: true,
             encode: function(data) {
                 // 32-bit source, 16-bit destination
-                const dest16 = new Uint16Array(data.src.length);
+                const src32 = new Uint32Array(data.src.buffer);
+                const dest16 = new Uint16Array(src32.length);
 
                 var s = 0;
                 var d = 0;
                 var t, tile;
 
-                while (s < data.src.length) {
-                    t = data.src[s++];
+                while (s < src32.length) {
+                    t = src32[s++];
                     tile = t & 0x000003FF;
                     tile |= (t & 0x00380000) >> 9;
                     tile |= (t & 0x01000000) >> 11;
@@ -1216,6 +1215,7 @@ var GFX = {
                     tile |= (t & 0xC000) << 14;
                     data.dest[d++] = tile;
                 }
+                data.dest = new Uint8Array(data.dest.buffer);
             }
         },
         snes2bppTile: {
@@ -1230,14 +1230,15 @@ var GFX = {
             vFlip: true,
             encode: function(data) {
                 // 32-bit source, 16-bit destination
-                const dest16 = new Uint16Array(data.src.length);
+                const src32 = new Uint32Array(data.src.buffer);
+                const dest16 = new Uint16Array(src32.length);
 
                 var s = 0;
                 var d = 0;
                 var t, tile;
 
-                while (s < data.src.length) {
-                    t = data.src[s++];
+                while (s < src32.length) {
+                    t = src32[s++];
                     tile = t & 0x000003FF;
                     tile |= (t & 0x001C0000) >> 8;
                     tile |= (t & 0x01000000) >> 11;
@@ -1263,6 +1264,7 @@ var GFX = {
                     tile |= (t & 0xC000) << 14;
                     data.dest[d++] = tile;
                 }
+                data.dest = new Uint8Array(data.dest.buffer);
             }
         },
         snesSpriteTile: {
@@ -1277,14 +1279,15 @@ var GFX = {
             vFlip: true,
             encode: function(data) {
                 // 32-bit source, 16-bit destination
-                const dest16 = new Uint16Array(data.src.length);
+                const src32 = new Uint32Array(data.src.buffer);
+                const dest16 = new Uint16Array(src32.length);
 
                 var s = 0;
                 var d = 0;
                 var t, tile;
 
-                while (s < data.src.length) {
-                    t = data.src[s++];
+                while (s < src32.length) {
+                    t = src32[s++];
                     tile = t & 0x000001FF;
                     tile |= (t & 0x00700000) >> 11;
                     tile |= (t & 0x03000000) >> 12;
@@ -1310,6 +1313,7 @@ var GFX = {
                     tile |= (t & 0xC000) << 14;
                     data.dest[d++] = tile;
                 }
+                data.dest = new Uint8Array(data.dest.buffer);
             }
         },
         x16_4bppTile: {
@@ -1324,14 +1328,15 @@ var GFX = {
             vFlip: true,
             encode: function(data) {
                 // 32-bit source, 16-bit destination
-                const dest16 = new Uint16Array(data.src.length);
+                const src32 = new Uint32Array(data.src.buffer);
+                const dest16 = new Uint16Array(src32.length);
 
                 var s = 0;
                 var d = 0;
                 var t, tile;
 
-                while (s < data.src.length) {
-                    t = data.src[s++];
+                while (s < src32.length) {
+                    t = src32[s++];
                     tile = t & 0x000003FF;
                     tile |= (t & 0x00F00000) >> 8;
                     tile |= (t & 0x30000000) >> 18;
@@ -1355,6 +1360,7 @@ var GFX = {
                     tile |= (t & 0x0C00) << 18;
                     data.dest[d++] = tile;
                 }
+                data.dest = new Uint8Array(data.dest.buffer);
             }
         }
     },

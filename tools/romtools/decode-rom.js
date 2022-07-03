@@ -81,7 +81,7 @@ function decodeProperty(data, definition) {
 
   let value = 0;
   const begin = Number(definition.begin) || 0;
-  const end = Math.min(begin + 3, data.length - 1);
+  const end = Math.min(begin + 4, data.length - 1);
   for (let i = end; i >= begin; i--) {
       value <<= 8;
       value |= data[i];
@@ -97,8 +97,10 @@ function decodeObject(data, definition) {
   definition = definition || { type: 'data' };
 
   // decode the data
-  const dataCodec = new ROMDataCodec(definition.format);
-  const decodedData = dataCodec.decode(data);
+  if (definition.format) {
+    const dataCodec = new ROMDataCodec(definition.format);
+    data = dataCodec.decode(data);
+  }
 
   if (definition.type === 'text') {
     const encodingKey = definition.encoding;
@@ -111,20 +113,25 @@ function decodeObject(data, definition) {
     let assembly = {};
     for (let key in definition.assembly) {
       const subDefinition = definition.assembly[key];
+
+      // skip category names
       if (isString(subDefinition)) continue;
+
+      // skip external properties
       if (subDefinition.external) continue;
-      assembly[key] = decodeObject(decodedData, subDefinition);
+
+      assembly[key] = decodeObject(data, subDefinition);
     }
     return assembly;
 
   } else if (definition.type === 'array') {
-    return decodeArray(decodedData, definition);
+    return decodeArray(data, definition);
 
   } else if (definition.type === 'property') {
-    return decodeProperty(decodedData, definition);
+    return decodeProperty(data, definition);
 
   } else {
-    return dataBase64 = Buffer.from(decodedData).toString('base64');
+    return dataBase64 = Buffer.from(data).toString('base64');
   }
 }
 
@@ -233,6 +240,15 @@ function decodeParentObject(definition) {
       }
       const range = new ROMRange(begin, end + 1);
       itemRanges.push(range);
+
+    } else if (definition.isSequential) {
+      let end = objData.length;
+      if (i !== definition.arrayLength - 1) {
+        end = pointers[i + 1];
+      }
+      const range = new ROMRange(begin, end);
+      itemRanges.push(range);
+
     } else {
       itemRanges.push(pointerRanges[begin]);
     }
@@ -251,10 +267,6 @@ function decodeParentObject(definition) {
   if (!fs.existsSync(definition.file)) {
     let asmString = '';
     asmString += '.list off\n';
-    asmString += '\n';
-    asmString += `; Object Symbol: ${asmSymbol}\n`;
-    asmString += `; Mapper Range:  ${unmappedRange}\n`;
-    asmString += `; File Range:    ${mappedRange}\n`;
     asmString += '\n';
     asmString += `.define ${asmSymbol}Size`;
     asmString += ` ${hexString(mappedRange.length, 4, '$')}\n`;
@@ -303,7 +315,7 @@ function decodeParentObject(definition) {
   if (isArray) {
     // create each array item
     const array = [];
-    for (i = 0; i < itemRanges.length; i++) {
+    for (let i = 0; i < itemRanges.length; i++) {
       const itemRange = itemRanges[i];
       const itemData = objData.slice(itemRange.begin, itemRange.end);
       array[i] = decodeObject(itemData, definition.assembly);
@@ -324,11 +336,12 @@ function decodeROM(romPath, definitionPath) {
   // load the ROM file
   romData = new Uint8Array(fs.readFileSync(romPath));
 
-  romDefinition.data = {};
+  romDefinition.obj = {};
   for (let key in romDefinition.assembly) {
     const objDefinition = romDefinition.assembly[key];
     if (!objDefinition.file) continue;
-    romDefinition.data[key] = decodeParentObject(objDefinition);
+    romDefinition.obj[key] = decodeParentObject(objDefinition);
+    // romDefinition.assembly[key].isDirty = true;
   }
 
   return romDefinition;

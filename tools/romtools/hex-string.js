@@ -1,14 +1,10 @@
 
 const isNumber = require('is-number');
 
-function bytesSwapped16(n) {
-  return ((n & 0xFF) << 8) | ((n & 0xFF00) >> 8);
-}
-
 function hexString(num, pad, prefix) {
   if (prefix === undefined) prefix = '0x';
   if (num < 0) num = 0xFFFFFFFF + num + 1;
-  var hex = num.toString(16).toUpperCase();
+  let hex = num.toString(16).toUpperCase();
   if (isNumber(pad)) {
     hex = hex.padStart(pad, '0');
   } else if (num < 0x0100) {

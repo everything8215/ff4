@@ -414,7 +414,6 @@
       "file": "btlgfx/text/attack_name_jp.asm",
       "assembly": {
         "type": "text",
-        "length": 8,
         "encoding": "text"
       },
       "stringTable": {
@@ -602,7 +601,7 @@
     "battleBackgroundGraphics": {
       "type": "array",
       "name": "Battle Background Graphics",
-      "range": "0x1CA800-0x1CD8FF",
+      "range": "0x1CA800-0x1CD8EF",
       "stringTable": "battleBackgroundProperties",
       "arrayLength": 17,
       "asmSymbol": "BattleBGGfx",
@@ -3070,7 +3069,7 @@
       "name": "Map Graphics (Overworld Cave)",
       "asmSymbol": "MapGfxCave2",
       "file": "field/gfx/cave2_gfx_jp.asm",
-      "range": "0x1FE888-0x1FFFFF",
+      "range": "0x1FE888-0x1FFFF7",
       "format": "snes3bpp",
       "palette": "mapPalettes"
     },
@@ -3085,10 +3084,8 @@
       "type": "array",
       "name": "Map Layouts 1",
       "range": "0x178300-0x18EF70",
-      "pointerAlign": "0x8000",
-      "isSequential": true,
-      "endPointer": true,
       "arrayLength": 256,
+      "isSequential": true,
       "asmSymbol": "SubTilemap1",
       "file": "field/data/sub_tilemap1_jp.asm",
       "assembly": {
@@ -3103,10 +3100,8 @@
       "type": "array",
       "name": "Map Layouts 2",
       "range": "0x18EF71-0x19FD27",
-      "pointerAlign": "0x8000",
-      "isSequential": true,
-      "endPointer": true,
       "arrayLength": 128,
+      "isSequential": true,
       "asmSymbol": "SubTilemap2",
       "file": "field/data/sub_tilemap2_jp.asm",
       "assembly": {
@@ -3773,7 +3768,7 @@
     "mapSpriteGraphics": {
       "type": "array",
       "name": "Map Sprite Graphics",
-      "range": "0x1B8000-0x1BFFFF",
+      "range": "0x1B8000-0x1BFFDF",
       "arrayLength": 107,
       "asmSymbol": "MapSpriteGfx",
       "file": "field/gfx/map_sprite_gfx_jp.asm",
@@ -5667,7 +5662,7 @@
       "assembly": {
         "type": "text",
         "name": "Name",
-        "encoding": "text",
+        "encoding": "fixedLength",
         "length": 8
       },
       "stringTable": {
@@ -6409,6 +6404,7 @@
       "name": "NPC Script",
       "range": "0x139C00-0x13A28A",
       "arrayLength": 512,
+      "isSequential": true,
       "asmSymbol": "NPCScript",
       "file": "field/data/npc_script_jp.asm",
       "assembly": {
@@ -6488,7 +6484,7 @@
       "range": "0x1AFD00-0x1AFD7F",
       "asmSymbol": "PrologueMoonGfx",
       "file": "field/gfx/prologue_moon_gfx.asm",
-      "format": "snes3bpp",
+      "format": "snes4bpp",
       "palette": "prologuePalette"
     },
     "prologueMoonPalette": {
@@ -6940,6 +6936,7 @@
       "name": "Trigger Script",
       "range": "0x12F460-0x12F618",
       "arrayLength": 256,
+      "isSequential": true,
       "asmSymbol": "TriggerScript",
       "file": "field/data/trigger_script.asm",
       "assembly": {
@@ -7330,16 +7327,19 @@
       "name": "World Graphics",
       "range": "0x1D8000-0x1DD3BF",
       "arrayLength": 3,
-      "itemLength": "0x2000",
       "asmSymbol": "WorldBGGfx",
       "file": "field/gfx/world_bg_gfx.asm",
       "assembly": {
         "type": "graphics",
-        "length": "0x2000",
         "format": "linear4bpp",
         "palette": "worldPalettes[%i]",
         "backColor": true
-      }
+      },
+      "itemRanges": [
+        "0x1D8000-0x1D9FFF",
+        "0x1DA000-0x1DBFFF",
+        "0x1DC000-0x1DD3BF"
+      ]
     },
     "worldLayout0": {
       "type": "array",
@@ -7395,7 +7395,6 @@
       "asmSymbol": "WorldPal",
       "file": "field/gfx/world_pal.asm",
       "assembly": {
-        "length": "0x80",
         "format": "bgr555"
       }
     },
@@ -7493,7 +7492,6 @@
       "file": "field/data/world_tileset.asm",
       "assembly": {
         "type": "tilemap",
-        "length": "0x0200",
         "format": ["generic4bppTile", "interlace(2,16,2)", "interlace(1,4,128)"],
         "width": 32,
         "height": 16,

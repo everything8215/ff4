@@ -323,17 +323,17 @@ ROMDataCodec.Codec = {
         encode: function(data) {
             data.dest = new Uint8Array(20);
             data.dest.set(data.src.subarray(0, 9));
-            var flags = 0;
-            var d = 10;
+            let flags = 0;
+            let d = 10;
             if (data.src[10] || data.src[11] || data.src[12]) {
                 flags |= 0x80;
-                data.dest.set(data.subarray(10, 13), d);
-                d += 3
+                data.dest.set(data.src.subarray(10, 13), d);
+                d += 3;
             }
             if (data.src[13] || data.src[14] || data.src[15]) {
                 flags |= 0x40;
-                newData.set(data.subarray(13, 16), d);
-                d += 3
+                data.dest.set(data.src.subarray(13, 16), d);
+                d += 3;
             }
             if (data.src[16]) {
                 flags |= 0x20;
@@ -357,8 +357,8 @@ ROMDataCodec.Codec = {
         decode: function(data) {
             data.dest = new Uint8Array(20);
             data.dest.set(data.src.subarray(0, 9));
-            var flags = data[9];
-            var i = 10;
+            let flags = data.src[9];
+            let i = 10;
             if (flags & 0x80) {
                 data.dest.set(data.src.subarray(i, i + 3), 10);
                 i += 3;
@@ -388,7 +388,9 @@ ROMDataCodec.Codec = {
                     continue;
                 }
                 l = 0;
-                while (b === data.src[s + l]) l++;
+                while (((s + l) < data.src.length) && (b === data.src[s + l])) {
+                  l++;
+                }
                 if (l > 1) {
                     data.dest[d++] = b | 0x80;
                     data.dest[d++] = l;
@@ -433,8 +435,10 @@ ROMDataCodec.Codec = {
             while (s < data.src.length) {
                 b = data.src[s];
                 l = 1;
-                while (b === data.src[s + l]) l++;
-                if (l > 2) {
+                while (((s + l) < data.src.length) && (b === data.src[s + l])) {
+                  l++;
+                }
+                if (l > 1) {
                     l = Math.min(l, 256);
                     data.dest[d++] = b | 0x80;
                     data.dest[d++] = l - 1;

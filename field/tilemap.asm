@@ -1284,24 +1284,24 @@ DecodeSubTilemap:
         stz     $3e
         lda     #.bankbyte(SubTilemapPtrs)
         sta     $06
-        lda     $0fe5       ; tilemap msb
+        lda     $0fe5                   ; tilemap msb
         and     #$01
         bne     @fece
         lda     $1701
-        beq     @fed0       ; branch if on overworld
+        beq     @fed0                   ; branch if on overworld
 @fece:  inc     $3e
 @fed0:  asl     $3d
         rol     $3e
         ldx     $3d
-        lda     f:SubTilemapPtrs,x   ; pointers to sub-map tilemaps
+        lda     f:SubTilemapPtrs,x      ; pointers to sub-map tilemaps
         sta     $3d
         lda     f:SubTilemapPtrs+1,x
         sta     $3e
         bpl     @feea
-        inc     $06         ; increment bank
+        inc     $06                     ; increment bank
         and     #$7f
         sta     $3e
-@feea:  lda     f:SubTilemapPtrs+2,x   ; next pointer
+@feea:  lda     f:SubTilemapPtrs+2,x    ; next pointer
         sta     $40
         lda     f:SubTilemapPtrs+3,x
         and     #$7f
@@ -1313,7 +1313,7 @@ DecodeSubTilemap:
         clc
         adc     #$80
         sta     $41
-@ff05:  lda     $0fe5       ; sub-map tilemap msb
+@ff05:  lda     $0fe5                   ; sub-map tilemap msb
         and     #$01
         bne     @ff11
         lda     $1701
@@ -1332,7 +1332,7 @@ DecodeSubTilemap:
         pha
         plb
 @ff29:  lda     $8000,y
-        sta     $7f4400,x   ; copy to buffer
+        sta     $7f4400,x               ; copy to buffer
         inx
         cpx     $40
         beq     @ff47
@@ -1340,7 +1340,7 @@ DecodeSubTilemap:
         cpy     #$8000
         bne     @ff29
         ldy     #0
-        inc     $06         ; next bank
+        inc     $06                     ; next bank
         lda     $06
         pha
         plb
@@ -1351,7 +1351,7 @@ DecodeSubTilemap:
         ldx     #0
         stx     $40
         stx     $3d
-@ff52:  lda     $7f4400,x   ; decode sub-map tilemap
+@ff52:  lda     $7f4400,x               ; decode sub-map tilemap
         bpl     @ff89
 ; rle
         and     #$7f

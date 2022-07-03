@@ -3,10 +3,10 @@
 This is a disassembly of Final Fantasy IV for the Super Famicom (i.e. Final
 Fantasy II for the SNES). It builds the following ROMs:
 
-- Final Fantasy IV 1.0 (J), `CRC32: 0x21027C5D`
-- Final Fantasy IV 1.1 (J), `CRC32: 0xCAA15E97`
-- Final Fantasy II 1.0 (U), `CRC32: 0x65D0A825`
-- Final Fantasy II 1.1 (U), `CRC32: 0x23084FCD`
+- Final Fantasy IV 1.0 (J), CRC32: `0x21027C5D`
+- Final Fantasy IV 1.1 (J), CRC32: `0xCAA15E97`
+- Final Fantasy II 1.0 (U), CRC32: `0x65D0A825`
+- Final Fantasy II 1.1 (U), CRC32: `0x23084FCD`
 
 The Japanese "Easy Version" of FF4 is not currently supported.
 
@@ -54,6 +54,19 @@ files to their original state, simply delete those files and run `make rip`
 again, as it will only create files that do not exist and will not affect
 existing files.
 
+All ROM data will also be decoded and saved to a json file in the root
+directory called either ff4-en-data.json or ff4-jp-data.json. Data in these
+files can be modified and then encoded into source files when a ROM is
+assembled. Editing the data file will eventually be done with an editor with a
+GUI based on my FF6Tools editor (https://github.com/everything8215/ff6tools).
+For now it is possible to change simple things like text and monster HP
+by editing the json file. A top-level object called `"obj"` contains all of
+the data objects. After editing an object, find the corresponding entry in the
+top-level object called `"assembly"` and add the following property:
+`"isDirty": true`. This will notify the encoding script that the assembly
+file containing this object's data needs to be updated. This procedure will
+be automated eventually, but for now it needs to be done manually.
+
 ### Assemble and Link ROM File
 
 Run `make <version>` to make the version of the ROM that you want, where
@@ -68,10 +81,10 @@ The ROM will be created in the `rom` directory. If you have ripped data from
 both the Japanese and English versions, you can also run `make all` to make
 all four ROMs.
 
-After building the vanilla ROMs, you are free to modify the code as you like.
-In the future, I am planning to allow the extracted data to be opened in a GUI
-based on my FF6Tools editor, https://github.com/everything8215/ff6tools. For
-now, there is no convenient way to modify the game data.
+After building the vanilla ROMs, you are free to modify the code and data as
+you like, then run make again to rebuild the ROM. Some switchable config
+options can be found in the file `include/const.inc`. This includes several
+bugfixes and options to skip the intro and disable random battles.
 
 ## Distributing ROM Hacks
 

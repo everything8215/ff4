@@ -16,7 +16,7 @@ ROMS = $(foreach V, $(VERSIONS), $(ROM_DIR)/$(V).sfc)
 # list of modules
 MODULES = field menu btlgfx battle sound cutscene
 
-.PHONY: all rip clean $(VERSIONS) $(MODULES)
+.PHONY: all rip encode-jp encode-en clean $(VERSIONS) $(MODULES)
 
 # disable default suffix rules
 .SUFFIXES:
@@ -27,6 +27,12 @@ all: $(VERSIONS)
 # rip data from ROMs
 rip:
 	node tools/rip-ff4.js
+
+encode-jp: ff4-jp-data.json
+	node tools/encode-ff4.js ff4-jp-data.json
+
+encode-en: ff4-en-data.json
+	node tools/encode-ff4.js ff4-en-data.json
 
 # clean module subdirectories
 MODULES_CLEAN = $(foreach M, $(MODULES), $(M)_clean)
@@ -77,27 +83,27 @@ OBJ_FILES_EN1 = $(foreach M, $(MODULES), $(M)/obj/$(M)_en1.o)
 OBJ_FILES_JPEZ = $(foreach M, $(MODULES), $(M)/obj/$(M)_jpez.o)
 
 # rules for making ROM files
-$(FF4_JP_PATH): ff4-jp.lnk $(OBJ_FILES_JP)
+$(FF4_JP_PATH): ff4-jp.lnk encode-jp $(OBJ_FILES_JP)
 	@mkdir -p rom
 	$(LINK) $(LINKFLAGS) -m $(@:sfc=map) -o $@ -C $< $(OBJ_FILES_JP)
 	node tools/calc-checksum.js $@
 
-$(FF4_JP1_PATH): ff4-jp.lnk $(OBJ_FILES_JP1)
+$(FF4_JP1_PATH): ff4-jp.lnk encode-jp $(OBJ_FILES_JP1)
 	@mkdir -p rom
 	$(LINK) $(LINKFLAGS) -m $(@:sfc=map) -o $@ -C $< $(OBJ_FILES_JP1)
 	node tools/calc-checksum.js $@
 
-$(FF4_EN_PATH): ff4-en.lnk $(OBJ_FILES_EN)
+$(FF4_EN_PATH): ff4-en.lnk encode-en $(OBJ_FILES_EN)
 	@mkdir -p rom
 	$(LINK) $(LINKFLAGS) -m $(@:sfc=map) -o $@ -C $< $(OBJ_FILES_EN)
 	node tools/calc-checksum.js $@
 
-$(FF4_EN1_PATH): ff4-en.lnk $(OBJ_FILES_EN1)
+$(FF4_EN1_PATH): ff4-en.lnk encode-en $(OBJ_FILES_EN1)
 	@mkdir -p rom
 	$(LINK) $(LINKFLAGS) -m $(@:sfc=map) -o $@ -C $< $(OBJ_FILES_EN1)
 	node tools/calc-checksum.js $@
 
-$(FF4_JPEZ_PATH): ff4-jp.lnk $(OBJ_FILES_JPEZ)
+$(FF4_JPEZ_PATH): ff4-jp.lnk encode-jp $(OBJ_FILES_JPEZ)
 	@mkdir -p rom
 	$(LINK) $(LINKFLAGS) -m $(@:sfc=map) -o $@ -C $< $(OBJ_FILES_JPEZ)
 	node tools/calc-checksum.js $@

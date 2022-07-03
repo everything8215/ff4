@@ -692,29 +692,6 @@ BattleMsgPtrs:
 AnimScriptPtrs:
         make_ptr_tbl_rel AnimScript, 79, .bankbyte(*)<<16
 
-; Some of the animation frame pointers point to the beginning of the
-; animation script. These frames are not present in the frame data
-; include below so their labels are defined here. The bugfix moves these
-; labels to the beginning of the frame data
-
-.if !BUGFIX_ANIM_FRAME_PTRS
-
-AnimFrame_00bb:
-AnimFrame_00bc:
-AnimFrame_00e9:
-AnimFrame_010d:
-AnimFrame_010e:
-AnimFrame_011f:
-AnimFrame_0120:
-AnimFrame_0121:
-AnimFrame_0122:
-AnimFrame_012e:
-AnimFrame_0160:
-AnimFrame_0161:
-AnimFrame_0162:
-
-.endif
-
 ; 0f/d67e
         .include "data/anim_script.asm"
         .res $0800+AnimScriptPtrs-*
@@ -723,26 +700,37 @@ AnimFrame_0162:
 AnimFramePtrs:
         make_ptr_tbl_rel AnimFrame, 361, .bankbyte(*)<<16
 
-.if BUGFIX_ANIM_FRAME_PTRS
-
-AnimFrame_00bb:
-AnimFrame_00bc:
-AnimFrame_00e9:
-AnimFrame_010d:
-AnimFrame_010e:
-AnimFrame_011f:
-AnimFrame_0120:
-AnimFrame_0121:
-AnimFrame_0122:
-AnimFrame_012e:
-AnimFrame_0160:
-AnimFrame_0161:
-AnimFrame_0162:
-
-.endif
-
 ; 0f/e0b2
         .include "data/anim_frame.asm"
+
+; Some of the animation frame pointers point to the beginning of the
+; animation script. These frames are not present in the frame data
+; so their labels are defined at the beginning of the animation scripts.
+; The bugfix moves these labels to the beginning of the frame data.
+
+.ifndef AnimFrame_00bb
+
+.if BUGFIX_ANIM_FRAME_PTRS
+        ANIM_FRAME_NULL := AnimFrame
+.else
+        ANIM_FRAME_NULL := AnimScript
+.endif
+
+AnimFrame_00bb := ANIM_FRAME_NULL
+AnimFrame_00bc := ANIM_FRAME_NULL
+AnimFrame_00e9 := ANIM_FRAME_NULL
+AnimFrame_010d := ANIM_FRAME_NULL
+AnimFrame_010e := ANIM_FRAME_NULL
+AnimFrame_011f := ANIM_FRAME_NULL
+AnimFrame_0120 := ANIM_FRAME_NULL
+AnimFrame_0121 := ANIM_FRAME_NULL
+AnimFrame_0122 := ANIM_FRAME_NULL
+AnimFrame_012e := ANIM_FRAME_NULL
+AnimFrame_0160 := ANIM_FRAME_NULL
+AnimFrame_0161 := ANIM_FRAME_NULL
+AnimFrame_0162 := ANIM_FRAME_NULL
+
+.endif
 
 ; ------------------------------------------------------------------------------
 
@@ -1493,6 +1481,13 @@ _16fff6:
 
 ; 1c/a800
         .include "gfx/battle_bg_gfx.asm"
+
+; unused partial tile at the end of this block of graphics
+.if BYTE_PERFECT
+        .byte   $ff,$00,$81,$00,$81,$00,$99,$00,$99,$00,$81,$00,$81,$00,$ff,$00
+.endif
+
+.segment "weapon_gfx"
 
 ; 1c/d900
         .include "gfx/weapon_gfx.asm"

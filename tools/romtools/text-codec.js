@@ -4,7 +4,7 @@ const isNumber = require('is-number');
 const isArray = require('isarray');
 const hexString = require('./hex-string');
 
-class ROMTextEncoding {
+class ROMTextCodec {
   constructor(definition, charTables) {
 
     this.encodingTable = {};
@@ -90,7 +90,7 @@ class ROMTextEncoding {
       });
 
       if (!matches.length && remainingText.startsWith('\\x')) {
-        parameter = `0${remainingText.substring(1, 4)}`;
+        const parameter = `0${remainingText.substring(1, 4)}`;
         i += 4;
         const n = Number(parameter);
         if (!isNumber(n)) {
@@ -178,15 +178,19 @@ class ROMTextEncoding {
               continue;
           } else if (c === '\\0') {
               break; // string terminator
+          } else if (c.endsWith('[[')) {
+              i += 2;
           } else if (c.endsWith('[')) {
               i++;
-          } else if (c.endsWith('[[]')) {
-              i += 2;
           }
       }
 
       return Math.min(i, data.length);
   }
+
+  getPadValue() {
+    return this.encodingTable['\\pad'] || 0;
+  }
 }
 
-module.exports = ROMTextEncoding;
+module.exports = ROMTextCodec;
