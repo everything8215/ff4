@@ -65,7 +65,8 @@ the data objects. After editing an object, find the corresponding entry in the
 top-level object called `"assembly"` and add the following property:
 `"isDirty": true`. This will notify the encoding script that the assembly
 file containing this object's data needs to be updated. This procedure will
-be automated eventually, but for now it needs to be done manually.
+be automated eventually, but for now it needs to be done manually. A simple
+example is described below.
 
 ### Assemble and Link ROM File
 
@@ -85,6 +86,109 @@ After building the vanilla ROMs, you are free to modify the code and data as
 you like, then run make again to rebuild the ROM. Some switchable config
 options can be found in the file `include/const.inc`. This includes several
 bugfixes and options to skip the intro and disable random battles.
+
+## Tutorial: Modifying Game Data
+
+Here, I'll describe how to make a simple modification to the game data. In the
+Japanese version of FF4, Dark Knight Cecil has a special ability called
+暗黒 (Dark) which hits all enemies in exchange for 1/8 of Cecil's max HP.
+This ability was removed in the English translation, but we can add it back in.
+
+First, follow the instructions above to rip the data from an English FF4 ROM.
+At this point, if you run `make ff4-en` it will just create a new ROM that is
+identical to the original. Now open the file `ff4-en-data.json` in a text
+editor and get ready to make some changes.
+
+First we need to give the ability a proper name. Search the file for
+`battleCommandNames` until you find a list of the names of all of the
+character abilities, something like this:
+```
+"battleCommandNames": [
+  "Fight",
+  "Item",
+  "White",
+  "Black",
+  "Call",
+  "Dummy",
+  "Jump",
+  "Dummy",
+  ...
+```
+Cecil's Dark ability is the 6th one down, where it says `"Dummy"` right after
+`"Call"`. You can change it to whatever you like, as long as it is 5 letters or
+less and you can only use letters that are available in the English FF4 font.
+I called it `"DWave"` for "Dark Wave".
+
+Next, we need to add the ability to Cecil's command list. Search for
+`characterBattleCommands` until you find this list:
+```
+"characterBattleCommands": [
+  [
+    0,
+    1,
+    255,
+    255,
+    255
+  ],
+  ...
+```
+These are the five abilities in Cecil's command list. The numbers correspond to
+the list of command names above, so we have Fight, Item, and the last three
+are blank slots. Let's change it to [0, 5, 1, 255, 255] so that the Dark
+command is in between Fight and Item, just like in the Japanese version.
+
+Lastly, we need to notify the encoding script that these two objects have
+changed. Search the file again for `battleCommandNames`, but this time look
+for this block:
+```
+"battleCommandNames": {
+  "type": "array",
+  "name": "Battle Command Names",
+  "range": "0x0FA7C6-0x0FA859",
+  "arrayLength": 32,
+  "itemLength": 5,
+  ...
+```
+Between the first and second lines shown above, add the following line of text:
+```
+  "isDirty": true,
+```
+Do the same thing for `characterBattleCommands`. Now run `make ff4-en` and
+test it out! You should find that Dark Knight Cecil has the Dark ability,
+just like in the Japanese version.
+
+As an extra step, let's change the source code for the Dark ability so that it
+only uses 1/16 of Cecil's max HP. Open the file `battle/cmd.asm` in a text
+editor and search for `Cmd_05`. You should find this subroutine:
+```
+; [ battle command $05: dark wave ]
+
+Cmd_05:
+@e9ec:  lda     $cd
+        bmi     @ea16
+        longa
+        ldx     $a6
+        lda     $2009,x
+        jsr     Lsr_3
+        sta     $a9
+        sec
+        lda     $2007,x
+        sbc     $a9
+        sta     $2007,x
+        bcs     @ea13
+        lda     #$0000
+        sta     $2007,x
+        lda     #$0080
+        sta     $2003,x
+@ea13:  shorta0
+@ea16:  lda     #$01
+        sta     $c1
+        jmp     DoMultiAttack
+```
+To divide Cecil's max HP by 8, the CPU does a binary shift 3 times. This
+is accomplished by the line `jsr Lsr_3`, which calls a subroutine to do this.
+Change this line to `jsr Lsr_4` so that we divide by 16 instead of 8. Now
+run `make ff4-en` again and try it out.
 
 ## Distributing ROM Hacks
 
