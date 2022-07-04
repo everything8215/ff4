@@ -2757,20 +2757,9 @@
             "external": "weaponArmorProperties[%i].elementStatus",
             "invalid": "index >= 176"
           },
-          "statMod1": {
+          "statMod": {
             "type": "assembly",
-            "external": "weaponArmorProperties[%i].statMod1",
-            "invalid": "index >= 176 || obj.negativeStats"
-          },
-          "statMod2": {
-            "type": "assembly",
-            "external": "weaponArmorProperties[%i].statMod2",
-            "invalid": "index >= 176 || !obj.negativeStats"
-          },
-          "negativeStats": {
-            "type": "assembly",
-            "external": "weaponArmorProperties[%i].negativeStats",
-            "invalid": "index >= 176"
+            "external": "weaponArmorProperties[%i].statMod"
           },
           "stats": {
             "type": "assembly",
@@ -7217,40 +7206,21 @@
               }
             }
           },
-          "negativeStats": {
-            "type": "property",
-            "name": "Negative Stats",
-            "begin": 7,
-            "mask": "0x04",
-            "bool": true
-          },
-          "statMod1": {
+          "statMod": {
             "type": "property",
             "name": "Stat Modifier",
             "begin": 7,
-            "mask": "0x03",
-            "invalid": "obj.negativeStats",
+            "mask": "0x07",
             "stringTable": {
               "string": {
                 "0": "+3",
                 "1": "+5",
                 "2": "+10",
-                "3": "+15"
-              }
-            }
-          },
-          "statMod2": {
-            "type": "property",
-            "name": "Stat Modifier",
-            "begin": 7,
-            "mask": "0x03",
-            "invalid": "!obj.negativeStats",
-            "stringTable": {
-              "string": {
-                "0": "+5/-5",
-                "1": "+10/-10",
-                "2": "+15/-15",
-                "3": "+5/-10"
+                "3": "+15",
+                "4": "+5/-5",
+                "5": "+10/-10",
+                "6": "+15/-15",
+                "7": "+5/-10"
               }
             }
           }
@@ -7565,26 +7535,27 @@
               "max": 253,
               "stringTable": "mapProperties",
               "link": "mapProperties[%i]",
-              "hidden": "[0xFE,0xFF].includes(obj.map)"
+              "invalid": "obj.map === 0xFF"
             },
             "xDest": {
               "type": "property",
               "name": "X Destination",
               "begin": 3,
-              "invalid": "[0xFE,0xFF].includes(obj.map)"
+              "mask": "0x3F",
+              "invalid": "obj.map === 0xFF"
             },
             "yDest": {
               "type": "property",
               "name": "Y Destination",
               "begin": 4,
-              "invalid": "[0xFE,0xFF].includes(obj.map)"
+              "invalid": "obj.map === 0xFF"
             },
             "direction": {
               "type": "property",
               "name": "Facing Direction",
               "begin": 3,
               "mask": "0xC0",
-              "invalid": "[0xFE,0xFF,0xFB,0xFC,0x01FB,0x01FC].includes(obj.map)",
+              "invalid": "obj.map === 0xFF",
               "stringTable": {
                 "string": {
                   "0": "Up",
@@ -7598,7 +7569,7 @@
               "type": "property",
               "name": "Trigger Event",
               "begin": 3,
-              "invalid": "[0xFF,0x01FF].includes(obj.map)",
+              "invalid": "obj.map !== 0xFF",
               "link": "triggerScript[%i]"
             }
           }

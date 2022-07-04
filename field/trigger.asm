@@ -809,7 +809,7 @@ CheckTriggerWorld:
 @9dbc:  inx5
         jmp     @9daa
 
-; position matches
+; player position matches trigger position
 @9dc4:  lda     f:WorldTriggers+2,x
         cmp     #$ff
         bne     @9dd4                   ; branch not an event
@@ -817,7 +817,7 @@ CheckTriggerWorld:
 @9dd0:  jsr     ExecTriggerScript
         rts
 @9dd4:  phx
-        ldx     $172c
+        ldx     $172c                   ; push current world map to stack
         lda     $1700
         beq     @9ddf
         lda     #$01
@@ -836,14 +836,14 @@ CheckTriggerWorld:
         ldx     #0
 @9e03:  stx     $172c
         plx
-        lda     f:WorldTriggers+2,x
+        lda     f:WorldTriggers+2,x     ; set destination map id
         sta     $1702
-        lda     f:WorldTriggers+3,x
+        lda     f:WorldTriggers+3,x     ; set x position
         and     #$3f
         sta     $1706
-        lda     f:WorldTriggers+4,x
+        lda     f:WorldTriggers+4,x     ; set y position
         sta     $1707
-        lda     f:WorldTriggers+3,x
+        lda     f:WorldTriggers+3,x     ; set facing direction
         and     #$c0
         lsr6
         sta     $1705
