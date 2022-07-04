@@ -455,19 +455,19 @@
             "type": "assembly",
             "name": "Name",
             "external": "spellNames[%i]",
-            "invalid": "this.i >= 72"
+            "invalid": "index >= 72"
           },
           "attackName": {
             "type": "assembly",
             "name": "Name",
             "external": "attackNames[%i-72]",
-            "invalid": "(this.i < 72) || (this.i >= 192)"
+            "invalid": "(index < 72) || (index >= 192)"
           },
           "commandName": {
             "type": "assembly",
             "name": "Name",
             "external": "battleCommandNames[%i-192]",
-            "invalid": "(this.i < 192) || (this.i >= 222)"
+            "invalid": "(index < 192) || (index >= 222)"
           },
           "castingTime": {
             "type": "property",
@@ -546,22 +546,22 @@
           "palette": {
             "type": "assembly",
             "external": "attackGraphicsProperties[%i-1].palette",
-            "invalid": "(this.i != 0) && this.i <= 192"
+            "invalid": "(index != 0) && index <= 192"
           },
           "graphics": {
             "type": "assembly",
             "external": "attackGraphicsProperties[%i-1].graphics",
-            "invalid": "(this.i != 0) && this.i <= 192"
+            "invalid": "(index != 0) && index <= 192"
           },
           "animScript": {
             "type": "assembly",
             "external": "attackGraphicsProperties[%i-1].animScript",
-            "invalid": "(this.i != 0) && this.i <= 192"
+            "invalid": "(index != 0) && index <= 192"
           },
           "animEffect": {
             "type": "assembly",
             "external": "attackGraphicsProperties[%i-1].animEffect",
-            "invalid": "(this.i != 0) && this.i <= 192"
+            "invalid": "(index != 0) && index <= 192"
           }
         }
       },
@@ -1693,7 +1693,7 @@
               "name": "Experience",
               "begin": 3,
               "mask": "0xFFFF",
-              "msb": "this.parent.expMSB"
+              "msb": "obj.expMSB"
             },
             "expMSB": {
               "type": "property",
@@ -2656,7 +2656,7 @@
             "begin": 0,
             "multiplier": 10,
             "mask": "0x7F",
-            "invalid": "this.parent.multiplier.value"
+            "invalid": "obj.multiplier"
           },
           "price1000": {
             "type": "property",
@@ -2664,7 +2664,7 @@
             "begin": 0,
             "multiplier": 1000,
             "mask": "0x7F",
-            "invalid": "!this.parent.multiplier.value"
+            "invalid": "!obj.multiplier"
           },
           "multiplier": {
             "type": "property",
@@ -2699,49 +2699,49 @@
             "type": "assembly",
             "name": "Description",
             "external": "itemDescriptionIndex[%i-206].description",
-            "invalid": "(this.parent.i < 206) || (this.parent.i >= 235)"
+            "invalid": "(index < 206) || (index >= 235)"
           },
           "attack": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].attack",
-            "invalid": "this.parent.i >= 96"
+            "invalid": "index >= 96"
           },
           "defense": {
             "type": "assembly",
             "name": "Defense",
             "external": "weaponArmorProperties[%i].attack",
-            "invalid": "(this.parent.i < 96) || (this.parent.i >= 176)"
+            "invalid": "(index < 96) || (index >= 176)"
           },
           "attackPct": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].attackPct",
-            "invalid": "this.parent.i >= 96"
+            "invalid": "index >= 96"
           },
           "defensePct": {
             "type": "assembly",
             "name": "Defense %",
             "external": "weaponArmorProperties[%i].attackPct",
-            "invalid": "(this.parent.i < 96) || (this.parent.i >= 176)"
+            "invalid": "(index < 96) || (index >= 176)"
           },
           "magicDefense": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].magicDefense",
-            "invalid": "(this.parent.i < 96) || (this.parent.i >= 176)"
+            "invalid": "(index < 96) || (index >= 176)"
           },
           "magicDefensePct": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].magicDefensePct",
-            "invalid": "(this.parent.i < 96) || (this.parent.i >= 176)"
+            "invalid": "(index < 96) || (index >= 176)"
           },
           "spellCast": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].spellCast",
-            "invalid": "this.parent.i >= 96"
+            "invalid": "index >= 96"
           },
           "weaponSpellPower": {
             "type": "assembly",
             "external": "weaponSpellPower[%i].spellPower",
-            "invalid": "this.parent.i >= 96"
+            "invalid": "index >= 96"
           },
           "spellAnimation": {
             "type": "assembly",
@@ -2750,112 +2750,112 @@
           "equipability": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].equipability",
-            "invalid": "this.parent.i >= 176"
+            "invalid": "index >= 176"
           },
           "elementStatus": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].elementStatus",
-            "invalid": "this.parent.i >= 176"
+            "invalid": "index >= 176"
           },
           "statMod1": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].statMod1",
-            "invalid": "this.parent.i >= 176 || this.parent.negativeStats.value"
+            "invalid": "index >= 176 || obj.negativeStats"
           },
           "statMod2": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].statMod2",
-            "invalid": "this.parent.i >= 176 || !this.parent.negativeStats.value"
+            "invalid": "index >= 176 || !obj.negativeStats"
           },
           "negativeStats": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].negativeStats",
-            "invalid": "this.parent.i >= 176"
+            "invalid": "index >= 176"
           },
           "stats": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].stats",
-            "invalid": "this.parent.i >= 176"
+            "invalid": "index >= 176"
           },
           "weaponType": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].weaponType",
-            "invalid": "this.parent.i >= 96"
+            "invalid": "index >= 96"
           },
           "shield": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].shield",
-            "invalid": "this.parent.i >= 176"
+            "invalid": "index >= 176"
           },
           "metallic": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].metallic",
-            "invalid": "this.parent.i >= 176"
+            "invalid": "index >= 176"
           },
           "flags": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].flags",
-            "invalid": "this.parent.i >= 96"
+            "invalid": "index >= 96"
           },
           "monsterType": {
             "type": "assembly",
             "external": "weaponArmorProperties[%i].monsterType",
-            "invalid": "this.parent.i >= 176"
+            "invalid": "index >= 176"
           },
           "castingTime": {
             "type": "assembly",
             "external": "itemConsumable[%i-176].castingTime",
-            "invalid": "this.parent.i < 176 || this.parent.i >= 222"
+            "invalid": "index < 176 || index >= 222"
           },
           "target": {
             "type": "assembly",
             "external": "itemConsumable[%i-176].target",
-            "invalid": "this.parent.i < 176 || this.parent.i >= 222"
+            "invalid": "index < 176 || index >= 222"
           },
           "power": {
             "type": "assembly",
             "external": "itemConsumable[%i-176].power",
-            "invalid": "this.parent.i < 176 || this.parent.i >= 222"
+            "invalid": "index < 176 || index >= 222"
           },
           "hit": {
             "type": "assembly",
             "external": "itemConsumable[%i-176].hit",
-            "invalid": "this.parent.i < 176 || this.parent.i >= 222"
+            "invalid": "index < 176 || index >= 222"
           },
           "effect": {
             "type": "assembly",
             "external": "itemConsumable[%i-176].effect",
-            "invalid": "this.parent.i < 176 || this.parent.i >= 222"
+            "invalid": "index < 176 || index >= 222"
           },
           "elementConsumable": {
             "type": "assembly",
             "external": "itemConsumable[%i-176].element",
-            "invalid": "this.parent.i < 176 || this.parent.i >= 222"
+            "invalid": "index < 176 || index >= 222"
           },
           "mpCost": {
             "type": "assembly",
             "external": "itemConsumable[%i-176].mpCost",
-            "invalid": "this.parent.i < 176 || this.parent.i >= 222"
+            "invalid": "index < 176 || index >= 222"
           },
           "boss": {
             "type": "assembly",
             "external": "itemConsumable[%i-176].boss",
-            "invalid": "this.parent.i < 176 || this.parent.i >= 222"
+            "invalid": "index < 176 || index >= 222"
           },
           "damage": {
             "type": "assembly",
             "external": "itemConsumable[%i-176].damage",
-            "invalid": "this.parent.i < 176 || this.parent.i >= 222"
+            "invalid": "index < 176 || index >= 222"
           },
           "splitDamage": {
             "type": "assembly",
             "external": "itemConsumable[%i-176].splitDamage",
-            "invalid": "this.parent.i < 176 || this.parent.i >= 222"
+            "invalid": "index < 176 || index >= 222"
           },
           "noReflect": {
             "type": "assembly",
             "external": "itemConsumable[%i-176].noReflect",
-            "invalid": "this.parent.i < 176 || this.parent.i >= 222"
+            "invalid": "index < 176 || index >= 222"
           },
           "price10": {
             "type": "assembly",
@@ -3286,8 +3286,7 @@
             "name": "Underground/Moon Layout",
             "begin": 10,
             "mask": "0x01",
-            "bool": true,
-            "invalid": "this.parent.i >= 512"
+            "bool": true
           },
           "graphics": {
             "type": "property",
@@ -3359,7 +3358,7 @@
             "name": "Parallax Type",
             "begin": 9,
             "mask": "0xC0",
-            "disabled": "(this.parent.layer2Scroll.value === 0)",
+            "disabled": "(obj.layer2Scroll === 0)",
             "stringTable": {
               "string": {
                 "0": "No Scroll",
@@ -3374,7 +3373,7 @@
             "name": "Scroll Direction",
             "begin": 9,
             "mask": "0x30",
-            "disabled": "(this.parent.layer2Scroll.value !== 0)",
+            "disabled": "(obj.layer2Scroll !== 0)",
             "stringTable": {
               "string": {
                 "0": "Up",
@@ -3389,7 +3388,7 @@
             "name": "Scroll Speed",
             "begin": 9,
             "mask": "0xC0",
-            "disabled": "(this.parent.layer2Scroll.value !== 0)",
+            "disabled": "(obj.layer2Scroll !== 0)",
             "stringTable": {
               "string": {
                 "0": "None",
@@ -3409,8 +3408,7 @@
             "name": "Underground/Moon NPCs",
             "begin": 10,
             "mask": "0x80",
-            "bool": true,
-            "invalid": "this.parent.i >= 512"
+            "bool": true
           },
           "npcPalette1": {
             "type": "property",
@@ -4179,33 +4177,33 @@
               "max": 253,
               "stringTable": "mapProperties",
               "link": "mapProperties[%i]",
-              "invalid": "(this.parent.map.value === 0xFE) || (this.parent.map.value === 0xFF)"
+              "hidden": "[0xFE,0xFF].includes(obj.map)"
             },
             "xDest": {
               "type": "property",
               "name": "X Destination",
               "begin": 3,
-              "invalid": "this.parent.map.invalid"
+              "invalid": "[0xFE,0xFF].includes(obj.map)"
             },
             "yDest": {
               "type": "property",
               "name": "Y Destination",
               "begin": 4,
-              "invalid": "this.parent.map.invalid"
+              "invalid": "[0xFE,0xFF].includes(obj.map)"
             },
             "direction": {
               "type": "property",
               "name": "Facing Direction",
               "begin": 3,
               "mask": "0xC0",
-              "invalid": "this.parent.map.invalid || (this.parent.map.value === 0xFB) || (this.parent.map.value === 0xFC) || (this.parent.map.value === 0x1FB) || (this.parent.map.value === 0x1FC)",
+              "invalid": "[0xFE,0xFF,0xFB,0xFC,0x01FB,0x01FC].includes(obj.map)",
               "stringTable": "directions"
             },
             "event": {
               "type": "property",
               "name": "Trigger Event",
               "begin": 3,
-              "invalid": "this.parent.map.value !== 0xFF",
+              "invalid": "obj.map !== 0xFF",
               "link": "triggerScript[%i]",
               "stringTable": "triggerScript"
             },
@@ -4222,14 +4220,14 @@
                   "3": "Monsters"
                 }
               },
-              "invalid": "this.parent.map.value !== 0xFE"
+              "invalid": "obj.map !== 0xFE"
             },
             "battle": {
               "type": "property",
               "name": "Battle",
               "begin": 3,
               "mask": "0x1F",
-              "invalid": "(this.parent.map.value !== 0xFE) || !(this.parent.treasureType.value & 1)",
+              "invalid": "(obj.map !== 0xFE) || !(obj.treasureType & 1)",
               "offset": "0x01C0",
               "link": "battleProperties[%i]",
               "stringTable": "battleProperties"
@@ -4240,7 +4238,7 @@
               "begin": 4,
               "stringTable": "itemNames",
               "link": "itemProperties[%i]",
-              "invalid": "(this.parent.map.value !== 0xFE) || (this.parent.treasureType.value === 0)"
+              "invalid": "(obj.map !== 0xFE) || (obj.treasureType === 0)"
             },
             "gp10": {
               "type": "property",
@@ -4248,7 +4246,7 @@
               "begin": 4,
               "mask": "0x7F",
               "multiplier": 10,
-              "invalid": "(this.parent.map.value !== 0xFE) || (this.parent.treasureType.value !== 0) || (this.parent.gpMultiplier.value === 1)"
+              "invalid": "(obj.map !== 0xFE) || (obj.treasureType !== 0) || (obj.gpMultiplier === 1)"
             },
             "gp1000": {
               "type": "property",
@@ -4256,7 +4254,7 @@
               "begin": 4,
               "mask": "0x7F",
               "multiplier": 1000,
-              "invalid": "(this.parent.map.value !== 0xFE) || (this.parent.treasureType.value !== 0) || (this.parent.gpMultiplier.value === 0)"
+              "invalid": "(obj.map !== 0xFE) || (obj.treasureType !== 0) || (obj.gpMultiplier === 0)"
             },
             "gpMultiplier": {
               "type": "property",
@@ -4269,7 +4267,7 @@
                   "1": "×1000"
                 }
               },
-              "invalid": "(this.parent.map.value !== 0xFE) || (this.parent.treasureType.value !== 0)"
+              "invalid": "(obj.map !== 0xFE) || (obj.treasureType !== 0)"
             }
           }
         }
@@ -5110,7 +5108,7 @@
             "name": "Attacker",
             "begin": 1,
             "mask": "0x7F",
-            "invalid": "![0,1,3,7].includes(this.parent.condition.value)",
+            "invalid": "![0,1,3,7].includes(obj.condition)",
             "stringTable": {
               "string": {
                 "0-22": "<stringTable.characterID[%i]>",
@@ -5146,7 +5144,7 @@
             "type": "property",
             "name": "HP",
             "begin": 3,
-            "invalid": "this.parent.condition.value !== 1",
+            "invalid": "obj.condition !== 1",
             "stringTable": {
               "string": {
                 "0": "10000",
@@ -5173,7 +5171,7 @@
             "type": "property",
             "name": "Variable",
             "begin": 2,
-            "invalid": "this.parent.condition.value !== 2",
+            "invalid": "obj.condition !== 2",
             "stringTable": {
               "string": {
                 "0": "Variable 1",
@@ -5187,20 +5185,20 @@
             "type": "property",
             "name": "Value",
             "begin": 3,
-            "invalid": "this.parent.condition.value !== 2"
+            "invalid": "obj.condition !== 2"
           },
           "monster": {
             "type": "property",
             "name": "Monster",
             "begin": 3,
-            "invalid": "this.parent.condition.value !== 4",
+            "invalid": "obj.condition !== 4",
             "stringTable": "monsterName"
           },
           "presence": {
             "type": "property",
             "name": "Presence",
             "begin": 2,
-            "invalid": "![3,4].includes(this.parent.condition.value)",
+            "invalid": "![3,4].includes(obj.condition)",
             "stringTable": {
               "string": {
                 "0": "Not Present",
@@ -5215,7 +5213,7 @@
             "begin": 2,
             "mask": "0xFFFF",
             "format": "byteSwapped",
-            "invalid": "this.parent.condition.value !== 5",
+            "invalid": "obj.condition !== 5",
             "stringTable": "battleProperties",
             "link": "battleProperties[%i]"
           },
@@ -5223,7 +5221,7 @@
             "type": "property",
             "name": "Command",
             "begin": 2,
-            "invalid": "![7,8].includes(this.parent.condition.value)",
+            "invalid": "![7,8].includes(obj.condition)",
             "stringTable": {
               "string": {
                 "192-194": "<battleCommandNames[%i-192]>",
@@ -5238,7 +5236,7 @@
             "begin": 3,
             "flag": true,
             "min": 1,
-            "invalid": "![7,8].includes(this.parent.condition.value)",
+            "invalid": "![7,8].includes(obj.condition)",
             "stringTable": "element",
             "special": {
               "0": "Any Element"
@@ -5248,7 +5246,7 @@
             "type": "property",
             "name": "Status Byte",
             "begin": 2,
-            "invalid": "this.parent.condition.value !== 0",
+            "invalid": "obj.condition !== 0",
             "stringTable": {
               "string": {
                 "0": "Status 1",
@@ -5263,7 +5261,7 @@
             "name": "Status",
             "begin": 3,
             "flag": true,
-            "invalid": "(this.parent.condition.value !== 0) || (this.parent.statusByte.value !== 0)",
+            "invalid": "(obj.condition !== 0) || (obj.statusByte !== 0)",
             "stringTable": {
               "length": 8,
               "default": "<stringTable.status[%i]>"
@@ -5274,7 +5272,7 @@
             "name": "Status",
             "begin": 3,
             "flag": true,
-            "invalid": "(this.parent.condition.value !== 0) || (this.parent.statusByte.value !== 1)",
+            "invalid": "(obj.condition !== 0) || (obj.statusByte !== 1)",
             "stringTable": {
               "length": 8,
               "default": "<stringTable.status[%i+8]>"
@@ -5285,7 +5283,7 @@
             "name": "Status",
             "begin": 3,
             "flag": true,
-            "invalid": "(this.parent.condition.value !== 0) || (this.parent.statusByte.value !== 2)",
+            "invalid": "(obj.condition !== 0) || (obj.statusByte !== 2)",
             "stringTable": {
               "length": 8,
               "default": "<stringTable.status[%i+16]>"
@@ -5296,7 +5294,7 @@
             "name": "Status",
             "begin": 3,
             "flag": true,
-            "invalid": "(this.parent.condition.value !== 0) || (this.parent.statusByte.value !== 3)",
+            "invalid": "(obj.condition !== 0) || (obj.statusByte !== 3)",
             "stringTable": {
               "length": 8,
               "default": "<stringTable.status[%i+24]>"
@@ -5505,14 +5503,14 @@
             "type": "property",
             "name": "Size",
             "mask": "0x3F",
-            "invalid": "this.parent.isBoss.value || this.parent.isCharacter.value",
+            "invalid": "obj.isBoss || obj.isCharacter",
             "stringTable": "monsterSize"
           },
           "bossProperties": {
             "type": "property",
             "name": "Boss Properties",
             "mask": "0x3F",
-            "invalid": "!this.parent.isBoss.value",
+            "invalid": "!obj.isBoss",
             "link": "monsterBossProperties[%i]",
             "stringTable": "monsterBossProperties"
           },
@@ -5520,7 +5518,7 @@
             "type": "property",
             "name": "Character",
             "mask": "0x3F",
-            "invalid": "!this.parent.isCharacter.value",
+            "invalid": "!obj.isCharacter",
             "stringTable": "characterGraphics"
           },
           "isCharacter": {
@@ -5528,29 +5526,29 @@
             "name": "Use Character Graphics",
             "mask": "0x40",
             "bool": true,
-            "disabled": "this.parent.isBoss.value"
+            "disabled": "obj.isBoss"
           },
           "isBoss": {
             "type": "property",
             "name": "Use Boss Graphics",
             "mask": "0x80",
             "bool": true,
-            "disabled": "this.parent.isCharacter.value"
+            "disabled": "obj.isCharacter"
           },
           "palette": {
             "type": "property",
             "name": "Palette",
             "begin": 1,
             "stringTable": "monsterPalette",
-            "invalid": "this.parent.isCharacter.value",
-            "disabled": "this.parent.isBoss.value"
+            "invalid": "obj.isCharacter",
+            "disabled": "obj.isBoss"
           },
           "paletteChar": {
             "type": "property",
             "name": "Palette",
             "begin": 1,
             "stringTable": "characterPalette",
-            "invalid": "!this.parent.isCharacter.value"
+            "invalid": "!obj.isCharacter"
           },
           "graphicsPointer": {
             "type": "property",
@@ -5559,7 +5557,7 @@
             "mask": "0x7FFF",
             "multiplier": 8,
             "stringTable": "monsterGraphics",
-            "disabled": "this.parent.isCharacter.value"
+            "disabled": "obj.isCharacter"
           },
           "is3bpp": {
             "type": "property",
@@ -7123,14 +7121,14 @@
                 "6": "Can Throw"
               }
             },
-            "invalid": "this.parent.i >= 96"
+            "invalid": "index >= 96"
           },
           "magicDefensePct": {
             "type": "property",
             "name": "Magic Defense %",
             "begin": 0,
             "mask": "0x7F",
-            "invalid": "this.parent.i < 96"
+            "invalid": "index < 96"
           },
           "attack": {
             "type": "property",
@@ -7149,13 +7147,13 @@
             "begin": 3,
             "link": "attackProperties[%i]",
             "stringTable": "attackNames",
-            "invalid": "this.parent.i >= 96"
+            "invalid": "index >= 96"
           },
           "magicDefense": {
             "type": "property",
             "name": "Magic Defense",
             "begin": 3,
-            "invalid": "this.parent.i < 96"
+            "invalid": "index < 96"
           },
           "shield": {
             "type": "property",
@@ -7201,7 +7199,7 @@
                 "2": "Bow"
               }
             },
-            "invalid": "this.parent.i >= 96"
+            "invalid": "index >= 96"
           },
           "stats": {
             "type": "property",
@@ -7231,7 +7229,7 @@
             "name": "Stat Modifier",
             "begin": 7,
             "mask": "0x03",
-            "invalid": "this.parent.negativeStats.value",
+            "invalid": "obj.negativeStats",
             "stringTable": {
               "string": {
                 "0": "+3",
@@ -7246,7 +7244,7 @@
             "name": "Stat Modifier",
             "begin": 7,
             "mask": "0x03",
-            "invalid": "!this.parent.negativeStats.value",
+            "invalid": "!obj.negativeStats",
             "stringTable": {
               "string": {
                 "0": "+5/-5",
@@ -7567,26 +7565,26 @@
               "max": 253,
               "stringTable": "mapProperties",
               "link": "mapProperties[%i]",
-              "invalid": "(this.parent.map.value === 0xFE) || (this.parent.map.value === 0xFF)"
+              "hidden": "[0xFE,0xFF].includes(obj.map)"
             },
             "xDest": {
               "type": "property",
               "name": "X Destination",
               "begin": 3,
-              "invalid": "this.parent.map.invalid"
+              "invalid": "[0xFE,0xFF].includes(obj.map)"
             },
             "yDest": {
               "type": "property",
               "name": "Y Destination",
               "begin": 4,
-              "invalid": "this.parent.map.invalid"
+              "invalid": "[0xFE,0xFF].includes(obj.map)"
             },
             "direction": {
               "type": "property",
               "name": "Facing Direction",
               "begin": 3,
               "mask": "0xC0",
-              "invalid": "this.parent.map.invalid || (this.parent.map.value === 0xFB) || (this.parent.map.value === 0xFC) || (this.parent.map.value === 0x1FB) || (this.parent.map.value === 0x1FC)",
+              "invalid": "[0xFE,0xFF,0xFB,0xFC,0x01FB,0x01FC].includes(obj.map)",
               "stringTable": {
                 "string": {
                   "0": "Up",
@@ -7600,7 +7598,7 @@
               "type": "property",
               "name": "Trigger Event",
               "begin": 3,
-              "invalid": "(this.parent.map.value !== 0xFF) && (this.parent.map.value !== 0x1FF)",
+              "invalid": "[0xFF,0x01FF].includes(obj.map)",
               "link": "triggerScript[%i]"
             }
           }
@@ -7841,7 +7839,7 @@
               "type": "property",
               "name": "Dialog",
               "begin": 1,
-              "invalid": "this.parent.bank.value !== 0xF0",
+              "invalid": "obj.bank !== 0xF0",
               "stringTable": "eventDialog1",
               "link": "eventDialog1[%i]"
             },
@@ -7850,7 +7848,7 @@
               "name": "Dialog",
               "begin": 1,
               "offset": 256,
-              "invalid": "this.parent.bank.value !== 0xF1",
+              "invalid": "obj.bank !== 0xF1",
               "stringTable": "eventDialog1",
               "link": "eventDialog1[%i]"
             },
@@ -7858,7 +7856,7 @@
               "type": "property",
               "name": "Dialog",
               "begin": 1,
-              "invalid": "this.parent.bank.value !== 0xF6",
+              "invalid": "obj.bank !== 0xF6",
               "stringTable": "eventDialog2",
               "link": "eventDialog2[%i]"
             }
@@ -7988,7 +7986,7 @@
               "begin": 1,
               "max": 253,
               "stringTable": "mapProperties",
-              "invalid": "this.parent.mapMSB.value === 1",
+              "invalid": "obj.mapMSB === 1",
               "link": "mapProperties[%i]"
             },
             "map2": {
@@ -7998,7 +7996,7 @@
               "offset": 256,
               "max": 253,
               "stringTable": "mapProperties",
-              "invalid": "this.parent.mapMSB.value === 0",
+              "invalid": "obj.mapMSB === 0",
               "link": "mapProperties[%i]"
             },
             "mapMSB": {
@@ -8018,13 +8016,13 @@
               "name": "X Position",
               "begin": 2,
               "mask": "0x3F",
-              "invalid": "this.parent.direction.invalid"
+              "invalid": "obj.direction.invalid"
             },
             "xWorld": {
               "type": "property",
               "name": "X Position",
               "begin": 2,
-              "invalid": "!this.parent.direction.invalid"
+              "invalid": "!obj.direction.invalid"
             },
             "y": {
               "type": "property",
@@ -8036,7 +8034,7 @@
               "name": "Direction",
               "begin": 2,
               "mask": "0xC0",
-              "invalid": "((this.parent.mapMSB.value === 0) && (this.parent.map1.value === 0xFB) || (this.parent.map1.value === 0xFC) || (this.parent.map1.value === 0xFD)) || ((this.parent.mapMSB.value === 1) && (this.parent.map2.value === 0x1FB) || (this.parent.map2.value === 0x1FC) || (this.parent.map2.value === 0x1FD))",
+              "invalid": "((obj.mapMSB === 0) && [0xFB,0xFC,0xFD].includes(obj.map1)) || ((obj.mapMSB === 1) && [0x01FB,0x01FC,0x01FD].includes(obj.map2))",
               "stringTable": "directions"
             },
             "vehicle": {
@@ -8044,7 +8042,7 @@
               "name": "Vehicle",
               "begin": 4,
               "mask": "0x1F",
-              "invalid": "!this.parent.direction.invalid",
+              "invalid": "!obj.direction.invalid",
               "stringTable": "vehicles"
             }
           }
@@ -8250,14 +8248,14 @@
               "type": "property",
               "name": "Switch",
               "begin": 1,
-              "invalid": "this.parent.type.value === 2",
+              "invalid": "obj.type === 2",
               "stringTable": "eventSwitch"
             },
             "npcSwitch": {
               "type": "property",
               "name": "Switch",
               "begin": 1,
-              "invalid": "this.parent.type.value === 1",
+              "invalid": "obj.type === 1",
               "stringTable": "npcSwitch"
             }
           }

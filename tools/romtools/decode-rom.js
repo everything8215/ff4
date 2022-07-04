@@ -9,9 +9,13 @@ const ROMRange = require('./range');
 const hexString = require('./hex-string');
 
 let dataMgr, romData;
+let currentIndex;
+let indexStack = [];
 
 function decodeArray(data, definition) {
   let array = [];
+  indexStack.push(currentIndex);
+  currentIndex = 0;
 
   if (definition.terminator === '\\0') {
     // null-terminated text
@@ -26,6 +30,7 @@ function decodeArray(data, definition) {
       end = begin + textCodec.textLength(data.subarray(begin));
       const itemData = data.slice(begin, end);
       const itemObj = decodeObject(itemData, definition.assembly);
+      currentIndex++;
       array.push(itemObj);
       begin = end;
     }
@@ -39,6 +44,7 @@ function decodeArray(data, definition) {
       if (data[end] === terminator) {
         const itemData = data.slice(begin, end + 1);
         const itemObj = decodeObject(itemData, definition.assembly);
+        currentIndex++;
         array.push(itemObj);
         begin = end + 1;
       }
@@ -57,6 +63,7 @@ function decodeArray(data, definition) {
     while (begin < data.length) {
       const itemData = data.slice(begin, begin + length);
       const itemObj = decodeObject(itemData, definition.assembly);
+      currentIndex++;
       array.push(itemObj);
       begin += length;
     }
@@ -65,6 +72,7 @@ function decodeArray(data, definition) {
     console.log('Invalid sub-array');
   }
 
+  currentIndex = indexStack.pop();
   return array;
 }
 
@@ -83,8 +91,8 @@ function decodeProperty(data, definition) {
   const begin = Number(definition.begin) || 0;
   const end = Math.min(begin + 4, data.length - 1);
   for (let i = end; i >= begin; i--) {
-      value <<= 8;
-      value |= data[i];
+    value <<= 8;
+    value |= data[i];
   }
   value = (value & mask) >> bitIndex;
   if (definition.bool) return (value !== 0);
@@ -110,7 +118,7 @@ function decodeObject(data, definition) {
     return textCodec.decode(textData);
 
   } else if (definition.type === 'assembly') {
-    let assembly = {};
+    let obj = {};
     for (let key in definition.assembly) {
       const subDefinition = definition.assembly[key];
 
@@ -120,9 +128,27 @@ function decodeObject(data, definition) {
       // skip external properties
       if (subDefinition.external) continue;
 
-      assembly[key] = decodeObject(data, subDefinition);
+      obj[key] = decodeObject(data, subDefinition);
     }
-    return assembly;
+
+    // remove invalid assemblies
+    let invalidKeys = [];
+    for (let key in obj) {
+      const subDefinition = definition.assembly[key];
+      if (!subDefinition) {
+        console.log(key);
+        continue;
+      }
+      const invalid = subDefinition.invalid;
+      const index = currentIndex;
+      if (invalid && eval(invalid)) invalidKeys.push(key);
+    }
+
+    for (let key of invalidKeys) {
+      delete obj[key];
+    }
+
+    return obj;
 
   } else if (definition.type === 'array') {
     return decodeArray(data, definition);
@@ -131,7 +157,7 @@ function decodeObject(data, definition) {
     return decodeProperty(data, definition);
 
   } else {
-    return dataBase64 = Buffer.from(data).toString('base64');
+    return Buffer.from(data).toString('base64');
   }
 }
 
@@ -147,6 +173,7 @@ function decodeParentObject(definition) {
   // make a list of pointers
   let pointers = [];
   let isArray = true;
+  currentIndex = 0;
 
   if (definition.pointerTable) {
 
@@ -319,6 +346,7 @@ function decodeParentObject(definition) {
       const itemRange = itemRanges[i];
       const itemData = objData.slice(itemRange.begin, itemRange.end);
       array[i] = decodeObject(itemData, definition.assembly);
+      currentIndex++;
     }
     return array;
   } else {

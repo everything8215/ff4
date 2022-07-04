@@ -9,6 +9,8 @@ const ROMRange = require('./range');
 const hexString = require('./hex-string');
 
 let dataMgr;
+let currentIndex;
+let indexStack = [];
 
 function findSubarray(arr, subarr) {
 
@@ -27,6 +29,8 @@ function findSubarray(arr, subarr) {
 
 function encodeArray(obj, definition, data) {
 
+  indexStack.push(currentIndex);
+  currentIndex = 0;
   let pointers = [];
   if (definition.itemLength) {
     // fixed-length array items
@@ -38,6 +42,7 @@ function encodeArray(obj, definition, data) {
       pointers.push(begin);
       let itemData = new Uint8Array(length);
       itemData = encodeObject(obj[i], definition.assembly, itemData);
+      currentIndex++;
       data.set(itemData, begin);
     }
 
@@ -48,6 +53,7 @@ function encodeArray(obj, definition, data) {
     for (let i = 0; i < obj.length; i++) {
       pointers.push(totalLength);
       const itemData = encodeObject(obj[i], definition.assembly, null);
+      currentIndex++;
       dataArray.push(itemData);
       totalLength += itemData.length;
     }
@@ -57,6 +63,7 @@ function encodeArray(obj, definition, data) {
     }
   }
 
+  currentIndex = indexStack.pop();
   return data;
 }
 
@@ -130,6 +137,12 @@ function encodeObject(obj, definition, data) {
   } else if (definition.type === 'assembly') {
     for (let key in obj) {
       const subDefinition = definition.assembly[key];
+
+      // skip invalid assemblies
+      const index = currentIndex;
+      const invalid = subDefinition.invalid;
+      if (invalid && eval(invalid)) continue;
+
       data = encodeObject(obj[key], subDefinition, data);
     }
 
@@ -160,6 +173,7 @@ function encodeParentObject(key) {
 
   let objData;
   let pointers = [];
+  currentIndex = 0;
   if (definition.isSequential || (definition.terminator !== undefined)) {
     // sequential array items
     let totalLength = 0;
@@ -167,6 +181,7 @@ function encodeParentObject(key) {
     for (let i = 0; i < obj.length; i++) {
       pointers.push(totalLength);
       const itemData = encodeObject(obj[i], definition.assembly, null);
+      currentIndex++;
       dataArray.push(itemData);
       totalLength += itemData.length;
     }
@@ -185,6 +200,7 @@ function encodeParentObject(key) {
       pointers.push(begin);
       let itemData = new Uint8Array(length);
       itemData = encodeObject(obj[i], definition.assembly, itemData);
+      currentIndex++;
       objData.set(itemData, begin);
     }
 
@@ -193,6 +209,7 @@ function encodeParentObject(key) {
     objData = new Uint8Array(0);
     for (let i = 0; i < obj.length; i++) {
       const itemData = encodeObject(obj[i], definition.assembly, null);
+      currentIndex++;
       let offset = findSubarray(objData, itemData);
       if (offset === -1) {
         // data not found
