@@ -49,7 +49,7 @@ ItemMenu:
         ldy     #.loword(ItemLabelWindowLeft)
         jsr     DrawWindowText
         lda     #$03
-        jsr     _01951b
+        jsr     ClearBGPal
         jsr     TfrBG2TilesVblank
         jsr     TfrPal
         ldx     $1ba5
@@ -158,7 +158,7 @@ SelectItem:
         bne     @a02d
         shorta
         jsr     DrawItemCursors
-        jsr     _0182a5
+        jsr     UpdateCtrlAfterScroll
         bcs     @a066
         jmp     @9ff2
 @a062:  dec
@@ -197,7 +197,7 @@ SelectItem:
         bne     @a083
         shorta
         jsr     DrawItemCursors
-        jsr     _0182a5
+        jsr     UpdateCtrlAfterScroll
         bcs     @a0bc
         jmp     @9ff2
 @a0b8:  inc

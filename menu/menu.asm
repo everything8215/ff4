@@ -556,9 +556,13 @@ DrawCursor:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ update controller after scrolling the inventory ]
 
-_0182a5:
+; called after scrolling the inventory up or down
+; set carry if player pressed left/right while scrolling
+; otherwise, update the controller
+
+UpdateCtrlAfterScroll:
 @82a5:  lda     $01
         and     #JOY_LEFT|JOY_RIGHT
         bne     @82b4
@@ -1443,8 +1447,13 @@ UpdateWindowColor_far:
 
 CursorSfx:
 @874e:  lda     #$11        ; system sound effect $11
+; fallthrough
 
-_018750:
+; ------------------------------------------------------------------------------
+
+; [ play system sound effect ]
+
+PlaySysSfx:
 @8750:  sta     $1e00
         jsl     ExecSound_ext
         rts
@@ -1455,11 +1464,11 @@ _018750:
 
 ErrorSfx:
 @8758:  lda     #$12        ; system sound effect $12
-        bra     _018750
+        bra     PlaySysSfx
 
 ; ------------------------------------------------------------------------------
 
-; [ play sound effect (far) ]
+; [ play game sound effect (far) ]
 
 PlaySfx_far:
 @875c:  jsr     PlaySfx
@@ -1475,7 +1484,7 @@ CureSfx:
 
 ; ------------------------------------------------------------------------------
 
-; [ play sound effect ]
+; [ play game sound effect ]
 
 PlaySfx:
 @8762:  sta     $1e01
@@ -1490,7 +1499,7 @@ PlaySfx:
 
 ; ------------------------------------------------------------------------------
 
-; [ clear text ]
+; [ clear text (far) ]
 
 ClearText_far:
 @8779:  jsl     ClearText_ext
@@ -1598,7 +1607,7 @@ FadeInMainMenu:
 @87e6:  jsr     ResetScrollRegs
         jsr     UpdateScrollRegs_far
         jsr     LoadPortraits
-        jsr     _018c09
+        jsr     InitDrawMainMenu
         jsr     TfrAllBGTiles
         jsr     TfrSprites
         jmp     FadeIn
@@ -2076,12 +2085,12 @@ DrawStatusIcons:
         ora     $45
         beq     @8b30
         pha
-        jsr     _018c15
+        jsr     MoveToClassNamePos
         jsr     NextRowY
         pla
         dey2
         bra     @8b43
-@8b26:  jsr     _018c15
+@8b26:  jsr     MoveToClassNamePos
         tyx
         ldy     #.loword(CantFightText)
         jmp     DrawMenuText
@@ -2091,7 +2100,7 @@ DrawStatusIcons:
 @8b36:  ldy     $48
         lda     a:$0001,y
         pha
-        jsr     _018c15
+        jsr     MoveToClassNamePos
         pla
         jmp     DrawClassName
 @8b43:  sta     $45
@@ -2205,9 +2214,11 @@ Div60:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ init and draw main menu ]
 
-_018c09:
+; called when fading in from field or returning from save menu
+
+InitDrawMainMenu:
 @8c09:  jsr     ClearAllBGTiles
         jsr     ResetSprites
         jsr     TfrSprites
@@ -2215,9 +2226,9 @@ _018c09:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ move to class name text position (7 tiles over) ]
 
-_018c15:
+MoveToClassNamePos:
 @8c15:  longa
         lda     $4b
         clc
@@ -2293,7 +2304,7 @@ ClearCursorMem:
         iny
         dex
         bne     @8c71
-        jsr     _0195cc
+        jsr     SelectTopChar
 @8c7b:  pla
         rts
 
@@ -2559,7 +2570,9 @@ GetDakuten:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ hide portrait ??? ]
+
+; unused, maybe portraits were on a background layer at sound point?
 
 _018e51:
 @8e51:  ldx     #4
@@ -2917,7 +2930,7 @@ _9075:  tdc
         adc     #$0340
         tay
         shorta
-        jsr     _019120
+        jsr     HideExtraCharSprites
         plx
         rts
 _908c:  ldy     $41         ; zero
@@ -2960,11 +2973,11 @@ _908c:  ldy     $41         ; zero
         sta     $45
 @90dc:  lda     $1f
         clc
-        adc     f:CharXTbl,x
+        adc     f:CharSpriteXTbl,x
         sta     a:$0000,y
         lda     $20
         clc
-        adc     f:CharYTbl,x
+        adc     f:CharSpriteYTbl,x
         sta     a:$0001,y
         stx     $e9
         lda     $1e
@@ -2976,7 +2989,7 @@ _908c:  ldy     $41         ; zero
         jsr     Tax16
         lda     #$00
         xba
-        lda     f:CharSpriteTbl,x
+        lda     f:CharSpriteTileTbl,x
         ldx     $e9
         longa
         clc
@@ -2987,15 +3000,18 @@ _908c:  ldy     $41         ; zero
         inx
         dec     $45
         bne     @90dc
-        jsr     _019120
+        jsr     HideExtraCharSprites
         plx
         rts
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ hide extra character sprites ]
 
-_019120:
+; portraits use 16 sprites, but characters only use 6
+; this subroutine hides the last 10 when character sprites are drawn
+
+HideExtraCharSprites:
 @9120:  ldx     #10
         longa
 @9125:  lda     #$f0ff
@@ -3011,7 +3027,7 @@ _019120:
 ; ------------------------------------------------------------------------------
 
 ; character spritesheet (11 * 6 bytes)
-CharSpriteTbl:
+CharSpriteTileTbl:
 @913b:  .byte   $00,$01,$02,$03,$04,$05
         .byte   $06,$07,$08,$09,$0a,$0b
         .byte   $00,$01,$02,$03,$0c,$0d
@@ -3025,18 +3041,20 @@ CharSpriteTbl:
         .byte   $2a,$2b,$2c,$2d,$2e,$2f
 
 ; sprite x positions
-CharXTbl:
+CharSpriteXTbl:
 @917d:  .byte   $00,$08,$00,$08,$00,$08
         .byte   $00,$08,$10,$00,$08,$10
 
 ; sprite y positions
-CharYTbl:
+CharSpriteYTbl:
 @9189:  .byte   $00,$00,$08,$08,$10,$10
         .byte   $00,$00,$00,$08,$08,$08
 
 ; ------------------------------------------------------------------------------
 
 ; [  ]
+
+; unused
 
 _019195:
 @9195:  ldx     $41         ; zero
@@ -3067,18 +3085,18 @@ _0191c4:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ init party sprites (shop and fat chocobo menu) ]
 
-_0191ce:
-@91ce:  lda     $16a8       ; row setting
+InitPartySprites:
+@91ce:  lda     $16a8                   ; row setting
         beq     @91d5
         lda     #$0a
 @91d5:  jsr     Tax16
         longa
-        lda     #$0005
+        lda     #5
         sta     $45
-        ldy     $41         ; zero
-@91e1:  lda     f:_01920a,x
+        ldy     $41                     ; zero
+@91e1:  lda     f:PartyCharPos,x
         clc
         adc     $1a71
         sta     $fe02,y
@@ -3098,16 +3116,15 @@ _0191ce:
 
 ; ------------------------------------------------------------------------------
 
-; character portrait positions ???
-_01920a:
-@920a:  .byte   $00,$1c
+; party character positions
+PartyCharPos:
+@920a:  .byte   $00,$1c                 ; 3 front, 2 back
         .byte   $00,$00
         .byte   $00,$38
         .byte   $18,$0c
         .byte   $18,$2c
 
-_019214:
-@9214:  .byte   $18,$1c
+        .byte   $18,$1c                 ; 3 back, 2 front
         .byte   $18,$00
         .byte   $18,$38
         .byte   $00,$0c
@@ -3115,9 +3132,9 @@ _019214:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ update party sprites (shop menu) ]
 
-_01921e:
+UpdatePartySpritesShop:
 @921e:  lda     $1a73
         beq     @9227
         dec     $1a73
@@ -3302,9 +3319,9 @@ LoadPortraitPal:
 
 ; ------------------------------------------------------------------------------
 
-; [ draw character sprites (namingway/fat chocobo menu) ]
+; [ update character sprites (namingway/fat chocobo menu) ]
 
-_019362:
+UpdatePartySpritesNamingway:
 @9362:  dec     $1a73
         bne     @9374
         lda     #$0a
@@ -3584,28 +3601,29 @@ RestorePal2:
 
 ; ------------------------------------------------------------------------------
 
-_01950a:
+; bg palette offsets
+BGPalOffsetTbl:
 @950a:  .byte   $40,$00,$c0,$80
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ get bg palette offset ]
 
-_01950e:
+GetBGPalOffset:
 @950e:  dec
         jsr     Tax16
-        lda     f:_01950a,x
+        lda     f:BGPalOffsetTbl,x
         sta     $43
         ldx     $43
         rts
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ clear bg palette ]
 
-_01951b:
+ClearBGPal:
 @951b:  pha
-        jsr     _01950e
+        jsr     GetBGPalOffset
         lda     #$20
         sta     $1d
         tdc
@@ -3618,9 +3636,11 @@ _01951b:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ update portrait position ]
 
-_01952e:
+; called at vblank to move the portrait during menu transform
+
+UpdatePortraitPos:
 @952e:  lda     $d2
         bne     @9533
         rts
@@ -3748,18 +3768,18 @@ CharPtrTbl:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ copy fat chocobo item list to tile buffer ]
 
-_1efc28:
+CopyFatChocoList:
 @fc28:  lda     $e2
         cmp     #$11
-        beq     @fc40
-        lda     #$0a
+        beq     @fc40                   ; return if showing inventory (take)
+        lda     #10                     ; copy 10 items
         sta     $45
-        lda     $1bb2
+        lda     $1bb2                   ; scroll position
         dec
 @fc36:  pha
-        jsr     _1efc58
+        jsr     CopyFatChocoListItem
         pla
         inc
         dec     $45
@@ -3768,26 +3788,26 @@ _1efc28:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ scroll fat chocobo list by 1 line ]
 
-_1efc41:
+ScrollFatChocoList:
 @fc41:  lda     $e2
         cmp     #$11
-        beq     @fc57
+        beq     @fc57                   ; return if showing inventory (give)
         lda     $1bb2
         dec
-        jsr     _1efc58
+        jsr     CopyFatChocoListItem
         lda     $1bb2
         clc
         adc     #$08
-        jsr     _1efc58
+        jsr     CopyFatChocoListItem
 @fc57:  rtl
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ copy 1 item of fat chocobo list to tile buffer ]
 
-_1efc58:
+CopyFatChocoListItem:
 @fc58:  sta     $43
         longa
         lda     $43
@@ -3829,6 +3849,8 @@ FatChocoSpriteTbl:
         .byte   $10,$20,$6b,$02
         .byte   $18,$20,$6e,$02
         .byte   $20,$20,$6f,$02
+
+; ------------------------------------------------------------------------------
 
 ; pointers to pig, mini, and toad portrait graphics
 StatusPortraitPtrs:

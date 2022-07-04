@@ -238,7 +238,10 @@
 |             |       $D3                                                   |
 |             |                                                             |
 |             |       $E0 fat chocobo irq counter                           |
-|             |                                                             |
+|             |       $E1                                                   |
+|             |       $E2 fat chocobo max scroll position                   |
+|             |             $11: inventory (give)                           |
+|             |             $38: fat chocobo items (take)                   |
 |             |       $E3 current item quantity ???                         |
 |             |       $E4 current character slot (see 01/8DA0)              |
 |             |      +$E5 pointer to current character properties           |
@@ -1147,7 +1150,13 @@
 |             |        +$1B92                                               |
 |             |         $1B93 mp cost                                       |
 |             |                                                             |
+|             |        +$1BA5                                               |
+|             |                                                             |
 |             |   $1BA8-$1BAA window color components (red, green, blue)    |
+|             |                                                             |
+|             |         $1BB0 fat chocobo list cursor x position            |
+|             |         $1BB1 fat chocobo list cursor y position            |
+|             |         $1BB2 fat chocobo list scroll position              |
 |             |                                                             |
 |             |         $1BB8 allow to select empty character slot          |
 |             |                                                             |
@@ -1619,7 +1628,7 @@
 |      +$3875 | monster action script pointer for attack chain ???          |
 |       $3877 | enable attack chain ???                                     |
 |       $3878 | attack chain duration/timer ???                             |
-| $3879-$3880 |                                                             |
+| $3879-$3880 | monster target is valid                                     |
 |       $3881 | monsters are invincible ???                                 |
 |       $3882 |                                                             |
 | $3883-$388A | "targeting" target for each monster (mask)                  |
@@ -1630,7 +1639,7 @@
 |       $38A9 | golbez' auto-battle script pointer                          |
 | $38AA-$38B1 | monsters with retaliation scripts                           |
 |       $38B2 |                                                             |
-|       $38B3 |                                                             |
+|       $38B3 | monster retaliation is active                               |
 | $38B4-$38BA |                                                             |
 |      +$38BB | pointer to monster graphics script buffer                   |
 |       $38BD | enable song change                                          |

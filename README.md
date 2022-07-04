@@ -24,6 +24,9 @@ First, install the following dependencies if you don't have them already.
 - cc65: https://cc65.github.io
 - node: https://nodejs.org
 
+Here is a very nice tutorial explaining how to set up Cygwin and cc65 on
+a Windows machine: https://github.com/SlithyMatt/x16-hello-cc65
+
 ### Clone the Repo
 
 If you have git installed, run `git clone

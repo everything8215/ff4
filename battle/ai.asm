@@ -59,12 +59,12 @@ GetMonsterAttack:
 @b422:  ldx     $a6
         lda     $2004,x
         and     #$04
-        beq     @b44c
+        beq     @b44c                   ; branch if not berserk
         lda     #$05
         sta     $ab
         ldx     $a6
         stz     $2051,x
-        jsr     _03bc31
+        jsr     GetDefaultAITarget
         lda     $2051,x
         cmp     #$e1
         beq     @b446
@@ -220,6 +220,7 @@ GetMonsterAttack:
         bcs     @b5b7
         cmp     #$e8
         bcc     @b5c7
+
 ; get command parameter ($e8-$f9)
         iny
         lda     $361d,x
@@ -298,6 +299,7 @@ GetMonsterAttack:
         bcs     @b67b
         cmp     #$f0
         bcs     @b65f
+
 ; $e8-$ef: change monster stat
         pha
         inx
@@ -306,6 +308,7 @@ GetMonsterAttack:
         pla
         jsr     ChangeMonsterStat
         bra     @b679
+
 ; $f4-$f7: change battle variable
 @b65f:  cmp     #$f4
         bcc     @b679
@@ -316,6 +319,7 @@ GetMonsterAttack:
         pla
         jsr     ChangeBattleVar
         bra     @b679
+
 ; $f9: choose target
 @b670:  inx
         lda     $3839,x
@@ -324,8 +328,9 @@ GetMonsterAttack:
 @b679:  inc     $80
 @b67b:  inc     $80
         bra     @b639
+
 ; $ff: end of script
-@b67f:  jsr     SetMonsterAttack
+@b67f:  jsr     SetMonsterTarget
         jsr     InitAIDelay
         lda     $361c
         tax
@@ -334,13 +339,13 @@ GetMonsterAttack:
 
 ; ------------------------------------------------------------------------------
 
-; [ set monster pending attack ]
+; [ set monster target ]
 
-SetMonsterAttack:
+SetMonsterTarget:
 @b68f:  lda     $361c
         tax
         lda     $3883,x
-        beq     @b6a6
+        beq     @b6a6                   ; branch if no "targeting" target
         stz     $3883,x
         ldx     $a6
         sta     $2054,x
@@ -354,11 +359,11 @@ SetMonsterAttack:
 @b6b2:  ldx     $a6
         lda     $2051,x
         cmp     #$c2
-        beq     @b6be
+        beq     @b6be                   ; branch if using white magic
         jmp     @b744
 @b6be:  lda     $2052,x
         cmp     #$31
-        bcs     @b6e2
+        bcs     @b6e2                   ; branch if not using a spell
         tax
         stx     $e5
         ldx     #.loword(AttackProp)
@@ -370,7 +375,7 @@ SetMonsterAttack:
 @b6d6:  lda     $289c
         bpl     @b6de
         jmp     @b744
-@b6de:  lda     #$08
+@b6de:  lda     #8                      ; random monster target
         bra     @b746
 @b6e2:  cmp     #$5f
         bcs     @b716
@@ -417,9 +422,9 @@ SetMonsterAttack:
 @b73d:  and     #$40
         bne     @b6ff
         jmp     @b6d6
-@b744:  lda     #$05
+@b744:  lda     #5                      ; random character target
 @b746:  sta     $ab
-        jsr     _03bc31
+        jsr     GetDefaultAITarget
 @b74b:  rts
 
 ; ------------------------------------------------------------------------------
@@ -648,7 +653,7 @@ GetAITarget:
         iny
         cpy     #5
         bne     @b8d3
-@b8fd:  jmp     _03bb79
+@b8fd:  jmp     SkipAITurn
 @b900:  ldx     $a6
         sec
 @b903:  ror     $2054,x     ; set target
@@ -688,7 +693,7 @@ AITarget_18:
 @b920:  lda     $29cd
         dec
         bne     @b929
-        jmp     _03bb79
+        jmp     SkipAITurn
 @b929:  lda     $361c
         tax
         lda     #$ff
@@ -727,7 +732,7 @@ TargetMonsterTypeAll:
         ldx     $a6
         lda     $ab
         bne     @b960
-        jmp     _03bb79
+        jmp     SkipAITurn
 @b960:  sta     $2053,x
         rts
 
@@ -756,7 +761,7 @@ AITarget_1c:
         ldx     $a6
         lda     $ab
         bne     @b97a
-        jmp     _03bb79
+        jmp     SkipAITurn
 @b97a:  sta     $2054,x
         rts
 
@@ -804,7 +809,7 @@ AITarget_1d:
         ldx     $a6
         lda     $ab
         bne     @b9c5
-        jmp     _03bb79
+        jmp     SkipAITurn
 @b9c5:  sta     $2054,x
         rts
 
@@ -896,7 +901,7 @@ GetMonsterWithStatus:
 @ba5a:  ldx     $a6
         lda     $ab
         bne     @ba63
-        jmp     _03bb79
+        jmp     SkipAITurn
 @ba63:  sta     $2053,x
         rts
 
@@ -947,13 +952,16 @@ AITarget_22:
         sta     $af
         dec
         sta     $ad
-        jmp     _03ba9c
+        jmp     RandAITarget
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ choose a random target within a give range ]
 
-_03ba9c:
+; $af: min target slot
+; $b0: max target slot
+
+RandAITarget:
 @ba9c:  lda     $af
         tax
         lda     $b0
@@ -1007,7 +1015,7 @@ AITarget_23:
         sta     $b0
         lda     $d2
         sta     $ad
-        jmp     _03ba9c
+        jmp     RandAITarget
 
 ; ------------------------------------------------------------------------------
 
@@ -1020,7 +1028,7 @@ AITarget_24:
         sta     $b0
         lda     #$ff
         sta     $ad
-        jmp     _03ba9c
+        jmp     RandAITarget
 
 ; ------------------------------------------------------------------------------
 
@@ -1030,14 +1038,14 @@ AITarget_25:
 @bb0d:  lda     $29cd
         dec
         bne     @bb16
-        jmp     _03bb79
+        jmp     SkipAITurn
 @bb16:  lda     #$05
         sta     $af
         lda     #$0c
         sta     $b0
         lda     $d2
         sta     $ad
-        jmp     _03ba9c
+        jmp     RandAITarget
 
 ; ------------------------------------------------------------------------------
 
@@ -1047,7 +1055,7 @@ AITarget_26:
 @bb25:  jsr     GetFrontRowChars
         lda     $ab
         bne     @bb2f
-        jmp     _03bb79
+        jmp     SkipAITurn
 @bb2f:  jsr     RandChar
         tax
         lda     $ab
@@ -1067,7 +1075,7 @@ AITarget_27:
 @bb44:  jsr     GetBackRowChars
         lda     $ab
         bne     @bb4e
-        jmp     _03bb79
+        jmp     SkipAITurn
 @bb4e:  jsr     RandChar
         tax
         lda     $ab
@@ -1108,34 +1116,38 @@ AITarget_29:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ skip a turn ]
 
-_03bb79:
+SkipAITurn:
 @bb79:  lda     $38b3
-        beq     @bb97
-        jsr     _03c431
+        beq     @bb97                   ; branch if not retaliating
+
+; retaliation
+        jsr     SkipMultiAttack
         lda     $a9
         bne     @bbae
         ldx     $38bb
-        lda     #$e1        ; do nothing
+        lda     #$e1                    ; do nothing
         sta     $3659,x
         clr_a
         sta     $365a,x
         dec
         sta     $365b,x
         bra     @bbae
+
+; not a retaliation
 @bb97:  ldx     $88
         inx
-        jsr     _03c45e
+        jsr     SkipMultiAttackRetal
         lda     $a9
         bne     @bbae
-        lda     #$e1        ; do nothing
+        lda     #$e1                    ; do nothing
         sta     $3839,x
         clr_a
         sta     $383a,x
         dec
         sta     $383b,x
-@bbae:  lda     #$e1        ; do nothing
+@bbae:  lda     #$e1                    ; do nothing
         ldx     $a6
         sta     $2051,x
         rts
@@ -1231,12 +1243,14 @@ CopyGfxScript:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ choose default a.i. target (if berserk or no valid target) ]
 
-_03bc31:
+GetDefaultAITarget:
 @bc31:  lda     $ab
         cmp     #8
         beq     @bc83
+
+; choose character target
         clr_axy
         stx     $a9
 @bc3c:  lda     $3540,y
@@ -1258,7 +1272,7 @@ _03bc31:
 @bc61:  lda     $a9
         bne     @bc83
         clr_ax
-        jsr     _03c45e
+        jsr     SkipMultiAttackRetal
         lda     $a9
         bne     @bc82
         lda     #$e1
@@ -1271,6 +1285,8 @@ _03bc31:
         ldx     $a6
         sta     $2051,x
 @bc82:  rts
+
+; choose monster target
 @bc83:  stz     $ad
         lda     $ab
         cmp     #$08

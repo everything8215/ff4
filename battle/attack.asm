@@ -97,7 +97,7 @@ _ad78:  stz     $38e7
         lda     $cd
         sta     $ce         ; self-target
         bpl     @ae63       ; branch if a character
-        jsr     _03b348
+        jsr     EndMultiAttack
         lda     $a9
         bne     @ae2e
         ldx     $a6
@@ -249,7 +249,7 @@ _ad78:  stz     $38e7
         bcc     @af4e
 
 ; monster attacker
-        jsr     _03b348
+        jsr     EndMultiAttack
         lda     $a9
         beq     @af4a
         ldx     $a6
@@ -791,9 +791,9 @@ Cmd_21:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ end a monster's multi-attack ]
 
-_03b348:
+EndMultiAttack:
 @b348:  clr_ax
         stx     $a9
 @b34c:  lda     $33c2,x

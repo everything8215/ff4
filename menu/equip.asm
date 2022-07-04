@@ -56,7 +56,7 @@ EquipMenu:
         lda     $e7
         sta     $b7
         sta     $c0
-        ldx     #.loword(_01952e)
+        ldx     #.loword(UpdatePortraitPos)
         stx     $d0
         ldx     #.loword(TfrSprites)
         stx     $cd
@@ -113,7 +113,7 @@ EquipMenu:
         lda     #$28
         sta     $c2
         sta     $d2
-        ldx     #.loword(_01952e)
+        ldx     #.loword(UpdatePortraitPos)
         stx     $d0
         ldx     #.loword(TfrSprites)
         stx     $cd
@@ -388,7 +388,7 @@ SelectEquipItem:
         jsr     UpdateScrollRegsVblank
         dec
         bne     @bf05
-        jsr     _0182a5
+        jsr     UpdateCtrlAfterScroll
         bcc     @bed3
         bra     @bf1c
 @bf1a:  sta     ($51)
@@ -413,7 +413,7 @@ SelectEquipItem:
         jsr     UpdateScrollRegsVblank
         dec
         bne     @bf34
-        jsr     _0182a5
+        jsr     UpdateCtrlAfterScroll
         bcc     @bed3
         bra     @bf4b
 @bf49:  sta     ($51)

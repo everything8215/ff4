@@ -82,7 +82,7 @@ ShowMagicMenu:
         ldy     #.loword(MainOptionsWindow)
         ldx     #.loword(MagicTypeWindow)
         jsr     TransformWindow
-        ldx     #.loword(_01952e)
+        ldx     #.loword(UpdatePortraitPos)
         stx     $d0
         ldx     #.loword(TfrSprites)    ; transfer sprite data to ppu
         stx     $cd

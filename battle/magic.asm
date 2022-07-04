@@ -2302,7 +2302,7 @@ MagicEffect_29:
         bra     @dda0
 @ddaa:  stx     $8a
         lda     #$01
-        jmp     _03df5f
+        jmp     ActivateMonster
 
 ; ------------------------------------------------------------------------------
 
@@ -2401,7 +2401,7 @@ MagicEffect_30:
 ; [ magic effect $31: change form ]
 
 MagicEffect_31:
-@de34:  lda     #$03
+@de34:  lda     #$03                    ; monster death type
         sta     $38e6
         inc     $3882
         lda     $2683
@@ -2424,7 +2424,7 @@ MagicEffect_31:
         adc     $ab
         sta     $ab
 @de68:  inx
-        cpx     #$0008
+        cpx     #8
         bne     @de5f
         lda     $ab
         bne     @deb5
@@ -2435,15 +2435,15 @@ MagicEffect_31:
         stx     $8a
         stz     $b1
         stz     $b2
-        jsr     _03dfb0
+        jsr     DeactivateMonster
         lda     $a9
         and     #$30
         jsr     Lsr_4
         tax
         stx     $8c
         beq     @de9a
-@de8f:  lda     #$01
-        jsr     _03df5f
+@de8f:  lda     #1
+        jsr     ActivateMonster
         dec     $8c
         lda     $8c
         bne     @de8f
@@ -2453,17 +2453,17 @@ MagicEffect_31:
         tax
         stx     $8c
         beq     @deb2
-@dea7:  lda     #$02
-        jsr     _03df5f
+@dea7:  lda     #2
+        jsr     ActivateMonster
         dec     $8c
         lda     $8c
         bne     @dea7
 @deb2:  jmp     @df5e
-@deb5:  lda     #$01
+@deb5:  lda     #1
         sta     $b1
         inc
         sta     $b2
-        jsr     _03dfb0
+        jsr     DeactivateMonster
         clr_ax
         stx     $8a
         lda     $a9
@@ -2471,8 +2471,8 @@ MagicEffect_31:
         jsr     Lsr_6
         tax
         stx     $8c
-@decd:  lda     #$00
-        jsr     _03df5f
+@decd:  lda     #0
+        jsr     ActivateMonster
         dec     $8c
         lda     $8c
         bne     @decd
@@ -2480,11 +2480,11 @@ MagicEffect_31:
 @dedb:  clr_ax
         clc
 @dede:  lda     $29b5,x
-        cmp     #$02
+        cmp     #2
         bne     @dee7
         bra     @df26
 @dee7:  inx
-        cpx     #$0008
+        cpx     #8
         bne     @dede
         lda     $a9
         and     #$c0
@@ -2497,35 +2497,35 @@ MagicEffect_31:
         adc     a:$00ab
         tax
         stx     $8a
-        lda     #$00
+        lda     #0
         sta     $b1
         inc
         sta     $b2
-        jsr     _03dfb0
+        jsr     DeactivateMonster
         lda     $a9
         and     #$0c
         jsr     Lsr_2
         tax
         stx     $8c
-@df19:  lda     #$02
-        jsr     _03df5f
+@df19:  lda     #2
+        jsr     ActivateMonster
         dec     $8c
         lda     $8c
         bne     @df19
         bra     @df5e
 @df26:  clr_ax
         stx     $8a
-        lda     #$02
+        lda     #2
         sta     $b1
         sta     $b2
-        jsr     _03dfb0
+        jsr     DeactivateMonster
         lda     $a9
         and     #$c0
         jsr     Lsr_6
         tax
         stx     $8c
-@df3d:  lda     #$00
-        jsr     _03df5f
+@df3d:  lda     #0
+        jsr     ActivateMonster
         dec     $8c
         lda     $8c
         bne     @df3d
@@ -2534,8 +2534,8 @@ MagicEffect_31:
         jsr     Lsr_4
         tax
         stx     $8c
-@df53:  lda     #$01
-        jsr     _03df5f
+@df53:  lda     #1
+        jsr     ActivateMonster
         dec     $8c
         lda     $8c
         bne     @df53
@@ -2543,9 +2543,11 @@ MagicEffect_31:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ activate monster ]
 
-_03df5f:
+; A: monster type to activate
+
+ActivateMonster:
 @df5f:  ldx     $8a
         sta     $29b5,x
         tax
@@ -2553,7 +2555,7 @@ _03df5f:
         inc     $29cd
         clc
         lda     $8a
-        adc     #$05
+        adc     #5
         sta     $88
         sta     $df
         lda     #$80
@@ -2571,22 +2573,24 @@ _03df5f:
         stz     $d6
         lda     $88
         jsr     CalcTimerDur
-        lda     #$03        ; action timer
+        lda     #$03                    ; action timer
         jsr     SetTimer
         stz     $2a06,x
         lda     $88
         asl
         tax
         lda     #$40
-        sta     $29eb,x     ; enable action timer
+        sta     $29eb,x                 ; enable action timer
         inc     $8a
         rts
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ deactivate monster ]
 
-_03dfb0:
+; $b1, $b2: monster types to deactivate
+
+DeactivateMonster:
 @dfb0:  ldx     #$0280
         clr_ay
 @dfb5:  lda     $29b5,y
@@ -2594,7 +2598,7 @@ _03dfb0:
         beq     @dfc0
         cmp     $b2
         bne     @dfc8
-@dfc0:  lda     $2003,x
+@dfc0:  lda     $2003,x                 ; set dead status
         ora     #$80
         sta     $2003,x
 @dfc8:  jsr     NextObj

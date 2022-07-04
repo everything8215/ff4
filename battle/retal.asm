@@ -283,7 +283,7 @@ DoRetal:
 @c3c5:  inx
 @c3c6:  inx
         bra     @c381
-@c3c9:  jsr     SetMonsterAttack
+@c3c9:  jsr     SetMonsterTarget
         lda     $361c
         tax
         stz     $3879,x
@@ -339,9 +339,9 @@ FindValidChar:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ skip a.i. multi-action (normal) ]
 
-_03c431:
+SkipMultiAttack:
 @c431:  clr_ay
         sty     $a9
         ldx     $38bb
@@ -366,9 +366,9 @@ _03c431:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ skip a.i. multi-action (retaliation) ]
 
-_03c45e:
+SkipMultiAttackRetal:
 @c45e:  clr_ay
         sty     $a9
         phx

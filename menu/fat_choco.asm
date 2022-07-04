@@ -108,12 +108,12 @@ FatChocoMain:
         jsr     ClearAllBGTiles
         jsr     ResetSprites
         jsr     TfrAllBGTiles
-        jsr     _01cd69
+        jsr     InitFatChocoboMenu
         jsr     LoadFatChocoGfx
         jsr     TfrSprites
         jsr     TfrPal
         jsr     FadeIn
-        jsr     _01cd86
+        jsr     ChooseFatChocoCommand
         stz     $1b49
         jsr     FadeOut
         sei
@@ -127,13 +127,13 @@ FatChocoMain:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ init fat chocobo menu ]
 
-_01cd69:
+InitFatChocoboMenu:
 @cd69:  ldx     #$48c0
         stx     $1a71
-        jsr     _0198b3
-        jsr     _0191ce
+        jsr     TfrCharPal
+        jsr     InitPartySprites
         stz     $e0
         jsr     SelectBG3
         ldy     #.loword(FatChocoMsgWindow)
@@ -143,9 +143,9 @@ _01cd69:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ choose a fat chocobo command (give or take) ]
 
-_01cd86:
+ChooseFatChocoCommand:
 @cd86:  jsr     DrawFatChocoSprite
 @cd89:  jsr     SelectBG3
         lda     $1a88
@@ -170,7 +170,7 @@ _01cd86:
         jsr     DrawCursor
         jsr     _01d12e
         ldx     #$3188
-        jsr     _019362
+        jsr     UpdatePartySpritesNamingway
         jsr     TfrSpritesVblank
         jsr     UpdateCtrlMenu
 ; left or right button
@@ -202,7 +202,7 @@ _01cd86:
         jsr     ExecJumpTbl
         jsr     ClearBG4Tiles
         jsr     ClearBG3Tiles
-        jsr     _01cd69
+        jsr     InitFatChocoboMenu
         jsr     HideCursor1
         jsr     HideCursor2
         jsr     TfrBG4TilesVblank
@@ -294,7 +294,7 @@ FatChocoSelectItem:
         jsr     FatChocoDrawCursor
         jsr     _01d0ea
         ldx     #$3188
-        jsr     _019362
+        jsr     UpdatePartySpritesNamingway
         jsr     TfrSpritesVblank
         jsr     TfrBG4Tiles
 ; B button
@@ -391,7 +391,7 @@ FatChocoSelectItem:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ draw fat chocobo list cursor ]
 
 FatChocoDrawCursor:
 @cf7f:  lda     $1bb0
@@ -409,7 +409,7 @@ FatChocoDrawCursor:
         ldy     #$0300
         tdc
         jsr     DrawCursor
-        jsl     _1efc41
+        jsl     ScrollFatChocoList
         rts
 
 ; ------------------------------------------------------------------------------
@@ -504,13 +504,14 @@ FatChocoTakeItem:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ draw inventory list (fat chocobo) ]
 
+DrawFatChocoInventory:
 _01d052:
 @d052:  jsr     ClearBG1Tiles
         jsr     SelectClearBG2
         jsr     DrawFatChocoList
-        jsl     _1efc28
+        jsl     CopyFatChocoList
         rts
 
 ; ------------------------------------------------------------------------------

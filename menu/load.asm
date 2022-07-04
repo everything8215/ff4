@@ -36,7 +36,7 @@ GameLoadMenu:
         jsr     ValidateSRAM
         bcs     @95c0
         jsr     GameLoadMenu_main
-        jsr     _0195cc
+        jsr     SelectTopChar
 @95c0:  jsr     RestoreDlgGfx_far
         tdc
         xba
@@ -47,15 +47,15 @@ GameLoadMenu:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ select top character ]
 
-_0195cc:
+SelectTopChar:
 @95cc:  stz     $48
 @95ce:  lda     $48
         jsr     GetSelCharPtr
         lda     a:$0000,x
         and     #$3f
-        bne     @95e2
+        bne     @95e2                   ; find first valid character slot
         inc     $48
         lda     $48
         cmp     #5
@@ -106,7 +106,7 @@ GameLoadMenu_main:
 @9645:  jsr     ConfirmSaveSlot
         bcc     @9653
 ; yes
-        jsr     _01d5f2
+        jsr     LoadBtnMap
         jsr     SetStereoMono
         jmp     FadeOut
 ; no
@@ -406,9 +406,9 @@ ConfirmSaveSlot:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
+; [ transfer character sprite palettes to ppu ]
 
-_0198b3:
+TfrCharPal:
 @98b3:  longa
         ldx     #$fe28      ; character palette buffer
         ldy     #$a160
@@ -425,7 +425,7 @@ _0198b3:
 _0198c9:
 @98c9:  lda     #$30                    ; sprite layer priority: 3
         sta     $c1
-        jsr     _0198b3
+        jsr     TfrCharPal
         jsr     ResetSprites
         tdc
         sta     $1d
@@ -762,7 +762,7 @@ ValidateSRAM:
         shorta
         jsr     InitSRAM
         jsr     InitSRAMSlotNoFade
-        jsr     _0195cc
+        jsr     SelectTopChar
         sec
         rts
 @9b13:  shorta

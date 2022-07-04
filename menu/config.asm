@@ -616,12 +616,14 @@ SelectBtnMap:
         jsr     DrawCursorBtnMap
         jsr     TfrSpritesVblank
         jsr     UpdateCtrlMenu
+
 ; B button
         lda     $01
         and     #JOY_B
         beq     @d557
         lda     #$05
         sta     $1bb9
+
 ; up button
 @d557:  lda     $01
         and     #JOY_UP
@@ -631,6 +633,7 @@ SelectBtnMap:
         bpl     @d565
         lda     #$05
 @d565:  sta     $1bb9
+
 ; down button
 @d568:  lda     $01
         and     #JOY_DOWN
@@ -641,6 +644,7 @@ SelectBtnMap:
         bne     @d578
         lda     #$00
 @d578:  sta     $1bb9
+
 ; right button
 @d57b:  lda     $01
         and     #JOY_RIGHT
@@ -651,10 +655,11 @@ SelectBtnMap:
         jsr     Tax16
         lda     $16ae,x
         inc
-        cmp     f:_01d651,x
+        cmp     f:BtnMapMaxValue,x
         bne     @d597
-        lda     #$00
+        lda     #0
 @d597:  sta     $16ae,x
+
 ; left button
 @d59a:  lda     $01
         and     #JOY_LEFT
@@ -666,9 +671,10 @@ SelectBtnMap:
         lda     $16ae,x
         dec
         bpl     @d5b5
-        lda     f:_01d651,x
+        lda     f:BtnMapMaxValue,x
         dec
 @d5b5:  sta     $16ae,x
+
 ; A button
 @d5b8:  lda     $00
         and     #JOY_A
@@ -694,15 +700,17 @@ SelectBtnMap:
 ValidateBtnMap:
 @d5dc:  lda     $16ae
         cmp     $16af
-        beq     _d607
+        beq     LoadBtnMapError
         cmp     $16b0
-        beq     _d607
+        beq     LoadBtnMapError
         lda     $16af
         cmp     $16b0
-        beq     _d607
+        beq     LoadBtnMapError
         plx
 
-_01d5f2:
+; [ load button map ]
+
+LoadBtnMap:
 @d5f2:  ldx     $16ae
         stx     $1a37
         ldx     $16b0
@@ -711,7 +719,8 @@ _01d5f2:
         sta     $1a3b
         jmp     InitCtrl_far
 
-_d607:  jmp     ErrorSfx
+LoadBtnMapError:
+@d607:  jmp     ErrorSfx
 
 .endif
 
@@ -794,7 +803,8 @@ ToggleCustomBtnMap:
 
 ; ------------------------------------------------------------------------------
 
-_01d651:
+; max selected value for each button mapping (confirm, cancel, menu, L, start)
+BtnMapMaxValue:
 @d651:  .byte   5,5,5,4,4
 
 ; ------------------------------------------------------------------------------
@@ -973,13 +983,11 @@ GraySpeedNumeral:
 
 ; ------------------------------------------------------------------------------
 
-; [  ]
-
-; same as _01d5f2
+; [ load button map ]
 
 .if SIMPLE_CONFIG
 
-_01d5f2:
+LoadBtnMap:
 @d434:  ldx     $16ae
         stx     $1a37
         ldx     $16b0

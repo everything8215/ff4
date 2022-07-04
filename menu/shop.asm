@@ -69,8 +69,8 @@ _01c30c:
 @c30c:  jsr     SelectBG4
         ldx     #$48c0
         stx     $1a71
-        jsr     _0198b3
-        jsr     _0191ce
+        jsr     TfrCharPal
+        jsr     InitPartySprites
         ldy     #.loword(ShopGilWindow)
         jsr     DrawWindow
         jsr     _01c3ec
@@ -141,7 +141,7 @@ _01c35f:
         lda     #$30
         sta     $46
         jsr     DrawCursor1
-        jsr     _01921e
+        jsr     UpdatePartySpritesShop
         jsr     TfrSpritesVblank
         jsr     TfrBG4Tiles
         jsr     TfrPal
@@ -221,7 +221,7 @@ BuyMenu:
         beq     _c42a
 
 ShopInventoryFull:
-@c412:  jsr     _01921e
+@c412:  jsr     UpdatePartySpritesShop
         jsr     HideCursor1
         jsr     TfrSpritesVblank
         jsr     SelectBG1
@@ -249,7 +249,7 @@ _c42a:  jsr     ResetSprites
         stz     $1bcb
 ; start of frame loop
 @c45b:  jsr     DrawQtyCursor
-        jsr     _01921e
+        jsr     UpdatePartySpritesShop
         lda     $1b7c
         ldy     #$019a
         jsr     DrawNum2
@@ -434,7 +434,7 @@ SelectItemBuy:
         sta     $45
         jsr     DrawCursor1
         jsr     _01c772
-        jsr     _01921e
+        jsr     UpdatePartySpritesShop
         jsr     TfrSpritesVblank
         jsr     UpdateCtrlMenu
 ; B button
@@ -562,7 +562,7 @@ BuyItem:
         bpl     @c71e
         ldx     #$50c0
         stx     $1a71
-        jsr     _0191ce
+        jsr     InitPartySprites
         lda     #$09
         sta     $fe01
         sta     $fe05
@@ -575,7 +575,7 @@ BuyItem:
         sta     $fe21
         sta     $fe25
         stz     $1a73
-        jsr     _01921e
+        jsr     UpdatePartySpritesShop
         jsr     TfrSpritesVblank
         jsr     SelectBG1
         ldy     #.loword(ShopNotEnoughGilPosText)
@@ -585,7 +585,7 @@ BuyItem:
         jsr     WaitKeypress
         ldx     #$48c0
         stx     $1a71
-        jsr     _0191ce
+        jsr     InitPartySprites
         jsr     ClearBG1Tiles
         jmp     TfrBG1TilesVblank
 @c71e:  lda     #$00
@@ -611,7 +611,7 @@ BuyItem:
         jsr     SelectBG1
         ldy     #.loword(ThankYouWindow)
         jsr     DrawWindowText
-        jsr     _01921e
+        jsr     UpdatePartySpritesShop
         jsr     TfrSpritesVblank
         lda     #$2b        ; cash register sound effect
         jsr     PlaySfx
@@ -816,7 +816,7 @@ SelectItemSell:
         jsr     UpdateScrollRegsVblank
         dec     $45
         bne     @c8e3
-        jsr     _0182a5
+        jsr     UpdateCtrlAfterScroll
         bcs     @c8fa
         jmp     @c86e
 ; down button
@@ -834,7 +834,7 @@ SelectItemSell:
         cmp     #$11
         beq     @c933
         sta     $1b96
-        lda     #$08
+        lda     #8                      ; scroll down for 8 frames
         sta     $45
 @c91c:  longa
         inc     $9f
@@ -843,7 +843,7 @@ SelectItemSell:
         jsr     UpdateScrollRegsVblank
         dec     $45
         bne     @c91c
-        jsr     _0182a5
+        jsr     UpdateCtrlAfterScroll
         bcs     @c933
         jmp     @c86e
 @c933:  jmp     SelectItemSell
