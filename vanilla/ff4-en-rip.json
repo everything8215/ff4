@@ -1194,7 +1194,18 @@
             "name": "VRAM Map",
             "begin": 0,
             "mask": "0x07",
-            "stringTable": "battleVRAMMap"
+            "stringTable": {
+              "length": 6,
+              "default": "VRAM Map %i",
+              "string": {
+                "0": "Large, None, None",
+                "1": "Large, Large, None",
+                "2": "Small, Small, Small",
+                "3": "Large, Small, Small",
+                "4": "Small, Small, Large",
+                "5": "Small, Large, Small"
+              }
+            }
           },
           "hiddenMonsters": {
             "type": "property",
@@ -1259,169 +1270,6 @@
         "name": "Battle Properties",
         "length": 512,
         "default": "Battle %i"
-      }
-    },
-    "battleVRAMMap": {
-      "type": "assembly",
-      "name": "Battle VRAM Map",
-      "range": "0x16FBAC-0x16FC3B",
-      "assembly": {
-        "bossTileCount": {
-          "type": "array",
-          "name": "Boss Graphics Tile Count",
-          "range": "0x00-0x2F",
-          "array": {
-            "length": 6
-          },
-          "assembly": {
-            "type": "assembly",
-            "length": 8,
-            "assembly": {
-              "monster1": {
-                "type": "property",
-                "name": "Monster 1 Tile Count",
-                "begin": 0,
-                "mask": "0xFFFF"
-              },
-              "monster2": {
-                "type": "property",
-                "name": "Monster 2 Tile Count",
-                "begin": 2,
-                "mask": "0xFFFF"
-              },
-              "monster3": {
-                "type": "property",
-                "name": "Monster 3 Tile Count",
-                "begin": 4,
-                "mask": "0xFFFF"
-              },
-              "monster4": {
-                "type": "property",
-                "name": "Monster 4 Tile Count",
-                "begin": 6,
-                "mask": "0xFFFF"
-              }
-            }
-          }
-        },
-        "vramOffset": {
-          "type": "array",
-          "name": "VRAM Offset",
-          "range": "0x30-0x5F",
-          "array": {
-            "length": 6
-          },
-          "assembly": {
-            "type": "assembly",
-            "length": 8,
-            "assembly": {
-              "monster1": {
-                "type": "property",
-                "name": "Monster 1 VRAM Address",
-                "begin": 0,
-                "mask": "0xFFFF"
-              },
-              "monster2": {
-                "type": "property",
-                "name": "Monster 2 VRAM Address",
-                "begin": 2,
-                "mask": "0xFFFF"
-              },
-              "monster3": {
-                "type": "property",
-                "name": "Monster 3 VRAM Address",
-                "begin": 4,
-                "mask": "0xFFFF"
-              },
-              "monster4": {
-                "type": "property",
-                "name": "Monster 4 VRAM Address",
-                "begin": 6,
-                "mask": "0xFFFF"
-              }
-            }
-          }
-        },
-        "tileData1": {
-          "type": "array",
-          "name": "Tile Data Byte 1",
-          "range": "0x60-0x77",
-          "array": {
-            "length": 6
-          },
-          "assembly": {
-            "type": "assembly",
-            "length": 4,
-            "assembly": {
-              "monster1": {
-                "type": "property",
-                "name": "Monster 1 Tile Data Byte 1",
-                "begin": 0
-              },
-              "monster2": {
-                "type": "property",
-                "name": "Monster 2 Tile Data Byte 1",
-                "begin": 1
-              },
-              "monster3": {
-                "type": "property",
-                "name": "Monster 3 Tile Data Byte 1",
-                "begin": 2
-              },
-              "monster4": {
-                "type": "property",
-                "name": "Monster 4 Tile Data Byte 1",
-                "begin": 3
-              }
-            }
-          }
-        },
-        "tileData2": {
-          "type": "array",
-          "name": "Tile Data Byte 2",
-          "range": "0x78-0x8F",
-          "array": {
-            "length": 6
-          },
-          "assembly": {
-            "type": "assembly",
-            "length": 4,
-            "assembly": {
-              "monster1": {
-                "type": "property",
-                "name": "Monster 1 Tile Data Byte 2",
-                "begin": 0
-              },
-              "monster2": {
-                "type": "property",
-                "name": "Monster 2 Tile Data Byte 2",
-                "begin": 1
-              },
-              "monster3": {
-                "type": "property",
-                "name": "Monster 3 Tile Data Byte 2",
-                "begin": 2
-              },
-              "monster4": {
-                "type": "property",
-                "name": "Monster 4 Tile Data Byte 2",
-                "begin": 3
-              }
-            }
-          }
-        }
-      },
-      "stringTable": {
-        "length": 6,
-        "default": "VRAM Map %i",
-        "string": {
-          "0": "Large, None, None",
-          "1": "Large, Large, None",
-          "2": "Small, Small, Small",
-          "3": "Large, Small, Small",
-          "4": "Small, Small, Large",
-          "5": "Small, Large, Small"
-        }
       }
     },
     "brrSamples": {
@@ -1646,20 +1494,6 @@
         }
       }
     },
-    "characterLevelPointer": {
-      "type": "array",
-      "name": "Pointer to Character Level Progression",
-      "range": "0x0FB500-0x0FB527",
-      "array": {
-        "length": 20
-      },
-      "assembly": {
-        "type": "property",
-        "name": "Pointer",
-        "length": 2,
-        "mask": "0xFFFF"
-      }
-    },
     "characterLevelProgression": {
       "type": "array",
       "name": "Character Level Progression",
@@ -1682,8 +1516,8 @@
         "0x0FC273-0x0FC35B",
         "0x0FC35C-0x0FC3C7"
       ],
-      "assembly": {
-        "type": "data",
+      "lowLevel": {
+        "type": "array",
         "itemLength": 5,
         "assembly": {
           "type": "assembly",
@@ -1713,6 +1547,51 @@
               "begin": 2,
               "mask": "0x1F"
             },
+            "statMod": {
+              "type": "property",
+              "name": "Stat Mod.",
+              "begin": 0,
+              "mask": "0x07",
+              "stringTable": {
+                "hideIndex": true,
+                "string": {
+                  "0": "0",
+                  "1": "+1",
+                  "2": "+2",
+                  "3": "+3",
+                  "4": "+4",
+                  "5": "+5",
+                  "6": "+6",
+                  "7": "-1"
+                }
+              }
+            },
+            "stats": {
+              "type": "property",
+              "name": "Stats",
+              "begin": 0,
+              "mask": "0xF8",
+              "flag": true,
+              "stringTable": {
+                "string": {
+                  "4": "Strength",
+                  "3": "Agility",
+                  "2": "Stamina",
+                  "1": "Itellect",
+                  "0": "Spirit"
+                }
+              }
+            }
+          }
+        }
+      },
+      "highLevel": {
+        "type": "array",
+        "arrayLength": 8,
+        "itemLength": 1,
+        "assembly": {
+          "type": "assembly",
+          "assembly": {
             "statMod": {
               "type": "property",
               "name": "Stat Mod.",
@@ -1889,72 +1768,6 @@
             "name": "Battle Commands",
             "external": "characterBattleCommands[%i]"
           }
-        }
-      }
-    },
-    "characterSpellListMenu": {
-      "type": "array",
-      "name": "Character Spell List (Menu)",
-      "range": "0x14FFA2-0x14FFCB",
-      "array": {
-        "length": 14
-      },
-      "assembly": {
-        "type": "assembly",
-        "length": 3,
-        "assembly": {
-          "white": {
-            "type": "property",
-            "begin": 0,
-            "name": "White",
-            "stringTable": "spellList",
-            "link": "spellList[%i]",
-            "special": {
-              "0xFF": "None"
-            }
-          },
-          "black": {
-            "type": "property",
-            "begin": 1,
-            "name": "Black",
-            "stringTable": "spellList",
-            "link": "spellList[%i]",
-            "special": {
-              "0xFF": "None"
-            }
-          },
-          "summon": {
-            "type": "property",
-            "begin": 2,
-            "name": "Summon",
-            "stringTable": "spellList",
-            "link": "spellList[%i]",
-            "special": {
-              "0xFF": "None"
-            }
-          }
-        }
-      },
-      "stringTable": {
-        "name": "Character Job",
-        "length": 16,
-        "default": "Character Job %i",
-        "string": {
-          "0": "Cecil (Dark Knight)",
-          "1": "Kain",
-          "2": "Rydia (Girl)",
-          "3": "Tellah",
-          "4": "Edward",
-          "5": "Rosa",
-          "6": "Yang",
-          "7": "Palom",
-          "8": "Porom",
-          "9": "Cecil (Paladin)",
-          "10": "Cid",
-          "11": "Rydia (Adult)",
-          "12": "Edge",
-          "13": "FuSoYa",
-          "15": "Golbez"
         }
       }
     },
@@ -3107,64 +2920,6 @@
         "offset": "0x188000"
       }
     },
-    "mapLayouts": {
-      "type": "assembly",
-      "name": "Map Layout",
-      "range": "0x178000-0x19FE5F",
-      "isSequential": true,
-      "assembly": {
-        "overworldLayouts": {
-          "type": "array",
-          "name": "Overworld Layout",
-          "range": "0x0300-0xF12D",
-          "pointerAlign": "0x8000",
-          "isSequential": true,
-          "endPointer": true,
-          "array": {
-            "length": 224
-          },
-          "assembly": {
-            "format": "ff4-map"
-          },
-          "pointerTable": {
-            "range": "0x0000-0x01FF",
-            "offset": "0x0000"
-          },
-          "stringTable": {
-            "default": "Overworld Layout %i",
-            "length": 224,
-            "string": {
-              "0": "Town of Baron"
-            }
-          }
-        },
-        "undergroundMoonLayouts": {
-          "type": "array",
-          "name": "Underground/Moon Layout",
-          "range": "0xF12E-0x017CF8",
-          "pointerAlign": "0x8000",
-          "isSequential": true,
-          "endPointer": true,
-          "array": {
-            "length": 126
-          },
-          "assembly": {
-            "format": "ff4-map"
-          },
-          "pointerTable": {
-            "range": "0x0200-0x02FF",
-            "offset": "0x8000"
-          },
-          "stringTable": {
-            "default": "Underground/Moon Layout %i",
-            "length": 126,
-            "string": {
-              "0": "Kokkol's Smithy (Exterior)"
-            }
-          }
-        }
-      }
-    },
     "mapPalettes": {
       "type": "array",
       "name": "Map Palettes",
@@ -3771,7 +3526,7 @@
       "assembly": {
         "type": "graphics",
         "format": "snes3bpp",
-        "palette": ["mapSpritePalettes", "npcPalettes"],
+        "palette": "npcPalettes",
         "spriteSheet": {
           "width": 16,
           "height": 2,
@@ -4003,18 +3758,6 @@
           "0x69": "Stone Palom",
           "0x6A": "Stone Porom"
         }
-      }
-    },
-    "mapSpritePalettes": {
-      "type": "array",
-      "name": "Map Character Palette",
-      "range": "0x0D8000-0x0D803F",
-      "array": {
-        "length": 4
-      },
-      "assembly": {
-        "length": 16,
-        "format": "bgr555"
       }
     },
     "mapTileProperties": {
@@ -7535,7 +7278,7 @@
               "max": 253,
               "stringTable": "mapProperties",
               "link": "mapProperties[%i]",
-              "invalid": "obj.map === 0xFF"
+              "hidden": "obj.map === 0xFF"
             },
             "xDest": {
               "type": "property",

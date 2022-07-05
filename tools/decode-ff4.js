@@ -1,9 +1,22 @@
 #!/usr/bin/env node
 
-const decodeROM = require('./romtools/decode-rom');
-const hexString = require('./romtools/hex-string');
 const fs = require('fs');
 const CRC32 = require('crc-32');
+const ROMDecoder = require('./romtools/rom-decoder');
+const hexString = require('./romtools/hex-string');
+
+let decoder;
+
+function decodeLevelProg(data, definition) {
+  // decode low level data and high level data separately
+  const lowLevelData = data.slice(0, -8);
+  const lowLevelObj = decoder.decodeArray(lowLevelData, definition.lowLevel);
+
+  const highLevelData = data.slice(-8);
+  const highLevelObj = decoder.decodeArray(highLevelData, definition.highLevel);
+
+  return lowLevelObj.concat(highLevelObj);
+}
 
 const romInfoListFF4 = {
   0x21027C5D: {
@@ -43,8 +56,29 @@ for (let filename of files) {
 
   console.log(`Found ROM: ${romInfo.name}`);
   console.log(`File: ${filePath}`);
-  const romObj = decodeROM(filePath, romInfo.ripPath);
+
+  // load the definition file
+  const ripDefinitionFile = fs.readFileSync(romInfo.ripPath);
+  const ripDefinition = JSON.parse(ripDefinitionFile);
+
+  decoder = new ROMDecoder(ripDefinition);
+
+  // load the ROM file
+  const romData = new Uint8Array(fs.readFileSync(filePath));
+  const romObj = decoder.decodeROM(romData, ripDefinition);
   romObj.crc32 = hexString(crc32, 8);
+
+  // decode character level progression
+  const rawLevelArray = romObj.obj.characterLevelProgression;
+  const levelDataDef = ripDefinition.assembly.characterLevelProgression;
+  let decodedLevelArray = [];
+  for (let levelDataBase64 of rawLevelArray) {
+    const rawLevelData = new Uint8Array(Buffer.from(levelDataBase64, 'base64'));
+    const decodedLevelData = decodeLevelProg(rawLevelData, levelDataDef);
+    decodedLevelArray.push(decodedLevelData);
+  }
+  romObj.obj.characterLevelProgression = decodedLevelArray;
+
   fs.writeFileSync(romInfo.dataPath, JSON.stringify(romObj, null, 2));
   foundOneROM = true;
 }

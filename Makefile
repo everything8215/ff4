@@ -26,7 +26,7 @@ all: $(VERSIONS)
 
 # rip data from ROMs
 rip:
-	node tools/rip-ff4.js
+	node tools/decode-ff4.js
 
 encode-jp: ff4-jp-data.json
 	node tools/encode-ff4.js ff4-jp-data.json
