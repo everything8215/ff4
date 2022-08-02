@@ -2243,7 +2243,7 @@ Special_09:
         sta     $212c
         stz     $2130
         stz     $2131
-        jsl     ClearVRAMGfx
+        jsl     ClearBGGfx
         stz     $420b
         ldx     #.loword(PrologueBGGfx)
         stx     $4302

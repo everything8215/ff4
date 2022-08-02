@@ -25,18 +25,26 @@
 
 ; 15/8000
 WorldTriggersPtrs:
-        make_ptr_tbl_rel WorldTriggers, 3
-        .include "data/world_triggers.asm"
+        .addr   WorldTriggers1-WorldTriggers
+        .addr   WorldTriggers2-WorldTriggers
+        .addr   WorldTriggers3-WorldTriggers
+WorldTriggers:
+        ; make_ptr_tbl_rel WorldTriggers, 3
+        .include "data/world_triggers1.asm"
+        .include "data/world_triggers2.asm"
+        .include "data/world_triggers3.asm"
 
 .segment "triggers"
 .align $80
 
 MapTriggersPtrs:
-        make_ptr_tbl_rel MapTriggers, $0180
+        make_ptr_tbl_rel MapTriggers1, $0100
+        make_ptr_tbl_rel MapTriggers2, $80, MapTriggers1
 
 ; 15/8200
 .if LANG_EN
-        .include "data/map_triggers_en.asm"
+        .include "data/map_triggers1_en.asm"
+        .include "data/map_triggers2_en.asm"
 
 ; in the english translation, there is 1 byte of stale data carried over
 ; from the japanese ROM at 15/961F
@@ -45,7 +53,8 @@ MapTriggersPtrs:
 .endif
 
 .else
-        .include "data/map_triggers_jp.asm"
+        .include "data/map_triggers1_jp.asm"
+        .include "data/map_triggers2_jp.asm"
 .endif
 
 .popseg
@@ -215,10 +224,10 @@ CheckTreasure:
 @98d9:  jsr     GetTreasurePtr
         ldy     #0
         ldx     $3d
-@98e1:  lda     f:MapTriggers,x         ; pointers to triggers
+@98e1:  lda     f:MapTriggers1,x         ; pointers to triggers
         cmp     $0c
         bne     @98f4
-        lda     f:MapTriggers+1,x
+        lda     f:MapTriggers1+1,x
         cmp     $0e
         bne     @98f4
         jmp     @9901
@@ -264,9 +273,9 @@ CheckTreasure:
         lda     #$37
         jsr     PlaySfx
 @9952:  ldx     $40
-        lda     f:MapTriggers+3,x
+        lda     f:MapTriggers1+3,x
         sta     $09
-        lda     f:MapTriggers+4,x
+        lda     f:MapTriggers1+4,x
         sta     $08
         lda     $09
         and     #$40
@@ -562,9 +571,9 @@ InitTreasures:
         cmp     #0
         beq     @9bbb
         ldx     $3d
-        lda     f:MapTriggers,x
+        lda     f:MapTriggers1,x
         sta     $18
-        lda     f:MapTriggers+1,x
+        lda     f:MapTriggers1+1,x
         sta     $19
         ldx     $18
         lda     $7f5c71,x
@@ -657,33 +666,33 @@ CheckTriggerSub:
         lda     f:MapTriggersPtrs+1,x
         sta     $3e
         ldx     $3d
-@9c60:  lda     f:MapTriggers,x
+@9c60:  lda     f:MapTriggers1,x
         cmp     $1706
         bne     @9c72
-        lda     f:MapTriggers+1,x
+        lda     f:MapTriggers1+1,x
         cmp     $1707
         beq     @9c7a
 @9c72:  inx5
         jmp     @9c60
-@9c7a:  lda     f:MapTriggers+2,x
+@9c7a:  lda     f:MapTriggers1+2,x
         cmp     #$ff
         bne     @9c8a
-        lda     f:MapTriggers+3,x
+        lda     f:MapTriggers1+3,x
         jsr     ExecTriggerScript
         rts
 @9c8a:  jsr     PushMapStack
-        lda     f:MapTriggers+2,x
+        lda     f:MapTriggers1+2,x
         cmp     #$fb
         bcs     @9cc2
         sta     $1702
-        lda     f:MapTriggers+3,x
+        lda     f:MapTriggers1+3,x
         and     #$3f
         sta     $1706
-        lda     f:MapTriggers+3,x
+        lda     f:MapTriggers1+3,x
         and     #$c0
         lsr6
         sta     $1705
-        lda     f:MapTriggers+4,x
+        lda     f:MapTriggers1+4,x
         sta     $1707
         jsr     WipeOut
         lda     #$03
@@ -694,13 +703,13 @@ CheckTriggerSub:
         jsr     FadeOutSongFast
         jsr     WipeOut
         plx
-        lda     f:MapTriggers+2,x
+        lda     f:MapTriggers1+2,x
         sec
         sbc     #$fb
         sta     $1700
-        lda     f:MapTriggers+3,x
+        lda     f:MapTriggers1+3,x
         sta     $1706
-        lda     f:MapTriggers+4,x
+        lda     f:MapTriggers1+4,x
         sta     $1707
         inc     $cd
         ldx     #$0000

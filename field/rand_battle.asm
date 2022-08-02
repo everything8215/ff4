@@ -46,11 +46,15 @@ OverworldBattleGrp:
 
 ; 0e/c582
 UndergroundBattleGrp:
-        .byte   8,7,7,7,10,7,7,7,8,7,7,7,8,8,8,8
+        .byte   8,7,7,7
+        .byte   10,7,7,7
+        .byte   8,7,7,7
+        .byte   8,8,8,8
 
 ; 0e/c592
 MoonBattleGrp:
-        .byte   9,9,9,9
+        .byte   9,9
+        .byte   9,9
 
 ; 0e/c596
         .include "data/sub_battle_grp.asm"

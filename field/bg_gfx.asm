@@ -100,7 +100,7 @@ Tfr3bppGfx:
         lda     #$01
         sta     $420b
         stz     $420b
-        lsr     $4f         ; size / 16
+        lsr     $4f                     ; size / 16
         ror     $4e
         lsr     $4f
         ror     $4e
@@ -122,7 +122,7 @@ Tfr3bppGfx:
         sta     $2115
         lda     #$01
         sta     $4300
-        ldx     #$0010      ; transfer 16 bytes
+        ldx     #$0010                  ; transfer 16 bytes
         stx     $4305
         lda     #$01
         sta     $420b
@@ -148,8 +148,9 @@ LoadBGGfx:
         cmp     #$0f
         bne     @b094
 @b091:  jmp     @b0be
+
 ; 3bpp
-@b094:  jsl     ClearVRAMGfx
+@b094:  jsl     ClearBGGfx
         stz     $420b
         lda     $0fdd
         asl
@@ -164,10 +165,11 @@ LoadBGGfx:
         sta     $4304
         jsl     TfrBGGfx
         rtl
+
 ; 4bpp
 @b0be:  ldx     #0
         stx     $47
-        ldx     #$2400
+        ldx     #$2400                  ; copy $2400 bytes -> vram $0000-$11ff
         stx     $45
         lda     #.bankbyte(MapGfx_0000)
         sta     $3c
@@ -207,7 +209,10 @@ MapGfxBankTbl:
 
 ; [ clear bg1/bg2 graphics in vram ]
 
-ClearVRAMGfx:
+; this only clears the high byte of each vram address to prepare to
+; load 3bpp graphics
+
+ClearBGGfx:
 @b114:  stz     hMDMAEN
         lda     #$80
         sta     hVMAINC
@@ -221,7 +226,7 @@ ClearVRAMGfx:
         ldx     #$0606
         stx     $4302
         stz     $4304
-        ldx     #$1800      ; clear $0000-$17ff
+        ldx     #$1800      ; clear $3000 bytes (vram $0000-$17ff)
         stx     $4305
         lda     #1
         sta     hMDMAEN
@@ -230,6 +235,9 @@ ClearVRAMGfx:
 ; ------------------------------------------------------------------------------
 
 ; [ transfer bg1/bg2 graphics to vram (3bpp) ]
+
+; this does not affect the bytes which determine the 4th bitplane, so
+; they must be cleared first by calling ClearBGGfx
 
 TfrBGGfx:
 @b143:  lda     #$18

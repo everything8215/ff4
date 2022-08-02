@@ -4,14 +4,20 @@ const fs = require('fs');
 const getDirName = require('path').dirname;
 const isArray = require('isarray');
 const ROMDataCodec = require('./data-codec');
-const ROMDataManager = require('./data-manager');
 const ROMRange = require('./range');
+const ROMTextCodec = require('./text-codec');
 const hexString = require('./hex-string');
 
 class ROMEncoder {
   constructor(definition) {
-    // create the data manager
-    this.dataMgr = new ROMDataManager(definition);
+
+    // create text codecs
+    this.textCodec = {};
+    for (let key in definition.textEncoding) {
+      const encodingDef = definition.textEncoding[key];
+      this.textCodec[key] = new ROMTextCodec(encodingDef, definition.charTable);
+    }
+
     this.currentIndex = 0;
     this.indexStack = [];
   }
@@ -21,16 +27,18 @@ class ROMEncoder {
       const objDefinition = definition.assembly[key];
       if (!objDefinition.file || !objDefinition.isDirty) continue;
 
+      const obj = definition.obj[key];
+
       console.log(`Encoding ${objDefinition.asmSymbol}`);
-      this.encodeParentObject(key);
+      this.encodeParentObject(obj, objDefinition);
     }
   }
 
-  encodeParentObject(key) {
-    const definition = this.dataMgr.getDefinition(key);
-    const obj = this.dataMgr.getObject(key);
+  encodeParentObject(obj, definition) {
+    // const definition = this.dataMgr.getDefinition(key);
+    // const obj = this.dataMgr.getObject(key);
     if (isArray(obj) ^ (definition.type === 'array')) {
-      console.log(`Object/definition mismatch: ${key}`);
+      console.log(`Object/definition mismatch: ${definition.asmSymbol}`);
       return;
     }
 
@@ -101,9 +109,9 @@ class ROMEncoder {
     let pointerRanges = {};
     for (let p = 0; p < sortedPointers.length; p++) {
       const begin = sortedPointers[p];
-      let end = objData.length;
+      let end = objData.length - 1;
       if (p !== (sortedPointers.length - 1)) {
-        end = sortedPointers[p + 1];
+        end = sortedPointers[p + 1] - 1;
       }
       pointerRanges[begin] = new ROMRange(begin, end);
     }
@@ -119,7 +127,7 @@ class ROMEncoder {
           if (objData[end] === terminator) break;
           end++;
         }
-        const range = new ROMRange(begin, end + 1);
+        const range = new ROMRange(begin, end);
         itemRanges.push(range);
       } else {
         itemRanges.push(pointerRanges[begin]);
@@ -167,7 +175,7 @@ class ROMEncoder {
       }
 
       // print the data
-      const pointerData = objData.subarray(range.begin, range.end);
+      const pointerData = objData.subarray(range.begin, range.end + 1);
       for (let b = 0; b < pointerData.length; b++) {
         if (b % 16 == 0) {
           asmString += '\n        .byte   ';
@@ -192,7 +200,7 @@ class ROMEncoder {
 
     if (definition.type === 'text') {
       const encodingKey = definition.encoding;
-      const textCodec = this.dataMgr.textCodec[encodingKey];
+      const textCodec = this.textCodec[encodingKey];
       const begin = definition.begin || 0;
       const textData = textCodec.encode(obj);
       if (data) {

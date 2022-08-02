@@ -71,22 +71,38 @@
 
 ; 0d/87f0
 SummonGfxPtrs:
-        make_ptr_tbl_rel SummonGfx, 17, .bankbyte(*)<<16
+        .addr   MonsterGfx5_0000
+        .addr   MonsterGfx5_0001
+        .addr   MonsterGfx5_0002
+        .addr   MonsterGfx5_0003
+        .addr   MonsterGfx5_0004
+        .addr   MonsterGfx5_0005
+        .addr   MonsterGfx5_0006
+        .addr   MonsterGfx5_0007
+        .addr   MonsterGfx5_0008
+        .addr   MonsterGfx5_0009
+        .addr   MonsterGfx5_000a
+        .addr   MonsterGfx5_000b
+        .addr   MonsterGfx5_000c
+        .addr   MonsterGfx5_000e
+        .addr   MonsterGfx5_000e
+        .addr   MonsterGfx5_000e
+        .addr   MonsterGfx5_000d
 
 .align 8
 ; 0d/8818
-        .include "gfx/summon_gfx.asm"
+        .include "gfx/monster_gfx5.asm"
 
 ; ------------------------------------------------------------------------------
 
-.segment "summon_gfx_map"
+.segment "summon_tilemap"
 
 ; 0d/f260
-SummonGfxMapPtrs:
-        make_ptr_tbl_rel SummonGfxMap, 17, .bankbyte(*)<<16
+SummonTilemapPtrs:
+        make_ptr_tbl_rel SummonTilemap, 17, .bankbyte(*)<<16
 
 ; 0d/f282
-        .include "data/summon_gfx_map.asm"
+        .include "data/summon_tilemap.asm"
 
 ; ------------------------------------------------------------------------------
 
@@ -598,14 +614,14 @@ DarkenBattleBGTbl:
 
 ; ------------------------------------------------------------------------------
 
-.segment "boss_map"
+.segment "boss_tilemap"
 
 ; 0e/cf00
-BossGfxMapPtrs:
-        make_ptr_tbl_rel BossGfxMap, 57, .bankbyte(*)<<16
+BossTilemapPtrs:
+        make_ptr_tbl_rel BossTilemap, 57, .bankbyte(*)<<16
 
 ; 0e/cf72
-        .include "data/boss_gfx_map.asm"
+        .include "data/boss_tilemap.asm"
 
 ; ------------------------------------------------------------------------------
 

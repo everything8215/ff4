@@ -129,10 +129,10 @@ LoadSummonGfx:
         asl
         tax
         longa
-        lda     f:SummonGfxMapPtrs,x
+        lda     f:SummonTilemapPtrs,x
         tax
         shorta0
-        lda     #^SummonGfxMapPtrs
+        lda     #^SummonTilemapPtrs
         jsr     TfrSummonGfx
         pla
         rts

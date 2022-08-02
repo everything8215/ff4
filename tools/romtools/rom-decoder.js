@@ -4,15 +4,25 @@ const fs = require('fs');
 const getDirName = require('path').dirname;
 const isString = require('is-string');
 const ROMDataCodec = require('./data-codec');
-const ROMDataManager = require('./data-manager');
+const ROMMemoryMap = require('./memory-map');
 const ROMRange = require('./range');
+const ROMTextCodec = require('./text-codec');
 const hexString = require('./hex-string');
 
 class ROMDecoder {
 
   constructor(definition) {
-    // create the data manager
-    this.dataMgr = new ROMDataManager(definition);
+
+    // create a memory mapper
+    const mapMode = definition.mode || ROMMemoryMap.MapMode.none;
+    this.memoryMap = new ROMMemoryMap(mapMode);
+
+    // create text codecs
+    this.textCodec = {};
+    for (let key in definition.textEncoding) {
+      const encodingDef = definition.textEncoding[key];
+      this.textCodec[key] = new ROMTextCodec(encodingDef, definition.charTable);
+    }
 
     this.currentIndex = 0;
     this.indexStack = [];
@@ -27,7 +37,7 @@ class ROMDecoder {
       const objDefinition = definition.assembly[key];
       if (!objDefinition.file) continue;
       definition.obj[key] = this.decodeParentObject(objDefinition);
-      // definition.assembly[key].isDirty = true;
+      definition.assembly[key].isDirty = false;
     }
 
     return definition;
@@ -37,10 +47,12 @@ class ROMDecoder {
 
     // calculate the appropriate ROM range using the mapper
     const unmappedRange = new ROMRange(definition.range);
-    const mappedRange = this.dataMgr.memoryMap.mapRange(unmappedRange);
+    const mappedRange = this.memoryMap.mapRange(unmappedRange);
+    const asmSymbol = definition.asmSymbol;
+    console.log(`${unmappedRange} ${asmSymbol} -> ${definition.file}`);
 
     // extract the array data
-    const objData = this.romData.slice(mappedRange.begin, mappedRange.end);
+    const objData = this.romData.slice(mappedRange.begin, mappedRange.end + 1);
 
     // make a list of pointers
     let pointers = [];
@@ -58,13 +70,13 @@ class ROMDecoder {
       let ptrOffset = Number(ptrDefinition.offset);
       if (!isMapped) {
         // map pointer offset first, then add pointers
-        ptrOffset = this.dataMgr.memoryMap.mapAddress(ptrOffset);
+        ptrOffset = this.memoryMap.mapAddress(ptrOffset);
       }
 
       // extract the pointer table data
       let ptrRange = new ROMRange(ptrDefinition.range);
-      ptrRange = this.dataMgr.memoryMap.mapRange(ptrRange);
-      const ptrData = this.romData.subarray(ptrRange.begin, ptrRange.end);
+      ptrRange = this.memoryMap.mapRange(ptrRange);
+      const ptrData = this.romData.subarray(ptrRange.begin, ptrRange.end + 1);
       const pointerSize = ptrDefinition.pointerSize || 2;
 
       for (let i = 0; i < (ptrData.length / pointerSize); i++) {
@@ -77,7 +89,7 @@ class ROMDecoder {
         pointer += ptrOffset;
         if (isMapped) {
           // map pointer after adding to pointer offset
-          pointer = this.dataMgr.memoryMap.mapAddress(pointer);
+          pointer = this.memoryMap.mapAddress(pointer);
         }
         pointers.push(pointer - mappedRange.begin);
       }
@@ -85,7 +97,7 @@ class ROMDecoder {
     } else if (definition.itemRanges) {
       for (let i = 0; i < definition.arrayLength; i++) {
         const range = new ROMRange(definition.itemRanges[i]);
-        const pointer = this.dataMgr.memoryMap.mapAddress(range.begin);
+        const pointer = this.memoryMap.mapAddress(range.begin);
         pointers.push(pointer - mappedRange.begin);
       }
 
@@ -117,9 +129,9 @@ class ROMDecoder {
     let pointerRanges = {};
     for (let p = 0; p < sortedPointers.length; p++) {
       const begin = sortedPointers[p];
-      let end = objData.length;
+      let end = objData.length - 1;
       if (p !== (sortedPointers.length - 1)) {
-        end = sortedPointers[p + 1];
+        end = sortedPointers[p + 1] - 1;
       }
       pointerRanges[begin] = new ROMRange(begin, end);
     }
@@ -135,13 +147,13 @@ class ROMDecoder {
           if (objData[end] === terminator) break;
           end++;
         }
-        const range = new ROMRange(begin, end + 1);
+        const range = new ROMRange(begin, end);
         itemRanges.push(range);
 
       } else if (definition.isSequential) {
-        let end = objData.length;
+        let end = objData.length - 1;
         if (i !== definition.arrayLength - 1) {
-          end = pointers[i + 1];
+          end = pointers[i + 1] - 1;
         }
         const range = new ROMRange(begin, end);
         itemRanges.push(range);
@@ -159,7 +171,6 @@ class ROMDecoder {
         }
       }
     }
-    const asmSymbol = definition.asmSymbol;
 
     if (!fs.existsSync(definition.file)) {
       let asmString = '';
@@ -189,7 +200,7 @@ class ROMDecoder {
         }
 
         // print the data
-        const pointerData = objData.subarray(range.begin, range.end);
+        const pointerData = objData.subarray(range.begin, range.end + 1);
         for (let b = 0; b < pointerData.length; b++) {
           if (b % 16 == 0) {
             asmString += '\n        .byte   ';
@@ -205,8 +216,6 @@ class ROMDecoder {
       const asmPath = definition.file;
       fs.mkdirSync(getDirName(asmPath), { recursive: true });
       fs.writeFileSync(asmPath, asmString);
-
-      console.log(`${unmappedRange} ${asmSymbol} -> ${definition.file}`);
     }
 
     if (definition.type === 'array') {
@@ -214,7 +223,7 @@ class ROMDecoder {
       const array = [];
       for (let i = 0; i < itemRanges.length; i++) {
         const itemRange = itemRanges[i];
-        const itemData = objData.slice(itemRange.begin, itemRange.end);
+        const itemData = objData.slice(itemRange.begin, itemRange.end + 1);
         array[i] = this.decodeObject(itemData, definition.assembly);
         this.currentIndex++;
       }
@@ -237,7 +246,7 @@ class ROMDecoder {
 
     if (definition.type === 'text') {
       const encodingKey = definition.encoding;
-      const textCodec = this.dataMgr.textCodec[encodingKey];
+      const textCodec = this.textCodec[encodingKey];
       const begin = definition.begin || 0;
       const textData = data.slice(begin);
       return textCodec.decode(textData);
@@ -254,23 +263,6 @@ class ROMDecoder {
         if (subDefinition.external) continue;
 
         obj[key] = this.decodeObject(data, subDefinition);
-      }
-
-      // remove invalid assemblies
-      let invalidKeys = [];
-      for (let key in obj) {
-        const subDefinition = definition.assembly[key];
-        if (!subDefinition) {
-          console.log(key);
-          continue;
-        }
-        const invalid = subDefinition.invalid;
-        const index = this.currentIndex;
-        if (invalid && eval(invalid)) invalidKeys.push(key);
-      }
-
-      for (let key of invalidKeys) {
-        delete obj[key];
       }
 
       return obj;
@@ -321,7 +313,7 @@ class ROMDecoder {
         return array;
       }
       const encodingKey = definition.assembly.encoding;
-      const textCodec = this.dataMgr.textCodec[encodingKey];
+      const textCodec = this.textCodec[encodingKey];
       let begin = 0;
       while (begin < data.length) {
         const end = begin + textCodec.textLength(data.subarray(begin));

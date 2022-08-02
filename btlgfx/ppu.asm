@@ -298,18 +298,18 @@ DrawBoss:
         lda     $efa7
         asl
         tax
-        lda     f:BossGfxMapPtrs,x   ; pointers to boss graphics maps
+        lda     f:BossTilemapPtrs,x     ; pointers to boss tilemaps
         sta     $26
-        lda     f:BossGfxMapPtrs+1,x
+        lda     f:BossTilemapPtrs+1,x
         sta     $27
-        lda     #^BossGfxMapPtrs
+        lda     #^BossTilemapPtrs
         sta     $28
         clr_ax
         stz     $09
 @8c9c:  lda     $00
         sta     $02
         ldy     #0
-@8ca3:  jsr     LoadBossGfxMap
+@8ca3:  jsr     LoadBossTilemap
         sta     ($04),y
         iny
         lda     $07
@@ -341,9 +341,9 @@ DrawBoss:
 
 ; ------------------------------------------------------------------------------
 
-; [ load boss graphics map ]
+; [ load boss tilemap ]
 
-LoadBossGfxMap:
+LoadBossTilemap:
 @8ce1:  stz     $2a
         lda     $09
         beq     @8cf6

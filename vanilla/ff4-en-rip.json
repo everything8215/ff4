@@ -1,6 +1,6 @@
 {
   "type": "rom",
-  "key": "ff2u-sfc",
+  "key": "ff4-en",
   "name": "Final Fantasy II 1.0 (U)",
   "length": "0x100000",
   "crc32": "0x65D0A825",
@@ -17,66 +17,6 @@
         {
           "name": "Map Titles",
           "path": "mapTitle"
-        },
-        {
-          "name": "Map Sprite Graphics",
-          "path": "mapSpriteGraphics"
-        },
-        {
-          "name": "World Map Tilesets",
-          "path": "worldTilesets"
-        },
-        {
-          "name": "Map Animation Graphics",
-          "path": "mapAnimationGraphics"
-        },
-        {
-          "path": "mapGraphics0"
-        },
-        {
-          "path": "mapGraphics1"
-        },
-        {
-          "path": "mapGraphics2"
-        },
-        {
-          "path": "mapGraphics3"
-        },
-        {
-          "path": "mapGraphics4"
-        },
-        {
-          "path": "mapGraphics5"
-        },
-        {
-          "path": "mapGraphics6"
-        },
-        {
-          "path": "mapGraphics7"
-        },
-        {
-          "path": "mapGraphics8"
-        },
-        {
-          "path": "mapGraphics9"
-        },
-        {
-          "path": "mapGraphics10"
-        },
-        {
-          "path": "mapGraphics11"
-        },
-        {
-          "path": "mapGraphics12"
-        },
-        {
-          "path": "mapGraphics13"
-        },
-        {
-          "path": "mapGraphics14"
-        },
-        {
-          "path": "mapGraphics15"
         }
       ]
     },
@@ -84,23 +24,11 @@
       "name": "Event",
       "list": [
         {
-          "name": "Event Script",
-          "path": "eventScript"
-        },
-        {
-          "name": "NPC Script",
-          "path": "npcScript"
-        },
-        {
-          "name": "Trigger Script",
-          "path": "triggerScript"
-        },
-        {
-          "name": "Event Dialog 1",
+          "name": "Event Dialogue 1",
           "path": "eventDialog1"
         },
         {
-          "name": "Event Dialog 2",
+          "name": "Event Dialogue 2",
           "path": "eventDialog2"
         }
       ]
@@ -121,16 +49,12 @@
           "path": "battleGroupWorld"
         },
         {
-          "name": "Battle Dialog",
+          "name": "Battle Dialogue",
           "path": "battleDialog"
         },
         {
           "name": "Battle Messages",
           "path": "battleMessage"
-        },
-        {
-          "name": "Battle Backgrounds",
-          "path": "battleBackgroundProperties"
         }
       ]
     },
@@ -150,26 +74,6 @@
           "path": "monsterAttackDefense"
         },
         {
-          "name": "Monster A.I. Scripts",
-          "path": "monsterScript"
-        },
-        {
-          "name": "Monster Actions",
-          "path": "monsterAction"
-        },
-        {
-          "name": "Monster Actions (Moon)",
-          "path": "monsterActionMoon"
-        },
-        {
-          "name": "Monster Conditions",
-          "path": "monsterCondition"
-        },
-        {
-          "name": "Monster Condition Scripts",
-          "path": "monsterConditionScript"
-        },
-        {
           "path": "monsterItems"
         }
       ]
@@ -178,40 +82,33 @@
       "name": "Character",
       "list": [
         {
-          "name": "Character Stats",
-          "path": "characterStats"
+          "name": "Character Properties",
+          "path": "CharProp"
         },
         {
-          "name": "Character Properties",
-          "path": "characterProperties"
+          "name": "Character Initial Equipment",
+          "path": "CharInitEquip"
         },
         {
           "name": "Character Names",
           "path": "characterNames"
         },
         {
-          "name": "Character Jobs",
-          "path": "characterJob"
-        },
-        {
-          "name": "Character Graphics",
-          "path": "characterGraphics"
-        },
-        {
-          "name": "Character Portraits",
-          "path": "portraitGraphics"
-        },
-        {
-          "name": "Spell Lists",
-          "path": "spellList"
-        },
+          "name": "Class Names",
+          "path": "className"
+        }
+      ]
+    },
+    {
+      "name": "Attack",
+      "list": [
         {
           "name": "Attack Properties",
           "path": "attackProperties"
         },
         {
-          "name": "Attack Graphics",
-          "path": "attackTilemap"
+          "name": "Attack Element/Status",
+          "path": "attackElementStatus"
         }
       ]
     },
@@ -219,33 +116,16 @@
       "name": "Item",
       "list": [
         {
-          "name": "Item Properties",
+          "name": "Items",
           "path": "itemProperties"
         },
         {
-          "name": "Shop Properties",
+          "name": "Item Equipability",
+          "path": "itemEquipability"
+        },
+        {
+          "name": "Shops",
           "path": "shopProperties"
-        }
-      ]
-    },
-    {
-      "name": "System",
-      "list": [
-        {
-          "name": "SNES Header",
-          "path": "snesHeader"
-        },
-        {
-          "name": "Menu Window",
-          "path": "windowGraphics"
-        },
-        {
-          "name": "Splash Screen",
-          "path": "splashTilemap"
-        },
-        {
-          "name": "Prologue Graphics",
-          "path": "prologueTilemap"
         }
       ]
     }
@@ -294,6 +174,7 @@
       "file": "menu/data/element_status.asm",
       "assembly": {
         "type": "assembly",
+        "name": "Element/Status %i",
         "assembly": {
           "element": {
             "type": "property",
@@ -308,12 +189,13 @@
             "begin": 1,
             "mask": "0xFFFF",
             "flag": true,
-            "stringTable": "status"
+            "reverseBits": true,
+            "stringTable": "statusName"
           }
         }
       },
       "stringTable": {
-        "length": 59,
+        "length": 128,
         "default": "Attack Element/Status %i",
         "string": {
           "0": "None",
@@ -411,6 +293,7 @@
       "file": "btlgfx/text/attack_name_en.asm",
       "assembly": {
         "type": "text",
+        "name": "Attack Name %i",
         "encoding": "fixedLength"
       },
       "stringTable": {
@@ -418,9 +301,9 @@
         "length": 256,
         "default": "Attack %i",
         "string": {
-          "0-72": "<stringTable.spellNames[%i]>",
-          "72-176": "<attackNames[%i-72]>",
-          "192-222": "<battleCommandNames[%i-192]>"
+          "0-71": "`spellNames[%i]`",
+          "72-175": "<attackNames[%i-72]>",
+          "192-221": "`battleCommandNames[%i-192]`"
         }
       }
     },
@@ -448,13 +331,21 @@
       "itemLength": 6,
       "asmSymbol": "AttackProp",
       "file": "battle/data/attack_prop_en.asm",
+      "stringTable": "attackNames",
       "assembly": {
         "type": "assembly",
+        "name": "Attack Properties %i",
         "assembly": {
           "spellName": {
             "type": "assembly",
             "name": "Name",
-            "external": "spellNames[%i]",
+            "external": "spellNames[%i].spellName",
+            "invalid": "index >= 72"
+          },
+          "spellSymbol": {
+            "type": "assembly",
+            "name": "Symbol",
+            "external": "spellNames[%i].spellSymbol",
             "invalid": "index >= 72"
           },
           "attackName": {
@@ -480,7 +371,7 @@
             "name": "Target",
             "begin": 0,
             "mask": "0xE0",
-            "stringTable": "target"
+            "stringTable": "attackTargets"
           },
           "power": {
             "type": "property",
@@ -498,7 +389,7 @@
             "name": "Effect",
             "begin": 3,
             "mask": "0x7F",
-            "stringTable": "spellEffect"
+            "stringTable": "magicEffect"
           },
           "element": {
             "type": "property",
@@ -546,26 +437,25 @@
           "palette": {
             "type": "assembly",
             "external": "attackGraphicsProperties[%i-1].palette",
-            "invalid": "(index != 0) && index <= 192"
+            "invalid": "(index == 0) || (index > 192)"
           },
           "graphics": {
             "type": "assembly",
             "external": "attackGraphicsProperties[%i-1].graphics",
-            "invalid": "(index != 0) && index <= 192"
+            "invalid": "(index == 0) || (index > 192)"
           },
           "animScript": {
             "type": "assembly",
             "external": "attackGraphicsProperties[%i-1].animScript",
-            "invalid": "(index != 0) && index <= 192"
+            "invalid": "(index == 0) || (index > 192)"
           },
           "animEffect": {
             "type": "assembly",
             "external": "attackGraphicsProperties[%i-1].animEffect",
-            "invalid": "(index != 0) && index <= 192"
+            "invalid": "(index == 0) || (index > 192)"
           }
         }
-      },
-      "stringTable": "attackNames"
+      }
     },
     "attackSoundEffect": {
       "type": "array",
@@ -578,6 +468,23 @@
       "assembly": {
         "type": "property",
         "name": "Sound Effect"
+      }
+    },
+    "attackTargets": {
+      "type": "array",
+      "arrayLength": 8,
+      "stringTable": {
+        "name": "Attack Target",
+        "string": {
+          "0": "None",
+          "1": "Single Ally",
+          "2": "All Allies",
+          "3": "One Target or One Side (Ally)",
+          "4": "One Enemy",
+          "5": "One Target",
+          "6": "All Enemies",
+          "7": "One Target or One Side (Enemy)"
+        }
       }
     },
     "attackTilemap": {
@@ -804,7 +711,7 @@
         "length": 39,
         "default": "Battle Command %i",
         "string": {
-          "0-30": "<battleCommandNames[%i]>",
+          "0-29": "<battleCommandNames[%i]>",
           "30": "Jump Attack",
           "33": "Do Nothing"
         }
@@ -819,7 +726,7 @@
       "file": "btlgfx/text/battle_dlg_en.asm",
       "assembly": {
         "type": "text",
-        "name": "Dialog",
+        "name": "Battle Dialogue %i",
         "encoding": "nullTerminated",
         "multiLine": true
       },
@@ -844,6 +751,7 @@
       "file": "field/data/sub_battles.asm",
       "assembly": {
         "type": "assembly",
+        "name": "Battle Group %i",
         "assembly": {
           "battle1": {
             "type": "property",
@@ -995,6 +903,7 @@
       "file": "field/data/world_battles.asm",
       "assembly": {
         "type": "assembly",
+        "name": "World Battle Group %i",
         "assembly": {
           "battle1": {
             "type": "property",
@@ -1082,7 +991,7 @@
       "file": "btlgfx/text/battle_msg_en.asm",
       "assembly": {
         "type": "text",
-        "name": "Dialog",
+        "name": "Battle Message %i",
         "encoding": "nullTerminated",
         "multiLine": true
       },
@@ -1107,7 +1016,8 @@
       "file": "battle/data/battle_prop_en.asm",
       "assembly": {
         "type": "assembly",
-        "editor": "FF4Battle",
+        "name": "Battle %i",
+        "editor": "FF4BattleEditor",
         "assembly": {
           "monster1": {
             "type": "property",
@@ -1181,8 +1091,7 @@
           "monsterPosition": {
             "type": "property",
             "name": "Monster Position",
-            "begin": 5,
-            "link": "monsterPosition[%i]"
+            "begin": 5
           },
           "cursorProperties": {
             "type": "property",
@@ -1409,92 +1318,7 @@
         }
       }
     },
-    "characterJob": {
-      "type": "array",
-      "name": "Character Jobs",
-      "range": "0x13FDDD-0x13FE0C",
-      "array": {
-        "length": 16
-      },
-      "assembly": {
-        "type": "assembly",
-        "length": 3,
-        "assembly": {
-          "title": {
-            "type": "external",
-            "name": "Title",
-            "external": "characterTitle[%i]"
-          },
-          "cat-spellListBattle": "Spell Lists (Battle)",
-          "white": {
-            "type": "property",
-            "begin": 0,
-            "name": "White",
-            "stringTable": "spellList",
-            "link": "spellList[%i]",
-            "special": {
-              "0xFF": "None"
-            }
-          },
-          "black": {
-            "type": "property",
-            "begin": 1,
-            "name": "Black",
-            "stringTable": "spellList",
-            "link": "spellList[%i]",
-            "special": {
-              "0xFF": "None"
-            }
-          },
-          "summon": {
-            "type": "property",
-            "begin": 2,
-            "name": "Summon",
-            "stringTable": "spellList",
-            "link": "spellList[%i]",
-            "special": {
-              "0xFF": "None"
-            }
-          },
-          "cat-spellListMenu": "Spell Lists (Menu)",
-          "whiteMenu": {
-            "type": "assembly",
-            "external": "characterSpellListMenu[%i].white"
-          },
-          "blackMenu": {
-            "type": "assembly",
-            "external": "characterSpellListMenu[%i].black"
-          },
-          "summonMenu": {
-            "type": "assembly",
-            "external": "characterSpellListMenu[%i].summon"
-          }
-        }
-      },
-      "stringTable": {
-        "name": "Character Job",
-        "length": 16,
-        "default": "Character Job %i",
-        "string": {
-          "0": "Cecil (Dark Knight)",
-          "1": "Kain",
-          "2": "Rydia (Girl)",
-          "3": "Tellah",
-          "4": "Edward",
-          "5": "Rosa",
-          "6": "Yang",
-          "7": "Palom",
-          "8": "Porom",
-          "9": "Cecil (Paladin)",
-          "10": "Cid",
-          "11": "Rydia (Adult)",
-          "12": "Edge",
-          "13": "FuSoYa",
-          "15": "Golbez"
-        }
-      }
-    },
-    "characterLevelProgression": {
+    "LevelUpProp": {
       "type": "array",
       "name": "Character Level Progression",
       "range": "0x0FB528-0x0FC3C7",
@@ -1515,19 +1339,24 @@
         "0x0FC171-0x0FC272",
         "0x0FC273-0x0FC35B",
         "0x0FC35C-0x0FC3C7"
-      ],
-      "lowLevel": {
+      ]
+    },
+    "LevelUpPropLow": {
+      "type": "array",
+      "arrayLength": 13,
+      "assembly": {
         "type": "array",
         "itemLength": 5,
         "assembly": {
           "type": "assembly",
+          "name": "Level Up Properties %i",
           "assembly": {
             "exp": {
               "type": "property",
               "name": "Experience",
               "begin": 3,
               "mask": "0xFFFF",
-              "msb": "obj.expMSB"
+              "msb": "%p.expMSB"
             },
             "expMSB": {
               "type": "property",
@@ -1574,23 +1403,28 @@
               "flag": true,
               "stringTable": {
                 "string": {
-                  "4": "Strength",
-                  "3": "Agility",
-                  "2": "Stamina",
+                  "0": "Spirit",
                   "1": "Itellect",
-                  "0": "Spirit"
+                  "2": "Stamina",
+                  "3": "Agility",
+                  "4": "Strength"
                 }
               }
             }
           }
         }
-      },
-      "highLevel": {
+      }
+    },
+    "LevelUpPropHigh": {
+      "type": "array",
+      "arrayLength": 13,
+      "assembly": {
         "type": "array",
         "arrayLength": 8,
         "itemLength": 1,
         "assembly": {
           "type": "assembly",
+          "name": "High Level Random Stats %i",
           "assembly": {
             "statMod": {
               "type": "property",
@@ -1619,11 +1453,11 @@
               "flag": true,
               "stringTable": {
                 "string": {
-                  "4": "Strength",
-                  "3": "Agility",
-                  "2": "Vitality",
+                  "0": "Will",
                   "1": "Wisdom",
-                  "0": "Will"
+                  "2": "Vitality",
+                  "3": "Agility",
+                  "4": "Strength"
                 }
               }
             }
@@ -1641,6 +1475,7 @@
       "file": "menu/text/char_name_en.asm",
       "assembly": {
         "type": "text",
+        "name": "Character Name %i",
         "length": 6,
         "encoding": "fixedLength"
       },
@@ -1686,37 +1521,41 @@
         }
       }
     },
-    "characterProperties": {
+    "CharInitEquip": {
       "type": "array",
-      "name": "Character Properties",
+      "name": "Character Equipment",
       "range": "0x0FAB00-0x0FAB91",
       "arrayLength": 21,
       "itemLength": 7,
       "asmSymbol": "CharInitEquip",
       "file": "field/data/char_init_equip.asm",
-      "stringTable": "characterID",
       "assembly": {
         "type": "assembly",
+        "name": "Character Equipment %i",
         "assembly": {
-          "nameID": {
-            "type": "assembly",
-            "external": "characterNameID[%i].nameID"
+          "rightHand": {
+            "type": "property",
+            "name": "Right Hand",
+            "begin": 3,
+            "stringTable": "itemNames",
+            "link": "itemProperties[%i]"
           },
-          "characterPartyRestore": {
-            "type": "assembly",
-            "external": "characterPartyAdd[%i].restore"
+          "rightHandQty": {
+            "type": "property",
+            "name": "Right Hand Qty",
+            "begin": 4
           },
-          "characterPartyAdd": {
-            "type": "assembly",
-            "external": "characterPartyAdd[%i].character"
+          "leftHand": {
+            "type": "property",
+            "name": "Left Hand",
+            "begin": 5,
+            "stringTable": "itemNames",
+            "link": "itemProperties[%i]"
           },
-          "characterPartySaveSlot": {
-            "type": "assembly",
-            "external": "characterPartyAdd[%i].slot"
-          },
-          "characterPartyRemoveSlot": {
-            "type": "assembly",
-            "external": "characterPartyRemove[%i].slot"
+          "leftHandQty": {
+            "type": "property",
+            "name": "Left Hand Qty",
+            "begin": 6
           },
           "helmet": {
             "type": "property",
@@ -1739,41 +1578,44 @@
             "stringTable": "itemNames",
             "link": "itemProperties[%i]"
           },
-          "leftHand": {
-            "type": "property",
-            "name": "Left Hand",
-            "begin": 3,
-            "stringTable": "itemNames",
-            "link": "itemProperties[%i]"
-          },
-          "leftHandQty": {
-            "type": "property",
-            "name": "Left Hand Qty",
-            "begin": 4
-          },
-          "rightHand": {
-            "type": "property",
-            "name": "Right Hand",
-            "begin": 5,
-            "stringTable": "itemNames",
-            "link": "itemProperties[%i]"
-          },
-          "rightHandQty": {
-            "type": "property",
-            "name": "Right Hand Qty",
-            "begin": 6
-          },
           "battleCommands": {
             "type": "assembly",
             "name": "Battle Commands",
             "external": "characterBattleCommands[%i]"
           }
         }
+      },
+      "stringTable": {
+        "name": "Character ID",
+        "length": 21,
+        "string": {
+          "0": "Cecil (Dark Knight)",
+          "1": "Kain (1st Time)",
+          "2": "Rydia (1st Time)",
+          "3": "Tellah (1st Time)",
+          "4": "Edward",
+          "5": "Rosa (1st Time)",
+          "6": "Yang (1st Time)",
+          "7": "Palom",
+          "8": "Porom",
+          "9": "Tellah (2nd Time)",
+          "10": "Cecil (Paladin)",
+          "11": "Tellah (3rd Time)",
+          "12": "Yang (2nd Time)",
+          "13": "Cid",
+          "14": "Kain (2nd Time)",
+          "15": "Rosa (2nd Time)",
+          "16": "Rydia (2nd Time)",
+          "17": "Edge",
+          "18": "FuSoYa",
+          "19": "Kain (3rd Time)",
+          "20": "Golbez"
+        }
       }
     },
-    "characterStats": {
+    "CharProp": {
       "type": "array",
-      "name": "Character Initial Stats",
+      "name": "Character Properties",
       "range": "0x0FA900-0x0FAABF",
       "arrayLength": 14,
       "itemLength": 32,
@@ -1781,25 +1623,26 @@
       "file": "field/data/char_prop.asm",
       "assembly": {
         "type": "assembly",
+        "name": "Character Properties %i",
         "editor": "FF4LevelProgression",
         "assembly": {
-          "properties": {
+          "initEquip": {
             "type": "property",
-            "name": "Properties",
+            "name": "Equipment",
             "begin": 0,
             "mask": "0x1F",
             "offset": -1,
             "min": 1,
-            "stringTable": "characterID",
-            "link": "characterProperties[%i]"
+            "stringTable": "CharInitEquip",
+            "link": "CharInitEquip[%i]"
           },
-          "job": {
+          "class": {
             "type": "property",
-            "name": "Job",
+            "name": "Class",
             "begin": 1,
             "mask": "0x0F",
-            "stringTable": "characterJob",
-            "link": "characterJob[%i]"
+            "stringTable": "className",
+            "link": "className[%i]"
           },
           "rightHanded": {
             "type": "property",
@@ -1863,17 +1706,17 @@
             "name": "Agility",
             "begin": 16
           },
-          "vitality": {
+          "stamina": {
             "type": "property",
             "name": "Vitality",
             "begin": 17
           },
-          "wisdom": {
+          "intellect": {
             "type": "property",
             "name": "Wisdom",
             "begin": 18
           },
-          "will": {
+          "spirit": {
             "type": "property",
             "name": "Will",
             "begin": 19
@@ -1920,28 +1763,14 @@
             "name": "Unknown 28",
             "begin": 28
           },
-          "status12": {
+          "status": {
             "type": "property",
             "name": "Status",
             "begin": 3,
-            "mask": "0xFFFF",
+            "mask": "0xFFFFFFFF",
             "flag": true,
-            "stringTable": "status"
-          },
-          "status34": {
-            "type": "property",
-            "begin": 5,
-            "mask": "0xFFFF",
-            "flag": true,
-            "stringTable": {
-              "length": 16,
-              "default": "<stringTable.status[%i+16]>"
-            }
-          },
-          "spellList": {
-            "type": "assembly",
-            "name": "Spell Lists",
-            "external": "characterSpellLists[%i]"
+            "reverseBits": true,
+            "stringTable": "statusName"
           }
         }
       },
@@ -1965,9 +1794,9 @@
         }
       }
     },
-    "characterTitle": {
+    "className": {
       "type": "array",
-      "name": "Character Title",
+      "name": "Class Name",
       "range": "0x0FA764-0x0FA7C5",
       "arrayLength": 14,
       "itemLength": 7,
@@ -1975,12 +1804,33 @@
       "file": "menu/text/class_name_en.asm",
       "assembly": {
         "type": "text",
+        "name": "Class Name %i",
         "length": 7,
         "encoding": "fixedLength"
       },
       "stringTable": {
         "length": 14,
-        "default": "<characterTitle[%i]>"
+        "default": "<className[%i]>",
+        "string": {
+          "15": "None"
+        }
+      }
+    },
+    "creatureType": {
+      "type": "array",
+      "arrayLength": 8,
+      "stringTable": {
+        "name": "Creature Type",
+        "string": {
+          "0": "Dragon",
+          "1": "Machine",
+          "2": "Reptile",
+          "3": "Spirit",
+          "4": "Giant",
+          "5": "Slime",
+          "6": "Human",
+          "7": "Undead"
+        }
       }
     },
     "creditsStarsGraphics": {
@@ -2013,15 +1863,34 @@
       "asmSymbol": "DTETbl",
       "file": "field/data/dte_table.asm"
     },
+    "element": {
+      "type": "array",
+      "arrayLength": 8,
+      "stringTable": {
+        "name": "Element",
+        "default": "Element %i",
+        "string": {
+          "0": "Fire",
+          "1": "Ice",
+          "2": "Lightning",
+          "3": "Darkness",
+          "4": "Holy",
+          "5": "Flying",
+          "6": "Drain/Absorb",
+          "7": "Very Strong/Weak"
+        }
+      }
+    },
     "eventDialog1": {
       "type": "array",
-      "name": "Event Dialog 1",
+      "name": "Event Dialogue 1",
       "range": "0x108400-0x10FE20",
       "arrayLength": 512,
       "file": "field/text/event_dlg1_en.asm",
       "asmSymbol": "EventDlg1",
       "assembly": {
         "type": "text",
+        "name": "Event Dialogue 1-%i",
         "encoding": "dialog",
         "multiLine": true
       },
@@ -2031,18 +1900,19 @@
       },
       "stringTable": {
         "length": 512,
-        "default": "<eventDialog1[%i].formattedText>"
+        "default": "<eventDialog1[%i]>"
       }
     },
     "eventDialog2": {
       "type": "array",
-      "name": "Event Dialog 2",
+      "name": "Event Dialogue 2",
       "range": "0x13A700-0x13CD8F",
       "arrayLength": 256,
       "file": "field/text/event_dlg2_en.asm",
       "asmSymbol": "EventDlg2",
       "assembly": {
         "type": "text",
+        "name": "Event Dialogue 2-%i",
         "encoding": "dialog",
         "multiLine": true
       },
@@ -2052,7 +1922,7 @@
       },
       "stringTable": {
         "length": 256,
-        "default": "<eventDialog2[%i].formattedText>"
+        "default": "<eventDialog2[%i]>"
       }
     },
     "eventScript": {
@@ -2236,19 +2106,453 @@
         }
       }
     },
+    "facingDirections": {
+      "type": "array",
+      "arrayLength": 4,
+      "stringTable": {
+        "name": "Facing Directions",
+        "string": {
+          "0": "Up",
+          "1": "Right",
+          "2": "Down",
+          "3": "Left"
+        }
+      }
+    },
     "initEventSwitch": {
       "type": "data",
       "name": "Initial Event Switch Values",
       "range": "0x12F240-0x12F25F",
       "asmSymbol": "InitEventSwitch",
-      "file": "field/data/init_event_switch.asm"
+      "file": "field/data/init_event_switch.asm",
+      "stringTable": {
+        "length": 512,
+        "default": "Event Switch %i",
+        "string": {
+          "0": "Obtained Package",
+          "1": "Spoke to Kain",
+          "2": "Found Rosa in Kaipo",
+          "5": "Obtained Key to Baron",
+          "11": "Cecil Became a Paladin",
+          "13": "Defeated Mist Dragon",
+          "14": "Opened Package",
+          "15": "Reached Kaipo",
+          "17": "Cured Rosa w/ Sand Ruby",
+          "18": "Defeated Antlion",
+          "19": "Defeated Octomamm",
+          "20": "Damcyan Destroyed",
+          "21": "Melted Ice at Mt. Hobs",
+          "22": "Defeated Mombomb",
+          "23": "Watery Pass Save Point Scene",
+          "28": "Palom & Porom Joined",
+          "29": "Removed Flames at Mt. Ordeals",
+          "30": "Tellah Joined (Mt. Ordeals)",
+          "31": "Defeated Milon 1",
+          "32": "Defeated Milon 2",
+          "35": "Obtained Crystal of Earth",
+          "36": "Obtained TwinHarp",
+          "42": "Defeated Magus Sisters",
+          "44": "Rested After Fabul Battle",
+          "46": "Used TwinHarp Against Dark Elf",
+          "48": "Passage to Underground Open",
+          "49": "Returned Crystal of Earth",
+          "50": "Enterprise Can't Be Entered",
+          "51": "Defeated Dr. Lugae",
+          "54": "Enterprise has Hook",
+          "57": "Falcon Can Go Over Lava",
+          "61": "Falcon Has Drill",
+          "68": "Defeated Asura",
+          "69": "Defeated Leviatan",
+          "70": "Defeated Bahamut",
+          "73": "Defeated Four Fiends",
+          "74": "Received Adamant Ore",
+          "77": "Received Frying Pan",
+          "78": "Whacked Yang With Frying Pan",
+          "79": "Received Spoon",
+          "80": "Defeated Behemoth 2",
+          "81": "Defeated Behemoth 1",
+          "82": "Defeated Behemoth 3",
+          "84": "Learned Sylph",
+          "87": "Tellah Gives Advice (Watery Pass)",
+          "225": "Magnetism Active",
+          "320": "Obtained Dark Crystal",
+          "321": "Defeated Demon Wall",
+          "324": "Defeated Asura",
+          "325": "Defeated Leviatan",
+          "326": "Defeated Bahamut",
+          "337": "Met FuSoYa (Lunar's Lair)",
+          "330": "Obtained Adamant",
+          "331": "Gave Adamant to Kokkol",
+          "332": "Obtained Excalibur",
+          "336": "Defeated Behemoth 2 (Cave Bahamut)",
+          "337": "Defeated Behemoth 1 (Cave Bahamut)",
+          "338": "Defeated Behemoth 3 (Cave Bahamut)"
+        }
+      }
     },
     "initNPCSwitch": {
       "type": "data",
       "name": "Initial NPC Switch Values",
       "range": "0x12F200-0x12F23F",
       "asmSymbol": "InitNPCSwitch",
-      "file": "field/data/init_npc_switch.asm"
+      "file": "field/data/init_npc_switch.asm",
+      "stringTable": {
+        "length": 512,
+        "default": "NPC %i",
+        "string": {
+          "1": "Door Switch",
+          "2": "Dark Elf Sealed Door",
+          "3": "Soldier 1 (Baron)",
+          "4": "Soldier 2 (Baron)",
+          "5": "Kainazzo",
+          "6": "Engineer 1",
+          "7": "Engineer 2",
+          "8": "Baigan",
+          "9": "White Mage 1 (Baron)",
+          "10": "White Mage 2 (Baron)",
+          "11": "White Mage 3 (Baron)",
+          "12": "Black Mage 1 (Baron)",
+          "13": "Black Mage 2 (Baron)",
+          "14": "Black Mage 3 (Baron)",
+          "15": "Soldier (Misc.)",
+          "16": "Palom",
+          "17": "Porom",
+          "18": "Kain (Castle Baron)",
+          "19": "Soldier (Misc.)",
+          "20": "Soldier (Misc.)",
+          "21": "Soldier (Misc.)",
+          "22": "Officer",
+          "23": "King",
+          "25": "Restore HP/Status",
+          "26": "Yang",
+          "27": "Rosa",
+          "28": "Soldier (Baron Treasure Room)",
+          "29": "Armor Shop (Toroia)",
+          "30": "Black Mage 1 (Baron Dungeon)",
+          "31": "White Mage (Baron Dungeon)",
+          "32": "Black Mage 2 (Baron Dungeon)",
+          "34": "Weapon Shop (Toroia)",
+          "35": "Soldier (Misc.)",
+          "35": "Item Shop (Cave Eblan)",
+          "36": "Zzz",
+          "37": "Cecil's Maid (Baron)",
+          "38": "Rubicant",
+          "39": "Cecil (Mirror Room)",
+          "40": "Cecil's Sword (Mirror Room)",
+          "41": "Kain",
+          "42": "Restore MP",
+          "43": "Officer",
+          "44": "Sparkle",
+          "45": "Locked Door (Baron Old Water-way)",
+          "46": "Locked Door (Baron Weapon/Armor Shop)",
+          "47": "Man (Town of Baron)",
+          "48": "Old Man (Town of Baron)",
+          "49": "Namingway",
+          "50": "Woman (Misc.)",
+          "51": "Boy (Town of Baron)",
+          "52": "Old Woman (Town of Baron)",
+          "53": "Cid (Events ???)",
+          "54": "Dancer (Town of Baron)",
+          "55": "Rosa's Mother",
+          "56": "Innkeeper (Baron/Kaipo)",
+          "57": "Girl (Misc.)",
+          "58": "Man (Baron Inn)",
+          "59": "Woman (Baron Inn)",
+          "60": "Cid's Daughter",
+          "61": "Bookcase 1",
+          "62": "Bookcase 2",
+          "63": "Bookcase 3",
+          "64": "Cid",
+          "65": "Fireplace",
+          "66": "Weapon Shop (Baron)",
+          "67": "Armor Shop (Baron)",
+          "68": "Item Shop (Misc.)",
+          "70": "Man 1 (Misc.)",
+          "71": "Man 2 (Village Mist)",
+          "72": "Man 3 (Village Mist)",
+          "73": "Old Man (Misc.)",
+          "74": "Rydia (Girl)",
+          "75": "Sunbathing Woman (Toroia)",
+          "76": "Innkeeper (50 GP)",
+          "77": "Weapon Shop (Mist)",
+          "78": "Armor Shop (Mist)",
+          "79": "Man 1 (Kaipo)",
+          "80": "Merchant (Kaipo)",
+          "81": "Woman 1 (Kaipo)",
+          "82": "Dancer (Kaipo)",
+          "83": "Boy (Kaipo)",
+          "84": "Man 2 (Kaipo)",
+          "85": "Woman 2 (Misc.)",
+          "86": "Weapon Shop (Kaipo)",
+          "87": "Armor Shop (Kaipo)",
+          "88": "Weapon/Armor Shop (Fabul)",
+          "93": "Poster (Mysidia Cafe)",
+          "94": "Soldier (Misc.)",
+          "97": "Rosa (Tied Up)",
+          "98": "Edward",
+          "99": "Edward w/ Harp (Kaipo)",
+          "100": "Anna (Kaipo)",
+          "101": "Monster",
+          "102": "Tellah",
+          "103": "Water Splash",
+          "104": "Tentacles",
+          "105": "Dead Soldier 1",
+          "106": "Dead Soldier 2",
+          "107": "Anna (Dead)",
+          "108": "Dead Soldier 3",
+          "110": "Innkeeper (Toroia)",
+          "111": "Stone Palom",
+          "112": "Stone Porom",
+          "113": "Rubicant Flame",
+          "114": "Mt. Hobbs Ice",
+          "116": "Tiny 1",
+          "117": "Mombomb",
+          "118": "Monk (Fabul Battle)",
+          "120": "Tiny 2",
+          "121": "Frog 1",
+          "122": "Monk",
+          "123": "Antlion (Left)",
+          "127": "Golbez",
+          "128": "Crystal (Fabul/Mysidia)",
+          "129": "Lightning Bolt",
+          "131": "Dancing Pig",
+          "132": "Queen Eblan",
+          "135": "Big Chocobo 1",
+          "136": "Big Chocobo 2",
+          "137": "Big Chocobo 3",
+          "138": "Big Chocobo 4",
+          "140": "Chocobo",
+          "141": "White Chocobo",
+          "142": "Dancer's Foot",
+          "143": "Octomamm",
+          "145": "Antlion (Right)",
+          "147": "Soldier 1 (Misc.)",
+          "148": "Soldier 2 (Misc.)",
+          "149": "Soldier 3 (Misc.)",
+          "150": "Soldier 4 (Misc.)",
+          "151": "Soldier 5 (Misc.)",
+          "153": "Monk (Fabul Tower)",
+          "154": "Monk (Fabul Tower)",
+          "155": "Man (Fabul Tower)",
+          "156": "Woman (Fabul Tower)",
+          "157": "Boy (Fabul Tower)",
+          "157": "Dancer (Fabul Tower)",
+          "159": "Old Woman (Fabul Tower)",
+          "160": "King (Fabul Tower)",
+          "161": "White Mage (Fabul Tower)",
+          "162": "Monk (Fabul Tower)",
+          "163": "Monk (Fabul Tower)",
+          "164": "Yang's Wife",
+          "166": "Pig 1",
+          "167": "Frog 2",
+          "168": "Dark Elf",
+          "169": "Woman (Misc.)",
+          "170": "Silvera Weapon Shop",
+          "171": "Silvera Armor Shop",
+          "172": "Silvera Item Shop",
+          "173": "Silvera Innkeeper",
+          "174": "Boy (Misc.)",
+          "175": "Crystal (Cave Magnes)",
+          "176": "Old Woman (Misc.)",
+          "177": "Girl (Misc.)",
+          "178": "Merchant (Misc.)",
+          "179": "Dancer (Agart Inn)",
+          "180": "Weapon Shop (Agart)",
+          "181": "Armor Shop (Agart)",
+          "182": "Innkeeper (Fabul)",
+          "183": "Black Mage 1",
+          "184": "Black Mage 2",
+          "185": "Black Mage 3",
+          "186": "White Mage 1",
+          "187": "White Mage 2",
+          "188": "White Mage 3",
+          "189": "Mysidia Dancer",
+          "192": "Weapon Shop (Mysidia)",
+          "193": "Armor Shop (Mysidia)",
+          "194": "Item Shop (Mysidia)",
+          "195": "Cafe (Mysidia)",
+          "196": "Smoke",
+          "197": "Flames 1 (Mt. Ordeals)",
+          "198": "Flames 2 (Mt. Ordeals)",
+          "191": "Inn (Mysidia)",
+          "200": "Rydia's Mother",
+          "202": "Valvalis",
+          "203": "Cecil + Rosa",
+          "204": "Big Ball",
+          "206": "Magus Sisters",
+          "208": "Cleric 1",
+          "209": "Cleric 2",
+          "210": "Cleric 3",
+          "211": "Cleric 4",
+          "212": "Cleric 5",
+          "213": "Cleric 6",
+          "214": "Cleric 7",
+          "215": "Cleric 8",
+          "216": "Dancer (Toroia)",
+          "217": "Dancer (Toroia)",
+          "223": "Dancing Frog",
+          "227": "Frog 3",
+          "228": "Weapon Shop (Cave Eblan)",
+          "229": "Armor Shop (Cave Eblan)",
+          "230": "Innkeeper (Cave Eblan)",
+          "231": "Edge",
+          "232": "Rubicant",
+          "233": "Rydia (Adult)",
+          "234": "Crystal (Tower of Bab-il)",
+          "235": "Eblan Dead Soldier 1",
+          "237": "Toroia Treasure Guard",
+          "238": "Eblan Dead Soldier 2",
+          "239": "Old Man (Cave Eblana)",
+          "240": "Eblan Soldier 1",
+          "241": "Eblan Soldier 2",
+          "242": "Dwarf (Airship)",
+          "243": "Kain (Tower of Zot)",
+          "244": "Golbez",
+          "248": "Tail Guy (Grotto Adamant)",
+          "249": "Eblan Soldier 3",
+          "251": "Tiny 3",
+          "252": "FuSoYa",
+          "257": "Dwarf 1",
+          "258": "Dwarf 2",
+          "259": "Dwarf 3",
+          "260": "Dwarf 4",
+          "261": "Dwarf 5",
+          "262": "Dwarf 6",
+          "263": "Dwarf 7",
+          "265": "Luca (Dwarven Tank)",
+          "266": "Weapon Shop (Castle of Dwarves)",
+          "267": "Armor Shop (Castle of Dwarves)",
+          "270": "Rosa",
+          "271": "Kain",
+          "272": "Yang",
+          "273": "Cid",
+          "274": "Rydia",
+          "276": "Golbez",
+          "277": "Golbez' Hand",
+          "278": "Calbrena",
+          "280": "Dwarf Guard",
+          "283": "Crystal",
+          "284": "Golbez (Dead)",
+          "285": "Dwarf 0",
+          "286": "Big Chocobo 1",
+          "287": "Big Chocobo 2",
+          "288": "Big Chocobo 3",
+          "289": "Big Chocobo 4",
+          "292": "Namingway",
+          "298": "Monster",
+          "301": "Cid",
+          "302": "Edge",
+          "303": "Female Dwarf 1",
+          "304": "Female Dwarf 2",
+          "305": "Dwarf 0 (Throne Room)",
+          "306": "Dwarf 1 (Throne Room)",
+          "307": "Dwarf 2 (Throne Room)",
+          "308": "Dwarf 3 (Throne Room)",
+          "311": "Weapon Shop (Tomra)",
+          "312": "Armor Shop (Tomra)",
+          "314": "Luca (Castle of Dwarves)",
+          "316": "Locked Door (Sealed Cave)",
+          "317": "Sealed Door 1",
+          "318": "Sealed Door 2",
+          "319": "Sealed Door 3",
+          "320": "Sealed Door 4",
+          "321": "Sealed Door 5",
+          "322": "Sealed Door 6",
+          "323": "Sealed Door 7",
+          "324": "Sealed Door 8",
+          "325": "Sealed Door 9",
+          "326": "Sealed Door 10",
+          "327": "Sealed Door 11",
+          "328": "Sealed Door 12",
+          "329": "Sealed Door 13",
+          "330": "Sealed Door 14",
+          "331": "Monster 0",
+          "332": "Monster 1",
+          "333": "Monster 2",
+          "334": "Monster 3",
+          "335": "Chocobo 1 (Town of Monsters)",
+          "336": "Chocobo 2 (Town of Monsters)",
+          "337": "Bomb 1 (Town of Monsters)",
+          "338": "Bomb 2 (Town of Monsters)",
+          "339": "Leviatan",
+          "340": "Asura",
+          "341": "Monster Library 1",
+          "342": "Monster Library 2",
+          "343": "Monster Library 3",
+          "344": "Monster Library 4",
+          "345": "Monster Library 5",
+          "346": "Monster Library 6",
+          "347": "Monster Library 7",
+          "348": "Monster Library 8",
+          "349": "Monster Library 9",
+          "350": "Monster Library 10",
+          "351": "Weapon Shop (Town of Monsters)",
+          "352": "Armor Shop (Town of Monsters)",
+          "353": "Innkeeper (Town of Monsters)",
+          "354": "Item Shop (Town of Monsters)",
+          "355": "Bahamut",
+          "356": "Boy (Cave Bahamut)",
+          "357": "Girl (Cave Bahamut)",
+          "358": "FuSoYa (Lunar's Lair)",
+          "359": "Sparkle",
+          "360": "Sealed Door 15",
+          "361": "Big Whale Controls",
+          "362": "Big Whale Crystal",
+          "366": "Kokkol (Upstairs)",
+          "367": "Kokkol (Downstairs)",
+          "368": "Training Room 1",
+          "369": "Training Room 2",
+          "370": "Training Room 3",
+          "371": "Training Room 4",
+          "372": "Training Room 5",
+          "373": "Training Room 6",
+          "374": "Training Room 7",
+          "375": "Training Room 8",
+          "376": "Edward's Harp",
+          "377": "Training Room 9",
+          "378": "Training Room 10",
+          "395": "Yang (Sylph's House)",
+          "397": "Sylph 1",
+          "398": "Sylph 2",
+          "399": "Sylph 3",
+          "400": "Sylph 4",
+          "402": "Dwarf Dancer",
+          "404": "Kokkol Dwarf 1",
+          "405": "Kokkol Dwarf 2",
+          "406": "Zzz",
+          "407": "Fireplace",
+          "427": "Big Chocobo 1",
+          "428": "Big Chocobo 2",
+          "429": "Big Chocobo 3",
+          "430": "Big Chocobo 4",
+          "431": "Zemus",
+          "432": "Zemus (Dead)",
+          "433": "Zeromus",
+          "434": "FuSoYa",
+          "435": "Golbez",
+          "470": "Chocobo",
+          "471": "White Chocobo",
+          "472": "Black Chocobo",
+          "475": "Crystal Sword",
+          "476": "Masamune",
+          "477": "Murasame",
+          "478": "White Lance",
+          "479": "Kokkol Shopkeeper",
+          "480": "Hummingway 1",
+          "481": "Hummingway 2",
+          "482": "Hummingway 3",
+          "483": "Hummingway 4",
+          "484": "Hummingway Shopkeeper",
+          "485": "Edward (Toroia)",
+          "486": "Edward w/ Harp",
+          "487": "Tellah",
+          "488": "Nurse (Toroia)",
+          "489": "Doctor (Toroia)",
+          "491": "Training Room 11",
+          "492": "Training Room 12",
+          "493": "Training Room 13"
+        }
+      }
     },
     "itemConsumable": {
       "type": "array",
@@ -2272,7 +2576,7 @@
             "name": "Target",
             "begin": 0,
             "mask": "0xE0",
-            "stringTable": "target"
+            "stringTable": "attackTargets"
           },
           "power": {
             "type": "property",
@@ -2290,7 +2594,7 @@
             "name": "Effect",
             "begin": 3,
             "mask": "0x7F",
-            "stringTable": "spellEffect"
+            "stringTable": "magicEffect"
           },
           "element": {
             "type": "property",
@@ -2351,7 +2655,7 @@
       },
       "stringTable": {
         "length": 59,
-        "default": "<itemDescription[%i].formattedText>"
+        "default": "<itemDescription[%i]>"
       }
     },
     "itemDescriptionIndex": {
@@ -2380,7 +2684,7 @@
       "file": "menu/data/item_classes.asm",
       "assembly": {
         "type": "property",
-        "name": "Equipability",
+        "name": "Item Equipability %i",
         "begin": 0,
         "mask": "0x3FFF",
         "flag": true,
@@ -2428,10 +2732,57 @@
       "file": "btlgfx/text/item_name_en.asm",
       "assembly": {
         "type": "assembly",
+        "name": "Item Name %i",
         "assembly": {
           "itemSymbol": {
             "type": "property",
-            "name": "Symbol"
+            "name": "Symbol",
+            "stringTable": {
+              "string": {
+                "0x15": "Blank",
+                "0x21": "Petrify",
+                "0x22": "Frog",
+                "0x23": "Mini",
+                "0x24": "Pig",
+                "0x25": "Mute",
+                "0x26": "Darkness",
+                "0x27": "Poison",
+                "0x28": "Float",
+                "0x29": "Claw",
+                "0x2A": "Rod",
+                "0x2B": "Staff",
+                "0x2C": "Dark Sword",
+                "0x2D": "Sword",
+                "0x2E": "Paladin Sword",
+                "0x2F": "Spear",
+                "0x30": "Knife",
+                "0x31": "Katana",
+                "0x32": "Star",
+                "0x33": "Boomerang",
+                "0x34": "Axe",
+                "0x35": "Wrench",
+                "0x36": "Harp",
+                "0x37": "Bow",
+                "0x38": "Arrow",
+                "0x39": "Hammer",
+                "0x3A": "Whip",
+                "0x3B": "Shield",
+                "0x3C": "Helmet",
+                "0x3D": "Armor",
+                "0x3E": "Glove",
+                "0x3F": "Black Magic",
+                "0x40": "White Magic",
+                "0x41": "Call Magic",
+                "0x79": "Tent",
+                "0x7A": "Potion",
+                "0x7B": "Robe",
+                "0x7C": "Ring",
+                "0x7D": "Crystal",
+                "0x7E": "Key",
+                "0x7F": "Tail",
+                "0xFF": "None"
+              }
+            }
           },
           "itemName": {
             "type": "text",
@@ -2452,7 +2803,7 @@
         }
       }
     },
-    "itemPrice": {
+    "itemProperties": {
       "type": "array",
       "name": "Item Price",
       "range": "0x0FA450-0x0FA54F",
@@ -2460,58 +2811,25 @@
       "itemLength": 1,
       "asmSymbol": "ItemPrice",
       "file": "menu/data/item_price_en.asm",
+      "stringTable": "itemNames",
       "assembly": {
         "type": "assembly",
-        "assembly": {
-          "price10": {
-            "type": "property",
-            "name": "Price",
-            "begin": 0,
-            "multiplier": 10,
-            "mask": "0x7F",
-            "invalid": "obj.multiplier"
-          },
-          "price1000": {
-            "type": "property",
-            "name": "Price",
-            "begin": 0,
-            "multiplier": 1000,
-            "mask": "0x7F",
-            "invalid": "!obj.multiplier"
-          },
-          "multiplier": {
-            "type": "property",
-            "name": "Multiplier",
-            "begin": 0,
-            "mask": "0x80",
-            "stringTable": {
-              "string": {
-                "0": "×10",
-                "1": "×1000"
-              }
-            }
-          }
-        }
-      }
-    },
-    "itemProperties": {
-      "type": "array",
-      "name": "Item Properties",
-      "array": {
-        "length": 256
-      },
-      "assembly": {
-        "type": "assembly",
+        "name": "Item %i",
         "assembly": {
           "itemName": {
             "type": "assembly",
             "name": "Name",
-            "external": "itemNames[%i]"
+            "external": "itemNames[%i].itemName"
+          },
+          "itemSymbol": {
+            "type": "assembly",
+            "name": "Symbol",
+            "external": "itemNames[%i].itemSymbol"
           },
           "description": {
             "type": "assembly",
             "name": "Description",
-            "external": "itemDescriptionIndex[%i-206].description",
+            "external": "itemDescriptionIndex[%i-206]",
             "invalid": "(index < 206) || (index >= 235)"
           },
           "attack": {
@@ -2553,12 +2871,12 @@
           },
           "weaponSpellPower": {
             "type": "assembly",
-            "external": "weaponSpellPower[%i].spellPower",
+            "external": "weaponSpellPower[%i]",
             "invalid": "index >= 96"
           },
           "spellAnimation": {
             "type": "assembly",
-            "external": "itemSpellAnimation[%i].spellAnimation"
+            "external": "itemSpellAnimation[%i]"
           },
           "equipability": {
             "type": "assembly",
@@ -2572,7 +2890,8 @@
           },
           "statMod": {
             "type": "assembly",
-            "external": "weaponArmorProperties[%i].statMod"
+            "external": "weaponArmorProperties[%i].statMod",
+            "invalid": "index >= 176"
           },
           "stats": {
             "type": "assembly",
@@ -2599,9 +2918,9 @@
             "external": "weaponArmorProperties[%i].flags",
             "invalid": "index >= 96"
           },
-          "monsterType": {
+          "creatureType": {
             "type": "assembly",
-            "external": "weaponArmorProperties[%i].monsterType",
+            "external": "weaponArmorProperties[%i].creatureType",
             "invalid": "index >= 176"
           },
           "castingTime": {
@@ -2660,20 +2979,35 @@
             "invalid": "index < 176 || index >= 222"
           },
           "price10": {
-            "type": "assembly",
-            "external": "itemPrice[%i].price10"
+            "type": "property",
+            "name": "Price",
+            "begin": 0,
+            "multiplier": 10,
+            "mask": "0x7F",
+            "invalid": "obj.multiplier"
           },
           "price1000": {
-            "type": "assembly",
-            "external": "itemPrice[%i].price1000"
+            "type": "property",
+            "name": "Price",
+            "begin": 0,
+            "multiplier": 1000,
+            "mask": "0x7F",
+            "invalid": "!obj.multiplier"
           },
-          "priceMultiplier": {
-            "type": "assembly",
-            "external": "itemPrice[%i].multiplier"
+          "multiplier": {
+            "type": "property",
+            "name": "Multiplier",
+            "begin": 0,
+            "mask": "0x80",
+            "stringTable": {
+              "string": {
+                "0": "×10",
+                "1": "×1000"
+              }
+            }
           }
         }
-      },
-      "stringTable": "itemNames"
+      }
     },
     "itemSpellAnimation": {
       "type": "array",
@@ -2687,6 +3021,71 @@
         "type": "property",
         "name": "Spell Animation",
         "begin": 0
+      }
+    },
+    "magicEffect": {
+      "type": "array",
+      "arrayLength": 54,
+      "stringTable": {
+        "name": "Magic Effect",
+        "length": 54,
+        "default": "Magic Effect %i",
+        "string": {
+          "0": "Spell Damage",
+          "1": "Spell Damage w/ HP Leak",
+          "2": "Restore HP",
+          "3": "Weak",
+          "4": "Drain HP",
+          "5": "Drain MP",
+          "6": "Inflict Status",
+          "7": "Sleep/Paralyze",
+          "8": "Blink/Image",
+          "9": "Wall",
+          "10": "Life",
+          "11": "Heal",
+          "12": "Piggy/Size/Toad",
+          "13": "Armor",
+          "14": "Shell",
+          "15": "Slow/Fast",
+          "17": "Stop/Magnet",
+          "18": "Peep",
+          "19": "Escape",
+          "20": "Damage Based on Attacker's Current HP",
+          "21": "Restore MP",
+          "22": "Elixir",
+          "23": "Poison/Venom",
+          "24": "Cockatrice",
+          "25": "Mage",
+          "26": "Sylph",
+          "27": "Odin",
+          "28": "Count",
+          "29": "Count",
+          "30": "Damage Based on Target's Max HP",
+          "31": "Gradual Petrify",
+          "32": "Gaze",
+          "33": "Bluster",
+          "34": "Slap",
+          "35": "Blast",
+          "36": "Hug",
+          "37": "Explode/Fission",
+          "38": "Reaction",
+          "39": "Remedy",
+          "41": "Alert/Call",
+          "42": "Blk.Hole",
+          "43": "Needle/Counter",
+          "44": "Absorb",
+          "45": "No Effect",
+          "46": "Make Monsters Invincible",
+          "47": "Make Monsters Un-Invincible",
+          "48": "Revive Monster",
+          "49": "Change to Next Form",
+          "50": "End Battle",
+          "51": "Search",
+          "52": "Hatch",
+          "53": "Mist Dragon Attack",
+          "126": "Graphics Only",
+          "127": "No Effect"
+        }
       }
     },
     "mapAnimationGraphics": {
@@ -2732,7 +3131,7 @@
     },
     "mapDialog": {
       "type": "array",
-      "name": "Map Dialog",
+      "name": "Map Dialogue",
       "range": "0x118300-0x11FFFA",
       "arrayLength": 384,
       "asmSymbol": "MapDlg",
@@ -2979,6 +3378,7 @@
       "file": "field/data/map_prop_en.asm",
       "assembly": {
         "type": "assembly",
+        "name": "Map %i",
         "editor": "FF4Map",
         "assembly": {
           "title": {
@@ -3000,7 +3400,7 @@
             "type": "property",
             "name": "Song",
             "begin": 7,
-            "stringTable": "song"
+            "stringTable": "songScripts"
           },
           "spellFlags": {
             "type": "property",
@@ -3188,12 +3588,12 @@
           },
           "battleProbability": {
             "type": "property",
-            "external": "mapBattleProbability[%i].probability"
+            "external": "mapBattleProbability[%i]"
           },
           "battleGroup": {
             "type": "property",
             "name": "Battle Group",
-            "external": "mapBattle[%i].battleGroup"
+            "external": "mapBattle[%i]"
           },
           "mapDialog": {
             "type": "assembly",
@@ -3868,6 +4268,7 @@
       "file": "field/text/map_title_en.asm",
       "assembly": {
         "type": "text",
+        "name": "Map Title %i",
         "encoding": "nullTerminated"
       },
       "stringTable": {
@@ -3876,19 +4277,20 @@
         "default": "<mapTitle[%i]>"
       }
     },
-    "mapTriggers": {
+    "mapTriggers1": {
       "type": "array",
-      "name": "Map Triggers",
-      "range": "0x158300-0x15961E",
+      "name": "Map Triggers 1",
+      "range": "0x158300-0x158EDF",
       "isSequential": true,
-      "arrayLength": 384,
-      "asmSymbol": "MapTriggers",
-      "file": "field/data/map_triggers_en.asm",
+      "arrayLength": 256,
+      "asmSymbol": "MapTriggers1",
+      "file": "field/data/map_triggers1_en.asm",
       "assembly": {
         "type": "array",
         "itemLength": 5,
         "assembly": {
           "type": "assembly",
+          "name": "Map Trigger %i",
           "assembly": {
             "x": {
               "type": "property",
@@ -3928,8 +4330,8 @@
               "name": "Facing Direction",
               "begin": 3,
               "mask": "0xC0",
-              "invalid": "[0xFE,0xFF,0xFB,0xFC,0x01FB,0x01FC].includes(obj.map)",
-              "stringTable": "directions"
+              "invalid": "[0xFE,0xFF,0xFB,0xFC].includes(obj.map)",
+              "stringTable": "facingDirections"
             },
             "event": {
               "type": "property",
@@ -4005,7 +4407,142 @@
         }
       },
       "pointerTable": {
-        "range": "0x158000-0x1582FF",
+        "range": "0x158000-0x1581FF",
+        "offset": "0x158300"
+      }
+    },
+    "mapTriggers2": {
+      "type": "array",
+      "name": "Map Triggers 2",
+      "range": "0x158EE0-0x15961E",
+      "isSequential": true,
+      "arrayLength": 128,
+      "asmSymbol": "MapTriggers2",
+      "file": "field/data/map_triggers2_en.asm",
+      "assembly": {
+        "type": "array",
+        "itemLength": 5,
+        "assembly": {
+          "type": "assembly",
+          "name": "Map Trigger %i",
+          "assembly": {
+            "x": {
+              "type": "property",
+              "name": "X Position",
+              "begin": 0,
+              "hidden": true
+            },
+            "y": {
+              "type": "property",
+              "name": "Y Position",
+              "begin": 1,
+              "hidden": true
+            },
+            "map": {
+              "type": "property",
+              "name": "Map",
+              "begin": 2,
+              "max": 253,
+              "offset": 256,
+              "stringTable": "mapProperties",
+              "link": "mapProperties[%i]",
+              "hidden": "[0xFE,0xFF].includes(obj.map)"
+            },
+            "xDest": {
+              "type": "property",
+              "name": "X Destination",
+              "begin": 3,
+              "invalid": "[0xFE,0xFF].includes(obj.map)"
+            },
+            "yDest": {
+              "type": "property",
+              "name": "Y Destination",
+              "begin": 4,
+              "invalid": "[0xFE,0xFF].includes(obj.map)"
+            },
+            "direction": {
+              "type": "property",
+              "name": "Facing Direction",
+              "begin": 3,
+              "mask": "0xC0",
+              "invalid": "[0xFE,0xFF,0xFB,0xFC].includes(obj.map)",
+              "stringTable": "facingDirections"
+            },
+            "event": {
+              "type": "property",
+              "name": "Trigger Event",
+              "begin": 3,
+              "invalid": "obj.map !== 0xFF",
+              "link": "triggerScript[%i]",
+              "stringTable": "triggerScript"
+            },
+            "treasureType": {
+              "type": "property",
+              "name": "Type",
+              "begin": 3,
+              "mask": "0xC0",
+              "stringTable": {
+                "string": {
+                  "0": "GP",
+                  "1": "Monsters",
+                  "2": "Item",
+                  "3": "Monsters"
+                }
+              },
+              "invalid": "obj.map !== 0xFE"
+            },
+            "battle": {
+              "type": "property",
+              "name": "Battle",
+              "begin": 3,
+              "mask": "0x1F",
+              "invalid": "(obj.map !== 0xFE) || !(obj.treasureType & 1)",
+              "offset": "0x01E0",
+              "link": "battleProperties[%i]",
+              "stringTable": "battleProperties"
+            },
+            "item": {
+              "type": "property",
+              "name": "Item",
+              "begin": 4,
+              "stringTable": "itemNames",
+              "link": "itemProperties[%i]",
+              "invalid": "(obj.map !== 0xFE) || (obj.treasureType === 0)"
+            },
+            "gp10": {
+              "type": "property",
+              "name": "GP (×10)",
+              "begin": 4,
+              "mask": "0x7F",
+              "multiplier": 10,
+              "invalid": "(obj.map !== 0xFE) || (obj.treasureType !== 0) || (obj.gpMultiplier === 1)"
+            },
+            "gp1000": {
+              "type": "property",
+              "name": "GP (×1000)",
+              "begin": 4,
+              "mask": "0x7F",
+              "multiplier": 1000,
+              "invalid": "(obj.map !== 0xFE) || (obj.treasureType !== 0) || (obj.gpMultiplier === 0)"
+            },
+            "gpMultiplier": {
+              "type": "property",
+              "name": "Multiplier",
+              "begin": 4,
+              "mask": "0x80",
+              "stringTable": {
+                "string": {
+                  "0": "×10",
+                  "1": "×1000"
+                }
+              },
+              "invalid": "(obj.map !== 0xFE) || (obj.treasureType !== 0)"
+            }
+          }
+        }
+      },
+      "pointerTable": {
+        "range": "0x158200-0x1582FF",
         "offset": "0x158300"
       }
     },
@@ -4268,6 +4805,7 @@
       "file": "battle/data/monster_agility_en.asm",
       "assembly": {
         "type": "assembly",
+        "name": "Monster Agility %i",
         "assembly": {
           "min": {
             "type": "property",
@@ -4362,6 +4900,7 @@
       "file": "battle/data/monster_stats.asm",
       "assembly": {
         "type": "assembly",
+        "name": "Monster Attack/Defense %i",
         "assembly": {
           "base": {
             "type": "property",
@@ -4613,11 +5152,11 @@
     },
     "monsterBossMap": {
       "type": "array",
-      "name": "Boss Graphics Map",
+      "name": "Boss Tilemap",
       "range": "0x0ECF72-0x0EDF52",
       "arrayLength": 57,
-      "asmSymbol": "BossGfxMap",
-      "file": "btlgfx/data/boss_gfx_map.asm",
+      "asmSymbol": "BossTilemap",
+      "file": "btlgfx/data/boss_tilemap.asm",
       "pointerTable": {
         "range": "0x0ECF00-0x0ECF71",
         "offset": "0x0E0000",
@@ -4634,21 +5173,21 @@
       "file": "btlgfx/data/boss_gfx_prop.asm",
       "assembly": {
         "type": "assembly",
+        "name": "Boss Graphics %i",
         "assembly": {
           "x": {
             "type": "property",
             "name": "X Position",
             "begin": 0,
             "mask": "0xF0",
-            "multiplier": 8,
-            "offset": 16
+            "hidden": true
           },
           "y": {
             "type": "property",
             "name": "Y Position",
             "begin": 0,
             "mask": "0x0F",
-            "multiplier": 8
+            "hidden": true
           },
           "clearBuffer": {
             "type": "property",
@@ -4843,7 +5382,7 @@
             "invalid": "![0,1,3,7].includes(obj.condition)",
             "stringTable": {
               "string": {
-                "0-22": "<stringTable.characterID[%i]>",
+                "0-21": "`CharInitEquip[%i]`",
                 "22": "Any Monster of Same Type",
                 "23": "Self",
                 "24": "Any Character",
@@ -4956,9 +5495,9 @@
             "invalid": "![7,8].includes(obj.condition)",
             "stringTable": {
               "string": {
-                "192-194": "<battleCommandNames[%i-192]>",
+                "192-193": "`battleCommandNames[%i-192]`",
                 "194": "Magic",
-                "195-222": "<battleCommandNames[%i-192]>"
+                "195-221": "`battleCommandNames[%i-192]`"
               }
             }
           },
@@ -4988,49 +5527,15 @@
               }
             }
           },
-          "status1": {
+          "status": {
             "type": "property",
             "name": "Status",
             "begin": 3,
+            "mask": "0xFFFFFFFF",
             "flag": true,
+            "reverseBits": true,
             "invalid": "(obj.condition !== 0) || (obj.statusByte !== 0)",
-            "stringTable": {
-              "length": 8,
-              "default": "<stringTable.status[%i]>"
-            }
-          },
-          "status2": {
-            "type": "property",
-            "name": "Status",
-            "begin": 3,
-            "flag": true,
-            "invalid": "(obj.condition !== 0) || (obj.statusByte !== 1)",
-            "stringTable": {
-              "length": 8,
-              "default": "<stringTable.status[%i+8]>"
-            }
-          },
-          "status3": {
-            "type": "property",
-            "name": "Status",
-            "begin": 3,
-            "flag": true,
-            "invalid": "(obj.condition !== 0) || (obj.statusByte !== 2)",
-            "stringTable": {
-              "length": 8,
-              "default": "<stringTable.status[%i+16]>"
-            }
-          },
-          "status4": {
-            "type": "property",
-            "name": "Status",
-            "begin": 3,
-            "flag": true,
-            "invalid": "(obj.condition !== 0) || (obj.statusByte !== 3)",
-            "stringTable": {
-              "length": 8,
-              "default": "<stringTable.status[%i+24]>"
-            }
+            "stringTable": "statusName"
           }
         }
       },
@@ -5183,42 +5688,278 @@
       }
     },
     "monsterGraphics1": {
-      "type": "graphics",
+      "type": "array",
       "name": "Monster Graphics 1",
       "range": "0x098000-0x09FFDF",
       "asmSymbol": "MonsterGfx1",
-      "file": "btlgfx/gfx/monster_gfx1.asm"
+      "file": "btlgfx/gfx/monster_gfx1.asm",
+      "arrayLength": 38,
+      "stringTable": {
+        "length": 38,
+        "default": "Monster Graphics %i (Bank 1)",
+        "string": {
+          "0": "TinyMage",
+          "1": "TinyToad",
+          "2": "Pig",
+          "3": "Egg",
+          "4": "Amoeba",
+          "5": "Spirit",
+          "6": "Optic Blaster",
+          "7": "Flan",
+          "8": "Evil Shell",
+          "9": "Marionette",
+          "10": "Larva",
+          "11": "Black Knight",
+          "12": "Guard",
+          "13": "Soldieress",
+          "14": "Witch",
+          "15": "Cait Sith",
+          "16": "Eukaryote",
+          "17": "Floating Eye",
+          "18": "Ogre",
+          "19": "Succubus",
+          "20": "Centipede",
+          "21": "Arachne",
+          "22": "Marilith",
+          "23": "Centaur",
+          "24": "Blood Flower",
+          "25": "Naga",
+          "26": "Mask",
+          "27": "Malboro",
+          "28": "Armadillo",
+          "29": "Flamehound",
+          "30": "Basilisk",
+          "31": "Moth",
+          "32": "Alligator",
+          "33": "Lamia",
+          "34": "Turtle",
+          "35": "Hydra",
+          "36": "Gargoyle",
+          "37": "Medusa"
+        }
+      },
+      "itemRanges": [
+        "0x098000-0x09805F",
+        "0x098060-0x0980BF",
+        "0x0980C0-0x09823F",
+        "0x098240-0x0983BF",
+        "0x0983C0-0x09853F",
+        "0x098540-0x0986BF",
+        "0x0986C0-0x09883F",
+        "0x098840-0x0989BF",
+        "0x0989C0-0x098B3F",
+        "0x098B40-0x098CBF",
+        "0x098CC0-0x098E3F",
+        "0x098E40-0x09919F",
+        "0x0991A0-0x0994FF",
+        "0x099500-0x09985F",
+        "0x099860-0x099BBF",
+        "0x099BC0-0x099F1F",
+        "0x099F20-0x09A27F",
+        "0x09A280-0x09A5DF",
+        "0x09A5E0-0x09AA5F",
+        "0x09AA60-0x09AEDF",
+        "0x09AEE0-0x09B35F",
+        "0x09B360-0x09B7DF",
+        "0x09B7E0-0x09BC5F",
+        "0x09BC60-0x09C0DF",
+        "0x09C0E0-0x09C55F",
+        "0x09C560-0x09C9DF",
+        "0x09C9E0-0x09CE5F",
+        "0x09CE60-0x09D2DF",
+        "0x09D2E0-0x09D75F",
+        "0x09D760-0x09DBDF",
+        "0x09DBE0-0x09E05F",
+        "0x09E060-0x09E4DF",
+        "0x09E4E0-0x09E95F",
+        "0x09E960-0x09EDDF",
+        "0x09EDE0-0x09F25F",
+        "0x09F260-0x09F6DF",
+        "0x09F6E0-0x09FB5F",
+        "0x09FB60-0x09FFDF"
+      ]
     },
     "monsterGraphics2": {
-      "type": "graphics",
+      "type": "array",
       "name": "Monster Graphics 2",
       "range": "0x0A8000-0x0AEEFF",
       "asmSymbol": "MonsterGfx2",
-      "file": "btlgfx/gfx/monster_gfx2.asm"
+      "file": "btlgfx/gfx/monster_gfx2.asm",
+      "arrayLength": 26,
+      "stringTable": {
+        "length": 26,
+        "default": "Monster Graphics %i (Bank 2)",
+        "string": {
+          "0": "Soldier",
+          "1": "Treant",
+          "2": "Skeleton",
+          "3": "Zombie",
+          "4": "Gremlin",
+          "5": "Death Machine",
+          "6": "Sahagin",
+          "7": "Puppeteer",
+          "8": "Bat",
+          "9": "Toad",
+          "10": "Sword Rat",
+          "11": "Piranha",
+          "12": "Beam Cannon",
+          "13": "Chimera",
+          "14": "Dragon 1",
+          "15": "Sand Worm",
+          "16": "Bone Dragon",
+          "17": "Dragon 2",
+          "18": "Trap Door",
+          "19": "Zemus' Breath/Mind",
+          "20": "Golem",
+          "21": "Dragon 3",
+          "22": "Giant",
+          "23": "Raven",
+          "24": "Dragon 4",
+          "25": "Behemoth"
+        }
+      },
+      "itemRanges": [
+        "0x0A8000-0x0A823F",
+        "0x0A8240-0x0A847F",
+        "0x0A8480-0x0A86BF",
+        "0x0A86C0-0x0A88FF",
+        "0x0A8900-0x0A8B3F",
+        "0x0A8B40-0x0A8D7F",
+        "0x0A8D80-0x0A8FBF",
+        "0x0A8FC0-0x0A91FF",
+        "0x0A9200-0x0A943F",
+        "0x0A9440-0x0A967F",
+        "0x0A9680-0x0A98BF",
+        "0x0A98C0-0x0A9AFF",
+        "0x0A9B00-0x0A9D3F",
+        "0x0A9D40-0x0AA33F",
+        "0x0AA340-0x0AA93F",
+        "0x0AA940-0x0AAF3F",
+        "0x0AAF40-0x0AB53F",
+        "0x0AB540-0x0ABB3F",
+        "0x0ABB40-0x0AC13F",
+        "0x0AC140-0x0AC73F",
+        "0x0AC740-0x0ACD3F",
+        "0x0ACD40-0x0AD3FF",
+        "0x0AD400-0x0ADABF",
+        "0x0ADAC0-0x0AE17F",
+        "0x0AE180-0x0AE83F",
+        "0x0AE840-0x0AEEFF"
+      ]
     },
     "monsterGraphics3": {
-      "type": "graphics",
+      "type": "array",
       "name": "Monster Graphics 3",
       "range": "0x0B8000-0x0BFD57",
       "asmSymbol": "MonsterGfx3",
-      "file": "btlgfx/gfx/monster_gfx3.asm"
+      "file": "btlgfx/gfx/monster_gfx3.asm",
+      "arrayLength": 13,
+      "stringTable": {
+        "length": 13,
+        "default": "Monster Graphics %i (Bank 3)",
+        "string": {
+          "0": "Octomammoth",
+          "1": "Antlion",
+          "2": "Mom Bomb",
+          "3": "Scarmiglione, Rubicante",
+          "4": "Cagnazzo, Barbariccia",
+          "5": "Dark Elf",
+          "6": "Magus Sisters",
+          "7": "Calcabrina",
+          "8": "Demon Wall",
+          "9": "King & Queen of Eblan",
+          "10": "Baigan",
+          "11": "Dr. Lugae & Barnabas",
+          "12": "Golbez"
+        }
+      },
+      "itemRanges": [
+        "0x0B8000-0x0B886F",
+        "0x0B8870-0x0B8CA7",
+        "0x0B8CA8-0x0B9247",
+        "0x0B9248-0x0BAA17",
+        "0x0BAA18-0x0BC19F",
+        "0x0BC1A0-0x0BC4FF",
+        "0x0BC500-0x0BCCDF",
+        "0x0BCCE0-0x0BD297",
+        "0x0BD298-0x0BDBDF",
+        "0x0BDBE0-0x0BE617",
+        "0x0BE618-0x0BEAC7",
+        "0x0BEAC8-0x0BF58F",
+        "0x0BF590-0x0BFD57"
+      ]
     },
     "monsterGraphics4": {
-      "type": "graphics",
+      "type": "array",
       "name": "Monster Graphics 4",
       "range": "0x0C8000-0x0CB2F7",
       "asmSymbol": "MonsterGfx4",
-      "file": "btlgfx/gfx/monster_gfx4.asm"
-    },
-    "monsterGraphics": {
-      "type": "graphics",
-      "name": "Monster Graphics",
-      "range": "0x098000-0x0CB2F7",
+      "file": "btlgfx/gfx/monster_gfx4.asm",
+      "arrayLength": 5,
       "stringTable": {
-        "length": 0,
-        "default": "Monster Graphics %i",
-        "hideIndex": true
-      }
+        "length": 5,
+        "default": "Monster Graphics %i (Bank 4)",
+        "string": {
+          "0": "CPU",
+          "1": "CPU Node",
+          "2": "Zemus",
+          "3": "Zeromus 1",
+          "4": "Zeromus 2"
+        }
+      },
+      "itemRanges": [
+        "0x0C8000-0x0C8797",
+        "0x0C8798-0x0C895F",
+        "0x0C8960-0x0C90DF",
+        "0x0C90E0-0x0C96F7",
+        "0x0C96F8-0x0CB2F7"
+      ]
+    },
+    "monsterGraphics5": {
+      "type": "array",
+      "name": "Monster Graphics 5",
+      "range": "0x0D8818-0x0DE817",
+      "arrayLength": 15,
+      "asmSymbol": "MonsterGfx5",
+      "file": "btlgfx/gfx/monster_gfx5.asm",
+      "stringTable": {
+        "length": 15,
+        "default": "Monster Graphics %i (Bank 5)",
+        "string": {
+          "0": "Goblin",
+          "1": "Bomb",
+          "2": "Cockatrice",
+          "3": "Mindflayer",
+          "4": "Chocobo",
+          "5": "Shiva",
+          "6": "Ramuh",
+          "7": "Ifrit",
+          "8": "Titan",
+          "9": "Mist Dragon",
+          "10": "Sylph",
+          "11": "Odin",
+          "12": "Leviathan",
+          "13": "Bahamut",
+          "14": "Asura"
+        }
+      },
+      "itemRanges": [
+        "0x0D8818-0x0D8997",
+        "0x0D8998-0x0D8B17",
+        "0x0D8B18-0x0D8D57",
+        "0x0D8D58-0x0D90B7",
+        "0x0D90B8-0x0D92F7",
+        "0x0D92F8-0x0D975F",
+        "0x0D9760-0x0D9C3F",
+        "0x0D9C40-0x0DA41F",
+        "0x0DA420-0x0DAA1F",
+        "0x0DAA20-0x0DAE9F",
+        "0x0DAEA0-0x0DAFBF",
+        "0x0DAFC0-0x0DB91F",
+        "0x0DB920-0x0DC33F",
+        "0x0DC340-0x0DCE4F",
+        "0x0DCE50-0x0DE817"
+      ]
     },
     "monsterGraphicsProperties": {
       "type": "array",
@@ -5272,8 +6013,7 @@
             "name": "Palette",
             "begin": 1,
             "stringTable": "monsterPalette",
-            "invalid": "obj.isCharacter",
-            "disabled": "obj.isBoss"
+            "invalid": "obj.isBoss || obj.isCharacter"
           },
           "paletteChar": {
             "type": "property",
@@ -5282,14 +6022,57 @@
             "stringTable": "characterPalette",
             "invalid": "!obj.isCharacter"
           },
+          "graphicsBank": {
+            "type": "property",
+            "name": "Graphics Bank",
+            "begin": 3,
+            "mask": "0x70",
+            "stringTable": {
+              "string": {
+                "0": "Bank 1",
+                "1": "Bank 2",
+                "2": "Bank 3 (Bosses)",
+                "3": "Bank 4 (Bosses)",
+                "4": "Bank 5 (Summons)"
+              }
+            }
+          },
           "graphicsPointer": {
             "type": "property",
-            "name": "Graphics",
+            "name": "Graphics Pointer",
             "begin": 2,
-            "mask": "0x7FFF",
-            "multiplier": 8,
-            "stringTable": "monsterGraphics",
-            "disabled": "obj.isCharacter"
+            "mask": "0x0FFF",
+            "hidden": true
+          },
+          "graphicsIndex1": {
+            "type": "property",
+            "name": "Graphics",
+            "stringTable": "monsterGraphics1",
+            "invalid": true
+          },
+          "graphicsIndex2": {
+            "type": "property",
+            "name": "Graphics",
+            "stringTable": "monsterGraphics2",
+            "invalid": true
+          },
+          "graphicsIndex3": {
+            "type": "property",
+            "name": "Graphics",
+            "stringTable": "monsterGraphics3",
+            "invalid": true
+          },
+          "graphicsIndex4": {
+            "type": "property",
+            "name": "Graphics",
+            "stringTable": "monsterGraphics4",
+            "invalid": true
+          },
+          "graphicsIndex5": {
+            "type": "property",
+            "name": "Graphics",
+            "stringTable": "monsterGraphics5",
+            "invalid": true
           },
           "is3bpp": {
             "type": "property",
@@ -5311,6 +6094,7 @@
       "file": "battle/data/monster_items_en.asm",
       "assembly": {
         "type": "assembly",
+        "name": "Monster Items %i",
         "assembly": {
           "drop1": {
             "type": "property",
@@ -5451,7 +6235,7 @@
         "format": "bgr555"
       },
       "stringTable": {
-        "length": 0,
+        "length": 240,
         "default": "Monster Palette %i",
         "hideIndex": true
       }
@@ -5474,15 +6258,12 @@
             "x": {
               "type": "property",
               "name": "X Position",
-              "mask": "0xF0",
-              "multiplier": 8,
-              "offset": 16
+              "mask": "0xF0"
             },
             "y": {
               "type": "property",
               "name": "Y Position",
-              "mask": "0x0F",
-              "multiplier": 8
+              "mask": "0x0F"
             }
           }
         }
@@ -5497,6 +6278,7 @@
       "file": "battle/data/monster_prop_en.asm",
       "assembly": {
         "type": "assembly",
+        "name": "Monster %i",
         "format": "ff4-monster",
         "assembly": {
           "monsterName": {
@@ -5590,14 +6372,12 @@
             "type": "property",
             "name": "Attack Script",
             "begin": 8,
-            "link": "monsterScript[%i]",
             "stringTable": "monsterScript"
           },
           "counter": {
             "type": "property",
             "name": "Counter Script",
             "begin": 19,
-            "link": "monsterScript[%i]",
             "stringTable": "monsterScript",
             "special": {
               "0": "None"
@@ -5630,7 +6410,8 @@
             "begin": 11,
             "mask": "0xFFFF",
             "flag": true,
-            "stringTable": "status"
+            "reverseBits": true,
+            "stringTable": "statusName"
           },
           "statusImmunity": {
             "type": "property",
@@ -5638,16 +6419,25 @@
             "begin": 14,
             "mask": "0xFFFF",
             "flag": true,
-            "stringTable": "status"
+            "reverseBits": true,
+            "stringTable": "statusName"
           },
-          "monsterType": {
+          "creatureType": {
             "type": "property",
-            "name": "Type",
+            "name": "Creature Type",
             "begin": 18,
             "flag": true,
-            "stringTable": "monsterType"
+            "stringTable": "creatureType"
           },
           "cat-graphics": "Graphics",
+          "isBoss": {
+            "type": "property",
+            "external": "monsterGraphicsProperties[%i].isBoss"
+          },
+          "isCharacter": {
+            "type": "property",
+            "external": "monsterGraphicsProperties[%i].isCharacter"
+          },
           "size": {
             "type": "property",
             "external": "monsterGraphicsProperties[%i].size"
@@ -5660,14 +6450,6 @@
             "type": "property",
             "external": "monsterGraphicsProperties[%i].characterIndex"
           },
-          "isBoss": {
-            "type": "property",
-            "external": "monsterGraphicsProperties[%i].isBoss"
-          },
-          "isCharacter": {
-            "type": "property",
-            "external": "monsterGraphicsProperties[%i].isCharacter"
-          },
           "palette": {
             "type": "property",
             "external": "monsterGraphicsProperties[%i].palette"
@@ -5676,9 +6458,29 @@
             "type": "property",
             "external": "monsterGraphicsProperties[%i].paletteChar"
           },
-          "graphicsPointer": {
+          "graphicsBank": {
             "type": "property",
-            "external": "monsterGraphicsProperties[%i].graphicsPointer"
+            "external": "monsterGraphicsProperties[%i].graphicsBank"
+          },
+          "graphicsIndex1": {
+            "type": "property",
+            "external": "monsterGraphicsProperties[%i].graphicsIndex1"
+          },
+          "graphicsIndex2": {
+            "type": "property",
+            "external": "monsterGraphicsProperties[%i].graphicsIndex2"
+          },
+          "graphicsIndex3": {
+            "type": "property",
+            "external": "monsterGraphicsProperties[%i].graphicsIndex3"
+          },
+          "graphicsIndex4": {
+            "type": "property",
+            "external": "monsterGraphicsProperties[%i].graphicsIndex4"
+          },
+          "graphicsIndex5": {
+            "type": "property",
+            "external": "monsterGraphicsProperties[%i].graphicsIndex5"
           },
           "is3bpp": {
             "type": "property",
@@ -5978,14 +6780,12 @@
           "width": {
             "type": "property",
             "name": "Width",
-            "begin": 0,
-            "multiplier": 8
+            "begin": 0
           },
           "height": {
             "type": "property",
             "name": "Height",
-            "begin": 1,
-            "multiplier": 8
+            "begin": 1
           }
         }
       },
@@ -6081,14 +6881,32 @@
         "format": "terminated(0,4)",
         "assembly": {
           "type": "assembly",
+          "name": "NPC %i",
           "assembly": {
-            "switch": {
+            "npcMSB": {
+              "type": "property",
+              "name": "NPC MSB",
+              "bool": true,
+              "invalid": true
+            },
+            "switch0": {
               "type": "property",
               "name": "NPC Switch",
               "begin": 0,
               "min": 1,
               "link": "npcGraphicsProperties[%i]",
-              "stringTable": "npcSwitch"
+              "stringTable": "initNPCSwitch",
+              "invalid": "obj.npcMSB"
+            },
+            "switch1": {
+              "type": "property",
+              "name": "NPC Switch",
+              "begin": 0,
+              "min": 1,
+              "offset": 256,
+              "link": "npcGraphicsProperties[%i]",
+              "stringTable": "initNPCSwitch",
+              "invalid": "!obj.npcMSB"
             },
             "x": {
               "type": "property",
@@ -6164,8 +6982,7 @@
                 }
               }
             }
-          },
-          "length": 4
+          }
         }
       },
       "pointerTable": {
@@ -6189,7 +7006,7 @@
         "range": "0x139800-0x139BFF",
         "offset": "0x139C00"
       },
-      "stringTable": "npcSwitch"
+      "stringTable": "initNPCSwitch"
     },
     "portraitGraphics": {
       "type": "array",
@@ -6324,18 +7141,65 @@
       "asmSymbol": "ShopProp",
       "file": "menu/data/shop_prop_en.asm",
       "assembly": {
-        "type": "array",
-        "name": "Items",
-        "length": 8,
-        "arrayLength": 8,
-        "itemLength": 1,
-        "arrayMin": 8,
-        "arrayMax": 8,
+        "type": "assembly",
+        "name": "Shop %i",
         "assembly": {
-          "type": "property",
-          "name": "Item",
-          "stringTable": "itemNames",
-          "link": "itemProperties[%i]"
+          "item1": {
+            "type": "property",
+            "name": "Item 1",
+            "begin": 0,
+            "stringTable": "itemNames",
+            "link": "itemProperties[%i]"
+          },
+          "item2": {
+            "type": "property",
+            "name": "Item 2",
+            "begin": 1,
+            "stringTable": "itemNames",
+            "link": "itemProperties[%i]"
+          },
+          "item3": {
+            "type": "property",
+            "name": "Item 3",
+            "begin": 2,
+            "stringTable": "itemNames",
+            "link": "itemProperties[%i]"
+          },
+          "item4": {
+            "type": "property",
+            "name": "Item 4",
+            "begin": 3,
+            "stringTable": "itemNames",
+            "link": "itemProperties[%i]"
+          },
+          "item5": {
+            "type": "property",
+            "name": "Item 5",
+            "begin": 4,
+            "stringTable": "itemNames",
+            "link": "itemProperties[%i]"
+          },
+          "item6": {
+            "type": "property",
+            "name": "Item 6",
+            "begin": 5,
+            "stringTable": "itemNames",
+            "link": "itemProperties[%i]"
+          },
+          "item7": {
+            "type": "property",
+            "name": "Item 7",
+            "begin": 6,
+            "stringTable": "itemNames",
+            "link": "itemProperties[%i]"
+          },
+          "item8": {
+            "type": "property",
+            "name": "Item 8",
+            "begin": 7,
+            "stringTable": "itemNames",
+            "link": "itemProperties[%i]"
+          }
         }
       },
       "stringTable": {
@@ -6435,6 +7299,71 @@
         "range": "0x06F21D-0x06F2EE",
         "offset": "0x04C000",
         "pointerSize": 3
+      },
+      "stringTable": {
+        "name": "Song",
+        "default": "Song %i",
+        "length": 256,
+        "string": {
+          "0": "Silence",
+          "1": "Prologue",
+          "2": "Long Way to Go",
+          "3": "Unknown Fanfare",
+          "4": "Chocobo Chocobo",
+          "5": "Samba de Chocobo",
+          "6": "Land of Dwarves",
+          "7": "The Final Battle",
+          "8": "Victory Fanfare",
+          "9": "Welcome to Our Town",
+          "10": "Rydia",
+          "11": "The Dreadful Fight",
+          "12": "Mt. Ordeals",
+          "13": "Main Theme",
+          "14": "The Big Whale",
+          "15": "Cry in Sorrow",
+          "16": "Sleepy Time",
+          "17": "Golbeza Clad in the Dark",
+          "18": "Edward's Harp",
+          "19": "Theme of Love",
+          "20": "Kingdom Baron",
+          "21": "The Prelude",
+          "22": "Somewhere in the World",
+          "23": "Tower of Bab'il",
+          "24": "The Airship",
+          "25": "Tower of Zot",
+          "26": "Battle 2",
+          "27": "Within the Giant",
+          "28": "Illusionary World",
+          "29": "Bomb Ring",
+          "30": "The Lunarians",
+          "31": "Dun-Dun-Dun!",
+          "30": "The Lunarians",
+          "32": "Giott, King of the Dwarves",
+          "33": "Palom & Porom",
+          "34": "Dancing Calbrena",
+          "35": "Run!",
+          "36": "Hey Cid!",
+          "37": "Into the Darkness",
+          "38": "Dancer Theme",
+          "39": "Battle 1",
+          "40": "Damcyan Castle",
+          "41": "Fanfare",
+          "42": "Sorrow Intro",
+          "43": "Chocobo Forest",
+          "44": "The Red Wings",
+          "45": "Suspicion",
+          "46": "Fabul",
+          "47": "Another Fanfare",
+          "48": "Hello, Big Chocobo",
+          "49": "Another Moon",
+          "50": "Troian Beauty",
+          "51": "Mystic Mysidia",
+          "52": "The Core",
+          "53": "Epilogue 1",
+          "54": "Epilogue 2",
+          "55": "Epilogue 3",
+          "68": "Waterfall"
+        }
       }
     },
     "spcData": {
@@ -6446,7 +7375,7 @@
     },
     "spellNames": {
       "type": "array",
-      "name": "Spell Names",
+      "name": "Magic Names",
       "range": "0x0F8900-0x0F8AAF",
       "arrayLength": 72,
       "itemLength": 6,
@@ -6454,10 +7383,57 @@
       "file": "btlgfx/text/magic_name_en.asm",
       "assembly": {
         "type": "assembly",
+        "name": "Magic Name %i",
         "assembly": {
           "spellSymbol": {
             "type": "property",
-            "name": "Symbol"
+            "name": "Symbol",
+            "stringTable": {
+              "string": {
+                "0x15": "Blank",
+                "0x21": "Petrify",
+                "0x22": "Frog",
+                "0x23": "Mini",
+                "0x24": "Pig",
+                "0x25": "Mute",
+                "0x26": "Darkness",
+                "0x27": "Poison",
+                "0x28": "Float",
+                "0x29": "Claw",
+                "0x2A": "Rod",
+                "0x2B": "Staff",
+                "0x2C": "Dark Sword",
+                "0x2D": "Sword",
+                "0x2E": "Paladin Sword",
+                "0x2F": "Spear",
+                "0x30": "Knife",
+                "0x31": "Katana",
+                "0x32": "Star",
+                "0x33": "Boomerang",
+                "0x34": "Axe",
+                "0x35": "Wrench",
+                "0x36": "Harp",
+                "0x37": "Bow",
+                "0x38": "Arrow",
+                "0x39": "Hammer",
+                "0x3A": "Whip",
+                "0x3B": "Shield",
+                "0x3C": "Helmet",
+                "0x3D": "Armor",
+                "0x3E": "Glove",
+                "0x3F": "Black Magic",
+                "0x40": "White Magic",
+                "0x41": "Call Magic",
+                "0x79": "Tent",
+                "0x7A": "Potion",
+                "0x7B": "Robe",
+                "0x7C": "Ring",
+                "0x7D": "Crystal",
+                "0x7E": "Key",
+                "0x7F": "Tail",
+                "0xFF": "None"
+              }
+            }
           },
           "spellName": {
             "type": "text",
@@ -6470,7 +7446,7 @@
       "stringTable": {
         "name": "Spell Names",
         "length": 72,
-        "default": "<spellNames[%i].formattedText>",
+        "default": "<spellNames[%i].spellName>",
         "string": {
           "0": "None"
         }
@@ -6616,7 +7592,41 @@
       },
       "stringTable": {
         "length": 32,
-        "default": "<statusName[%i].formattedText>"
+        "default": "<statusName[%i]>",
+        "string": {
+          "0": "Swoon",
+          "1": "Stone",
+          "2": "Toad",
+          "3": "Small",
+          "4": "Pig",
+          "5": "Mute",
+          "6": "Darkness",
+          "7": "Poison",
+          "8": "Curse",
+          "9": "Float",
+          "10": "Paralyze",
+          "11": "Sleep",
+          "12": "Charm",
+          "13": "Berserk",
+          "14": "2/3 Petrified",
+          "15": "1/3 Petrified",
+          "16": "Magnetized",
+          "17": "Stop",
+          "18": "Egg",
+          "19": "Defend",
+          "20": "Charge/Focus",
+          "21": "Twin",
+          "22": "Jump",
+          "23": "Count",
+          "24": "Hide",
+          "25": "HP Leak",
+          "26": "Wall",
+          "27": "Barrier",
+          "28": "Image 2",
+          "29": "Image 1",
+          "30": "Cover",
+          "31": "Critical"
+        }
       }
     },
     "summonFrame": {
@@ -6632,26 +7642,13 @@
         "isMapped": true
       }
     },
-    "summonGraphics": {
-      "type": "array",
-      "name": "Summon Graphics",
-      "range": "0x0D8818-0x0DE817",
-      "arrayLength": 17,
-      "asmSymbol": "SummonGfx",
-      "file": "btlgfx/gfx/summon_gfx.asm",
-      "pointerTable": {
-        "range": "0x0D87F0-0x0D8811",
-        "offset": "0x0D0000",
-        "isMapped": true
-      }
-    },
     "summonGraphicsMap": {
       "type": "array",
-      "name": "Summon Graphics Map",
+      "name": "Summon Tilemap",
       "range": "0x0DF282-0x0DF646",
       "arrayLength": 17,
-      "asmSymbol": "SummonGfxMap",
-      "file": "btlgfx/data/summon_gfx_map.asm",
+      "asmSymbol": "SummonTilemap",
+      "file": "btlgfx/data/summon_tilemap.asm",
       "pointerTable": {
         "range": "0x0DF260-0x0DF281",
         "offset": "0x0D0000",
@@ -6902,13 +7899,13 @@
             "link": "attackElementStatus[%i]",
             "stringTable": "attackElementStatus"
           },
-          "monsterType": {
+          "creatureType": {
             "type": "property",
-            "name": "Monster Type",
+            "name": "Creature Type",
             "begin": 5,
             "mask": "0xFF",
             "flag": true,
-            "stringTable": "monsterType"
+            "stringTable": "creatureType"
           },
           "equipability": {
             "type": "property",
@@ -7083,9 +8080,9 @@
         "0x1DC000-0x1DD3BF"
       ]
     },
-    "worldLayout0": {
+    "worldLayout1": {
       "type": "array",
-      "name": "World Layout",
+      "name": "Overworld Layout",
       "range": "0x168480-0x16C354",
       "arrayLength": "0x0100",
       "asmSymbol": "OverworldTilemap",
@@ -7098,7 +8095,7 @@
         "offset": "0x168480"
       }
     },
-    "worldLayout1": {
+    "worldLayout2": {
       "type": "array",
       "name": "Underground Layout",
       "range": "0x16C480-0x16E041",
@@ -7113,7 +8110,7 @@
         "offset": "0x16C480"
       }
     },
-    "worldLayout2": {
+    "worldLayout3": {
       "type": "array",
       "name": "Moon Layout",
       "range": "0x16E180-0x16EB53",
@@ -7246,81 +8243,219 @@
         }
       }
     },
-    "worldTriggers": {
+    "worldTriggers1": {
       "type": "array",
-      "name": "World Triggers",
-      "range": "0x19FE66-0x19FFFF",
-      "arrayLength": 3,
-      "asmSymbol": "WorldTriggers",
-      "file": "field/data/world_triggers.asm",
+      "name": "Overworld Triggers",
+      "range": "0x19FE66-0x19FF87",
+      "asmSymbol": "WorldTriggers1",
+      "file": "field/data/world_triggers1.asm",
+      "arrayLength": 58,
+      "itemLength": 5,
       "assembly": {
-        "type": "array",
-        "itemLength": 5,
+        "type": "assembly",
+        "name": "Overworld Trigger %i",
         "assembly": {
-          "type": "assembly",
-          "assembly": {
-            "x": {
-              "type": "property",
-              "name": "X Position",
-              "begin": 0,
-              "hidden": true
-            },
-            "y": {
-              "type": "property",
-              "name": "Y Position",
-              "begin": 1,
-              "hidden": true
-            },
-            "map": {
-              "type": "property",
-              "name": "Map",
-              "begin": 2,
-              "max": 253,
-              "stringTable": "mapProperties",
-              "link": "mapProperties[%i]",
-              "hidden": "obj.map === 0xFF"
-            },
-            "xDest": {
-              "type": "property",
-              "name": "X Destination",
-              "begin": 3,
-              "mask": "0x3F",
-              "invalid": "obj.map === 0xFF"
-            },
-            "yDest": {
-              "type": "property",
-              "name": "Y Destination",
-              "begin": 4,
-              "invalid": "obj.map === 0xFF"
-            },
-            "direction": {
-              "type": "property",
-              "name": "Facing Direction",
-              "begin": 3,
-              "mask": "0xC0",
-              "invalid": "obj.map === 0xFF",
-              "stringTable": {
-                "string": {
-                  "0": "Up",
-                  "1": "Right",
-                  "2": "Down",
-                  "3": "Left"
-                }
+          "x": {
+            "type": "property",
+            "name": "X Position",
+            "begin": 0,
+            "hidden": true
+          },
+          "y": {
+            "type": "property",
+            "name": "Y Position",
+            "begin": 1,
+            "hidden": true
+          },
+          "map": {
+            "type": "property",
+            "name": "Map",
+            "begin": 2,
+            "max": 253,
+            "stringTable": "mapProperties",
+            "link": "mapProperties[%i]",
+            "hidden": "obj.map === 0xFF"
+          },
+          "xDest": {
+            "type": "property",
+            "name": "X Destination",
+            "begin": 3,
+            "mask": "0x3F",
+            "invalid": "obj.map === 0xFF"
+          },
+          "yDest": {
+            "type": "property",
+            "name": "Y Destination",
+            "begin": 4,
+            "invalid": "obj.map === 0xFF"
+          },
+          "direction": {
+            "type": "property",
+            "name": "Facing Direction",
+            "begin": 3,
+            "mask": "0xC0",
+            "invalid": "obj.map === 0xFF",
+            "stringTable": {
+              "string": {
+                "0": "Up",
+                "1": "Right",
+                "2": "Down",
+                "3": "Left"
               }
-            },
-            "event": {
-              "type": "property",
-              "name": "Trigger Event",
-              "begin": 3,
-              "invalid": "obj.map !== 0xFF",
-              "link": "triggerScript[%i]"
             }
+          },
+          "event": {
+            "type": "property",
+            "name": "Trigger Event",
+            "begin": 3,
+            "invalid": "obj.map !== 0xFF",
+            "link": "triggerScript[%i]"
           }
         }
-      },
-      "pointerTable": {
-        "range": "0x19FE60-0x19FE65",
-        "offset": "0x19FE66"
+      }
+    },
+    "worldTriggers2": {
+      "type": "array",
+      "name": "Underground Triggers",
+      "range": "0x19FF88-0x19FFDC",
+      "asmSymbol": "WorldTriggers2",
+      "file": "field/data/world_triggers2.asm",
+      "arrayLength": 17,
+      "itemLength": 5,
+      "assembly": {
+        "type": "assembly",
+        "name": "Underground Trigger %i",
+        "assembly": {
+          "x": {
+            "type": "property",
+            "name": "X Position",
+            "begin": 0,
+            "hidden": true
+          },
+          "y": {
+            "type": "property",
+            "name": "Y Position",
+            "begin": 1,
+            "hidden": true
+          },
+          "map": {
+            "type": "property",
+            "name": "Map",
+            "begin": 2,
+            "max": 253,
+            "offset": 256,
+            "stringTable": "mapProperties",
+            "link": "mapProperties[%i]",
+            "hidden": "obj.map === 0xFF"
+          },
+          "xDest": {
+            "type": "property",
+            "name": "X Destination",
+            "begin": 3,
+            "mask": "0x3F",
+            "invalid": "obj.map === 0xFF"
+          },
+          "yDest": {
+            "type": "property",
+            "name": "Y Destination",
+            "begin": 4,
+            "invalid": "obj.map === 0xFF"
+          },
+          "direction": {
+            "type": "property",
+            "name": "Facing Direction",
+            "begin": 3,
+            "mask": "0xC0",
+            "invalid": "obj.map === 0xFF",
+            "stringTable": {
+              "string": {
+                "0": "Up",
+                "1": "Right",
+                "2": "Down",
+                "3": "Left"
+              }
+            }
+          },
+          "event": {
+            "type": "property",
+            "name": "Trigger Event",
+            "begin": 3,
+            "invalid": "obj.map !== 0xFF",
+            "link": "triggerScript[%i]"
+          }
+        }
+      }
+    },
+    "worldTriggers3": {
+      "type": "array",
+      "name": "Moon Triggers",
+      "range": "0x19FFDD-0x19FFFF",
+      "asmSymbol": "WorldTriggers3",
+      "file": "field/data/world_triggers3.asm",
+      "arrayLength": 7,
+      "itemLength": 5,
+      "assembly": {
+        "type": "assembly",
+        "name": "Moon Trigger %i",
+        "assembly": {
+          "x": {
+            "type": "property",
+            "name": "X Position",
+            "begin": 0,
+            "hidden": true
+          },
+          "y": {
+            "type": "property",
+            "name": "Y Position",
+            "begin": 1,
+            "hidden": true
+          },
+          "map": {
+            "type": "property",
+            "name": "Map",
+            "begin": 2,
+            "max": 253,
+            "offset": 256,
+            "stringTable": "mapProperties",
+            "link": "mapProperties[%i]",
+            "hidden": "obj.map === 0xFF"
+          },
+          "xDest": {
+            "type": "property",
+            "name": "X Destination",
+            "begin": 3,
+            "mask": "0x3F",
+            "invalid": "obj.map === 0xFF"
+          },
+          "yDest": {
+            "type": "property",
+            "name": "Y Destination",
+            "begin": 4,
+            "invalid": "obj.map === 0xFF"
+          },
+          "direction": {
+            "type": "property",
+            "name": "Facing Direction",
+            "begin": 3,
+            "mask": "0xC0",
+            "invalid": "obj.map === 0xFF",
+            "stringTable": {
+              "string": {
+                "0": "Up",
+                "1": "Right",
+                "2": "Down",
+                "3": "Left"
+              }
+            }
+          },
+          "event": {
+            "type": "property",
+            "name": "Trigger Event",
+            "begin": 3,
+            "invalid": "obj.map !== 0xFF",
+            "link": "triggerScript[%i]"
+          }
+        }
       }
     }
   },
@@ -7474,10 +8609,10 @@
               "type": "property",
               "name": "Character",
               "begin": 1,
-              "stringTable": "characterID",
+              "stringTable": "CharInitEquip",
               "min": 0,
               "offset": -1,
-              "link": "characterProperties[%i]"
+              "link": "CharInitEquip[%i]"
             }
           }
         },
@@ -7504,7 +8639,8 @@
               "name": "Status",
               "begin": 1,
               "flag": true,
-              "stringTable": "status"
+              "reverseBits": true,
+              "stringTable": "statusName"
             }
           }
         },
@@ -7749,7 +8885,7 @@
               "begin": 2,
               "mask": "0xC0",
               "invalid": "((obj.mapMSB === 0) && [0xFB,0xFC,0xFD].includes(obj.map1)) || ((obj.mapMSB === 1) && [0x01FB,0x01FC,0x01FD].includes(obj.map2))",
-              "stringTable": "directions"
+              "stringTable": "facingDirections"
             },
             "vehicle": {
               "type": "property",
@@ -7757,7 +8893,19 @@
               "begin": 4,
               "mask": "0x1F",
               "invalid": "!obj.direction.invalid",
-              "stringTable": "vehicles"
+              "stringTable": {
+                "string": {
+                  "0": "None",
+                  "1": "Chocobo",
+                  "2": "Black Chocobo",
+                  "3": "Hovercraft",
+                  "4": "Enterprise",
+                  "5": "Falcon",
+                  "6": "Big Whale",
+                  "7": "Ship",
+                  "31": "Cinematic ?"
+                }
+              }
             }
           }
         },
@@ -7879,7 +9027,7 @@
               "type": "property",
               "name": "Song",
               "begin": 1,
-              "stringTable": "song"
+              "stringTable": "songScripts"
             }
           }
         },
@@ -7918,7 +9066,7 @@
               "type": "property",
               "name": "Spell List",
               "begin": 1,
-              "stringTable": "spellLists"
+              "stringTable": "spellList"
             },
             "spell": {
               "type": "property",
@@ -7931,7 +9079,7 @@
         "switch": {
           "name": "Change Switch",
           "category": "Control",
-          "opcode": "0xF2-0xF6",
+          "opcode": "0xF2-0xF5",
           "length": 2,
           "assembly": {
             "onOff": {
@@ -7963,14 +9111,14 @@
               "name": "Switch",
               "begin": 1,
               "invalid": "obj.type === 2",
-              "stringTable": "eventSwitch"
+              "stringTable": "initEventSwitch"
             },
             "npcSwitch": {
               "type": "property",
               "name": "Switch",
               "begin": 1,
               "invalid": "obj.type === 1",
-              "stringTable": "npcSwitch"
+              "stringTable": "initNPCSwitch"
             }
           }
         },
@@ -8069,7 +9217,7 @@
       "command": {
         "attack": {
           "name": "Attack",
-          "opcode": "0x00-0xC0",
+          "opcode": "0x00-0xBF",
           "assembly": {
             "attack": {
               "type": "property",
@@ -8081,7 +9229,7 @@
         },
         "chain": {
           "name": "Attack Chain",
-          "opcode": "0xFB-0xFE",
+          "opcode": "0xFB-0xFD",
           "assembly": {
             "chain": {
               "type": "property",
@@ -8099,7 +9247,7 @@
         },
         "command": {
           "name": "Command",
-          "opcode": "0xC0-0xE7",
+          "opcode": "0xC0-0xE6",
           "assembly": {
             "command": {
               "type": "property",
@@ -8163,7 +9311,7 @@
         },
         "stat": {
           "name": "Change Stat",
-          "opcode": "0xE8-0xEF",
+          "opcode": "0xE8-0xEE",
           "length": 2,
           "assembly": {
             "stat": {
@@ -8201,7 +9349,7 @@
               "stringTable": {
                 "string": {
                   "0": "Nothing",
-                  "1-22": "<stringTable.characterID[%i-1]>",
+                  "1-21": "<CharInitEquip[%i-1]>",
                   "22": "Self",
                   "23": "All Monsters",
                   "24": "All Monsters (Except Self)",
@@ -8229,7 +9377,7 @@
         },
         "variable": {
           "name": "Change Variable",
-          "opcode": "0xF4-0xF8",
+          "opcode": "0xF4-0xF7",
           "length": 2,
           "assembly": {
             "variable": {
@@ -8340,7 +9488,7 @@
               "type": "property",
               "name": "Switch",
               "begin": 0,
-              "stringTable": "eventSwitch"
+              "stringTable": "initEventSwitch"
             }
           }
         },
@@ -8353,7 +9501,7 @@
               "type": "property",
               "name": "Switch",
               "begin": 1,
-              "stringTable": "eventSwitch"
+              "stringTable": "initEventSwitch"
             }
           }
         }
@@ -8662,705 +9810,6 @@
         "text",
         "nullTerminated"
       ]
-    }
-  },
-  "stringTable": {
-    "characterID": {
-      "name": "Character ID",
-      "length": 21,
-      "string": {
-        "0": "Cecil (Dark Knight)",
-        "1": "Kain (1st Time)",
-        "2": "Rydia (1st Time)",
-        "3": "Tellah (1st Time)",
-        "4": "Edward",
-        "5": "Rosa (1st Time)",
-        "6": "Yang (1st Time)",
-        "7": "Palom",
-        "8": "Porom",
-        "9": "Tellah (2nd Time)",
-        "10": "Cecil (Paladin)",
-        "11": "Tellah (3rd Time)",
-        "12": "Yang (2nd Time)",
-        "13": "Cid",
-        "14": "Kain (2nd Time)",
-        "15": "Rosa (2nd Time)",
-        "16": "Rydia (2nd Time)",
-        "17": "Edge",
-        "18": "FuSoYa",
-        "19": "Kain (3rd Time)",
-        "20": "Golbez"
-      }
-    },
-    "directions": {
-      "name": "Facing Directions",
-      "string": {
-        "0": "Up",
-        "1": "Right",
-        "2": "Down",
-        "3": "Left"
-      }
-    },
-    "element": {
-      "name": "Element",
-      "default": "Element %i",
-      "string": {
-        "0": "Fire",
-        "1": "Ice",
-        "2": "Lightning",
-        "3": "Darkness",
-        "4": "Holy",
-        "5": "Flying",
-        "6": "Drain/Absorb",
-        "7": "Very Strong/Weak"
-      }
-    },
-    "eventSwitch": {
-      "name": "Event Switches",
-      "length": 512,
-      "default": "Event Switch %i",
-      "string": {
-        "0": "Obtained Package",
-        "1": "Spoke to Kain",
-        "2": "Found Rosa in Kaipo",
-        "5": "Obtained Key to Baron",
-        "11": "Cecil Became a Paladin",
-        "13": "Defeated Mist Dragon",
-        "14": "Opened Package",
-        "15": "Reached Kaipo",
-        "17": "Cured Rosa w/ Sand Ruby",
-        "18": "Defeated Antlion",
-        "19": "Defeated Octomamm",
-        "20": "Damcyan Destroyed",
-        "21": "Melted Ice at Mt. Hobs",
-        "22": "Defeated Mombomb",
-        "23": "Watery Pass Save Point Scene",
-        "28": "Palom & Porom Joined",
-        "29": "Removed Flames at Mt. Ordeals",
-        "30": "Tellah Joined (Mt. Ordeals)",
-        "31": "Defeated Milon 1",
-        "32": "Defeated Milon 2",
-        "35": "Obtained Crystal of Earth",
-        "36": "Obtained TwinHarp",
-        "42": "Defeated Magus Sisters",
-        "44": "Rested After Fabul Battle",
-        "46": "Used TwinHarp Against Dark Elf",
-        "48": "Passage to Underground Open",
-        "49": "Returned Crystal of Earth",
-        "50": "Enterprise Can't Be Entered",
-        "51": "Defeated Dr. Lugae",
-        "54": "Enterprise has Hook",
-        "57": "Falcon Can Go Over Lava",
-        "61": "Falcon Has Drill",
-        "68": "Defeated Asura",
-        "69": "Defeated Leviatan",
-        "70": "Defeated Bahamut",
-        "73": "Defeated Four Fiends",
-        "74": "Received Adamant Ore",
-        "77": "Received Frying Pan",
-        "78": "Whacked Yang With Frying Pan",
-        "79": "Received Spoon",
-        "80": "Defeated Behemoth 2",
-        "81": "Defeated Behemoth 1",
-        "82": "Defeated Behemoth 3",
-        "84": "Learned Sylph",
-        "87": "Tellah Gives Advice (Watery Pass)",
-        "225": "Magnetism Active",
-        "320": "Obtained Dark Crystal",
-        "321": "Defeated Demon Wall",
-        "324": "Defeated Asura",
-        "325": "Defeated Leviatan",
-        "326": "Defeated Bahamut",
-        "337": "Met FuSoYa (Lunar's Lair)",
-        "330": "Obtained Adamant",
-        "331": "Gave Adamant to Kokkol",
-        "332": "Obtained Excalibur",
-        "336": "Defeated Behemoth 2 (Cave Bahamut)",
-        "337": "Defeated Behemoth 1 (Cave Bahamut)",
-        "338": "Defeated Behemoth 3 (Cave Bahamut)"
-      }
-    },
-    "monsterType": {
-      "name": "Monster Type",
-      "string": {
-        "0": "Dragon",
-        "1": "Machine",
-        "2": "Reptile",
-        "3": "Spirit",
-        "4": "Giant",
-        "5": "Slime",
-        "6": "Human",
-        "7": "Undead"
-      }
-    },
-    "npcSwitch": {
-      "name": "NPC Switches",
-      "length": 512,
-      "default": "NPC %i",
-      "string": {
-        "1": "Door Switch",
-        "2": "Dark Elf Sealed Door",
-        "3": "Soldier 1 (Baron)",
-        "4": "Soldier 2 (Baron)",
-        "5": "Kainazzo",
-        "6": "Engineer 1",
-        "7": "Engineer 2",
-        "8": "Baigan",
-        "9": "White Mage 1 (Baron)",
-        "10": "White Mage 2 (Baron)",
-        "11": "White Mage 3 (Baron)",
-        "12": "Black Mage 1 (Baron)",
-        "13": "Black Mage 2 (Baron)",
-        "14": "Black Mage 3 (Baron)",
-        "15": "Soldier (Misc.)",
-        "16": "Palom",
-        "17": "Porom",
-        "18": "Kain (Castle Baron)",
-        "19": "Soldier (Misc.)",
-        "20": "Soldier (Misc.)",
-        "21": "Soldier (Misc.)",
-        "22": "Officer",
-        "23": "King",
-        "25": "Restore HP/Status",
-        "26": "Yang",
-        "27": "Rosa",
-        "28": "Soldier (Baron Treasure Room)",
-        "29": "Armor Shop (Toroia)",
-        "30": "Black Mage 1 (Baron Dungeon)",
-        "31": "White Mage (Baron Dungeon)",
-        "32": "Black Mage 2 (Baron Dungeon)",
-        "34": "Weapon Shop (Toroia)",
-        "35": "Soldier (Misc.)",
-        "35": "Item Shop (Cave Eblan)",
-        "36": "Zzz",
-        "37": "Cecil's Maid (Baron)",
-        "38": "Rubicant",
-        "39": "Cecil (Mirror Room)",
-        "40": "Cecil's Sword (Mirror Room)",
-        "41": "Kain",
-        "42": "Restore MP",
-        "43": "Officer",
-        "44": "Sparkle",
-        "45": "Locked Door (Baron Old Water-way)",
-        "46": "Locked Door (Baron Weapon/Armor Shop)",
-        "47": "Man (Town of Baron)",
-        "48": "Old Man (Town of Baron)",
-        "49": "Namingway",
-        "50": "Woman (Misc.)",
-        "51": "Boy (Town of Baron)",
-        "52": "Old Woman (Town of Baron)",
-        "53": "Cid (Events ???)",
-        "54": "Dancer (Town of Baron)",
-        "55": "Rosa's Mother",
-        "56": "Innkeeper (Baron/Kaipo)",
-        "57": "Girl (Misc.)",
-        "58": "Man (Baron Inn)",
-        "59": "Woman (Baron Inn)",
-        "60": "Cid's Daughter",
-        "61": "Bookcase 1",
-        "62": "Bookcase 2",
-        "63": "Bookcase 3",
-        "64": "Cid",
-        "65": "Fireplace",
-        "66": "Weapon Shop (Baron)",
-        "67": "Armor Shop (Baron)",
-        "68": "Item Shop (Misc.)",
-        "70": "Man 1 (Misc.)",
-        "71": "Man 2 (Village Mist)",
-        "72": "Man 3 (Village Mist)",
-        "73": "Old Man (Misc.)",
-        "74": "Rydia (Girl)",
-        "75": "Sunbathing Woman (Toroia)",
-        "76": "Innkeeper (50 GP)",
-        "77": "Weapon Shop (Mist)",
-        "78": "Armor Shop (Mist)",
-        "79": "Man 1 (Kaipo)",
-        "80": "Merchant (Kaipo)",
-        "81": "Woman 1 (Kaipo)",
-        "82": "Dancer (Kaipo)",
-        "83": "Boy (Kaipo)",
-        "84": "Man 2 (Kaipo)",
-        "85": "Woman 2 (Misc.)",
-        "86": "Weapon Shop (Kaipo)",
-        "87": "Armor Shop (Kaipo)",
-        "88": "Weapon/Armor Shop (Fabul)",
-        "93": "Poster (Mysidia Cafe)",
-        "94": "Soldier (Misc.)",
-        "97": "Rosa (Tied Up)",
-        "98": "Edward",
-        "99": "Edward w/ Harp (Kaipo)",
-        "100": "Anna (Kaipo)",
-        "101": "Monster",
-        "102": "Tellah",
-        "103": "Water Splash",
-        "104": "Tentacles",
-        "105": "Dead Soldier 1",
-        "106": "Dead Soldier 2",
-        "107": "Anna (Dead)",
-        "108": "Dead Soldier 3",
-        "110": "Innkeeper (Toroia)",
-        "111": "Stone Palom",
-        "112": "Stone Porom",
-        "113": "Rubicant Flame",
-        "114": "Mt. Hobbs Ice",
-        "116": "Tiny 1",
-        "117": "Mombomb",
-        "118": "Monk (Fabul Battle)",
-        "120": "Tiny 2",
-        "121": "Frog 1",
-        "122": "Monk",
-        "123": "Antlion (Left)",
-        "127": "Golbez",
-        "128": "Crystal (Fabul/Mysidia)",
-        "129": "Lightning Bolt",
-        "131": "Dancing Pig",
-        "132": "Queen Eblan",
-        "135": "Big Chocobo 1",
-        "136": "Big Chocobo 2",
-        "137": "Big Chocobo 3",
-        "138": "Big Chocobo 4",
-        "140": "Chocobo",
-        "141": "White Chocobo",
-        "142": "Dancer's Foot",
-        "143": "Octomamm",
-        "145": "Antlion (Right)",
-        "147": "Soldier 1 (Misc.)",
-        "148": "Soldier 2 (Misc.)",
-        "149": "Soldier 3 (Misc.)",
-        "150": "Soldier 4 (Misc.)",
-        "151": "Soldier 5 (Misc.)",
-        "153": "Monk (Fabul Tower)",
-        "154": "Monk (Fabul Tower)",
-        "155": "Man (Fabul Tower)",
-        "156": "Woman (Fabul Tower)",
-        "157": "Boy (Fabul Tower)",
-        "157": "Dancer (Fabul Tower)",
-        "159": "Old Woman (Fabul Tower)",
-        "160": "King (Fabul Tower)",
-        "161": "White Mage (Fabul Tower)",
-        "162": "Monk (Fabul Tower)",
-        "163": "Monk (Fabul Tower)",
-        "164": "Yang's Wife",
-        "166": "Pig 1",
-        "167": "Frog 2",
-        "168": "Dark Elf",
-        "169": "Woman (Misc.)",
-        "170": "Silvera Weapon Shop",
-        "171": "Silvera Armor Shop",
-        "172": "Silvera Item Shop",
-        "173": "Silvera Innkeeper",
-        "174": "Boy (Misc.)",
-        "175": "Crystal (Cave Magnes)",
-        "176": "Old Woman (Misc.)",
-        "177": "Girl (Misc.)",
-        "178": "Merchant (Misc.)",
-        "179": "Dancer (Agart Inn)",
-        "180": "Weapon Shop (Agart)",
-        "181": "Armor Shop (Agart)",
-        "182": "Innkeeper (Fabul)",
-        "183": "Black Mage 1",
-        "184": "Black Mage 2",
-        "185": "Black Mage 3",
-        "186": "White Mage 1",
-        "187": "White Mage 2",
-        "188": "White Mage 3",
-        "189": "Mysidia Dancer",
-        "192": "Weapon Shop (Mysidia)",
-        "193": "Armor Shop (Mysidia)",
-        "194": "Item Shop (Mysidia)",
-        "195": "Cafe (Mysidia)",
-        "196": "Smoke",
-        "197": "Flames 1 (Mt. Ordeals)",
-        "198": "Flames 2 (Mt. Ordeals)",
-        "191": "Inn (Mysidia)",
-        "200": "Rydia's Mother",
-        "202": "Valvalis",
-        "203": "Cecil + Rosa",
-        "204": "Big Ball",
-        "206": "Magus Sisters",
-        "208": "Cleric 1",
-        "209": "Cleric 2",
-        "210": "Cleric 3",
-        "211": "Cleric 4",
-        "212": "Cleric 5",
-        "213": "Cleric 6",
-        "214": "Cleric 7",
-        "215": "Cleric 8",
-        "216": "Dancer (Toroia)",
-        "217": "Dancer (Toroia)",
-        "223": "Dancing Frog",
-        "227": "Frog 3",
-        "228": "Weapon Shop (Cave Eblan)",
-        "229": "Armor Shop (Cave Eblan)",
-        "230": "Innkeeper (Cave Eblan)",
-        "231": "Edge",
-        "232": "Rubicant",
-        "233": "Rydia (Adult)",
-        "234": "Crystal (Tower of Bab-il)",
-        "235": "Eblan Dead Soldier 1",
-        "237": "Toroia Treasure Guard",
-        "238": "Eblan Dead Soldier 2",
-        "239": "Old Man (Cave Eblana)",
-        "240": "Eblan Soldier 1",
-        "241": "Eblan Soldier 2",
-        "242": "Dwarf (Airship)",
-        "243": "Kain (Tower of Zot)",
-        "244": "Golbez",
-        "248": "Tail Guy (Grotto Adamant)",
-        "249": "Eblan Soldier 3",
-        "251": "Tiny 3",
-        "252": "FuSoYa",
-        "257": "Dwarf 1",
-        "258": "Dwarf 2",
-        "259": "Dwarf 3",
-        "260": "Dwarf 4",
-        "261": "Dwarf 5",
-        "262": "Dwarf 6",
-        "263": "Dwarf 7",
-        "265": "Luca (Dwarven Tank)",
-        "266": "Weapon Shop (Castle of Dwarves)",
-        "267": "Armor Shop (Castle of Dwarves)",
-        "270": "Rosa",
-        "271": "Kain",
-        "272": "Yang",
-        "273": "Cid",
-        "274": "Rydia",
-        "276": "Golbez",
-        "277": "Golbez' Hand",
-        "278": "Calbrena",
-        "280": "Dwarf Guard",
-        "283": "Crystal",
-        "284": "Golbez (Dead)",
-        "285": "Dwarf 0",
-        "286": "Big Chocobo 1",
-        "287": "Big Chocobo 2",
-        "288": "Big Chocobo 3",
-        "289": "Big Chocobo 4",
-        "292": "Namingway",
-        "298": "Monster",
-        "301": "Cid",
-        "302": "Edge",
-        "303": "Female Dwarf 1",
-        "304": "Female Dwarf 2",
-        "305": "Dwarf 0 (Throne Room)",
-        "306": "Dwarf 1 (Throne Room)",
-        "307": "Dwarf 2 (Throne Room)",
-        "308": "Dwarf 3 (Throne Room)",
-        "311": "Weapon Shop (Tomra)",
-        "312": "Armor Shop (Tomra)",
-        "314": "Luca (Castle of Dwarves)",
-        "316": "Locked Door (Sealed Cave)",
-        "317": "Sealed Door 1",
-        "318": "Sealed Door 2",
-        "319": "Sealed Door 3",
-        "320": "Sealed Door 4",
-        "321": "Sealed Door 5",
-        "322": "Sealed Door 6",
-        "323": "Sealed Door 7",
-        "324": "Sealed Door 8",
-        "325": "Sealed Door 9",
-        "326": "Sealed Door 10",
-        "327": "Sealed Door 11",
-        "328": "Sealed Door 12",
-        "329": "Sealed Door 13",
-        "330": "Sealed Door 14",
-        "331": "Monster 0",
-        "332": "Monster 1",
-        "333": "Monster 2",
-        "334": "Monster 3",
-        "335": "Chocobo 1 (Town of Monsters)",
-        "336": "Chocobo 2 (Town of Monsters)",
-        "337": "Bomb 1 (Town of Monsters)",
-        "338": "Bomb 2 (Town of Monsters)",
-        "339": "Leviatan",
-        "340": "Asura",
-        "341": "Monster Library 1",
-        "342": "Monster Library 2",
-        "343": "Monster Library 3",
-        "344": "Monster Library 4",
-        "345": "Monster Library 5",
-        "346": "Monster Library 6",
-        "347": "Monster Library 7",
-        "348": "Monster Library 8",
-        "349": "Monster Library 9",
-        "350": "Monster Library 10",
-        "351": "Weapon Shop (Town of Monsters)",
-        "352": "Armor Shop (Town of Monsters)",
-        "353": "Innkeeper (Town of Monsters)",
-        "354": "Item Shop (Town of Monsters)",
-        "355": "Bahamut",
-        "356": "Boy (Cave Bahamut)",
-        "357": "Girl (Cave Bahamut)",
-        "358": "FuSoYa (Lunar's Lair)",
-        "359": "Sparkle",
-        "360": "Sealed Door 15",
-        "361": "Big Whale Controls",
-        "362": "Big Whale Crystal",
-        "366": "Kokkol (Upstairs)",
-        "367": "Kokkol (Downstairs)",
-        "368": "Training Room 1",
-        "369": "Training Room 2",
-        "370": "Training Room 3",
-        "371": "Training Room 4",
-        "372": "Training Room 5",
-        "373": "Training Room 6",
-        "374": "Training Room 7",
-        "375": "Training Room 8",
-        "376": "Edward's Harp",
-        "377": "Training Room 9",
-        "378": "Training Room 10",
-        "395": "Yang (Sylph's House)",
-        "397": "Sylph 1",
-        "398": "Sylph 2",
-        "399": "Sylph 3",
-        "400": "Sylph 4",
-        "402": "Dwarf Dancer",
-        "404": "Kokkol Dwarf 1",
-        "405": "Kokkol Dwarf 2",
-        "406": "Zzz",
-        "407": "Fireplace",
-        "427": "Big Chocobo 1",
-        "428": "Big Chocobo 2",
-        "429": "Big Chocobo 3",
-        "430": "Big Chocobo 4",
-        "431": "Zemus",
-        "432": "Zemus (Dead)",
-        "433": "Zeromus",
-        "434": "FuSoYa",
-        "435": "Golbez",
-        "470": "Chocobo",
-        "471": "White Chocobo",
-        "472": "Black Chocobo",
-        "475": "Crystal Sword",
-        "476": "Masamune",
-        "477": "Murasame",
-        "478": "White Lance",
-        "479": "Kokkol Shopkeeper",
-        "480": "Hummingway 1",
-        "481": "Hummingway 2",
-        "482": "Hummingway 3",
-        "483": "Hummingway 4",
-        "484": "Hummingway Shopkeeper",
-        "485": "Edward (Toroia)",
-        "486": "Edward w/ Harp",
-        "487": "Tellah",
-        "488": "Nurse (Toroia)",
-        "489": "Doctor (Toroia)",
-        "491": "Training Room 11",
-        "492": "Training Room 12",
-        "493": "Training Room 13"
-      }
-    },
-    "song": {
-      "name": "Song",
-      "default": "Song %i",
-      "length": 256,
-      "string": {
-        "0": "Silence",
-        "1": "Prologue",
-        "2": "Long Way to Go",
-        "3": "Unknown Fanfare",
-        "4": "Chocobo Chocobo",
-        "5": "Samba de Chocobo",
-        "6": "Land of Dwarves",
-        "7": "The Final Battle",
-        "8": "Victory Fanfare",
-        "9": "Welcome to Our Town",
-        "10": "Rydia",
-        "11": "The Dreadful Fight",
-        "12": "Mt. Ordeals",
-        "13": "Main Theme",
-        "14": "The Big Whale",
-        "15": "Cry in Sorrow",
-        "16": "Sleepy Time",
-        "17": "Golbeza Clad in the Dark",
-        "18": "Edward's Harp",
-        "19": "Theme of Love",
-        "20": "Kingdom Baron",
-        "21": "The Prelude",
-        "22": "Somewhere in the World",
-        "23": "Tower of Bab'il",
-        "24": "The Airship",
-        "25": "Tower of Zot",
-        "26": "Battle 2",
-        "27": "Within the Giant",
-        "28": "Illusionary World",
-        "29": "Bomb Ring",
-        "30": "The Lunarians",
-        "31": "Dun-Dun-Dun!",
-        "30": "The Lunarians",
-        "32": "Giott, King of the Dwarves",
-        "33": "Palom & Porom",
-        "34": "Dancing Calbrena",
-        "35": "Run!",
-        "36": "Hey Cid!",
-        "37": "Into the Darkness",
-        "38": "Dancer Theme",
-        "39": "Battle 1",
-        "40": "Damcyan Castle",
-        "41": "Fanfare",
-        "42": "Sorrow Intro",
-        "43": "Chocobo Forest",
-        "44": "The Red Wings",
-        "45": "Suspicion",
-        "46": "Fabul",
-        "47": "Another Fanfare",
-        "48": "Hello, Big Chocobo",
-        "49": "Another Moon",
-        "50": "Troian Beauty",
-        "51": "Mystic Mysidia",
-        "52": "The Core",
-        "53": "Epilogue 1",
-        "54": "Epilogue 2",
-        "55": "Epilogue 3",
-        "68": "Waterfall"
-      }
-    },
-    "spellLists": {
-      "name": "Spell Lists",
-      "default": "Spell List %i",
-      "string": {
-        "0": "Cecil (White)",
-        "1": "Unknown",
-        "2": "Rydia (White)",
-        "3": "Rydia (Black)",
-        "4": "Rydia (Call)",
-        "5": "Tellah (White)",
-        "6": "Tellah (Black)",
-        "7": "Rosa (White)",
-        "8": "Palom (Black)",
-        "9": "Porom (White)",
-        "10": "FuSoYa (White)",
-        "11": "FuSoYa (Black)",
-        "12": "Edge (Ninja)"
-      }
-    },
-    "spellEffect": {
-      "name": "Spell Effect",
-      "length": 54,
-      "default": "Spell Effect %i",
-      "string": {
-        "0": "Spell Damage",
-        "1": "Spell Damage w/ HP Leak",
-        "2": "Restore HP",
-        "3": "Weak",
-        "4": "Drain HP",
-        "5": "Drain MP",
-        "6": "Inflict Status",
-        "7": "Sleep/Paralyze",
-        "8": "Blink/Image",
-        "9": "Wall",
-        "10": "Life",
-        "11": "Heal",
-        "12": "Piggy/Size/Toad",
-        "13": "Armor",
-        "14": "Shell",
-        "15": "Slow/Fast",
-        "17": "Stop/Magnet",
-        "18": "Peep",
-        "19": "Escape",
-        "20": "Damage Based on Attacker's Current HP",
-        "21": "Restore MP",
-        "22": "Elixir",
-        "23": "Poison/Venom",
-        "24": "Cockatrice",
-        "25": "Mage",
-        "26": "Sylph",
-        "27": "Odin",
-        "28": "Count",
-        "29": "Count",
-        "30": "Damage Based on Target's Max HP",
-        "31": "Gradual Petrify",
-        "32": "Gaze",
-        "33": "Bluster",
-        "34": "Slap",
-        "35": "Blast",
-        "36": "Hug",
-        "37": "Explode/Fission",
-        "38": "Reaction",
-        "39": "Remedy",
-        "41": "Alert/Call",
-        "42": "Blk.Hole",
-        "43": "Needle/Counter",
-        "44": "Absorb",
-        "45": "No Effect",
-        "46": "Make Monsters Invincible",
-        "47": "Make Monsters Un-Invincible",
-        "48": "Revive Monster",
-        "49": "Change to Next Form",
-        "50": "End Battle",
-        "51": "Search",
-        "52": "Hatch",
-        "53": "Mist Dragon Attack",
-        "126": "Graphics Only",
-        "127": "No Effect"
-      }
-    },
-    "status": {
-      "name": "Status",
-      "default": "Status %i",
-      "string": {
-        "0": "Poison",
-        "1": "Darkness",
-        "2": "Mute",
-        "3": "Pig",
-        "4": "Small",
-        "5": "Toad",
-        "6": "Stone",
-        "7": "Swoon",
-        "8": "1/3 Petrified",
-        "9": "2/3 Petrified",
-        "10": "Berserk",
-        "11": "Charm",
-        "12": "Sleep",
-        "13": "Paralyze",
-        "14": "Float",
-        "15": "Curse",
-        "16": "Count",
-        "17": "Jump",
-        "18": "Twin",
-        "19": "Charge/Focus",
-        "20": "Defend",
-        "21": "Egg",
-        "22": "Stop",
-        "23": "Magnetized",
-        "24": "Critical",
-        "25": "Cover",
-        "26": "Image 1",
-        "27": "Image 2",
-        "28": "Barrier",
-        "29": "Wall",
-        "30": "HP Leak",
-        "31": "Hide"
-      }
-    },
-    "target": {
-      "name": "Target",
-      "string": {
-        "0": "None",
-        "1": "Single Ally",
-        "2": "All Allies",
-        "3": "One Target or One Side (Ally)",
-        "4": "One Enemy",
-        "5": "One Target",
-        "6": "All Enemies",
-        "7": "One Target or One Side (Enemy)"
-      }
-    },
-    "vehicles": {
-      "name": "Vehicles",
-      "default": "Vehicle %i",
-      "string": {
-        "0": "None",
-        "1": "Chocobo",
-        "2": "Black Chocobo",
-        "3": "Hovercraft",
-        "4": "Enterprise",
-        "5": "Falcon",
-        "6": "Big Whale",
-        "7": "Ship",
-        "31": "Cinematic ?"
-      }
     }
   }
 }
